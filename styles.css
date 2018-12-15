@@ -1,10 +1,10 @@
 body, html {
-    background-color: #333 !important;
-    color: #fff !important;
+	background-color: #333 !important;
+	color: #fff !important;
 }
 
 hr {
-    border-color: #fff;
+	border-color: #fff;
 }
 
 img, button, br {
@@ -21,18 +21,18 @@ img, button, br {
 }
 
 .nav-tabs .nav-item .nav-link {
-    color: #fff;
+	color: #fff;
 }
 .nav-tabs .nav-item .nav-link.active {
-    color: #333;
+	color: #333;
 }
 .nav-tabs .nav-item .nav-link:hover {
-    background-color: #fff;
-    color: #333;
+	background-color: #fff;
+	color: #333;
 }
 
 .btn {
-    border: 2px solid #333;
+	border: 2px solid #333;
 }
 
 /* snackbar */

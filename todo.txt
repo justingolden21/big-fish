@@ -2,5 +2,12 @@ optimize fish data strcutres for redundancy
 disable buttons for things you cant purchase, hide displays of things you havent unlocked
 sync data with google account/loggin api
 
+disable buttons accordingly in updateUI()
+no deadlock possible
+unlock medium fish after 100 small fish
+make aquariums cheaper or more room? sell fish option?
+sell fish fixes deadlock and aquarium problem...
+should still make aquarium cheaper though...
+
 visualization of fish swimming and giving you money
 
