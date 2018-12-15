@@ -1,0 +1,6 @@
+optimize fish data strcutres for redundancy
+disable buttons for things you cant purchase, hide displays of things you havent unlocked
+sync data with google account/loggin api
+
+visualization of fish swimming and giving you money
+
