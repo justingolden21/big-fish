@@ -1,8 +1,7 @@
 optimize fish data strcutres for redundancy
-disable buttons for things you cant purchase, hide displays of things you havent unlocked
+disable buttons for things you cant purchase in updateUI(), hide displays of things you havent unlocked
 sync data with google account/loggin api
 
-disable buttons accordingly in updateUI()
 no deadlock possible
 unlock medium fish after 100 small fish
 make aquariums cheaper or more room? sell fish option?
@@ -11,3 +10,16 @@ should still make aquarium cheaper though...
 
 visualization of fish swimming and giving you money
 
+add help modal about how to play
+add info modal about version number, contact info, fontawesome credits, donate, share game
+
+highlight changed element on purchase?
+highlight hungry fish in red
+use third color for accent for tabs, buttons, 
+use sass?
+
+sound effects?
+
+
+BUGGY:
+handle opening a snackbar when another is already open

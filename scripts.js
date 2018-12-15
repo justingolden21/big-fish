@@ -67,6 +67,8 @@ let small_fish = [];
 let medium_fish = [];
 let big_fish = [];
 
+let paused = false;
+
 // Global vars from updateUI()
 // so instead of recalcuating them we can use old ones from last tick()
 let num_aquarium_space_used;
@@ -82,13 +84,16 @@ $(function() {
 	window.setInterval(tick, 1000); //tick every s
 	window.addEventListener('resize', handleResize);
 	handleResize();
+
+	window.setTimeout( ()=> {showSnackbar('Hint: Purchase 10 Food', 'info')}, 2000);
 	
 	small_fish[0] = (SMALLFISH); //start with 1 fish
 	
-	$('.btn.purchase-food').click(function() {
+	$('.btn.purchase-food').click( function() {
 		let amount = parseInt($(this).val() );
+		console.log(amount);
 		if(num_coin < FOOD_COST*amount) {
-			showSnackbar('Not enough coin');
+			showSnackbar('Not enough coin', 'error');
 		} else {
 			num_coin -= FOOD_COST*amount;
 			num_food += FOOD_UNIT*amount;
@@ -98,9 +103,9 @@ $(function() {
 	$('.btn.purchase-small-fish').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < SMALL_FISH_COST*amount) {
-			showSnackbar('Not enough coin');
+			showSnackbar('Not enough coin', 'error');
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (SMALLFISH.space * amount) ) {
-			showSnackbar('Not enough space in aquarium');
+			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			num_coin -= SMALL_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
@@ -112,9 +117,9 @@ $(function() {
 	$('.btn.purchase-medium-fish').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < MEDIUM_FISH_COST*amount) {
-			showSnackbar('Not enough coin');
+			showSnackbar('Not enough coin', 'error');
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (MEDIUMFISH.space * amount) ) {
-			showSnackbar('Not enough space in aquarium');
+			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			num_coin -= MEDIUM_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
@@ -126,9 +131,9 @@ $(function() {
 	$('.btn.purchase-big-fish').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < BIG_FISH_COST*amount) {
-			showSnackbar('Not enough coin');
+			showSnackbar('Not enough coin', 'error');
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (BIGFISH.space * amount) ) {
-			showSnackbar('Not enough space in aquarium');
+			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			num_coin -= BIG_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
@@ -140,18 +145,33 @@ $(function() {
 	$('.btn.purchase-aquarium').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < AQUARIUM_COST*amount) {
-			showSnackbar('Not enough coin');
+			showSnackbar('Not enough coin', 'error');
 		} else {
 			num_coin -= AQUARIUM_COST*amount;
 			num_aquarium += amount;
 			updateUI();
 		}
 	});
+	$('#pause-btn').click(function() {
+		if(!paused) {
+			paused = true;
+			$(this).html('<i class="fas fa-play"></i>');
+			showSnackbar('Game paused', 'info');
+		} else {
+			paused = false;
+			$(this).html('<i class="fas fa-pause"></i>');
+			showSnackbar('Game resumed', 'info');
+		}
+
+	});
 	
 });
 
 // Game Functions
 function tick() {
+	if(paused) {
+		return;
+	}
 	let all_fish = small_fish.concat(medium_fish, big_fish);
 	for(let i=0; i<all_fish.length; i++) {
 		all_fish[i].ticks++;
@@ -223,7 +243,12 @@ function updateUI() {
 }
 
 // Util Functions
-function showSnackbar(message) {
+function showSnackbar(message, type) {
+	if(type=='error') {
+		message = '<i class="fas fa-exclamation-circle"></i> ' + message;
+	} else if(type=='info') {
+		message = '<i class="fas fa-info-circle"></i> ' + message;
+	}
 	$('#snackbar').addClass('show');
 	$('#snackbar').html(message);
 	// $('#snackbar').css('animation', 'fadein 0.5s, fadeout 0.5s 2.5s');
