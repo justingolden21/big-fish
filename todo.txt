@@ -1,3 +1,5 @@
+SELL STUFF
+
 optimize fish data strcutres for redundancy
 disable buttons for things you cant purchase in updateUI(), hide displays of things you havent unlocked
 sync data with google account/loggin api
@@ -13,12 +15,18 @@ visualization of fish swimming and giving you money
 add help modal about how to play
 add info modal about version number, contact info, fontawesome credits, donate, share game
 
-highlight changed element on purchase?
-highlight hungry fish in red
+
+***********************highlight hungry fish in red
 use sass?
 
 sound effects?
 
+make tabs into:
+	my stuff:
+		fish, producers, achievements
+	purchase:
+		fish, producers, upgrades
+	
 
 BUGGY:
 handle opening a snackbar when another is already open

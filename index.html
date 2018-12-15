@@ -28,11 +28,22 @@
 <div class="text-center container">
 	<br>
 	<h3><i class="fas fa-fish"></i> BIG FISH <button id="pause-btn" class="btn"><i class="fas fa-pause"></i></button></h3>
+	
+
+	<div class="row">
+		<div class="col-md-4">
+			<p><i class="fas fa-coins"></i> <span id="num-coin">0</span> Coin (<span id="num-coin-rate">0</span> Coin/s)</p>
+		</div>
+		<div class="col-md-4">
+			<p><i class="fas fa-square"></i> <span id="num-food">0</span> Food (<span id="num-food-rate">0</span> Food/s)</p>
+		</div>
+		<div class="col-md-4">
+			<p><i class="fas fa-fish"></i> <span id="num-fish">1</span> Fish (<span id="num-hungry-fish">0</span> Hungry Fish)</p>
+		</div>
+	</div>
+
 	<hr>
 
-	<p><i class="fas fa-coins"></i> <span id="num-coin">0</span> Coin (<span id="num-coin-rate">0</span> Coin/s)</p>
-	<p><i class="fas fa-square"></i> <span id="num-food">0</span> Food (<span id="num-food-rate">0</span> Food/s)</p>
-	<p><i class="fas fa-fish"></i> <span id="num-fish">1</span> Fish (<span id="num-hungry-fish">0</span> Hungry Fish)</p>
 	<div class="row">
 		<div class="col-md-6">
 			<ul class="nav nav-tabs">
@@ -51,7 +62,14 @@
 						<p><i class="fas fa-coins"></i> Makes <span id="num-small-fish-coin">1</span> Coin/s (<span id="num-small-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-square"></i> Eats <span id="num-small-fish-food">1</span> Food/s (<span id="num-small-fish-food-rate">0</span> Food/s total)</p>
 						<p><i class="fas fa-water"></i> Uses <span id="num-small-fish-space">1</span> Space (<span id="num-small-fish-space-total">1</span> Space total)</p>
-					</details>
+
+<!-- 						<p><i class="fas fa-coins"></i> Sell Small Fish:</p>
+						<div class="btn-group">
+							<button class="btn sell-small-fish" value="1"><i class="fas fa-coins"></i> 1 Small Fish</button>
+							<button class="btn sell-small-fish" value="10"><i class="fas fa-coins"></i> 10 Small Fish</button>
+							<button class="btn sell-small-fish" value="100"><i class="fas fa-coins"></i> 100 Small Fish</button>
+						</div>
+ -->					</details>
 					<hr>
 					<details>
 						<summary><i class="fas fa-fish fa-2x"></i> <span id="num-medium-fish">1</span> Medium Fish (<span id="num-medium-fish-hungry">0</span> Hungry)</summary>
@@ -84,7 +102,7 @@
 					<a class="nav-link active" href="#purchase" data-toggle="tab" aria-selected="true">Purchase</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#unlocks" data-toggle="tab" aria-selected="false">Unlocks</a>
+					<a class="nav-link" href="#upgrades" data-toggle="tab" aria-selected="false">Upgrades</a>
 				</li>
 			</ul>
 			<div class="tab-content">
@@ -142,9 +160,9 @@
 
 
 				</div>
-				<div class="tab-pane" id="unlocks" role="tabpanel">
+				<div class="tab-pane" id="upgrades" role="tabpanel">
 					<br>
-					TODO: Unlocks
+					TODO: Upgrades
 				</div>
 			</div>
 			

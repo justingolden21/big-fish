@@ -58,6 +58,7 @@ const AQUARIUM_COST = 160000;
 
 const AQUARIUM_SPACE = 100;
 const FOOD_UNIT = 10;
+const SELL_RETURN_VALUE = 0.5;
 
 // Player Vals
 let num_coin = 0;
@@ -154,6 +155,20 @@ $(function() {
 			num_coin -= AQUARIUM_COST*amount;
 			num_aquarium += amount;
 			showHighlight($('#num-aquarium') );
+			updateUI();
+		}
+	});
+	$('.btn.sell-small-fish').click(function() {
+		let amount = parseInt($(this).val() );
+		if(small_fish.length < amount) {
+			showSnackbar('Not enough fish', 'error');
+		} else {
+			num_coin += Math.round(SMALL_FISH_COST*amount*SELL_RETURN_VALUE);
+			for(let i=0; i<amount; i++) {
+				small_fish.pop();
+			}
+			showHighlight($('#num-small-fish') );
+			showHighlight($('#num-coin') );
 			updateUI();
 		}
 	});
