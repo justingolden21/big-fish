@@ -131,8 +131,12 @@ hr {
 	background-image:
 		radial-gradient(circle at 10px -5px, transparent 12px, #fff 13px);
 
+
+}
+
+hr:not(.paused) {
 	animation: wave 2s linear infinite;
-	-webkit-animation: wave 2s linear infinite;
+	-webkit-animation: wave 2s linear infinite;	
 }
 
 @-webkit-keyframes wave {

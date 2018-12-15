@@ -159,15 +159,14 @@ $(function() {
 	});
 	$('#pause-btn').click(function() {
 		if(!paused) {
-			paused = true;
 			$(this).html('<i class="fas fa-play"></i>');
 			showSnackbar('Game paused', 'info');
 		} else {
-			paused = false;
 			$(this).html('<i class="fas fa-pause"></i>');
 			showSnackbar('Game resumed', 'info');
 		}
-
+		$('hr').toggleClass('paused');
+		paused = !paused;
 	});
 	
 });
