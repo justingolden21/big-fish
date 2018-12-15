@@ -15,7 +15,6 @@ add info modal about version number, contact info, fontawesome credits, donate, 
 
 highlight changed element on purchase?
 highlight hungry fish in red
-use third color for accent for tabs, buttons, 
 use sass?
 
 sound effects?

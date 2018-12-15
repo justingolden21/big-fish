@@ -97,6 +97,7 @@ $(function() {
 		} else {
 			num_coin -= FOOD_COST*amount;
 			num_food += FOOD_UNIT*amount;
+			showHighlight($('#num-food') );
 			updateUI();
 		}
 	});
@@ -112,6 +113,7 @@ $(function() {
 				small_fish.push(SMALLFISH);
 			}
 			updateUI();
+			showHighlight($('#num-small-fish') );
 		}
 	});
 	$('.btn.purchase-medium-fish').click(function() {
@@ -125,6 +127,7 @@ $(function() {
 			for(let i=0; i<amount; i++) {
 				medium_fish.push(MEDIUMFISH);
 			}
+			showHighlight($('#num-medium-fish') );
 			updateUI();
 		}
 	});
@@ -139,6 +142,7 @@ $(function() {
 			for(let i=0; i<amount; i++) {
 				big_fish.push(BIGFISH);
 			}
+			showHighlight($('#num-big-fish') );
 			updateUI();
 		}
 	});
@@ -149,6 +153,7 @@ $(function() {
 		} else {
 			num_coin -= AQUARIUM_COST*amount;
 			num_aquarium += amount;
+			showHighlight($('#num-aquarium') );
 			updateUI();
 		}
 	});
@@ -252,7 +257,11 @@ function showSnackbar(message, type) {
 	$('#snackbar').addClass('show');
 	$('#snackbar').html(message);
 	// $('#snackbar').css('animation', 'fadein 0.5s, fadeout 0.5s 2.5s');
-	setTimeout(function(){ $('#snackbar').removeClass('show') }, 3000);
+	setTimeout(()=> { $('#snackbar').removeClass('show') }, 3000);
+}
+function showHighlight(elm) {
+	elm.addClass('highlight');
+	setTimeout(()=> { elm.removeClass('highlight') }, 500);
 }
 function handleResize() {
 	if(window.innerWidth <= 1024) {

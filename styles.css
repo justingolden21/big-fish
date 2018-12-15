@@ -23,8 +23,9 @@ img, button, br, .nav.nav-tabs {
 	background: #099 !important;
 	color: #fff;
 }
-
-
+span.highlight {
+	background-color: #099;
+}
 
 /* tabs */
 .nav.nav-tabs {
