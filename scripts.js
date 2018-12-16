@@ -176,7 +176,7 @@ $(function() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 	
-	small_fish[0] = new Fish(SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD); //start with 1 fish
+	small_fish[0] = new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD); //start with 1 fish
 	small_fish[0].teleport();
 	
 	$('.btn.purchase-food').click( function() {
@@ -200,7 +200,7 @@ $(function() {
 		} else {
 			num_coin -= SMALL_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
-				small_fish.push(new Fish(SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
+				small_fish.push(new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
 				small_fish[small_fish.length-1].teleport();
 			}
 			updateUI();
@@ -216,7 +216,7 @@ $(function() {
 		} else {
 			num_coin -= MEDIUM_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
-				medium_fish.push(new Fish(MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
+				medium_fish.push(new Fish(MEDIUM, MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
 				medium_fish[medium_fish.length-1].teleport();
 			}
 			showHighlight($('#num-medium-fish') );
@@ -232,7 +232,7 @@ $(function() {
 		} else {
 			num_coin -= BIG_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
-				big_fish.push(new Fish(BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
+				big_fish.push(new Fish(BIG, BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
 				big_fish[big_fish.length-1].teleport();
 			}
 			showHighlight($('#num-big-fish') );
@@ -294,30 +294,6 @@ function tick() {
 			all_fish[i][j].draw();			
 		}
 	}
-
-
-	// for(let i=0, len=small_fish.length; i<len; i++) {
-	// 	small_fish[i].ticks++;
-	// 	small_fish[i].produce();
-	// 	small_fish[i].eat();
-	// 	small_fish[i].move();
-	// 	small_fish[i].draw();
-	// }
-	// for(let i=0, len=medium_fish.length; i<len; i++) {
-	// 	medium_fish[i].ticks++;
-	// 	medium_fish[i].produce();
-	// 	medium_fish[i].eat();
-	// 	medium_fish[i].move();
-	// 	medium_fish[i].draw();
-	// }
-	// for(let i=0, len=big_fish.length; i<len; i++) {
-	// 	big_fish[i].ticks++;
-	// 	big_fish[i].produce();
-	// 	big_fish[i].eat();
-	// 	big_fish[i].move();
-	// 	big_fish[i].draw();
-	// }
-
 
 	updateUI();
 }
