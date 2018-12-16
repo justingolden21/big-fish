@@ -121,7 +121,6 @@ summary:focus {
 }
 
 #canvas {
-	display: none; /*todo: remove*/
 	border: 2px solid #099;
 }
 

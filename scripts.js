@@ -118,16 +118,23 @@ class Fish { //fish should go to class so they stay in school :)
 
 
 // Consts
-const SMALLFISH = new Fish(SMALL, 1, 1, FOOD);
-const MEDIUMFISH = new Fish(MEDIUM, 30, 2, SMALL);
-const BIGFISH = new Fish(SMALL, 900, 3, MEDIUM);
 
+//coin output and space in tank
+const SMALL_FISH_COIN = 1;
+const MEDIUM_FISH_COIN = 30;
+const BIG_FISH_COIN = 900;
+const MEDIUM_FISH_SPACE = 2;
+const SMALL_FISH_SPACE = 1;
+const BIG_FISH_SPACE = 3;
+
+//cost to purchase
 const FOOD_COST = 1;
 const SMALL_FISH_COST = 20;
 const MEDIUM_FISH_COST = 400;
 const BIG_FISH_COST = 8000;
 const AQUARIUM_COST = 160000;
 
+//misc
 const AQUARIUM_SPACE = 100;
 const FOOD_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
@@ -169,7 +176,7 @@ $(function() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 	
-	small_fish[0] = (SMALLFISH); //start with 1 fish
+	small_fish[0] = new Fish(SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD); //start with 1 fish
 	small_fish[0].teleport();
 	
 	$('.btn.purchase-food').click( function() {
@@ -188,12 +195,12 @@ $(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < SMALL_FISH_COST*amount) {
 			showSnackbar('Not enough coin', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (SMALLFISH.space * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (SMALL_FISH_SPACE * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			num_coin -= SMALL_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
-				small_fish.push(SMALLFISH );
+				small_fish.push(new Fish(SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
 				small_fish[small_fish.length-1].teleport();
 			}
 			updateUI();
@@ -204,12 +211,12 @@ $(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < MEDIUM_FISH_COST*amount) {
 			showSnackbar('Not enough coin', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (MEDIUMFISH.space * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (MEDIUM_FISH_SPACE * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			num_coin -= MEDIUM_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
-				medium_fish.push(MEDIUMFISH );
+				medium_fish.push(new Fish(MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
 				medium_fish[medium_fish.length-1].teleport();
 			}
 			showHighlight($('#num-medium-fish') );
@@ -220,12 +227,12 @@ $(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < BIG_FISH_COST*amount) {
 			showSnackbar('Not enough coin', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (BIGFISH.space * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (BIG_FISH_SPACE * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			num_coin -= BIG_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
-				big_fish.push(BIGFISH );
+				big_fish.push(new Fish(BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
 				big_fish[big_fish.length-1].teleport();
 			}
 			showHighlight($('#num-big-fish') );
@@ -355,20 +362,20 @@ function updateUI() {
 	
 	$('#num-small-fish').html(small_fish.length);
 	$('#num-small-fish-food-rate').html(small_fish.length - num_hungry_small_fish);
-	$('#num-small-fish-coin-rate').html( (small_fish.length - num_hungry_small_fish)*SMALLFISH.coin);
-	$('#num-small-fish-space-total').html(small_fish.length*SMALLFISH.space);
+	$('#num-small-fish-coin-rate').html( (small_fish.length - num_hungry_small_fish)*SMALL_FISH_COIN);
+	$('#num-small-fish-space-total').html(small_fish.length*SMALL_FISH_SPACE);
 	$('#num-small-fish-hungry').html(num_hungry_small_fish);
 
 	$('#num-medium-fish').html(medium_fish.length);
 	$('#num-medium-fish-food-rate').html(medium_fish.length - num_hungry_medium_fish);
-	$('#num-medium-fish-coin-rate').html( (medium_fish.length - num_hungry_medium_fish)*MEDIUMFISH.coin);
-	$('#num-medium-fish-space-total').html(medium_fish.length*MEDIUMFISH.space);
+	$('#num-medium-fish-coin-rate').html( (medium_fish.length - num_hungry_medium_fish)*MEDIUM_FISH_COIN);
+	$('#num-medium-fish-space-total').html(medium_fish.length*MEDIUM_FISH_SPACE);
 	$('#num-medium-fish-hungry').html(num_hungry_medium_fish);
 
 	$('#num-big-fish').html(big_fish.length);
 	$('#num-big-fish-food-rate').html(big_fish.length - num_hungry_big_fish);
-	$('#num-big-fish-coin-rate').html( (big_fish.length - num_hungry_big_fish)*BIGFISH.coin);
-	$('#num-big-fish-space-total').html(big_fish.length*BIGFISH.space);
+	$('#num-big-fish-coin-rate').html( (big_fish.length - num_hungry_big_fish)*BIG_FISH_COIN);
+	$('#num-big-fish-space-total').html(big_fish.length*BIG_FISH_SPACE);
 	$('#num-big-fish-hungry').html(num_hungry_big_fish);
 	
 	$('#num-aquarium').html(num_aquarium);
