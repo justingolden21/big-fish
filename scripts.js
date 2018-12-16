@@ -357,6 +357,18 @@ function updateUI() {
 	$('#num-aquarium').html(num_aquarium);
 	$('#num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);
 	$('#num-aquarium-space-used').html(num_aquarium_space_used);
+
+
+	checkUnlocks();
+
+}
+
+
+function checkUnlocks() {
+	if(small_fish.length > 50) {
+		unlock($('#sell-small-fish') );
+		showSnackbar('Unlocked ability to sell fish', 'success');
+	}
 }
 
 // Util Functions
@@ -365,6 +377,8 @@ function showSnackbar(message, type) {
 		message = '<i class="fas fa-exclamation-circle"></i> ' + message;
 	} else if(type=='info') {
 		message = '<i class="fas fa-info-circle"></i> ' + message;
+	} else if(type='success') {
+		message = '<i class="fas fa-check-circle"></i> ' + message;		
 	}
 	$('#snackbar').addClass('show');
 	$('#snackbar').html(message);
@@ -407,15 +421,6 @@ function draw(type, x, y, facing_left) {
 
 }
 
-
-function clone(obj) {
-	if (null == obj || "object" != typeof obj) return obj;
-	// let copy = obj.constructor();
-	let copy = {};
-	for(let attr in obj) {
-		if(obj.hasOwnProperty(attr) ) {			
-			copy[attr] = clone(obj[attr]);
-		}
-	}
-	return copy;
+function unlock(elm) {
+	elm.css('display', 'inline');
 }
