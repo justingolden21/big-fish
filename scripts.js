@@ -62,9 +62,7 @@ class Fish { //fish should go to class so they stay in school :)
 		if(num_imgs_loaded==img_arr.length+img_arr_left.length) {
 			this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
 			this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
-			console.log(this.x);
 		} else {
-			console.log('hi');
 			this.x = 10;
 			this.y = 9;
 		}
@@ -181,7 +179,6 @@ $(function() {
 	
 	$('.btn.purchase-food').click( function() {
 		let amount = parseInt($(this).val() );
-		console.log(amount);
 		if(num_coin < FOOD_COST*amount) {
 			showSnackbar('Not enough coin', 'error');
 		} else {
