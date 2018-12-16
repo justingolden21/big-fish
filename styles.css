@@ -120,6 +120,11 @@ summary:focus {
 	to {bottom: 0; opacity: 0;}
 }
 
+#canvas {
+	display: none; /*todo: remove*/
+	border: 2px solid #099;
+}
+
 /* waves */
 hr {
 	/*border: 1px solid #fff;*/

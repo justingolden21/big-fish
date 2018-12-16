@@ -30,3 +30,8 @@ unlock animation is fade in, add class 'unlockable' and 'locked' for elments in 
 
 bugs:
 handle opening a snackbar when another is already open
+fish are all shallow copies, functions undefined, x and y positions, if one hungry they all are
+
+sprites for hungry vs full, earning coins animation
+make a speperate tick function for drawing that runs every 500ms
+add bubbles to fish?

@@ -1,11 +1,50 @@
 // Enums
-const FOOD = 0;
-const SMALL = 1;
-const MEDIUM = 2;
-const BIG = 3;
+const FOOD = -1;
+const SMALL = 0;
+const MEDIUM = 1;
+const BIG = 2;
+
+// Images
+let small_fish_img = new Image();
+small_fish_img.src = 'img/small-fish.png';
+let medium_fish_img = new Image();
+medium_fish_img.src = 'img/medium-fish.png';
+let big_fish_img = new Image();
+big_fish_img.src = 'img/big-fish.png';
+const img_arr = [small_fish_img, medium_fish_img, big_fish_img];
+
+let small_fish_left_img = new Image();
+small_fish_left_img.src = 'img/small-fish-left.png';
+let medium_fish_left_img = new Image();
+medium_fish_left_img.src = 'img/medium-fish-left.png';
+let big_fish_left_img = new Image();
+big_fish_left_img.src = 'img/big-fish-left.png';
+const img_arr_left = [small_fish_left_img, medium_fish_left_img, big_fish_left_img];
+
+let num_imgs_loaded = 0;
+small_fish_img.onload = function() {
+	num_imgs_loaded++;
+}
+medium_fish_img.onload = function() {
+	num_imgs_loaded++;
+}
+big_fish_img.onload = function() {
+	num_imgs_loaded++;
+}
+small_fish_left_img.onload = function() {
+	num_imgs_loaded++;
+}
+medium_fish_left_img.onload = function() {
+	num_imgs_loaded++;
+}
+big_fish_left_img.onload = function() {
+	num_imgs_loaded++;
+}
+
 
 // Classes
-class Fish {
+class Fish { //fish should go to class so they stay in school :)
+	
 	constructor(type, coin, space, food) {
 		this.type = type;
 		this.coin = coin;
@@ -13,6 +52,23 @@ class Fish {
 		this.food = food;
 		this.hungry = false;
 		this.ticks = 0;
+		
+
+		// this.x = -1;
+		// this.y = -1;
+		// this.facing_left = false;
+	}
+	teleport() {
+		if(num_imgs_loaded==img_arr.length+img_arr_left.length) {
+			this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
+			this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
+			console.log(this.x);
+		} else {
+			console.log('hi');
+			this.x = 10;
+			this.y = 9;
+		}
+		this.facing_left = Math.random() >= 0.5;
 	}
 	eat() {
 		if(this.food == FOOD) {
@@ -43,7 +99,23 @@ class Fish {
 			num_coin += this.coin;
 		}
 	}
+	move() {
+		if(Math.random() >= 0.5) {
+			this.x += FISH_SPEEDS[this.type];
+			this.x = Math.min(this.x, canvas.width - ( Math.floor(img_arr[this.type].width/2) ) );
+			this.facing_left = false;
+		} else {
+			this.x -= FISH_SPEEDS[this.type];
+			this.x = Math.max(this.x, Math.ceil(img_arr[this.type].width/2) );
+			this.facing_left = true;
+		}
+	}
+	draw() {
+		draw(this.type, this.x, this.y, this.facing_left);		
+	}
 }
+
+
 
 // Consts
 const SMALLFISH = new Fish(SMALL, 1, 1, FOOD);
@@ -59,6 +131,8 @@ const AQUARIUM_COST = 160000;
 const AQUARIUM_SPACE = 100;
 const FOOD_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
+
+const FISH_SPEEDS = [5,5,5]; //small, medium, big
 
 // Player Vals
 let num_coin = 0;
@@ -79,16 +153,24 @@ let num_hungry_small_fish;
 let num_hungry_medium_fish;
 let num_hungry_big_fish;
 
+//global so we don't have to keep getting it
+let canvas, ctx;
+
+
 // Onload, Button Listeners
 $(function() {
-	tick();
+	// tick();
 	window.setInterval(tick, 1000); //tick every s
 	window.addEventListener('resize', handleResize);
 	handleResize();
 
 	window.setTimeout( ()=> {showSnackbar('Hint: Purchase 10 Food', 'info')}, 2000);
+
+	canvas = document.getElementById('canvas');
+	ctx = canvas.getContext('2d');
 	
 	small_fish[0] = (SMALLFISH); //start with 1 fish
+	small_fish[0].teleport();
 	
 	$('.btn.purchase-food').click( function() {
 		let amount = parseInt($(this).val() );
@@ -111,7 +193,8 @@ $(function() {
 		} else {
 			num_coin -= SMALL_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
-				small_fish.push(SMALLFISH);
+				small_fish.push(SMALLFISH );
+				small_fish[small_fish.length-1].teleport();
 			}
 			updateUI();
 			showHighlight($('#num-small-fish') );
@@ -126,7 +209,8 @@ $(function() {
 		} else {
 			num_coin -= MEDIUM_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
-				medium_fish.push(MEDIUMFISH);
+				medium_fish.push(MEDIUMFISH );
+				medium_fish[medium_fish.length-1].teleport();
 			}
 			showHighlight($('#num-medium-fish') );
 			updateUI();
@@ -141,7 +225,8 @@ $(function() {
 		} else {
 			num_coin -= BIG_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
-				big_fish.push(BIGFISH);
+				big_fish.push(BIGFISH );
+				big_fish[big_fish.length-1].teleport();
 			}
 			showHighlight($('#num-big-fish') );
 			updateUI();
@@ -191,12 +276,42 @@ function tick() {
 	if(paused) {
 		return;
 	}
-	let all_fish = small_fish.concat(medium_fish, big_fish);
-	for(let i=0; i<all_fish.length; i++) {
-		all_fish[i].ticks++;
-		all_fish[i].produce();
-		all_fish[i].eat();
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	let all_fish = [small_fish,medium_fish, big_fish];
+	for(let i=0, len=all_fish.length; i<len; i++) {
+		for(let j=0, ilen=all_fish[i].length; j<ilen; j++) {
+			all_fish[i][j].ticks++;
+			all_fish[i][j].produce();
+			all_fish[i][j].eat();
+			all_fish[i][j].move();
+			all_fish[i][j].draw();			
+		}
 	}
+
+
+	// for(let i=0, len=small_fish.length; i<len; i++) {
+	// 	small_fish[i].ticks++;
+	// 	small_fish[i].produce();
+	// 	small_fish[i].eat();
+	// 	small_fish[i].move();
+	// 	small_fish[i].draw();
+	// }
+	// for(let i=0, len=medium_fish.length; i<len; i++) {
+	// 	medium_fish[i].ticks++;
+	// 	medium_fish[i].produce();
+	// 	medium_fish[i].eat();
+	// 	medium_fish[i].move();
+	// 	medium_fish[i].draw();
+	// }
+	// for(let i=0, len=big_fish.length; i<len; i++) {
+	// 	big_fish[i].ticks++;
+	// 	big_fish[i].produce();
+	// 	big_fish[i].eat();
+	// 	big_fish[i].move();
+	// 	big_fish[i].draw();
+	// }
+
+
 	updateUI();
 }
 
@@ -210,7 +325,7 @@ function updateUI() {
 	num_hungry_big_fish = 0;
 
 	let all_fish = small_fish.concat(medium_fish, big_fish);
-	for(let i=0; i<all_fish.length; i++) {
+	for(let i=0, len=all_fish.length; i<len; i++) {
 		num_aquarium_space_used += all_fish[i].space;
 		if(all_fish[i].hungry) {
 			num_hungry_fish++;
@@ -218,12 +333,12 @@ function updateUI() {
 			num_coin_rate += all_fish[i].coin;
 		}
 	}
-	for(let i=0; i<small_fish.length; i++) {
+	for(let i=0, len=small_fish.length; i<len; i++) {
 		if(small_fish[i].hungry) {
 			num_hungry_small_fish++;
 		}
 	}
-	for(let i=0; i<medium_fish.length; i++) {
+	for(let i=0, len=medium_fish.length; i<len; i++) {
 		if(medium_fish[i].hungry) {
 			num_hungry_medium_fish++;
 		}
@@ -283,4 +398,41 @@ function handleResize() {
 	} else {
 		$('.btn-group-vertical').addClass('btn-group').removeClass('btn-group-vertical');
 	}
+}
+
+
+//------------------------
+
+//min is inclusive, max is exclusive, returns an int
+function random(min, max) {
+	return Math.floor(Math.random() * (max - min) ) + min; 
+}
+
+
+
+
+//params x and y are img center, converted to img top left for canvas
+function draw(type, x, y, facing_left) {
+	x -= Math.floor(img_arr[type].width/2);
+	y -= Math.floor(img_arr[type].height/2);
+
+	if(!facing_left) {
+		ctx.drawImage(img_arr[type], x, y);
+	} else {
+		ctx.drawImage(img_arr_left[type], x, y);
+	}
+
+}
+
+
+function clone(obj) {
+	if (null == obj || "object" != typeof obj) return obj;
+	// let copy = obj.constructor();
+	let copy = {};
+	for(let attr in obj) {
+		if(obj.hasOwnProperty(attr) ) {			
+			copy[attr] = clone(obj[attr]);
+		}
+	}
+	return copy;
 }
