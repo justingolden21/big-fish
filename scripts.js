@@ -363,10 +363,12 @@ function updateUI() {
 
 }
 
-
+let sell_small_fish_unlocked = false;
 function checkUnlocks() {
-	if(small_fish.length > 50) {
+	if(!sell_small_fish_unlocked && small_fish.length > 50) {
+		sell_small_fish_unlocked = true;
 		unlock($('#sell-small-fish') );
+		showHighlight($('#sell-small-fish') );
 		showSnackbar('Unlocked ability to sell fish', 'success');
 	}
 }
