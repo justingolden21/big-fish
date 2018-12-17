@@ -80,6 +80,12 @@ function updateUI() {
 
 	$('#num-farm').html(num_farm);
 	$('#num-farm-food-rate').html(num_farm*FARM_FOOD_RATE);
+	$('#num-small-hatchery').html(num_small_hatchery);
+	$('#num-small-hatchery-fish-rate').html(num_small_hatchery*SMALL_HATCHERY_RATE);
+	$('#num-medium-hatchery').html(num_medium_hatchery);
+	$('#num-medium-hatchery-fish-rate').html(num_medium_hatchery*MEDIUM_HATCHERY_RATE);
+	$('#num-big-hatchery').html(num_big_hatchery);
+	$('#num-big-hatchery-fish-rate').html(num_big_hatchery*BIG_HATCHERY_RATE);
 
 	checkUnlocks();
 }

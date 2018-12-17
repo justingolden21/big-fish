@@ -91,8 +91,13 @@ const BIG_FISH_COST = 8000;
 const AQUARIUM_COST = 160000;
 
 const FARM_COST = 100;
-
+const SMALL_HATCHERY_COST = 1000;
+const MEDIUM_HATCHERY_COST = 10000;
+const BIG_HATCHERY_COST = 100000;
 const FARM_FOOD_RATE = 5;
+const SMALL_HATCHERY_RATE = 1;
+const MEDIUM_HATCHERY_RATE = 1;
+const BIG_HATCHERY_RATE = 1;
 
 
 //misc
@@ -107,6 +112,9 @@ let num_coin = 0;
 let num_food = 0;
 let num_aquarium = 1;
 let num_farm = 0;
+let num_small_hatchery = 0;
+let num_medium_hatchery = 0;
+let num_big_hatchery = 0;
 
 let small_fish = [];
 let medium_fish = [];
@@ -114,6 +122,14 @@ let big_fish = [];
 
 let paused = false;
 let num_ticks = 0;
+
+let stats = {
+	'food_purchased': 0,
+	'small_fish_purchased': 0,
+	'medium_fish_purchased': 0,
+	'big_fish_purchased': 0,
+	'aquarium_purchased': 0
+};
 
 // Global vars from updateUI()
 // so instead of recalcuating them we can use old ones from last tick()
@@ -164,6 +180,7 @@ $(function() {
 		if(num_coin < FOOD_COST*amount) {
 			showSnackbar('Not enough coin', 'error');
 		} else {
+			stats['food_purchased'] += FOOD_UNIT*amount;
 			num_coin -= FOOD_COST*amount;
 			num_food += FOOD_UNIT*amount;
 			showHighlight($('#num-food') );
@@ -177,6 +194,7 @@ $(function() {
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (SMALL_FISH_SPACE * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
+			stats['small_fish_purchased'] += amount;
 			num_coin -= SMALL_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
 				small_fish.push(new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
@@ -193,6 +211,7 @@ $(function() {
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (MEDIUM_FISH_SPACE * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
+			stats['medium_fish_purchased'] += amount;
 			num_coin -= MEDIUM_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
 				medium_fish.push(new Fish(MEDIUM, MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
@@ -209,6 +228,7 @@ $(function() {
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (BIG_FISH_SPACE * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
+			stats['big_fish_purchased'] += amount;
 			num_coin -= BIG_FISH_COST*amount;
 			for(let i=0; i<amount; i++) {
 				big_fish.push(new Fish(BIG, BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
@@ -223,6 +243,7 @@ $(function() {
 		if(num_coin < AQUARIUM_COST*amount) {
 			showSnackbar('Not enough coin', 'error');
 		} else {
+			stats['aquarium_purchased'] += amount;
 			num_coin -= AQUARIUM_COST*amount;
 			num_aquarium += amount;
 			showHighlight($('#num-aquarium') );
@@ -238,6 +259,39 @@ $(function() {
 			num_coin -= FARM_COST*amount;
 			num_farm += amount;
 			showHighlight($('#num-farm') );
+			updateUI();
+		}
+	});
+	$('.btn.purchase-small-hatchery').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_coin < SMALL_HATCHERY_COST*amount) {
+			showSnackbar('Not enough coin', 'error');
+		} else {
+			num_coin -= SMALL_HATCHERY_COST*amount;
+			num_small_hatchery += amount;
+			showHighlight($('#num-small-hatchery') );
+			updateUI();
+		}
+	});
+	$('.btn.purchase-medium-hatchery').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_coin < MEDIUM_HATCHERY_COST*amount) {
+			showSnackbar('Not enough coin', 'error');
+		} else {
+			num_coin -= MEDIUM_HATCHERY_COST*amount;
+			num_medium_hatchery += amount;
+			showHighlight($('#num-medium-hatchery') );
+			updateUI();
+		}
+	});
+	$('.btn.purchase-big-hatchery').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_coin < BIG_HATCHERY_COST*amount) {
+			showSnackbar('Not enough coin', 'error');
+		} else {
+			num_coin -= BIG_HATCHERY_COST*amount;
+			num_big_hatchery += amount;
+			showHighlight($('#num-big-hatchery') );
 			updateUI();
 		}
 	});
@@ -306,6 +360,18 @@ function tick() {
 	num_ticks++;
 
 	num_food += num_farm * FARM_FOOD_RATE;
+	for(let i=0; i<num_small_hatchery; i++) {
+		small_fish.push(new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
+		small_fish[small_fish.length-1].teleport();
+	}
+	for(let i=0; i<num_medium_hatchery; i++) {
+		medium_fish.push(new Fish(MEDIUM, MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
+		medium_fish[medium_fish.length-1].teleport();
+	}
+	for(let i=0; i<num_big_hatchery; i++) {
+		big_fish.push(new Fish(BIG, BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
+		big_fish[big_fish.length-1].teleport();
+	}
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	let all_fish = [small_fish,medium_fish, big_fish];

@@ -1,4 +1,7 @@
 let purchase_farm_unlocked = false;
+let purchase_small_hatchery_unlocked = false;
+let purchase_medium_hatchery_unlocked = false;
+let purchase_big_hatchery_unlocked = false;
 
 let sell_small_fish_unlocked = false;
 let sell_medium_fish_unlocked = false;
@@ -9,11 +12,29 @@ let big_fish_unlocked = false;
 let aquarium_unlocked = false;
 
 function checkUnlocks() {
-	if(!purchase_farm_unlocked && small_fish.length >= 100) {
+	if(!purchase_farm_unlocked && stats['food_purchased'] >= 250) {
 		purchase_farm_unlocked = true;
 		unlock($('#my-farm') );
 		unlock($('#purchase-farm') );
 		showSnackbar('Unlocked fish food farms', 'success');
+	}
+	if(!purchase_small_hatchery_unlocked && stats['small_fish_purchased'] >= 250) {
+		purchase_small_hatchery_unlocked = true;
+		unlock($('#my-small-hatchery') );
+		unlock($('#purchase-small-hatchery') );
+		showSnackbar('Unlocked small fish hatcheries', 'success');
+	}
+	if(!purchase_medium_hatchery_unlocked && stats['medium_fish_purchased'] >= 250) {
+		purchase_medium_hatchery_unlocked = true;
+		unlock($('#my-medium-hatchery') );
+		unlock($('#purchase-medium-hatchery') );
+		showSnackbar('Unlocked medium fish hatcheries', 'success');
+	}
+	if(!purchase_big_hatchery_unlocked && stats['big_fish_purchased'] >= 250) {
+		purchase_big_hatchery_unlocked = true;
+		unlock($('#my-big-hatchery') );
+		unlock($('#purchase-big-hatchery') );
+		showSnackbar('Unlocked big fish hatcheries', 'success');
 	}
 
 	if(!sell_small_fish_unlocked && small_fish.length >= 75) {
