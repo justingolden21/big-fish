@@ -127,14 +127,30 @@ $(function() {
 	window.addEventListener('resize', handleResize);
 	handleResize();
 
-	window.setTimeout( ()=> {showSnackbar('Hint: Purchase 10 Food', 'info')}, 2000);
+	window.setTimeout( ()=> { if(num_food==0) showSnackbar('Hint: Purchase 10 Food', 'info')}, 3000);
 
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 	
 	small_fish[0] = new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD); //start with 1 fish
 	small_fish[0].teleport();
-	
+
+
+	//display game vals
+	//todo: add more const values from aquarium, sell value, etc
+	$('#num-small-fish-coin').html(SMALL_FISH_COIN);
+	$('#num-small-fish-food').html(1);
+	$('#num-small-fish-space').html(SMALL_FISH_SPACE);
+	$('#num-medium-fish-coin').html(MEDIUM_FISH_COIN);
+	$('#num-medium-fish-food').html(1);
+	$('#num-medium-fish-space').html(MEDIUM_FISH_SPACE);
+	$('#num-big-fish-coin').html(BIG_FISH_COIN);
+	$('#num-big-fish-food').html(1);
+	$('#num-big-fish-space').html(BIG_FISH_SPACE);
+
+	$('#sell-return-value').html(SELL_RETURN_VALUE);
+
+	//buttons
 	$('.btn.purchase-food').click( function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < FOOD_COST*amount) {
@@ -208,13 +224,41 @@ $(function() {
 	$('.btn.sell-small-fish').click(function() {
 		let amount = parseInt($(this).val() );
 		if(small_fish.length < amount) {
-			showSnackbar('Not enough fish', 'error');
+			showSnackbar('Not enough small fish', 'error');
 		} else {
 			num_coin += Math.round(SMALL_FISH_COST*amount*SELL_RETURN_VALUE);
 			for(let i=0; i<amount; i++) {
 				small_fish.pop();
 			}
 			showHighlight($('#num-small-fish') );
+			showHighlight($('#num-coin') );
+			updateUI();
+		}
+	});
+	$('.btn.sell-medium-fish').click(function() {
+		let amount = parseInt($(this).val() );
+		if(medium_fish.length < amount) {
+			showSnackbar('Not enough medium fish', 'error');
+		} else {
+			num_coin += Math.round(MEDIUM_FISH_COST*amount*SELL_RETURN_VALUE);
+			for(let i=0; i<amount; i++) {
+				medium_fish.pop();
+			}
+			showHighlight($('#num-medium-fish') );
+			showHighlight($('#num-coin') );
+			updateUI();
+		}
+	});
+	$('.btn.sell-big-fish').click(function() {
+		let amount = parseInt($(this).val() );
+		if(big_fish.length < amount) {
+			showSnackbar('Not enough big fish', 'error');
+		} else {
+			num_coin += Math.round(BIG_FISH_COST*amount*SELL_RETURN_VALUE);
+			for(let i=0; i<amount; i++) {
+				big_fish.pop();
+			}
+			showHighlight($('#num-big-fish') );
 			showHighlight($('#num-coin') );
 			updateUI();
 		}

@@ -30,7 +30,7 @@ span.highlight {
 }
 #canvas {
 	border: 2px solid #fff;
-	background-color: #099;
+	/*background-color: #099;*/
 }
 .unlock {
 	display: none;

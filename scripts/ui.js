@@ -92,7 +92,7 @@ function showSnackbar(message, type) {
 	}
 	$('#snackbar').addClass('show');
 	$('#snackbar').html(message);
-	// $('#snackbar').css('animation', 'fadein 0.5s, fadeout 0.5s 2.5s');
+	// $('#snackbar').css('animation', 'fadein 0.5s, fadeout 0.5s 2s');
 	setTimeout(()=> { $('#snackbar').removeClass('show') }, 3000);
 }
 function showHighlight(elm, sec=0.5) {

@@ -1,6 +1,5 @@
 do:
-highlight hungry fish if nonzero
-adjust aquarium size to 1000
+
 add unlocks (see below)
 add upgrades
 
@@ -12,14 +11,12 @@ hide displays of things you havent unlocked
 	implement hungry fish images, maybe change system for handling images or move it to another js file
 
 later:
-visualization of fish swimming and giving you money
 sync data with google account/loggin api
 add rest of features (upgrades, unlocks, achievements)
 add help modal about how to play
 add info modal about version number, contact info, fontawesome credits, donate, share game
 optimize fish data strcutres for redundancy
 use sass
-split scripts and styles into multiple files
 
 unlocks:
 unlock medium fish after 50 small fish
@@ -29,8 +26,13 @@ unlock animation is fade in, add class 'unlockable' and 'locked' for elments in 
 
 bugs:
 handle opening a snackbar when another is already open
-fish are all shallow copies, functions undefined, x and y positions, if one hungry they all are
 
 sprites for hungry vs full, earning coins animation
-make a speperate tick function for drawing that runs every 500ms
 add bubbles to fish?
+
+console/history of notifications/of unlocks
+
+icons
+farm: warehouse
+hatchery: building
+factory: city

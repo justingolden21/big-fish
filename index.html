@@ -68,8 +68,8 @@
 						<summary><i class="fas fa-fish"></i> <span id="num-small-fish">1</span> Small Fish (<span id="num-small-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-small-fish-coin">1</span> Coin/s (<span id="num-small-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-square"></i> Eats <span id="num-small-fish-food">1</span> Food/s (<span id="num-small-fish-food-rate">0</span> Food/s total)</p>
-						<p><i class="fas fa-water"></i> Uses <span id="num-small-fish-space">1</span> Space (<span id="num-small-fish-space-total">1</span> Space total)</p>
-
+						<div class="aquarium-space unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-small-fish-space">1</span> Space (<span id="num-small-fish-space-total">1</span> Space total)</p> </div>
+						
 						<div id="sell-small-fish" class="unlock">
 							<p><i class="fas fa-coins"></i> Sell Small Fish:</p>
 							<div class="btn-group">
@@ -77,16 +77,18 @@
 								<button class="btn sell-small-fish" value="10"><i class="fas fa-coins"></i> 10 Small Fish</button>
 								<button class="btn sell-small-fish" value="100"><i class="fas fa-coins"></i> 100 Small Fish</button>
 							</div>
+							<p><span class="sell-return-value">0.5</span> return value on sales</p>
 						</div>
-
 					</details>
 					<hr>
+
+					<div id="my-medium-fish" class="unlock">
 					<details>
 						<summary><i class="fas fa-fish fa-2x"></i> <span id="num-medium-fish">1</span> Medium Fish (<span id="num-medium-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-medium-fish-coin">30</span> Coin/s (<span id="num-medium-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-fish"></i> Eats <span id="num-medium-fish-food">1</span> Small Fish/s (<span id="num-medium-fish-food-rate">0</span> Small Fish/s total)</p>
-						<p><i class="fas fa-water"></i> Uses <span id="num-medium-fish-space">2</span> Space (<span id="num-medium-fish-space-total">0</span> Space total)</p>
-
+						<div class="aquarium-space unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-medium-fish-space">2</span> Space (<span id="num-medium-fish-space-total">0</span> Space total)</p> </div>
+						
 						<div id="sell-medium-fish" class="unlock">
 							<p><i class="fas fa-coins"></i> Sell Medium Fish:</p>
 							<div class="btn-group">
@@ -94,16 +96,19 @@
 								<button class="btn sell-medium-fish" value="10"><i class="fas fa-coins"></i> 10 Medium Fish</button>
 								<button class="btn sell-medium-fish" value="100"><i class="fas fa-coins"></i> 100 Medium Fish</button>
 							</div>
+							<p><span class="sell-return-value">0.5</span> return value on sales</p>
 						</div>
-
 					</details>
 					<hr>
+					</div>
+
+					<div id="my-big-fish" class="unlock">
 					<details>
 						<summary><i class="fas fa-fish fa-3x"></i> <span id="num-big-fish">1</span> Big Fish (<span id="num-big-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-big-fish-coin">900</span> Coin/s (<span id="num-big-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-fish fa-2x"></i> Eats <span id="num-big-fish-food">1</span> Medium Fish/s (<span id="num-big-fish-food-rate">0</span> Medium Fish/s total)</p>
-						<p><i class="fas fa-water"></i> Uses <span id="num-big-fish-space">3</span> Space (<span id="num-big-fish-space-total">0</span> Space total)</p>
-
+						<div class="aquarium-space unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-big-fish-space">3</span> Space (<span id="num-big-fish-space-total">0</span> Space total)</p> </div>
+						
 						<div id="sell-big-fish" class="unlock">
 							<p><i class="fas fa-coins"></i> Sell Big Fish:</p>
 							<div class="btn-group">
@@ -111,25 +116,30 @@
 								<button class="btn sell-big-fish" value="10"><i class="fas fa-coins"></i> 10 Big Fish</button>
 								<button class="btn sell-big-fish" value="100"><i class="fas fa-coins"></i> 100 Big Fish</button>
 							</div>
+							<p><span class="sell-return-value">0.5</span> return value on sales</p>
 						</div>
-
 					</details>
 					<hr>
+					</div>
+
+					<div id="my-aquarium" class="unlock">
 					<details>
 						<summary><i class="fas fa-water"></i> <span id="num-aquarium">1</span> Aquarium</summary>
 						<p><i class="fas fa-water"></i> Provides <span id="num-aquarium-space">500</span> Space (<span id="num-aquarium-space-used">1</span> used / <span id="num-aquarium-space-total">100</span> total)</p>
 					</details>
-
-					<canvas id="canvas"></canvas>
+					<hr>
+					</div>
 
 				</div>
 				<div class="tab-pane" id="my-producers" role="tabpanel">
 					<br>
-					TODO: Producers
+					<hr>
+					<!-- TODO: Producers -->
 				</div>
 				<div class="tab-pane" id="my-achievements" role="tabpanel">
 					<br>
-					TODO: Achievements
+					<hr>
+					<!-- TODO: Achievements -->
 				</div>
 			</div>
 		</div>
@@ -169,6 +179,8 @@
 						<p><i class="fas fa-coins"></i> <span id="num-small-fish-per-cost">1</span> Small Fish costs <span id="num-small-fish-cost">20</span> Coin</p>
 					</details>
 					<hr>
+
+					<div id="purchase-medium-fish" class="unlock">
 					<details>
 						<summary><i class="fas fa-fish fa-2x"></i> Purchase Medium Fish:</summary>
 						<div class="btn-group">
@@ -179,6 +191,9 @@
 						<p><i class="fas fa-coins"></i> <span id="num-medium-fish-per-cost">1</span> Medium Fish costs <span id="num-medium-fish-cost">400</span> Coin</p>
 					</details>
 					<hr>
+					</div>
+
+					<div id="purchase-big-fish" class="unlock">
 					<details>
 						<summary><i class="fas fa-fish fa-3x"></i> Purchase Big Fish:</summary>
 						<div class="btn-group">
@@ -189,6 +204,9 @@
 						<p><i class="fas fa-coins"></i> <span id="num-big-fish-per-cost">1</span> Big Fish costs <span id="num-big-fish-cost">8000</span> Coin</p>
 					</details>
 					<hr>
+					</div>
+
+					<div id="purchase-aquarium" class="unlock">
 					<details>
 						<summary><i class="fas fa-water"></i> Purchase Aquarium:</summary>
 						<div class="btn-group">
@@ -198,21 +216,26 @@
 						</div>
 						<p><i class="fas fa-coins"></i> <span id="num-aquarium-per-cost">1</span> Aquarium costs <span id="num-aquarium-cost">160000</span> Coin</p>
 					</details>
-
+					<hr>
+					</div>
 
 				</div>
 				<div class="tab-pane" id="purchase-producers" role="tabpanel">
 					<br>
-					TODO: Producers
+					<hr>
+					<!-- TODO: Producers -->
 				</div>
 				<div class="tab-pane" id="purchase-upgrades" role="tabpanel">
 					<br>
-					TODO: Upgrades
+					<hr>
+					<!-- TODO: Upgrades -->
 				</div>
 			</div>
 			
 		</div>
 	</div>
+	<br>
+	<canvas id="canvas"></canvas>
 	<br>
 	<div id="snackbar"></div>
 </div>
