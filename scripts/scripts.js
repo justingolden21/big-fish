@@ -196,10 +196,7 @@ $(function() {
 		} else {
 			stats['small_fish_purchased'] += amount;
 			num_coin -= SMALL_FISH_COST*amount;
-			for(let i=0; i<amount; i++) {
-				small_fish.push(new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
-				small_fish[small_fish.length-1].teleport();
-			}
+			addFish(SMALL, amount);
 			updateUI();
 			showHighlight($('#num-small-fish') );
 		}
@@ -213,10 +210,7 @@ $(function() {
 		} else {
 			stats['medium_fish_purchased'] += amount;
 			num_coin -= MEDIUM_FISH_COST*amount;
-			for(let i=0; i<amount; i++) {
-				medium_fish.push(new Fish(MEDIUM, MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
-				medium_fish[medium_fish.length-1].teleport();
-			}
+			addFish(MEDIUM, amount);
 			showHighlight($('#num-medium-fish') );
 			updateUI();
 		}
@@ -230,10 +224,7 @@ $(function() {
 		} else {
 			stats['big_fish_purchased'] += amount;
 			num_coin -= BIG_FISH_COST*amount;
-			for(let i=0; i<amount; i++) {
-				big_fish.push(new Fish(BIG, BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
-				big_fish[big_fish.length-1].teleport();
-			}
+			addFish(BIG, amount);
 			showHighlight($('#num-big-fish') );
 			updateUI();
 		}
@@ -360,18 +351,9 @@ function tick() {
 	num_ticks++;
 
 	num_food += num_farm * FARM_FOOD_RATE;
-	for(let i=0; i<num_small_hatchery; i++) {
-		small_fish.push(new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
-		small_fish[small_fish.length-1].teleport();
-	}
-	for(let i=0; i<num_medium_hatchery; i++) {
-		medium_fish.push(new Fish(MEDIUM, MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
-		medium_fish[medium_fish.length-1].teleport();
-	}
-	for(let i=0; i<num_big_hatchery; i++) {
-		big_fish.push(new Fish(BIG, BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
-		big_fish[big_fish.length-1].teleport();
-	}
+	addFish(SMALL, num_small_hatchery);
+	addFish(MEDIUM, num_medium_hatchery);
+	addFish(BIG, num_big_hatchery);
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	let all_fish = [small_fish,medium_fish, big_fish];
@@ -389,6 +371,24 @@ function tick() {
 }
 
 // Utility Functions
+function addFish(type, amount) {
+	if(type==SMALL) {
+		for(let i=0; i<amount; i++) {
+			small_fish.push(new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
+			small_fish[small_fish.length-1].teleport();
+		}
+	} else if(type==MEDIUM) {
+		for(let i=0; i<amount; i++) {
+			medium_fish.push(new Fish(MEDIUM, MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
+			medium_fish[medium_fish.length-1].teleport();
+		}
+	} else if(type==BIG) {
+		for(let i=0; i<amount; i++) {
+			big_fish.push(new Fish(BIG, BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
+			big_fish[big_fish.length-1].teleport();
+		}
+	}
+}
 
 //min is inclusive, max is exclusive, returns an int
 function random(min, max) {
