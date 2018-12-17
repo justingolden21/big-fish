@@ -23,8 +23,17 @@ img, button, br, .nav.nav-tabs {
 	background: #099 !important;
 	color: #fff;
 }
+
+/* game */
 span.highlight {
 	background-color: #099;
+}
+#canvas {
+	border: 2px solid #fff;
+	background-color: #099;
+}
+.unlock {
+	display: none;
 }
 
 /* tabs */
@@ -120,38 +129,26 @@ summary:focus {
 	to {bottom: 0; opacity: 0;}
 }
 
-#canvas {
-	border: 2px solid #fff;
-	background-color: #099;
-}
-
 /* waves */
 hr {
-	/*border: 1px solid #fff;*/
 	border: none;
-
 	/*https://stackoverflow.com/questions/33759102/wave-border-in-css*/
 	background-repeat: repeat;
 	height: 10px;
 	background-size: 20px 20px;
-	background-image:
-		radial-gradient(circle at 10px -5px, transparent 12px, #fff 13px);
-
-
+	background-image: radial-gradient(circle at 10px -5px, transparent 12px, #fff 13px);
 }
-
 hr:not(.paused) {
 	animation: wave 2s linear infinite;
 	-webkit-animation: wave 2s linear infinite;	
 }
-
-@-webkit-keyframes wave {
+@keyframes wave {
 	0% { transform: translateX(-10px); }
 	50%{ transform: translateX(10px); }
 	100%{ transform: translateX(-10px); }
 }
-
-
-.unlock {
-	display: none;
+@-webkit-keyframes wave {
+	0% { transform: translateX(-10px); }
+	50%{ transform: translateX(10px); }
+	100%{ transform: translateX(-10px); }
 }
