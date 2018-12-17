@@ -1,4 +1,4 @@
-const UNLOCK_SNACKBAR_TIME = 5;
+let purchase_farm_unlocked = false;
 
 let sell_small_fish_unlocked = false;
 let sell_medium_fish_unlocked = false;
@@ -9,11 +9,18 @@ let big_fish_unlocked = false;
 let aquarium_unlocked = false;
 
 function checkUnlocks() {
+	if(!purchase_farm_unlocked && small_fish.length >= 100) {
+		purchase_farm_unlocked = true;
+		unlock($('#my-farm') );
+		unlock($('#purchase-farm') );
+		showSnackbar('Unlocked fish food farms', 'success');
+	}
+
 	if(!sell_small_fish_unlocked && small_fish.length >= 75) {
 		sell_small_fish_unlocked = true;
 		unlock($('#sell-small-fish') );
 		// showHighlight($('#sell-small-fish') );
-		showSnackbar('Unlocked ability to sell small fish', 'success', UNLOCK_SNACKBAR_TIME);
+		showSnackbar('Unlocked ability to sell small fish', 'success');
 	}
 	if(!sell_medium_fish_unlocked && medium_fish.length >= 75) {
 		sell_medium_fish_unlocked = true;

@@ -90,6 +90,11 @@ const MEDIUM_FISH_COST = 400;
 const BIG_FISH_COST = 8000;
 const AQUARIUM_COST = 160000;
 
+const FARM_COST = 100;
+
+const FARM_FOOD_RATE = 5;
+
+
 //misc
 const AQUARIUM_SPACE = 500;
 const FOOD_UNIT = 10;
@@ -101,6 +106,8 @@ const FISH_SPEEDS = [5,10,15]; //[small, medium, big]
 let num_coin = 0;
 let num_food = 0;
 let num_aquarium = 1;
+let num_farm = 0;
+
 let small_fish = [];
 let medium_fish = [];
 let big_fish = [];
@@ -222,6 +229,19 @@ $(function() {
 			updateUI();
 		}
 	});
+
+	$('.btn.purchase-farm').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_coin < FARM_COST*amount) {
+			showSnackbar('Not enough coin', 'error');
+		} else {
+			num_coin -= FARM_COST*amount;
+			num_farm += amount;
+			showHighlight($('#num-farm') );
+			updateUI();
+		}
+	});
+
 	$('.btn.sell-small-fish').click(function() {
 		let amount = parseInt($(this).val() );
 		if(small_fish.length < amount) {
@@ -284,6 +304,9 @@ function tick() {
 		return;
 	}
 	num_ticks++;
+
+	num_food += num_farm * FARM_FOOD_RATE;
+
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	let all_fish = [small_fish,medium_fish, big_fish];
 	for(let i=0, len=all_fish.length; i<len; i++) {

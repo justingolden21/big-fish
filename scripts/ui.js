@@ -33,7 +33,7 @@ function updateUI() {
 	$('#num-food').html(num_food);
 	$('#num-fish').html(all_fish.length);
 	$('#num-coin-rate').html(num_coin_rate);
-	$('#num-food-rate').html( -1 * (small_fish.length - num_hungry_small_fish) );
+	$('#num-food-rate').html( (num_farm*FARM_FOOD_RATE) - (small_fish.length-num_hungry_small_fish) );
 	$('#num-hungry-fish').html(num_hungry_fish);
 	if(num_hungry_fish>0) {
 		$('#num-hungry-fish').addClass('highlight');
@@ -77,6 +77,9 @@ function updateUI() {
 	$('#num-aquarium').html(num_aquarium);
 	$('#num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);
 	$('#num-aquarium-space-used').html(num_aquarium_space_used);
+
+	$('#num-farm').html(num_farm);
+	$('#num-farm-food-rate').html(num_farm*FARM_FOOD_RATE);
 
 	checkUnlocks();
 }
