@@ -50,9 +50,9 @@ function drawFish(type, x, y, hungry, facing_left) {
 		ctx.drawImage(img_arr_left[type], x, y);
 	}
 }
-function drawMoney(type, x, y, hungry) {
-	if(hungry) return;
-	x -= Math.floor(img_arr_coin[type].width/2);
-	y += Math.floor(img_arr_coin[type].height/2);
-	ctx.drawImage(img_arr_coin[type], x, y);
-}
+// function drawMoney(type, x, y, hungry) {
+// 	if(hungry) return;
+// 	x -= Math.floor(img_arr_coin[type].width/2);
+// 	y += Math.floor(img_arr_coin[type].height/2);
+// 	ctx.drawImage(img_arr_coin[type], x, y);
+// }

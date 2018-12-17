@@ -67,7 +67,7 @@ class Fish { //fish should go to class so they stay in school :)
 	}
 	draw() {
 		drawFish(this.type, this.x, this.y, this.hungry, this.facing_left);
-		drawMoney(this.type, this.x, this.y, this.hungry);
+		// drawMoney(this.type, this.x, this.y, this.hungry);
 	}
 }
 
