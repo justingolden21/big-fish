@@ -21,6 +21,14 @@ let big_fish_left_img = new Image();
 big_fish_left_img.src = 'img/big-fish-left.png';
 const img_arr_left = [small_fish_left_img, medium_fish_left_img, big_fish_left_img];
 
+let small_coin_img = new Image();
+small_coin_img.src = 'img/small-coin.png';
+let medium_coin_img = new Image();
+medium_coin_img.src = 'img/medium-coin.png';
+let big_coin_img = new Image();
+big_coin_img.src = 'img/big-coin.png';
+const img_arr_coin = [small_coin_img, medium_coin_img, big_coin_img];
+
 let num_imgs_loaded = 0;
 small_fish_img.onload = function() {
 	num_imgs_loaded++;
@@ -41,6 +49,15 @@ big_fish_left_img.onload = function() {
 	num_imgs_loaded++;
 }
 
+small_coin_img.onload = function() {
+	num_imgs_loaded++;
+}
+medium_coin_img.onload = function() {
+	num_imgs_loaded++;
+}
+big_coin_img.onload = function() {
+	num_imgs_loaded++;
+}
 
 // Classes
 class Fish { //fish should go to class so they stay in school :)
@@ -59,7 +76,7 @@ class Fish { //fish should go to class so they stay in school :)
 		// this.facing_left = false;
 	}
 	teleport() {
-		if(num_imgs_loaded==img_arr.length+img_arr_left.length) {
+		if(num_imgs_loaded==img_arr.length+img_arr_left.length+img_arr_coin.length) {
 			this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
 			this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
 		} else {
@@ -109,7 +126,8 @@ class Fish { //fish should go to class so they stay in school :)
 		}
 	}
 	draw() {
-		draw(this.type, this.x, this.y, this.facing_left);		
+		drawFish(this.type, this.x, this.y, this.hungry, this.facing_left);
+		drawMoney(this.type, this.x, this.y, this.hungry);
 	}
 }
 
@@ -428,7 +446,8 @@ function random(min, max) {
 
 
 //params x and y are img center, converted to img top left for canvas
-function draw(type, x, y, facing_left) {
+//todo: draw hungry?
+function drawFish(type, x, y, hungry, facing_left) {
 	x -= Math.floor(img_arr[type].width/2);
 	y -= Math.floor(img_arr[type].height/2);
 
@@ -437,7 +456,12 @@ function draw(type, x, y, facing_left) {
 	} else {
 		ctx.drawImage(img_arr_left[type], x, y);
 	}
-
+}
+function drawMoney(type, x, y, hungry) {
+	if(hungry) return;
+	x -= Math.floor(img_arr_coin[type].width/2);
+	y += Math.floor(img_arr_coin[type].height/2);
+	ctx.drawImage(img_arr_coin[type], x, y);
 }
 
 function unlock(elm) {

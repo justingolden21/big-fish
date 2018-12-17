@@ -3,14 +3,11 @@ highlight hungry fish if nonzero
 adjust aquarium size to 1000
 add unlocks (see below)
 add upgrades
-make tabs into:
-	my stuff:
-		fish, producers, achievements
-	purchase:
-		fish, producers, upgrades
+
 		
 maybe:
-disable buttons for things you cant purchase in updateUI(), hide displays of things you havent unlocked
+disable buttons for things you cant purchase in updateUI()
+hide displays of things you havent unlocked
 
 later:
 visualization of fish swimming and giving you money

@@ -1,0 +1,4 @@
+icon scales:
+big: 10%
+meidum: 10/3%
+small: 20/3%
