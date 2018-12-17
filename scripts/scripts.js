@@ -91,7 +91,7 @@ const BIG_FISH_COST = 8000;
 const AQUARIUM_COST = 160000;
 
 //misc
-const AQUARIUM_SPACE = 100;
+const AQUARIUM_SPACE = 500;
 const FOOD_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
 
