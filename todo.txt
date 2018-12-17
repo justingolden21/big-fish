@@ -4,10 +4,12 @@ adjust aquarium size to 1000
 add unlocks (see below)
 add upgrades
 
-		
+		todo: multiple aquarium system? num fish per aquarium
 maybe:
 disable buttons for things you cant purchase in updateUI()
 hide displays of things you havent unlocked
+
+	implement hungry fish images, maybe change system for handling images or move it to another js file
 
 later:
 visualization of fish swimming and giving you money

@@ -4,61 +4,6 @@ const SMALL = 0;
 const MEDIUM = 1;
 const BIG = 2;
 
-// Images
-let small_fish_img = new Image();
-small_fish_img.src = 'img/small-fish.png';
-let medium_fish_img = new Image();
-medium_fish_img.src = 'img/medium-fish.png';
-let big_fish_img = new Image();
-big_fish_img.src = 'img/big-fish.png';
-const img_arr = [small_fish_img, medium_fish_img, big_fish_img];
-
-let small_fish_left_img = new Image();
-small_fish_left_img.src = 'img/small-fish-left.png';
-let medium_fish_left_img = new Image();
-medium_fish_left_img.src = 'img/medium-fish-left.png';
-let big_fish_left_img = new Image();
-big_fish_left_img.src = 'img/big-fish-left.png';
-const img_arr_left = [small_fish_left_img, medium_fish_left_img, big_fish_left_img];
-
-let small_coin_img = new Image();
-small_coin_img.src = 'img/small-coin.png';
-let medium_coin_img = new Image();
-medium_coin_img.src = 'img/medium-coin.png';
-let big_coin_img = new Image();
-big_coin_img.src = 'img/big-coin.png';
-const img_arr_coin = [small_coin_img, medium_coin_img, big_coin_img];
-
-let num_imgs_loaded = 0;
-small_fish_img.onload = function() {
-	num_imgs_loaded++;
-}
-medium_fish_img.onload = function() {
-	num_imgs_loaded++;
-}
-big_fish_img.onload = function() {
-	num_imgs_loaded++;
-}
-small_fish_left_img.onload = function() {
-	num_imgs_loaded++;
-}
-medium_fish_left_img.onload = function() {
-	num_imgs_loaded++;
-}
-big_fish_left_img.onload = function() {
-	num_imgs_loaded++;
-}
-
-small_coin_img.onload = function() {
-	num_imgs_loaded++;
-}
-medium_coin_img.onload = function() {
-	num_imgs_loaded++;
-}
-big_coin_img.onload = function() {
-	num_imgs_loaded++;
-}
-
 // Classes
 class Fish { //fish should go to class so they stay in school :)
 	
@@ -69,11 +14,6 @@ class Fish { //fish should go to class so they stay in school :)
 		this.food = food;
 		this.hungry = false;
 		this.ticks = 0;
-		
-
-		// this.x = -1;
-		// this.y = -1;
-		// this.facing_left = false;
 	}
 	teleport() {
 		if(num_imgs_loaded==img_arr.length+img_arr_left.length+img_arr_coin.length) {
@@ -155,7 +95,7 @@ const AQUARIUM_SPACE = 100;
 const FOOD_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
 
-const FISH_SPEEDS = [5,5,5]; //small, medium, big
+const FISH_SPEEDS = [5,10,15]; //[small, medium, big]
 
 // Player Vals
 let num_coin = 0;
@@ -306,164 +246,16 @@ function tick() {
 			all_fish[i][j].produce();
 			all_fish[i][j].eat();
 			all_fish[i][j].move();
-			all_fish[i][j].draw();			
+			all_fish[i][j].draw();
 		}
 	}
 
 	updateUI();
 }
 
-function updateUI() {
-	num_aquarium_space_used = 0;
-	num_coin_rate = 0;
-	num_hungry_fish = 0;
-	
-	num_hungry_small_fish = 0;
-	num_hungry_medium_fish = 0;
-	num_hungry_big_fish = 0;
-
-	let all_fish = small_fish.concat(medium_fish, big_fish);
-	for(let i=0, len=all_fish.length; i<len; i++) {
-		num_aquarium_space_used += all_fish[i].space;
-		if(all_fish[i].hungry) {
-			num_hungry_fish++;
-		} else {
-			num_coin_rate += all_fish[i].coin;
-		}
-	}
-	for(let i=0, len=small_fish.length; i<len; i++) {
-		if(small_fish[i].hungry) {
-			num_hungry_small_fish++;
-		}
-	}
-	for(let i=0, len=medium_fish.length; i<len; i++) {
-		if(medium_fish[i].hungry) {
-			num_hungry_medium_fish++;
-		}
-	}
-	//save time instead of for loop
-	num_hungry_big_fish = num_hungry_fish - num_hungry_small_fish - num_hungry_medium_fish;
-	
-	$('#num-coin').html(num_coin);
-	$('#num-food').html(num_food);
-	$('#num-fish').html(all_fish.length);
-	$('#num-coin-rate').html(num_coin_rate);
-	$('#num-food-rate').html(all_fish.length - num_hungry_fish);
-	$('#num-hungry-fish').html(num_hungry_fish);
-	if(num_hungry_fish>0) {
-		$('#num-hungry-fish').addClass('highlight');
-	} else {
-		$('#num-hungry-fish').removeClass('highlight');
-	}
-	
-	$('#num-small-fish').html(small_fish.length);
-	$('#num-small-fish-food-rate').html(small_fish.length - num_hungry_small_fish);
-	$('#num-small-fish-coin-rate').html( (small_fish.length - num_hungry_small_fish)*SMALL_FISH_COIN);
-	$('#num-small-fish-space-total').html(small_fish.length*SMALL_FISH_SPACE);
-	$('#num-small-fish-hungry').html(num_hungry_small_fish);
-	if(num_hungry_small_fish>0) {
-		$('#num-small-fish-hungry').addClass('highlight');
-	} else {
-		$('#num-small-fish-hungry').removeClass('highlight');
-	}
-
-	$('#num-medium-fish').html(medium_fish.length);
-	$('#num-medium-fish-food-rate').html(medium_fish.length - num_hungry_medium_fish);
-	$('#num-medium-fish-coin-rate').html( (medium_fish.length - num_hungry_medium_fish)*MEDIUM_FISH_COIN);
-	$('#num-medium-fish-space-total').html(medium_fish.length*MEDIUM_FISH_SPACE);
-	$('#num-medium-fish-hungry').html(num_hungry_medium_fish);
-	if(num_hungry_medium_fish>0) {
-		$('#num-medium-fish-hungry').addClass('highlight');
-	} else {
-		$('#num-medium-fish-hungry').removeClass('highlight');
-	}
-
-	$('#num-big-fish').html(big_fish.length);
-	$('#num-big-fish-food-rate').html(big_fish.length - num_hungry_big_fish);
-	$('#num-big-fish-coin-rate').html( (big_fish.length - num_hungry_big_fish)*BIG_FISH_COIN);
-	$('#num-big-fish-space-total').html(big_fish.length*BIG_FISH_SPACE);
-	$('#num-big-fish-hungry').html(num_hungry_big_fish);
-	if(num_hungry_big_fish>0) {
-		$('#num-big-fish-hungry').addClass('highlight');
-	} else {
-		$('#num-big-fish-hungry').removeClass('highlight');
-	}
-
-	$('#num-aquarium').html(num_aquarium);
-	$('#num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);
-	$('#num-aquarium-space-used').html(num_aquarium_space_used);
-
-
-	checkUnlocks();
-
-}
-
-let sell_small_fish_unlocked = false;
-function checkUnlocks() {
-	if(!sell_small_fish_unlocked && small_fish.length > 50) {
-		sell_small_fish_unlocked = true;
-		unlock($('#sell-small-fish') );
-		showHighlight($('#sell-small-fish') );
-		showSnackbar('Unlocked ability to sell fish', 'success');
-	}
-}
-
-// Util Functions
-function showSnackbar(message, type) {
-	if(type=='error') {
-		message = '<i class="fas fa-exclamation-circle"></i> ' + message;
-	} else if(type=='info') {
-		message = '<i class="fas fa-info-circle"></i> ' + message;
-	} else if(type='success') {
-		message = '<i class="fas fa-check-circle"></i> ' + message;		
-	}
-	$('#snackbar').addClass('show');
-	$('#snackbar').html(message);
-	// $('#snackbar').css('animation', 'fadein 0.5s, fadeout 0.5s 2.5s');
-	setTimeout(()=> { $('#snackbar').removeClass('show') }, 3000);
-}
-function showHighlight(elm, sec=0.5) {
-	elm.addClass('highlight');
-	setTimeout(()=> { elm.removeClass('highlight') }, sec*1000);
-}
-function handleResize() {
-	if(window.innerWidth <= 1024) {
-		$('.btn-group').addClass('btn-group-vertical').removeClass('btn-group');
-	} else {
-		$('.btn-group-vertical').addClass('btn-group').removeClass('btn-group-vertical');
-	}
-}
-
-
-//------------------------
+// Utility Functions
 
 //min is inclusive, max is exclusive, returns an int
 function random(min, max) {
 	return Math.floor(Math.random() * (max - min) ) + min; 
-}
-
-
-
-
-//params x and y are img center, converted to img top left for canvas
-//todo: draw hungry?
-function drawFish(type, x, y, hungry, facing_left) {
-	x -= Math.floor(img_arr[type].width/2);
-	y -= Math.floor(img_arr[type].height/2);
-
-	if(!facing_left) {
-		ctx.drawImage(img_arr[type], x, y);
-	} else {
-		ctx.drawImage(img_arr_left[type], x, y);
-	}
-}
-function drawMoney(type, x, y, hungry) {
-	if(hungry) return;
-	x -= Math.floor(img_arr_coin[type].width/2);
-	y += Math.floor(img_arr_coin[type].height/2);
-	ctx.drawImage(img_arr_coin[type], x, y);
-}
-
-function unlock(elm) {
-	elm.css('display', 'inline');
 }
