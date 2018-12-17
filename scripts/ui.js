@@ -33,7 +33,7 @@ function updateUI() {
 	$('#num-food').html(num_food);
 	$('#num-fish').html(all_fish.length);
 	$('#num-coin-rate').html(num_coin_rate);
-	$('#num-food-rate').html(all_fish.length - num_hungry_fish);
+	$('#num-food-rate').html( -1 * (small_fish.length - num_hungry_small_fish) );
 	$('#num-hungry-fish').html(num_hungry_fish);
 	if(num_hungry_fish>0) {
 		$('#num-hungry-fish').addClass('highlight');

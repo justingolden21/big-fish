@@ -52,17 +52,17 @@
 			<h5>My Stuff:</h5>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
-					<a class="nav-link active" href="#my-fish" data-toggle="tab" aria-selected="true">Fish</a>
+					<a class="nav-link active" href="#my-fish-tab" data-toggle="tab" aria-selected="true">Fish</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#my-producers" data-toggle="tab" aria-selected="false">Producers</a>
+					<a class="nav-link" href="#my-producers-tab" data-toggle="tab" aria-selected="false">Producers</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#my-achievements" data-toggle="tab" aria-selected="false">Achievements</a>
+					<a class="nav-link" href="#my-achievements-tab" data-toggle="tab" aria-selected="false">Achievements</a>
 				</li>
 			</ul>
 			<div class="tab-content">
-				<div class="tab-pane active" id="my-fish" role="tabpanel">
+				<div class="tab-pane active" id="my-fish-tab" role="tabpanel">
 					<br>
 					<details open>
 						<summary><i class="fas fa-fish"></i> <span id="num-small-fish">1</span> Small Fish (<span id="num-small-fish-hungry">0</span> Hungry)</summary>
@@ -131,12 +131,22 @@
 					</div>
 
 				</div>
-				<div class="tab-pane" id="my-producers" role="tabpanel">
+				<div class="tab-pane" id="my-producers-tab" role="tabpanel">
 					<br>
 					<hr>
 					<!-- TODO: Producers -->
+
+					<div id="my-farm" class="unlock">
+					<details>
+						<summary><i class="fas fa-warehouse"></i> <span id="num-farm">0</span> Fish Food Farms</summary>
+						<p><i class="fas fa-square"></i> Makes <span id="num-farm-food">1</span> Food/s (<span id="num-farm-food-rate">0</span> Food/s total)</p>
+					</details>
+					<hr>
+					</div>
+
+
 				</div>
-				<div class="tab-pane" id="my-achievements" role="tabpanel">
+				<div class="tab-pane" id="my-achievements-tab" role="tabpanel">
 					<br>
 					<hr>
 					<!-- TODO: Achievements -->
@@ -147,17 +157,17 @@
 			<h5>Purchase:</h5>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
-					<a class="nav-link active" href="#purchase-fish" data-toggle="tab" aria-selected="true">Fish</a>
+					<a class="nav-link active" href="#purchase-fish-tab" data-toggle="tab" aria-selected="true">Fish</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#purchase-producers" data-toggle="tab" aria-selected="false">Producers</a>
+					<a class="nav-link" href="#purchase-producers-tab" data-toggle="tab" aria-selected="false">Producers</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#purchase-upgrades" data-toggle="tab" aria-selected="false">Upgrades</a>
+					<a class="nav-link" href="#purchase-upgrades-tab" data-toggle="tab" aria-selected="false">Upgrades</a>
 				</li>
 			</ul>
 			<div class="tab-content">
-				<div class="tab-pane active" id="purchase-fish" role="tabpanel">
+				<div class="tab-pane active" id="purchase-fish-tab" role="tabpanel">
 					<br>
 					<details open>
 						<summary><i class="fas fa-square"></i> Purchase Food:</summary>
@@ -220,12 +230,12 @@
 					</div>
 
 				</div>
-				<div class="tab-pane" id="purchase-producers" role="tabpanel">
+				<div class="tab-pane" id="purchase-producers-tab" role="tabpanel">
 					<br>
 					<hr>
 					<!-- TODO: Producers -->
 				</div>
-				<div class="tab-pane" id="purchase-upgrades" role="tabpanel">
+				<div class="tab-pane" id="purchase-upgrades-tab" role="tabpanel">
 					<br>
 					<hr>
 					<!-- TODO: Upgrades -->
