@@ -106,6 +106,7 @@ let medium_fish = [];
 let big_fish = [];
 
 let paused = false;
+let num_ticks = 0;
 
 // Global vars from updateUI()
 // so instead of recalcuating them we can use old ones from last tick()
@@ -282,6 +283,7 @@ function tick() {
 	if(paused) {
 		return;
 	}
+	num_ticks++;
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	let all_fish = [small_fish,medium_fish, big_fish];
 	for(let i=0, len=all_fish.length; i<len; i++) {

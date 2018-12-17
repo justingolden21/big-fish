@@ -32,6 +32,9 @@ add bubbles to fish?
 
 console/history of notifications/of unlocks
 
+
+display stats like num_ticks and total purchased fish, total eaten fish, money made by small fish, etc
+
 icons
 farm: warehouse
 hatchery: building
