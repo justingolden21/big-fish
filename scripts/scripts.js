@@ -15,7 +15,7 @@ class Fish { //fish should go to class so they stay in school :)
 		this.ticks = 0;
 	
 		//position
-		if(checkImagesLoaded() ) {
+		if(imagesAreLoaded() ) {
 			this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
 			this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
 		} else {
