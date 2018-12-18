@@ -343,6 +343,79 @@ $(function() {
 			updateUI();
 		}
 	});
+	$('.btn.sell-aquarium').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_aquarium < amount) {
+			showSnackbar('Not enough aquariums', 'error');
+		} else {
+			num_coin += Math.round(AQUARIUM_COST*amount*SELL_RETURN_VALUE);
+			num_aquarium -= amount;
+			showHighlight($('#num-aquarium') );
+			showHighlight($('#num-coin') );
+			updateUI();
+		}
+	});
+	$('.btn.sell-farm').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_farm < amount) {
+			showSnackbar('Not enough farms', 'error');
+		} else {
+			num_coin += Math.round(FARM_COST*amount*SELL_RETURN_VALUE);
+			num_farm -= amount;
+			showHighlight($('#num-farm') );
+			showHighlight($('#num-coin') );
+			updateUI();
+		}
+	});
+	$('.btn.sell-small-hatchery').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_small_hatchery < amount) {
+			showSnackbar('Not enough small hatcheries', 'error');
+		} else {
+			num_coin += Math.round(SMALL_HATCHERY_COST*amount*SELL_RETURN_VALUE);
+			num_small_hatchery -= amount;
+			showHighlight($('#num-small-hatchery') );
+			showHighlight($('#num-coin') );
+			updateUI();
+		}
+	});
+	$('.btn.sell-medium-hatchery').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_medium_hatchery < amount) {
+			showSnackbar('Not enough medium hatcheries', 'error');
+		} else {
+			num_coin += Math.round(MEDIUM_HATCHERY_COST*amount*SELL_RETURN_VALUE);
+			num_medium_hatchery -= amount;
+			showHighlight($('#num-medium-hatchery') );
+			showHighlight($('#num-coin') );
+			updateUI();
+		}
+	});
+	$('.btn.sell-big-hatchery').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_big_hatchery < amount) {
+			showSnackbar('Not enough big hatcheries', 'error');
+		} else {
+			num_coin += Math.round(BIG_HATCHERY_COST*amount*SELL_RETURN_VALUE);
+			num_big_hatchery -= amount;
+			showHighlight($('#num-big-hatchery') );
+			showHighlight($('#num-coin') );
+			updateUI();
+		}
+	});
+	$('.btn.sell-aquarium-factory').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_aquarium_factory < amount) {
+			showSnackbar('Not enough aquarium factories', 'error');
+		} else {
+			num_coin += Math.round(AQUARIUM_FACTORY_COST*amount*SELL_RETURN_VALUE);
+			num_aquarium_factory -= amount;
+			showHighlight($('#num-aquarium-factory') );
+			showHighlight($('#num-coin') );
+			updateUI();
+		}
+	});
+
 	$('#pause-btn').click(function() {
 		if(!paused) {
 			$(this).html('<i class="fas fa-play"></i>');
