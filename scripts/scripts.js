@@ -4,8 +4,7 @@ const SMALL = 0;
 const MEDIUM = 1;
 const BIG = 2;
 
-// Classes
-class Fish { //fish should go to class so they stay in school :)
+class Fish { // fish should go to class so they stay in school :)
 	constructor(type, coin, space, food) {
 		this.type = type;
 		this.coin = coin;
@@ -14,7 +13,7 @@ class Fish { //fish should go to class so they stay in school :)
 		this.hungry = false;
 		this.ticks = 0;
 	
-		//position
+		// position
 		if(imagesAreLoaded() ) {
 			this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
 			this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
@@ -24,7 +23,7 @@ class Fish { //fish should go to class so they stay in school :)
 		}
 		this.facing_left = Math.random() >= 0.5;
 	}
-	eat() {
+	eat() { // attempts to eat
 		if(this.food == FOOD) {
 			if(num_food < 1) {
 				this.hungry = true;
@@ -48,12 +47,12 @@ class Fish { //fish should go to class so they stay in school :)
 			}
 		}
 	}
-	produce() {
+	produce() { // attempt to produce coin
 		if(!this.hungry) {
 			num_coin += this.coin;
 		}
 	}
-	move() {
+	move() { // move according to speed, random direction
 		if(Math.random() >= 0.5) {
 			this.x += FISH_SPEEDS[this.type];
 			this.x = Math.min(this.x, canvas.width - ( Math.floor(img_arr[this.type].width/2) ) );
@@ -64,24 +63,22 @@ class Fish { //fish should go to class so they stay in school :)
 			this.facing_left = true;
 		}
 	}
-	draw() {
+	draw() { // draws fish on canvas
 		drawFish(this.type, this.x, this.y, this.hungry, this.facing_left);
 	}
 }
 
-
-
-// Consts
-
-//coin output and space in tank
+// coin output
 const SMALL_FISH_COIN = 1;
 const MEDIUM_FISH_COIN = 30;
 const BIG_FISH_COIN = 900;
-const MEDIUM_FISH_SPACE = 2;
+
+// space in aquarium
 const SMALL_FISH_SPACE = 1;
+const MEDIUM_FISH_SPACE = 2;
 const BIG_FISH_SPACE = 3;
 
-//cost to purchase
+// cost to purchase
 const FOOD_COST = 1;
 const SMALL_FISH_COST = 20;
 const MEDIUM_FISH_COST = 400;
@@ -94,20 +91,20 @@ const MEDIUM_HATCHERY_COST = 10000;
 const BIG_HATCHERY_COST = 100000;
 const AQUARIUM_FACTORY_COST = 1000000;
 
+// producer rates
 const FARM_FOOD_RATE = 5;
 const SMALL_HATCHERY_RATE = 1;
 const MEDIUM_HATCHERY_RATE = 1;
 const BIG_HATCHERY_RATE = 1;
 const AQUARIUM_FACTORY_RATE = 1;
 
-//misc
+// misc
 const AQUARIUM_SPACE = 500;
 const FOOD_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
-
 const FISH_SPEEDS = [5,10,15]; //[small, medium, big]
 
-// Player Vals
+// player vals
 let num_coin = 0;
 let num_food = 0;
 let num_aquarium = 1;
@@ -121,9 +118,9 @@ let small_fish = [];
 let medium_fish = [];
 let big_fish = [];
 
+// game vals
 let paused = false;
 let num_ticks = 0;
-
 let stats = {
 	'food_purchased': 0,
 	'small_fish_purchased': 0,
@@ -132,8 +129,11 @@ let stats = {
 	'aquarium_purchased': 0
 };
 
-// Global vars from updateUI()
+let canvas, ctx;
+
+// global vars from updateUI()
 // so instead of recalcuating them we can use old ones from last tick()
+// maybe we shouldn't do this?
 let num_aquarium_space_used;
 let num_coin_rate;
 let num_hungry_fish;
@@ -141,13 +141,9 @@ let num_hungry_small_fish;
 let num_hungry_medium_fish;
 let num_hungry_big_fish;
 
-//global so we don't have to keep getting it
-let canvas, ctx;
-
-
-// Onload, Button Listeners
+// onload, button listeners
 $(function() {
-	// tick();
+	// set up game
 	window.setInterval(tick, 1000); //tick every s
 	window.addEventListener('resize', handleResize);
 	handleResize();
@@ -156,11 +152,11 @@ $(function() {
 
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
-	
+
+	// set up player	
 	addFish(SMALL, 1); //starting fish
 
-
-	//display game vals
+	// display game vals
 	//todo: add more const values from aquarium, sell value, etc
 	$('#num-small-fish-coin').html(SMALL_FISH_COIN);
 	$('#num-small-fish-food').html(1);
@@ -171,8 +167,9 @@ $(function() {
 	$('#num-big-fish-coin').html(BIG_FISH_COIN);
 	$('#num-big-fish-food').html(1);
 	$('#num-big-fish-space').html(BIG_FISH_SPACE);
-
 	$('#sell-return-value').html(SELL_RETURN_VALUE);
+
+	// tick();
 
 	//buttons
 	$('.btn.purchase-food').click( function() {
@@ -427,32 +424,40 @@ $(function() {
 	
 });
 
-// Game Functions
+// tick once per second
+// this is when everything happens
 function tick() {
 	if(paused) return;
 
 	num_ticks++;
 
+	// producers produce
 	num_food += num_farm * FARM_FOOD_RATE;
 	num_aquarium += num_aquarium_factory * AQUARIUM_FACTORY_RATE;
+	// if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (SMALL_FISH_SPACE * num_small_hatchery) ) {
+	// 	addFish(SMALL, num_small_hatchery);
+	// } else {
+	// 	addFish(SMALL, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / SMALL_FISH_SPACE);
+	// }
+	// if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (MEDIUM_FISH_SPACE * num_medium_hatchery) ) {
+	// 	addFish(MEDIUM, num_medium_hatchery);
+	// } else {
+	// 	addFish(MEDIUM, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / MEDIUM_FISH_SPACE);
+	// }
+	// if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (BIG_FISH_SPACE * num_big_hatchery) ) {
+	// 	addFish(BIG, num_big_hatchery);		
+	// } else {
+	// 	addFish(BIG, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / BIG_FISH_SPACE);
+	// }
 
-	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (SMALL_FISH_SPACE * num_small_hatchery) ) {
-		addFish(SMALL, num_small_hatchery);
-	} else {
-		addFish(SMALL, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / SMALL_FISH_SPACE);
-	}
-	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (MEDIUM_FISH_SPACE * num_medium_hatchery) ) {
-		addFish(MEDIUM, num_medium_hatchery);
-	} else {
-		addFish(MEDIUM, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / MEDIUM_FISH_SPACE);
-	}
-	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (BIG_FISH_SPACE * num_big_hatchery) ) {
-		addFish(BIG, num_big_hatchery);		
-	} else {
-		addFish(BIG, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / BIG_FISH_SPACE);
-	}
+	hatchFish(SMALL, num_small_hatchery, SMALL_FISH_SPACE);
+	hatchFish(MEDIUM, num_medium_hatchery, MEDIUM_FISH_SPACE);
+	hatchFish(BIG, num_big_hatchery, BIG_FISH_SPACE);
+
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	// fish update
 	let all_fish = [small_fish,medium_fish, big_fish];
 	for(let i=0, len=all_fish.length; i<len; i++) {
 		for(let j=0, ilen=all_fish[i].length; j<ilen; j++) {
@@ -467,7 +472,15 @@ function tick() {
 	updateUI();
 }
 
-// Utility Functions
+// utility functions
+// hatch amount of fish if room, else hatch as much as there is room for
+function hatchFish(type, amount, spacePerFish) {
+	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (spacePerFish * amount) ) {
+		addFish(type, amount);
+	} else {
+		addFish(type, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / spacePerFish);
+	}
+}
 function addFish(type, amount) {
 	if(type==SMALL) {
 		for(let i=0; i<amount; i++) {
@@ -483,8 +496,7 @@ function addFish(type, amount) {
 		}
 	}
 }
-
-//min is inclusive, max is exclusive, returns an int
+// min is inclusive, max is exclusive, returns an int
 function random(min, max) {
 	return Math.floor(Math.random() * (max - min) ) + min; 
 }
