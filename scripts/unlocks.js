@@ -17,8 +17,8 @@ let unlocks = {
 // name, description, ticks when completed, -1 if incomplete
 let achievements = {
 	'One Fish Two Fish': ['Purchase your first fish', -1],
-	'Fish Sticks': ['Purchase a medium fish, -1'],
-	'Bigger Fish to Fry': ['Purchase a large fish', -1],
+	'Fish Sticks': ['Purchase a medium fish', -1],
+	'Bigger Fish to Fry': ['Purchase a big fish', -1],
 	'Always More Fish in the Sea': ['Have 100 total fish', -1],
 	'Financially Responsible': ['Purchase a hatchery', -1],
 	'Something Smells Fishy': ['Have 100 hatcheries', -1],
@@ -28,10 +28,12 @@ let achievements = {
 	'Lemonade Stand': ['Have 100 coins', -1],
 	'Minimum Wage': ['Have 10,000 coins', -1],
 	'Monopoly Man': ['Have 1,000,000 coins', -1],
-	'Business Man': ['Make a total of over 100,000,000 coins', -1]
+	'Business Man': ['Make a total of over 100,000,000 coins', -1],
+	'Food Glorious Food': ['Purchase 10,000 food', -1]
 };
 
 function checkUnlocks() {
+	// unlocks
 	checkUnlock('purchase_farm', stats['food_purchased'] >= 250, '.farm-unlock #producers-info', 'fish food farms');
 	checkUnlock('purchase_small_hatchery', stats['small_fish_purchased'] >= 250, '.small-hatchery-unlock #producers-info', 'small fish hatcheries');
 	checkUnlock('purchase_medium_hatchery', stats['medium_fish_purchased'] >= 250, '.medium-hatchery-unlock #producers-info', 'medium fish hatcheries');
@@ -46,6 +48,38 @@ function checkUnlocks() {
 	checkUnlock('big_fish', medium_fish.length >= 50, '.big-fish-unlock', 'big fish');
 	checkUnlock('aquarium', num_aquarium_space_used >= AQUARIUM_SPACE/2, '.aquarium-unlock',  'purchase aquarium');
 
+	// achievements
+	if(small_fish.length>1)
+		checkAchievement('One Fish Two Fish');
+	if(medium_fish.length>=1)
+		checkAchievement('Fish Sticks');
+	if(big_fish.length>=1)
+		checkAchievement('Bigger Fish to Fry');
+	if(small_fish.length+medium_fish.length+big_fish.length>=100)
+		checkAchievement('Always More Fish in the Sea');
+	if(num_small_hatchery>0||num_medium_hatchery>0||num_big_hatchery>0)
+		checkAchievement('Financially Responsible');
+	if(num_small_hatchery+num_medium_hatchery+num_big_hatchery>=100)
+		checkAchievement('Something Smells Fishy');
+	if(num_aquarium>1)
+		checkAchievement('Deep Sea Diving');
+	if(num_aquarium>100)
+		checkAchievement('Sea World');
+	if(small_fish.length==0)
+		checkAchievement('Disrupt the Food Chain');
+	if(num_coin>=100) {
+		checkAchievement('Lemonade Stand');
+		if(num_coin>=10000) {
+			checkAchievement('Minimum Wage');
+			if(num_coin>=1000000) {
+				checkAchievement('Monopoly Man');
+			}
+		}
+	}
+	if(stats['money_from_small_fish']+stats['money_from_medium_fish']+stats['money_from_big_fish']>=100000000)
+		checkAchievement('Business Man');
+	if(stats['food_purchased']>=10000)
+		checkAchievement('Food Glorious Food');
 }
 
 
