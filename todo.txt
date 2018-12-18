@@ -36,3 +36,6 @@ stupid dimension: monsters that eat aquariums
 
 
 redo unlock system so in index stuff with unlock has class for example .medium-fish-unlock
+
+
+achievement idea: get to certain coins/second
