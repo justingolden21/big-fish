@@ -177,7 +177,9 @@ $(function() {
 
 	// tick();
 
-	//buttons
+	// button listeners
+
+	// purchase fish stuff
 	$('.btn.purchase-food').click( function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < FOOD_COST*amount) {
@@ -245,6 +247,7 @@ $(function() {
 		}
 	});
 
+	// purchase producers
 	$('.btn.purchase-farm').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < FARM_COST*amount) {
@@ -301,6 +304,7 @@ $(function() {
 		}
 	});
 
+	// sell fish stuff
 	$('.btn.sell-small-fish').click(function() {
 		let amount = parseInt($(this).val() );
 		if(small_fish.length < amount) {
@@ -355,6 +359,8 @@ $(function() {
 			updateUI();
 		}
 	});
+
+	// sell producers
 	$('.btn.sell-farm').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_farm < amount) {
@@ -416,6 +422,7 @@ $(function() {
 		}
 	});
 
+	// pause
 	$('#pause-btn').click(function() {
 		if(!paused) {
 			$(this).html('<i class="fas fa-play"></i>');
