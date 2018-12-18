@@ -7,6 +7,7 @@ function updateUI() {
 	num_hungry_medium_fish = 0;
 	num_hungry_big_fish = 0;
 
+	// counting numbers for UI
 	let all_fish = small_fish.concat(medium_fish, big_fish);
 	for(let i=0, len=all_fish.length; i<len; i++) {
 		num_aquarium_space_used += all_fish[i].space;
@@ -26,9 +27,10 @@ function updateUI() {
 			num_hungry_medium_fish++;
 		}
 	}
-	//save time instead of for loop
+	// save time instead of for loop
 	num_hungry_big_fish = num_hungry_fish - num_hungry_small_fish - num_hungry_medium_fish;
 	
+	// display numbers on UI
 	$('#num-coin').html(num_coin);
 	$('#num-food').html(num_food);
 	$('#num-fish').html(all_fish.length);
@@ -92,7 +94,6 @@ function updateUI() {
 	checkUnlocks();
 }
 
-// Util Functions
 function showSnackbar(message, type) {
 	if(type=='error') {
 		message = '<i class="fas fa-exclamation-circle"></i> ' + message;
