@@ -6,7 +6,6 @@ const BIG = 2;
 
 // Classes
 class Fish { //fish should go to class so they stay in school :)
-	
 	constructor(type, coin, space, food) {
 		this.type = type;
 		this.coin = coin;
@@ -14,8 +13,8 @@ class Fish { //fish should go to class so they stay in school :)
 		this.food = food;
 		this.hungry = false;
 		this.ticks = 0;
-	}
-	teleport() {
+	
+		//position
 		if(num_imgs_loaded==img_arr.length+img_arr_left.length+img_arr_coin.length) {
 			this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
 			this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
@@ -159,8 +158,7 @@ $(function() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 	
-	small_fish[0] = new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD); //start with 1 fish
-	small_fish[0].teleport();
+	addFish(SMALL, 1); //starting fish
 
 
 	//display game vals
@@ -475,17 +473,14 @@ function addFish(type, amount) {
 	if(type==SMALL) {
 		for(let i=0; i<amount; i++) {
 			small_fish.push(new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
-			small_fish[small_fish.length-1].teleport();
 		}
 	} else if(type==MEDIUM) {
 		for(let i=0; i<amount; i++) {
 			medium_fish.push(new Fish(MEDIUM, MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
-			medium_fish[medium_fish.length-1].teleport();
 		}
 	} else if(type==BIG) {
 		for(let i=0; i<amount; i++) {
 			big_fish.push(new Fish(BIG, BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
-			big_fish[big_fish.length-1].teleport();
 		}
 	}
 }
