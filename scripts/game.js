@@ -78,10 +78,10 @@ class Fish { // fish should go to class so they stay in school :)
 		drawFish(this.type, this.x, this.y, this.hungry, this.facing_left);
 	}
 	update() {
+		this.ticks++;
 		this.produce();
 		this.eat();
 		this.move();
-		this.draw();
 	}
 }
 
@@ -169,8 +169,10 @@ function tick() {
 	let all_fish = [small_fish,medium_fish, big_fish];
 	for(let i=0, len=all_fish.length; i<len; i++) {
 		for(let j=0, ilen=all_fish[i].length; j<ilen; j++) {
-			all_fish[i][j].ticks++;
 			all_fish[i][j].update();
+			if(j<20) { //only draw first 20 of each size of fish
+				all_fish[i][j].draw();				
+			}
 		}
 	}
 
@@ -204,4 +206,16 @@ function addFish(type, amount) {
 // min is inclusive, max is exclusive, returns an int
 function random(min, max) {
 	return Math.floor(Math.random() * (max - min) ) + min; 
+}
+
+// fisher–yates shuffle
+function shuffle(arr) {
+	let len = arr.length, idx = 0, temp;
+	while(len--) {
+		idx = Math.floor(Math.random() * (len+1));
+		tmp = arr[len];
+		arr[len] = arr[idx];
+		arr[idx] = tmp;
+	}
+	return arr;
 }
