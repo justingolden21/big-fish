@@ -39,3 +39,5 @@ icons
 farm: warehouse
 hatchery: building
 factory: city
+
+choose how many fish hatcheries are running
