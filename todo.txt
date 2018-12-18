@@ -1,12 +1,7 @@
 do:
 
 - add upgrades
-- figure out aquarium display
-	- hungry fish images?
-	- scroll through different aquariums?
-	- get rid of aquarium look alltogether
-	- each fish has unique aquarium number? draw in that number aquarium if that one is the one being displayed
-	- draw a random 100 of the fish each time?
+- hungry fish images?
 
 variable in check unlocks called checkingForUnlocks and set to true at beginning of function
 if set to false then unlocks dont run so that one unlock per that many ticks maybe have timeout function for setting to false instead of beginning of function
