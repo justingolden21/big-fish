@@ -91,6 +91,7 @@ function updateUI() {
 	$('#num-aquarium-factory').html(num_aquarium_factory);
 	$('#num-aquarium-factory-aquarium-rate').html(num_aquarium_factory*AQUARIUM_FACTORY_RATE);
 
+	updateStats();
 	checkUnlocks();
 }
 

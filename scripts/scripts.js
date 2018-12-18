@@ -29,6 +29,7 @@ class Fish { // fish should go to class so they stay in school :)
 				this.hungry = true;
 			} else {
 				num_food--;
+				stats['food_eaten']++;
 				this.hungry = false;
 			}
 		} else if(this.food == SMALL) {
@@ -36,6 +37,7 @@ class Fish { // fish should go to class so they stay in school :)
 				this.hungry = true;
 			} else {
 				small_fish.pop();
+				stats['fish_eaten']++;
 				this.hungry = false;
 			}
 		} else if(this.food == MEDIUM) {
@@ -43,6 +45,7 @@ class Fish { // fish should go to class so they stay in school :)
 				this.hungry = true;
 			} else {
 				medium_fish.pop();
+				stats['fish_eaten']++;
 				this.hungry = false;
 			}
 		}
@@ -50,6 +53,14 @@ class Fish { // fish should go to class so they stay in school :)
 	produce() { // attempt to produce coin
 		if(!this.hungry) {
 			num_coin += this.coin;
+			
+			if(this.type==SMALL) {
+				stats['money_from_small_fish'] += this.coin;
+			} else if(this.type==MEDIUM) {
+				stats['money_from_medium_fish'] += this.coin;				
+			} else if(this.type==BIG) {
+				stats['money_from_big_fish'] += this.coin;
+			}
 		}
 	}
 	move() { // move according to speed, random direction
@@ -126,15 +137,6 @@ let big_fish = [];
 
 // game vals
 let paused = false;
-let num_ticks = 0;
-let stats = {
-	'food_purchased': 0,
-	'small_fish_purchased': 0,
-	'medium_fish_purchased': 0,
-	'big_fish_purchased': 0,
-	'aquarium_purchased': 0
-};
-
 let canvas, ctx;
 
 // global vars from updateUI()
@@ -450,7 +452,7 @@ $(function() {
 function tick() {
 	if(paused) return;
 
-	num_ticks++;
+	stats['total_ticks']++;
 
 	// producers produce
 	num_food += num_farm * FARM_FOOD_RATE;
