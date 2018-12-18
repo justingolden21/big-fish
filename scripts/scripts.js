@@ -66,6 +66,12 @@ class Fish { // fish should go to class so they stay in school :)
 	draw() { // draws fish on canvas
 		drawFish(this.type, this.x, this.y, this.hungry, this.facing_left);
 	}
+	update() {
+		this.produce();
+		this.eat();
+		this.move();
+		this.draw();
+	}
 }
 
 // coin output
@@ -434,26 +440,9 @@ function tick() {
 	// producers produce
 	num_food += num_farm * FARM_FOOD_RATE;
 	num_aquarium += num_aquarium_factory * AQUARIUM_FACTORY_RATE;
-	// if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (SMALL_FISH_SPACE * num_small_hatchery) ) {
-	// 	addFish(SMALL, num_small_hatchery);
-	// } else {
-	// 	addFish(SMALL, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / SMALL_FISH_SPACE);
-	// }
-	// if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (MEDIUM_FISH_SPACE * num_medium_hatchery) ) {
-	// 	addFish(MEDIUM, num_medium_hatchery);
-	// } else {
-	// 	addFish(MEDIUM, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / MEDIUM_FISH_SPACE);
-	// }
-	// if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (BIG_FISH_SPACE * num_big_hatchery) ) {
-	// 	addFish(BIG, num_big_hatchery);		
-	// } else {
-	// 	addFish(BIG, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / BIG_FISH_SPACE);
-	// }
-
 	hatchFish(SMALL, num_small_hatchery, SMALL_FISH_SPACE);
 	hatchFish(MEDIUM, num_medium_hatchery, MEDIUM_FISH_SPACE);
 	hatchFish(BIG, num_big_hatchery, BIG_FISH_SPACE);
-
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -462,10 +451,7 @@ function tick() {
 	for(let i=0, len=all_fish.length; i<len; i++) {
 		for(let j=0, ilen=all_fish[i].length; j<ilen; j++) {
 			all_fish[i][j].ticks++;
-			all_fish[i][j].produce();
-			all_fish[i][j].eat();
-			all_fish[i][j].move();
-			all_fish[i][j].draw();
+			all_fish[i][j].update();
 		}
 	}
 
