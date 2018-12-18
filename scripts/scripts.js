@@ -434,9 +434,17 @@ $(function() {
 		$('hr').toggleClass('paused');
 		paused = !paused;
 	});
-	
-});
 
+	$('#copy-link').click(function() {
+		let tmp = $('<input type="text">').appendTo(document.body);
+		tmp.val(window.location.href);
+		tmp.select();
+		document.execCommand('copy');
+		tmp.remove();
+
+		showSnackbar('Copied link to clipboard', 'success');
+	});
+});
 // tick once per second
 // this is when everything happens
 function tick() {

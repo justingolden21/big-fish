@@ -23,16 +23,21 @@ img, button, br, .nav.nav-tabs, #canvas {
 	background: #099 !important;
 	color: #fff;
 }
-
-
 .sticky-header {
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  z-index: 99;
-  background-color: #262673;
-  padding-top: 10px;
-  padding-bottom: 10px;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+	z-index: 99;
+	background-color: #262673;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+a {
+	color: #099 !important;
+	outline: none;
+}
+a:focus {
+	border: 2px solid #099;
 }
 
 
@@ -139,6 +144,26 @@ summary:focus {
 @keyframes fadeout {
 	from {bottom: 40px; opacity: 1;}
 	to {bottom: 0; opacity: 0;}
+}
+
+/* modal */
+.modal-content {
+	background-color: #262673;
+}
+.modal-header {
+	border-bottom: 2px solid #fff;
+}
+.modal .close {
+	color: #fff;
+	opacity: 1;
+	box-shadow: none;
+	text-shadow: none;
+	outline: none;
+	border: 2px solid #262673;
+}
+.modal .close:focus, .modal .close:hover {
+	border: 2px solid #099;
+	color: #099;
 }
 
 /* waves */

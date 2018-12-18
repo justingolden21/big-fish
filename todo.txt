@@ -16,7 +16,6 @@ limited room for buildings? buy more land? aquariums count too?
 
 MODALs:
 add help modal about how to play
-add info modal about version number, contact info, fontawesome credits, donate, share game
 console/history of notifications/of unlocks
 display stats like num_ticks and total purchased fish, total eaten fish, money made by small fish, etc
 

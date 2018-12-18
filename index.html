@@ -62,6 +62,7 @@
 				</li>
 			</ul>
 			<div class="tab-content">
+				<!-- MY FISH -->
 				<div class="tab-pane active" id="my-fish-tab" role="tabpanel">
 					<br>
 					<details open>
@@ -137,10 +138,10 @@
 					</div>
 
 				</div>
+				<!-- MY PRODUCERS -->
 				<div class="tab-pane" id="my-producers-tab" role="tabpanel">
 					<br>
 					<hr>
-					<!-- TODO: Producers -->
 
 					<div id="my-farm" class="unlock">
 					<details>
@@ -214,10 +215,10 @@
 
 
 				</div>
+				<!-- MY ACHIEVEMENTS -->
 				<div class="tab-pane" id="my-achievements-tab" role="tabpanel">
 					<br>
 					<hr>
-					<!-- TODO: Achievements -->
 				</div>
 			</div>
 		</div>
@@ -230,11 +231,12 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#purchase-producers-tab" data-toggle="tab" aria-selected="false">Producers</a>
 				</li>
-				<li class="nav-item">
+<!-- 				<li class="nav-item">
 					<a class="nav-link" href="#purchase-upgrades-tab" data-toggle="tab" aria-selected="false">Upgrades</a>
-				</li>
+				</li> -->
 			</ul>
 			<div class="tab-content">
+				<!-- PURCHASE FISH -->
 				<div class="tab-pane active" id="purchase-fish-tab" role="tabpanel">
 					<br>
 					<details open>
@@ -298,11 +300,10 @@
 					</div>
 
 				</div>
+				<!-- PURCHASE PRODUCERS -->
 				<div class="tab-pane" id="purchase-producers-tab" role="tabpanel">
 					<br>
 					<hr>
-					<!-- TODO: Producers -->
-
 					<div id="purchase-farm" class="unlock">
 					<details>
 						<summary><i class="fas fa-warehouse"></i> Purchase Fish Food Farm:</summary>
@@ -368,22 +369,50 @@
 					<hr>
 					</div>
 
-					
 				</div>
-				<div class="tab-pane" id="purchase-upgrades-tab" role="tabpanel">
+				<!-- PURCHASE UPGRADES -->
+<!-- 				<div class="tab-pane" id="purchase-upgrades-tab" role="tabpanel">
 					<br>
 					<hr>
-					<!-- TODO: Upgrades -->
-				</div>
+				</div> -->
 			</div>
 			
 		</div>
 	</div>
 	<br>
 	<canvas id="canvas"></canvas>
+
+	<br>
+	<div class="btn-group">
+		<button title="Open info" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info"></i> Info</button>
+	</div>
+
+	<div class="modal fade" id="infoModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title"><i class="fas fa-info"></i> Info</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p><b>About</b></p>
+					<p>Version 0.0.1</p>
+					<p>Made by <a href="https://justingolden21.github.io" target="_blank">JustinGolden21</a></p>
+					<p>Contct me at <a href="mailto:justingolden@rgbstudios.org" target="_blank">justingolden@rgbstudios.org</a></p>
+					<hr>
+					<p><b>Credits</b></p>
+					<p>Made with <a href="https://fontawesome.com/icons" target="_blank">Font Awesome</a></p>
+					<hr>
+					<p><b>Share</b></p>
+					<p>Copy website link: <button id="copy-link" class="btn"> <i class="fas fa-link"></i></button></p>
+					<br>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<br>
 	<div id="snackbar"></div>
 </div>
-
 </body>
 </html>
