@@ -41,3 +41,11 @@ hatchery: building
 factory: city
 
 choose how many fish hatcheries are running
+discount 10% for buy in bulk?
+	sell farms and hatcheries
+add commas to numbers?
+
+
+
+stupid dimension:
+monsters that eat aquariums

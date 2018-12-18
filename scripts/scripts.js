@@ -94,11 +94,13 @@ const FARM_COST = 100;
 const SMALL_HATCHERY_COST = 1000;
 const MEDIUM_HATCHERY_COST = 10000;
 const BIG_HATCHERY_COST = 100000;
+const AQUARIUM_FACTORY_COST = 1000000;
+
 const FARM_FOOD_RATE = 5;
 const SMALL_HATCHERY_RATE = 1;
 const MEDIUM_HATCHERY_RATE = 1;
 const BIG_HATCHERY_RATE = 1;
-
+const AQUARIUM_FACTORY_RATE = 1;
 
 //misc
 const AQUARIUM_SPACE = 500;
@@ -115,6 +117,7 @@ let num_farm = 0;
 let num_small_hatchery = 0;
 let num_medium_hatchery = 0;
 let num_big_hatchery = 0;
+let num_aquarium_factory = 0;
 
 let small_fish = [];
 let medium_fish = [];
@@ -286,6 +289,17 @@ $(function() {
 			updateUI();
 		}
 	});
+	$('.btn.purchase-aquarium-factory').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_coin < AQUARIUM_FACTORY_COST*amount) {
+			showSnackbar('Not enough coin', 'error');
+		} else {
+			num_coin -= AQUARIUM_FACTORY_COST*amount;
+			num_aquarium_factory += amount;
+			showHighlight($('#num-aquarium-factory') );
+			updateUI();
+		}
+	});
 
 	$('.btn.sell-small-fish').click(function() {
 		let amount = parseInt($(this).val() );
@@ -345,12 +359,12 @@ $(function() {
 
 // Game Functions
 function tick() {
-	if(paused) {
-		return;
-	}
+	if(paused) return;
+
 	num_ticks++;
 
 	num_food += num_farm * FARM_FOOD_RATE;
+	num_aquarium += num_aquarium_factory * AQUARIUM_FACTORY_RATE;
 
 	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (SMALL_FISH_SPACE * num_small_hatchery) ) {
 		addFish(SMALL, num_small_hatchery);
@@ -367,7 +381,6 @@ function tick() {
 	} else {
 		addFish(BIG, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / BIG_FISH_SPACE);
 	}
-
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	let all_fish = [small_fish,medium_fish, big_fish];

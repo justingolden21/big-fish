@@ -86,6 +86,8 @@ function updateUI() {
 	$('#num-medium-hatchery-fish-rate').html(num_medium_hatchery*MEDIUM_HATCHERY_RATE);
 	$('#num-big-hatchery').html(num_big_hatchery);
 	$('#num-big-hatchery-fish-rate').html(num_big_hatchery*BIG_HATCHERY_RATE);
+	$('#num-aquarium-factory').html(num_aquarium_factory);
+	$('#num-aquarium-factory-aquarium-rate').html(num_aquarium_factory*AQUARIUM_FACTORY_RATE);
 
 	checkUnlocks();
 }

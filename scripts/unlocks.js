@@ -2,6 +2,7 @@ let purchase_farm_unlocked = false;
 let purchase_small_hatchery_unlocked = false;
 let purchase_medium_hatchery_unlocked = false;
 let purchase_big_hatchery_unlocked = false;
+let purchase_aquarium_factory_unlocked = false;
 
 let sell_small_fish_unlocked = false;
 let sell_medium_fish_unlocked = false;
@@ -35,6 +36,12 @@ function checkUnlocks() {
 		unlock($('#my-big-hatchery') );
 		unlock($('#purchase-big-hatchery') );
 		showSnackbar('Unlocked big fish hatcheries', 'success');
+	}
+	if(!purchase_aquarium_factory_unlocked && stats['aquarium_purchased'] >= 25) {
+		purchase_aquarium_factory_unlocked = true;
+		unlock($('#my-aquarium-factory') );
+		unlock($('#purchase-aquarium-factory') );
+		showSnackbar('Unlocked big aquarium factories', 'success');
 	}
 
 	if(!sell_small_fish_unlocked && small_fish.length >= 75) {
