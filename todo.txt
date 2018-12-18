@@ -1,7 +1,7 @@
 do:
 
 - add upgrades
-- hungry fish images?
+
 
 variable in check unlocks called checkingForUnlocks and set to true at beginning of function
 if set to false then unlocks dont run so that one unlock per that many ticks maybe have timeout function for setting to false instead of beginning of function
@@ -13,8 +13,8 @@ limited room for buildings? buy more land? aquariums count too?
 maybe:
 disable buttons for things you cant purchase in updateUI()
 add commas to numbers
-add icons to snackbar for unlocks?
 discount 10% for buy in bulk?
+hungry fish images?
 
 later:
 sync data with google account/loggin api
