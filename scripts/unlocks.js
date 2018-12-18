@@ -14,6 +14,23 @@ let unlocks = {
 	'aquarium': false
 };
 
+// name, description, ticks when completed, -1 if incomplete
+let achievements = {
+	'One Fish Two Fish': ['Purchase your first fish', -1],
+	'Fish Sticks': ['Purchase a medium fish, -1'],
+	'Bigger Fish to Fry': ['Purchase a large fish', -1],
+	'Always More Fish in the Sea': ['Have 100 total fish', -1],
+	'Financially Responsible': ['Purchase a hatchery', -1],
+	'Something Smells Fishy': ['Have 100 hatcheries', -1],
+	'Deep Sea Diving': ['Purchase another aquarium', -1],
+	'Sea World': ['Have 100 aquariums', -1],
+	'Disrupt the Food Chain': ['Run out of small fish', -1],
+	'Lemonade Stand': ['Have 100 coins', -1],
+	'Minimum Wage': ['Have 10,000 coins', -1],
+	'Monopoly Man': ['Have 1,000,000 coins', -1],
+	'Business Man': ['Make a total of over 100,000,000 coins', -1]
+};
+
 function checkUnlocks() {
 	checkUnlock('purchase_farm', stats['food_purchased'] >= 250, '.farm-unlock #producers-info', 'fish food farms');
 	checkUnlock('purchase_small_hatchery', stats['small_fish_purchased'] >= 250, '.small-hatchery-unlock #producers-info', 'small fish hatcheries');
@@ -28,7 +45,9 @@ function checkUnlocks() {
 	checkUnlock('medium_fish', small_fish.length >= 50, '.medium-fish-unlock', 'medium fish');
 	checkUnlock('big_fish', medium_fish.length >= 50, '.big-fish-unlock', 'big fish');
 	checkUnlock('aquarium', num_aquarium_space_used >= AQUARIUM_SPACE/2, '.aquarium-unlock',  'purchase aquarium');
+
 }
+
 
 // params: unlockName is str idx in unlock object of the unlock bool
 // requirement is true if met, false otherwise
@@ -42,6 +61,19 @@ function checkUnlock(unlockName, requirement, parts, message) {
 			unlock($(parts[i]) );
 		}
 		showSnackbar('Unlocked ' + message, 'success');
+	}
+}
+
+
+// checkAchievement('One Fish Two Fish');
+
+// called when achievement is earned, even if not the first time
+function checkAchievement(achievementName) {
+	if(achievements[achievementName][1] == -1) {
+		achievements[achievementName][1] = stats['total_ticks'];
+		showSnackbar('Achievement unlocked: ' + achievementName, 'achievement');
+		$('#achievements-div').append('<p><i class="fas fa-trophy"></i> <b>' + achievementName + '</b>	: ' + achievements[achievementName][0] + ' (' + achievements[achievementName][1] + 's)</p>');
+		//todo: display achievement
 	}
 }
 

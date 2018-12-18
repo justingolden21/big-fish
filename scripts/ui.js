@@ -100,8 +100,10 @@ function showSnackbar(message, type) {
 		message = '<i class="fas fa-exclamation-circle"></i> ' + message;
 	} else if(type=='info') {
 		message = '<i class="fas fa-info-circle"></i> ' + message;
-	} else if(type='success') {
-		message = '<i class="fas fa-check-circle"></i> ' + message;		
+	} else if(type=='success') {
+		message = '<i class="fas fa-check-circle"></i> ' + message;
+	} else if(type=='achievement') {
+		message = '<i class="fas fa-trophy"></i> ' + message;
 	}
 	$('#snackbar').addClass('show');
 	$('#snackbar').html(message);
