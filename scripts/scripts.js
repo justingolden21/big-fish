@@ -15,7 +15,7 @@ class Fish { //fish should go to class so they stay in school :)
 		this.ticks = 0;
 	
 		//position
-		if(num_imgs_loaded==img_arr.length+img_arr_left.length+img_arr_coin.length) {
+		if(checkImagesLoaded() ) {
 			this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
 			this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
 		} else {
@@ -66,7 +66,6 @@ class Fish { //fish should go to class so they stay in school :)
 	}
 	draw() {
 		drawFish(this.type, this.x, this.y, this.hungry, this.facing_left);
-		// drawMoney(this.type, this.x, this.y, this.hungry);
 	}
 }
 

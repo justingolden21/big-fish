@@ -4,6 +4,8 @@ do:
 - figure out aquarium display
 	- hungry fish images, scroll through different aquariums?
 	- get rid of aquarium look alltogether
+	- each fish has unique aquarium number? draw in that number aquarium if that one is the one being displayed
+	- draw a random 100 of the fish each time?
 
 maybe:
 disable buttons for things you cant purchase in updateUI()
