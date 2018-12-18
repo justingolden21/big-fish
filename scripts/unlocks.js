@@ -1,4 +1,3 @@
-
 let unlocks = {
 	'purchase_farm': false,
 	'purchase_small_hatchery': false,
