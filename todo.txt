@@ -1,34 +1,26 @@
 do:
 
-add unlocks (see below)
-add upgrades
+- add upgrades
+- figure out aquarium display
+	- hungry fish images, scroll through different aquariums?
+	- get rid of aquarium look alltogether
 
-		todo: multiple aquarium system? num fish per aquarium
 maybe:
 disable buttons for things you cant purchase in updateUI()
-hide displays of things you havent unlocked
 
-	implement hungry fish images, maybe change system for handling images or move it to another js file
 
 later:
 sync data with google account/loggin api
-add rest of features (upgrades, unlocks, achievements)
+add rest of features (upgrades, achievements)
 add help modal about how to play
 add info modal about version number, contact info, fontawesome credits, donate, share game
 optimize fish data strcutres for redundancy
 use sass
 
-unlocks:
-unlock medium fish after 50 small fish
-unlock selling fish after 100 small fish
-unlock purchasing aquarium after 25 medium fish	
-unlock animation is fade in, add class 'unlockable' and 'locked' for elments in css
 
 bugs:
 handle opening a snackbar when another is already open
 
-sprites for hungry vs full, earning coins animation
-add bubbles to fish?
 
 console/history of notifications/of unlocks
 

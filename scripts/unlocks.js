@@ -93,6 +93,7 @@ function checkUnlocks() {
 
 function unlock(elm) {
 	elm.css('display', 'inline');
+	elm.css('animation', 'fadein 1s');
 }
 
 
