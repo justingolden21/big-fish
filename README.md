@@ -4,8 +4,6 @@ A simple game, work your way up
 
 https://justingolden21.github.io/big-fish/
 
-# WARNING: GAME IN ALPHA
-
 ### Gameplay
 
 A simple cookie clicker, collect fish to earn money for you.
