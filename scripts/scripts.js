@@ -354,12 +354,18 @@ function tick() {
 
 	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (SMALL_FISH_SPACE * num_small_hatchery) ) {
 		addFish(SMALL, num_small_hatchery);
+	} else {
+		addFish(SMALL, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / SMALL_FISH_SPACE);
 	}
 	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (MEDIUM_FISH_SPACE * num_medium_hatchery) ) {
 		addFish(MEDIUM, num_medium_hatchery);
+	} else {
+		addFish(MEDIUM, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / MEDIUM_FISH_SPACE);
 	}
 	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (BIG_FISH_SPACE * num_big_hatchery) ) {
 		addFish(BIG, num_big_hatchery);		
+	} else {
+		addFish(BIG, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / BIG_FISH_SPACE);
 	}
 
 
