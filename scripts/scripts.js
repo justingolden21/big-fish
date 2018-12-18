@@ -351,9 +351,17 @@ function tick() {
 	num_ticks++;
 
 	num_food += num_farm * FARM_FOOD_RATE;
-	addFish(SMALL, num_small_hatchery);
-	addFish(MEDIUM, num_medium_hatchery);
-	addFish(BIG, num_big_hatchery);
+
+	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (SMALL_FISH_SPACE * num_small_hatchery) ) {
+		addFish(SMALL, num_small_hatchery);
+	}
+	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (MEDIUM_FISH_SPACE * num_medium_hatchery) ) {
+		addFish(MEDIUM, num_medium_hatchery);
+	}
+	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (BIG_FISH_SPACE * num_big_hatchery) ) {
+		addFish(BIG, num_big_hatchery);		
+	}
+
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	let all_fish = [small_fish,medium_fish, big_fish];
