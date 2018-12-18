@@ -8,8 +8,6 @@ if set to false then unlocks dont run so that one unlock per that many ticks may
 
 limited room for buildings? buy more land? aquariums count too?
 
-- console/history modal of notifications/of unlocks
-
 ================================================================
 
 maybe:
@@ -35,7 +33,8 @@ stupid dimension: monsters that eat aquariums
 
 
 
-redo unlock system so in index stuff with unlock has class for example .medium-fish-unlock
+todo:
+load the consts in index on pageload (the ones in my stuff section)
 
 
 achievement idea: get to certain coins/second

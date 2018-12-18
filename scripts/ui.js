@@ -109,6 +109,8 @@ function showSnackbar(message, type) {
 	$('#snackbar').html(message);
 	// $('#snackbar').css('animation', 'fadein 0.5s, fadeout 0.5s 2s');
 	setTimeout(()=> { $('#snackbar').removeClass('show') }, 3000);
+
+	$('#history-log').prepend('<p>'+message+'</p>');
 }
 function showHighlight(elm, sec=0.5) {
 	elm.addClass('highlight');
