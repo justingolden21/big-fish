@@ -384,10 +384,48 @@
 
 	<br>
 	<div class="btn-group">
-		<button title="Open info" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info"></i> Info</button>
+		<button title="Click for help playing the game" class="btn" data-toggle="modal" data-target="#help-modal"><i class="fas fa-question"></i> Help</button>
+		<button title="Click for info on this website" class="btn" data-toggle="modal" data-target="#info-modal"><i class="fas fa-info"></i> Info</button>
 	</div>
 
-	<div class="modal fade" id="infoModal">
+	<div class="modal fade" id="help-modal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title"><i class="fas fa-question"></i> Help</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p><b>How to Play</b></p>
+					<p>You start the game with 1 small fish <i class="fas fa-fish"></i>.</p>
+					<p>The fish earns you money <i class="fas fa-coins"></i> when it's full.</p>
+					<p>The fish eats food <i class="fas fa-square"></i> which costs money <i class="fas fa-coins"></i>. </p>
+					<p>You can purchase food <i class="fas fa-square"></i> and fish <i class="fas fa-fish"></i> under the <b>Purchase</b> tab. </p>
+
+					<div id="medium-fish-info" class="unlock">
+						<p>You can purchase medium fish <i class="fas fa-fish fa-2x"></i> which eat small fish and earn you lots of money <i class="fas fa-coins"></i><i class="fas fa-coins"></i>.</p>
+					</div>
+					<div id="big-fish-info" class="unlock">
+						<p>You can purchase large fish <i class="fas fa-fish fa-3x"></i> which eat medium fish and earn you lots more money <i class="fas fa-coins"></i><i class="fas fa-coins"></i><i class="fas fa-coins"></i>.</p>
+					</div>
+					<div id="aquarium-info" class="unlock">
+						<p>You only have room in your aquarium <i class="fas fa-water"></i> for so many fish <i class="fas fa-fish"></i>! You can purchase new aquariums to hold more fish <i class="fas fa-fish"></i>.</p>
+					</div>
+					<div id="sell-info" class="unlock">
+						<p>You can sell <i class="fas fa-coins"></i> stuff you don't need for a lower return value.</p>
+					</div>
+					<div id="producers-info" class="unlock">
+						<p>You can purchase buildings to produce stuff for you <i class="fas fa-warehouse"></i>.</p>
+					</div>
+					<p>Build your aquarium up and make as much money as you can!</p>
+					<p>Keep playing to unlock more features <i class="far fa-smile"></i> </p>
+					<br>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="info-modal">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">

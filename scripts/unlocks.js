@@ -15,19 +15,19 @@ let unlocks = {
 };
 
 function checkUnlocks() {
-	checkUnlock('purchase_farm', stats['food_purchased'] >= 250, '#my-farm #purchase-farm', 'fish food farms');
-	checkUnlock('purchase_small_hatchery', stats['small_fish_purchased'] >= 250, '#my-small-hatchery #purchase-small-hatchery', 'small fish hatcheries');
-	checkUnlock('purchase_medium_hatchery', stats['medium_fish_purchased'] >= 250, '#my-medium-hatchery #purchase-medium-hatchery', 'medium fish hatcheries');
-	checkUnlock('purchase_big_hatchery', stats['big_fish_purchased'] >= 250, '#my-big-hatchery #purchase-big-hatchery', 'big fish hatcheries');
-	checkUnlock('purchase_aquarium_factory', stats['aquarium_purchased'] >= 25, '#my-aquarium-factory #purchase-aquarium-factory', 'aquarium factories');
+	checkUnlock('purchase_farm', stats['food_purchased'] >= 250, '#my-farm #purchase-farm #producers-info', 'fish food farms');
+	checkUnlock('purchase_small_hatchery', stats['small_fish_purchased'] >= 250, '#my-small-hatchery #purchase-small-hatchery #producers-info', 'small fish hatcheries');
+	checkUnlock('purchase_medium_hatchery', stats['medium_fish_purchased'] >= 250, '#my-medium-hatchery #purchase-medium-hatchery #producers-info', 'medium fish hatcheries');
+	checkUnlock('purchase_big_hatchery', stats['big_fish_purchased'] >= 250, '#my-big-hatchery #purchase-big-hatchery #producers-info', 'big fish hatcheries');
+	checkUnlock('purchase_aquarium_factory', stats['aquarium_purchased'] >= 25, '#my-aquarium-factory #purchase-aquarium-factory #producers-info', 'aquarium factories');
 
-	checkUnlock('sell_small_fish', small_fish.length >= 75, '#sell-small-fish', 'ability to sell small fish');
-	checkUnlock('sell_medium_fish', medium_fish.length >= 75, '#sell-medium-fish', 'ability to sell medium fish');
-	checkUnlock('sell_big_fish', big_fish.length >= 75, '#sell-big-fish', 'ability to sell big fish');
+	checkUnlock('sell_small_fish', small_fish.length >= 75, '#sell-small-fish #sell-info', 'ability to sell small fish');
+	checkUnlock('sell_medium_fish', medium_fish.length >= 75, '#sell-medium-fish #sell-info', 'ability to sell medium fish');
+	checkUnlock('sell_big_fish', big_fish.length >= 75, '#sell-big-fish #sell-info', 'ability to sell big fish');
 
-	checkUnlock('medium_fish', small_fish.length >= 50, '#my-medium-fish #purchase-medium-fish', 'medium fish');
-	checkUnlock('big_fish', medium_fish.length >= 50, '#my-big-fish #purchase-big-fish', 'big fish');
-	checkUnlock('aquarium', num_aquarium_space_used >= AQUARIUM_SPACE/2, '#my-aquarium #purchase-aquarium .aquarium-space',  'purchase aquarium');
+	checkUnlock('medium_fish', small_fish.length >= 50, '#my-medium-fish #purchase-medium-fish #medium-fish-info', 'medium fish');
+	checkUnlock('big_fish', medium_fish.length >= 50, '#my-big-fish #purchase-big-fish #big-fish-info', 'big fish');
+	checkUnlock('aquarium', num_aquarium_space_used >= AQUARIUM_SPACE/2, '#my-aquarium #purchase-aquarium #aquarium-info .aquarium-space',  'purchase aquarium');
 }
 
 // params: unlockName is str idx in unlock object of the unlock bool

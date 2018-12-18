@@ -32,11 +32,11 @@ img, button, br, .nav.nav-tabs, #canvas {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-a {
+a:not(.nav-link) {
 	color: #099 !important;
 	outline: none;
 }
-a:focus {
+a:not(.nav-link):focus {
 	border: 2px solid #099;
 }
 
