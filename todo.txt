@@ -1,6 +1,7 @@
 do:
 
 - add upgrades
+- add land space
 
 
 variable in check unlocks called checkingForUnlocks and set to true at beginning of function

@@ -47,6 +47,10 @@ a:not(.nav-link):focus {
 /* game */
 span.highlight {
 	background-color: #099;
+	padding-left: 1px;
+	padding-right: 1px;
+	margin-left: 2px;
+	margin-right: 2px;
 }
 #canvas {
 	border: 2px solid #fff;
