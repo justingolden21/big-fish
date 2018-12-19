@@ -10,6 +10,8 @@ A simple cookie clicker, collect fish to earn money for you.
 
 Manage food, aquarium space, a foodchain, and upgrades.
 
+<img src="img/screenshot.png">
+
 ### Miniguide
 
 You start with 1 fish in an aquarium.
