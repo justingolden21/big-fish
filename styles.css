@@ -50,6 +50,7 @@ span.highlight {
 }
 #canvas {
 	border: 2px solid #fff;
+	/*transform: scale(2);*/
 	/*background-color: #099;*/
 }
 .unlock {
@@ -205,4 +206,21 @@ hr:not(.paused) {
 #bottom-hr {
 	margin-top: -5px !important;
 	border-radius: 10px;
+}
+
+.nav-tabs, .col-md-6 {
+	/*margin: 0px;*/
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.tab-pane {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#left-col hr {
+	margin-right: 40px;
+}
+#right-col hr {
+	margin-left: 40px;
 }

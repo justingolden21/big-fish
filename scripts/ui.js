@@ -123,3 +123,7 @@ function handleResize() {
 		$('.btn-group-vertical').addClass('btn-group').removeClass('btn-group-vertical');
 	}
 }
+
+function setAccent(hasAccent) {
+	$('#accent-link').prop('href',hasAccent ? 'accent.css' : '');
+}

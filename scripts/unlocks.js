@@ -107,7 +107,16 @@ function checkAchievement(achievementName) {
 		achievements[achievementName][1] = stats['total_ticks'];
 		showSnackbar('Achievement unlocked: ' + achievementName, 'achievement');
 		$('#achievements-div').append('<p><i class="fas fa-trophy"></i> <b>' + achievementName + '</b>	: ' + achievements[achievementName][0] + ' (' + achievements[achievementName][1] + 's)</p>');
-		//todo: display achievement
+
+		// count completed achievements
+		let num_achieved = 0;
+		let num_achievements = Object.keys(achievements).length;
+		for(key in achievements) {
+			if(achievements[key][1] != -1) {
+				num_achieved++;
+			}
+		}
+		$('#num-achieve').html(num_achieved + ' / ' + num_achievements);
 	}
 }
 

@@ -39,5 +39,4 @@ stupid dimension: monsters that eat aquariums
 todo:
 load the consts in index on pageload (the ones in my stuff section)
 
-
 achievement idea: get to certain coins/second

@@ -20,7 +20,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="accent.css">
+<link id="accent-link" rel="stylesheet" href="accent.css">
 <script src="scripts/canvas.js"></script>
 <script src="scripts/listeners.js"></script>
 <script src="scripts/game.js"></script>
@@ -50,7 +50,7 @@
 	</div>
 
 	<div id="main-box" class="row">
-		<div class="col-md-6">
+		<div id="left-col" class="col-md-6">
 			<h5>My Stuff:</h5>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
@@ -66,7 +66,6 @@
 			<div class="tab-content">
 				<!-- MY FISH -->
 				<div class="tab-pane active" id="my-fish-tab" role="tabpanel">
-					<br>
 					<details open>
 						<summary><i class="fas fa-fish"></i> <span id="num-small-fish">1</span> Small Fish (<span id="num-small-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-small-fish-coin">1</span> Coin/s (<span id="num-small-fish-coin-rate">0</span> Coin/s total)</p>
@@ -141,8 +140,6 @@
 				</div>
 				<!-- MY PRODUCERS -->
 				<div class="tab-pane" id="my-producers-tab" role="tabpanel">
-					<br>
-
 					<div class="unlock farm-unlock">
 					<details>
 						<summary><i class="fas fa-warehouse"></i> <span id="num-farm">0</span> Fish Food Farms</summary>
@@ -216,12 +213,12 @@
 				</div>
 				<!-- MY ACHIEVEMENTS -->
 				<div class="tab-pane" id="my-achievements-tab" role="tabpanel">
-					<br>
 					<div id="achievements-div"></div>
+					<p id="num-achieve"></p>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div id="right-col" class="col-md-6">
 			<h5>Purchase:</h5>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
@@ -237,7 +234,6 @@
 			<div class="tab-content">
 				<!-- PURCHASE FISH -->
 				<div class="tab-pane active" id="purchase-fish-tab" role="tabpanel">
-					<br>
 					<details open>
 						<summary><i class="fas fa-square"></i> Purchase Food:</summary>
 						<div class="btn-group">
@@ -299,7 +295,6 @@
 				</div>
 				<!-- PURCHASE PRODUCERS -->
 				<div class="tab-pane" id="purchase-producers-tab" role="tabpanel">
-					<br>
 					<div class="unlock farm-unlock">
 					<details>
 						<summary><i class="fas fa-warehouse"></i> Purchase Fish Food Farm:</summary>
@@ -367,7 +362,6 @@
 				</div>
 				<!-- PURCHASE UPGRADES -->
 <!-- 				<div class="tab-pane" id="purchase-upgrades-tab" role="tabpanel">
-					<br>
 					<hr>
 				</div> -->
 			</div>
@@ -437,6 +431,12 @@
 					<p><i class="fas fa-envelope"></i> Contct me at <a href="mailto:justingolden@rgbstudios.org" target="_blank">justingolden@rgbstudios.org</a></p>
 					<hr>
 					
+					<!-- TODO: implement working for accent, replace with font-awesome checkbox icons -->
+<!-- 					<p><b>Options</b></p>
+					<input id="display-accent-checkbox" type="checkbox">
+					<label for="display-accent-checkbox">Display Accent</label>
+					<hr> -->
+
 					<div class="unlock medium-fish-unlock">
 					<p><b>Notes</b></p>
 					<p>The aquarium only displays the first 20 of each type of fish</p>
