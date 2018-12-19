@@ -1,26 +1,40 @@
 do:
 
-- add upgrades
+hatchery factory
+autosell item/feature?
 - add land space
-	limited room for buildings? buy more land? aquariums count too?
+limited room for buildings? buy more land? aquariums count too?
 
+
+todo:
+load the consts in index on pageload (the ones in my stuff section)
+
+achievement idea: get to certain coins/second
+
+add fontawesome checkbox and option to remove accent
+checkbox for drawing aquarium at bottom
 
 download and upload data as .txt or .json, maybe encode it?
+use cookies?
 
 ================================================================
 
 maybe:
+add upgrades
+reflavor money into smiles?
+restart the game but with better costs once you get to certain point?
+fish that eats aquariums?
 disable buttons for things you cant purchase in updateUI()
 add commas to numbers
 discount 10% for buy in bulk?
 hungry fish images?
 add keyboard controls for purcahses
-SPEED RUN GAME YAY
-collabertation with other players? online multiplayer? hmm
+
 
 
 later:
 sync data with google account/loggin api
+collabertation with other players? online multiplayer? hmm
 add rest of features (upgrades, achievements)
 optimize fish data strcutres for redundancy
 use sass
@@ -39,12 +53,6 @@ stupid dimension: monsters that eat aquariums
 
 
 
-todo:
-load the consts in index on pageload (the ones in my stuff section)
-
-achievement idea: get to certain coins/second
-
-add fontawesome checkbox and option to remove accent
 
 ================================================================
 
