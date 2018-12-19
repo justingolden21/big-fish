@@ -195,7 +195,7 @@ hr:not(.paused) {
 /* wave and box stuff */
 #main-box {
 	border: 2px solid #099;
-	border-radius: 4px;
+	border-radius: 10px;
 	border-bottom: 0px;
 	margin-right: 0px;
 	margin-left: 0px;
@@ -204,4 +204,5 @@ hr:not(.paused) {
 }
 #bottom-hr {
 	margin-top: -5px !important;
+	border-radius: 10px;
 }
