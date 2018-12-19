@@ -1,0 +1,15 @@
+.btn {
+	box-shadow: 2px 2px 0px #099 !important;
+}
+hr {
+	border-bottom: 4px solid #099;
+}
+.nav-tabs {
+	border-bottom: 4px solid #099 !important;
+}
+.nav-tabs .nav-item .nav-link {
+	border: 2px solid #099;
+}
+.nav-tabs .nav-item .nav-link:hover {
+	border: 2px solid #fff;
+}

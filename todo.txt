@@ -15,6 +15,9 @@ disable buttons for things you cant purchase in updateUI()
 add commas to numbers
 discount 10% for buy in bulk?
 hungry fish images?
+add keyboard controls for purcahses
+SPEED RUN GAME YAY
+collabertation with other players? online multiplayer? hmm
 
 later:
 sync data with google account/loggin api
