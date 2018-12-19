@@ -32,6 +32,9 @@ img, button, br, .nav.nav-tabs, #canvas {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+#info-row p {
+	font-weight: bold;
+}
 a:not(.nav-link) {
 	color: #099 !important;
 	outline: none;

@@ -295,4 +295,11 @@ $(function() {
 
 		showSnackbar('Copied link to clipboard', 'success');
 	});
+	// scale icon to small, medium, or large fish on click
+	$('#top-logo').hover(function() {
+		$(this).css('transform', 'scale(1.5)');
+		// 1, 1.5, or 2 for small, medium, or big fish
+		let scale_factor = random(2,5)*0.5;
+		$(this).css('transform', 'scale(' + scale_factor + ')');
+	});
 });
