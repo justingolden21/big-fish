@@ -38,7 +38,7 @@ You can buy upgrades that make purcahses cheaper, fish earn more money, or hatch
 
 Keep playing, unlock all the achievements, and get as many coins and fish as you can!
 
-<img src="img/screenshot-mobile.png">
+<img src="img/screenshot-mobile.png" width="50%">
 
 ### Using
 
