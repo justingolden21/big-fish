@@ -1,10 +1,23 @@
 do:
+big changes:
+rename producers into buildings
+hatchery factory:
+1,000,000 for medium fish hatchery factory, produces 1 per second
+100,000,000 for big fish hatchery factory, produces 1 per second
 
-hatchery factory
-autosell item/feature?
-- add land space
-limited room for buildings? buy more land? aquariums count too?
+land mechanic:
+start with 1,000,000 land (1 land unit)
+aquariums take up 1 land units
+farms take 10, small hatchery 100, medium hatchery 1000, big hatchery 10000, aquarium factory 100,000
+medium fish hatchery factory 1,000,000, big fish hatchery factory 10,000,000
+land upgrades cost 1,000,000,000 coin for 1 land unit of land
+land factory (tank?) costs 1,000,000,000,000 coins and makes 1 land unit per second and takes up 1,000,000,000 land
 
+autosell item/feature:
+autosell building:
+costs 100,000 coin, takes 10,000 land, sells 1 thing per second, drop downs and number inputs of how many of what to sell per second
+
+================================================================
 
 todo:
 load the consts in index on pageload (the ones in my stuff section)
