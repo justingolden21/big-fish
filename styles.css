@@ -176,19 +176,32 @@ hr {
 	background-repeat: repeat;
 	height: 10px;
 	background-size: 20px 20px;
-	background-image: radial-gradient(circle at 10px -5px, transparent 12px, #fff 13px);
+	background-image: radial-gradient(circle at 10px -5px, transparent 12px, #099 13px);
 }
 hr:not(.paused) {
-	animation: wave 2s linear infinite;
-	-webkit-animation: wave 2s linear infinite;	
+	animation: wave 1s linear infinite;
+	-webkit-animation: wave 1s linear infinite;
 }
+
 @keyframes wave {
-	0% { transform: translateX(-10px); }
-	50%{ transform: translateX(10px); }
-	100%{ transform: translateX(-10px); }
+	0% { background-position: 10px -2px; }
+	100% { background-position: -10px -2px; }
 }
 @-webkit-keyframes wave {
-	0% { transform: translateX(-10px); }
-	50%{ transform: translateX(10px); }
-	100%{ transform: translateX(-10px); }
+	0% { background-position: 10px 0; }
+	100% { background-position: -10px 0; }
+}
+
+/* wave and box stuff */
+#main-box {
+	border: 2px solid #099;
+	border-radius: 4px;
+	border-bottom: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+#bottom-hr {
+	margin-top: -5px !important;
 }
