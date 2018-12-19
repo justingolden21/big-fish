@@ -2,12 +2,10 @@ do:
 
 - add upgrades
 - add land space
+	limited room for buildings? buy more land? aquariums count too?
 
 
-variable in check unlocks called checkingForUnlocks and set to true at beginning of function
-if set to false then unlocks dont run so that one unlock per that many ticks maybe have timeout function for setting to false instead of beginning of function
-
-limited room for buildings? buy more land? aquariums count too?
+download and upload data as .txt or .json, maybe encode it?
 
 ================================================================
 
@@ -20,11 +18,15 @@ add keyboard controls for purcahses
 SPEED RUN GAME YAY
 collabertation with other players? online multiplayer? hmm
 
+
 later:
 sync data with google account/loggin api
 add rest of features (upgrades, achievements)
 optimize fish data strcutres for redundancy
 use sass
+
+variable in check unlocks called checkingForUnlocks and set to true at beginning of function
+if set to false then unlocks dont run so that one unlock per that many ticks maybe have timeout function for setting to false instead of beginning of function
 
 bugs:
 handle opening a snackbar when another is already open
@@ -41,3 +43,15 @@ todo:
 load the consts in index on pageload (the ones in my stuff section)
 
 achievement idea: get to certain coins/second
+
+add fontawesome checkbox and option to remove accent
+
+================================================================
+
+DATA TO STORE:
+
+coins, food, aquariums, 
+farms, small, medium, and large hatcheries, aquarium factories
+
+small, medium, big fish arrays
+stats, unlocks, achievements objects
