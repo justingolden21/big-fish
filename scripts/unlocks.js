@@ -30,6 +30,7 @@ let achievements = {
 	'Monopoly Man': ['Have 1,000,000 coins', -1],
 	'Business Man': ['Make a total of over 100,000,000 coins', -1],
 	'Food Glorious Food': ['Purchase 10,000 food', -1]
+	// 'Gonna Need Swimming Lessons': ['Purchase 100 aquarium factories', -1]
 };
 
 function checkUnlocks() {
