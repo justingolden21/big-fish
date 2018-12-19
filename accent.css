@@ -7,7 +7,9 @@
 hr {
 	border-bottom: 4px solid #fff;
 }
-.nav-tabs {
+
+/* accent tabs */
+/*.nav-tabs {
 	border-bottom: 4px solid #099 !important;
 }
 .nav-tabs .nav-item .nav-link {
@@ -15,4 +17,4 @@ hr {
 }
 .nav-tabs .nav-item .nav-link:hover {
 	border: 2px solid #fff;
-}
+}*/
