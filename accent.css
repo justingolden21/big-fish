@@ -1,6 +1,9 @@
 .btn {
 	box-shadow: 2px 2px 0px #099 !important;
 }
+#canvas {
+	box-shadow: 3px 3px 0px #099 !important;
+}
 hr {
 	border-bottom: 4px solid #099;
 }
