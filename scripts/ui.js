@@ -1,3 +1,5 @@
+let bank_differential = 0; //account for banks buying and selling
+
 function updateUI() {
 	num_aquarium_space_used = 0;
 	num_coin_rate = 0;
@@ -29,6 +31,8 @@ function updateUI() {
 	}
 	// save time instead of for loop
 	num_hungry_big_fish = num_hungry_fish - num_hungry_small_fish - num_hungry_medium_fish;
+
+	num_coin_rate += bank_differential;
 	
 	// display numbers on UI
 	$('#num-coin').html(num_coin);

@@ -179,6 +179,7 @@ function tick() {
 		}
 	}
 
+	bank_differential = 0;
 	if(num_bank>0) { //check isn't necessary but saves cpu
 		doSell();
 		doBuy();
@@ -227,12 +228,15 @@ function doSell() {
 	// perform sell actions
 	small_fish.splice(small_fish.length-1-num_small_fish_to_sell, num_small_fish_to_sell);
 	num_coin += SMALL_FISH_COST*SELL_RETURN_VALUE*num_small_fish_to_sell;
+	bank_differential += SMALL_FISH_COST*SELL_RETURN_VALUE*num_small_fish_to_sell;
 
 	medium_fish.splice(medium_fish.length-1-num_medium_fish_to_sell, num_medium_fish_to_sell);
 	num_coin += MEDIUM_FISH_COST*SELL_RETURN_VALUE*num_medium_fish_to_sell;
+	bank_differential += MEDIUM_FISH_COST*SELL_RETURN_VALUE*num_medium_fish_to_sell;
 
 	big_fish.splice(big_fish.length-1-num_big_fish_to_sell, num_big_fish_to_sell);
 	num_coin += BIG_FISH_COST*SELL_RETURN_VALUE*num_big_fish_to_sell;
+	bank_differential += BIG_FISH_COST*SELL_RETURN_VALUE*num_big_fish_to_sell;
 }
 
 function doBuy() {
@@ -291,18 +295,23 @@ function doBuy() {
 
 	// perform buy actions
 	num_coin -= FARM_COST * num_food_farm_to_buy;
+	bank_differential -= FARM_COST * num_food_farm_to_buy;
 	num_farm += num_food_farm_to_buy;
 
 	num_coin -= SMALL_HATCHERY_COST * num_small_hatchery_to_buy;
+	bank_differential -= SMALL_HATCHERY_COST * num_small_hatchery_to_buy;
 	num_small_hatchery += num_small_hatchery_to_buy;
 
 	num_coin -= MEDIUM_HATCHERY_COST * num_medium_hatchery_to_buy;
+	bank_differential -= MEDIUM_HATCHERY_COST * num_medium_hatchery_to_buy;
 	num_medium_hatchery += num_medium_hatchery_to_buy;
 
 	num_coin -= BIG_HATCHERY_COST * num_big_hatchery_to_buy;
+	bank_differential -= BIG_HATCHERY_COST * num_big_hatchery_to_buy;
 	num_big_hatchery += num_big_hatchery_to_buy;
 
 	num_coin -= AQUARIUM_FACTORY_COST * num_aquarium_factory_to_buy;
+	bank_differential -= AQUARIUM_FACTORY_COST * num_aquarium_factory_to_buy;
 	num_aquarium_factory += num_aquarium_factory_to_buy;
 }
 
