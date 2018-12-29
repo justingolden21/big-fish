@@ -107,6 +107,7 @@ const SMALL_HATCHERY_COST = 1000;
 const MEDIUM_HATCHERY_COST = 10000;
 const BIG_HATCHERY_COST = 100000;
 const AQUARIUM_FACTORY_COST = 1000000;
+const BANK_COST = 1000000;
 
 // producer rates
 const FARM_FOOD_RATE = 5;
@@ -118,6 +119,7 @@ const AQUARIUM_FACTORY_RATE = 1;
 // misc
 const AQUARIUM_SPACE = 500;
 const FOOD_UNIT = 10;
+const BANK_ACTION_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
 const FISH_SPEEDS = [5,10,15]; //[small, medium, big]
 
@@ -130,6 +132,7 @@ let num_small_hatchery = 0;
 let num_medium_hatchery = 0;
 let num_big_hatchery = 0;
 let num_aquarium_factory = 0;
+let num_bank = 0;
 
 let small_fish = [];
 let medium_fish = [];
@@ -176,7 +179,137 @@ function tick() {
 		}
 	}
 
+	if(num_bank>0) { //check isn't necessary but saves cpu
+		doSell();
+		doBuy();
+	}
+
 	updateUI();
+}
+
+// note: updates html input value with correct value
+function doSell() {
+	let num_sell_actions_remaining = num_bank * BANK_ACTION_UNIT;
+
+	// get inputs
+	let num_small_fish_to_sell = check(parseInt($('#sell-small-fish-input').val() ) );
+	let num_medium_fish_to_sell = check(parseInt($('#sell-medium-fish-input').val() ) );
+	let num_big_fish_to_sell = check(parseInt($('#sell-big-fish-input').val() ) );
+
+	// make sure they have enough fish, and enough bank actions
+	num_small_fish_to_sell = Math.min(small_fish.length, num_small_fish_to_sell);
+	num_small_fish_to_sell = Math.min(num_small_fish_to_sell, num_sell_actions_remaining);
+	num_sell_actions_remaining -= num_small_fish_to_sell;
+
+	num_medium_fish_to_sell = Math.min(medium_fish.length, num_medium_fish_to_sell);
+	num_medium_fish_to_sell = Math.min(num_medium_fish_to_sell, num_sell_actions_remaining);
+	num_sell_actions_remaining -= num_medium_fish_to_sell;
+
+	num_big_fish_to_sell = Math.min(big_fish.length, num_big_fish_to_sell);
+	num_big_fish_to_sell = Math.min(num_big_fish_to_sell, num_sell_actions_remaining);
+	num_sell_actions_remaining -= num_big_fish_to_sell;
+
+	// update input value displayed if not focused
+	if(!$('#sell-small-fish-input').is(':focus') ) {
+		$('#sell-small-fish-input').val(num_small_fish_to_sell);		
+	}
+	if(!$('#sell-medium-fish-input').is(':focus') ) {
+		$('#sell-medium-fish-input').val(num_medium_fish_to_sell);
+	}
+	if(!$('#sell-big-fish-input').is(':focus') ) {
+		$('#sell-big-fish-input').val(num_big_fish_to_sell);
+	}
+
+	let fish_sold = num_small_fish_to_sell+num_medium_fish_to_sell+num_big_fish_to_sell;
+	$('#num-current-selling-rate').html(fish_sold);
+	stats['fish_sold'] += fish_sold;
+
+	// perform sell actions
+	small_fish.splice(small_fish.length-1-num_small_fish_to_sell, num_small_fish_to_sell);
+	num_coin += SMALL_FISH_COST*SELL_RETURN_VALUE*num_small_fish_to_sell;
+
+	medium_fish.splice(medium_fish.length-1-num_medium_fish_to_sell, num_medium_fish_to_sell);
+	num_coin += MEDIUM_FISH_COST*SELL_RETURN_VALUE*num_medium_fish_to_sell;
+
+	big_fish.splice(big_fish.length-1-num_big_fish_to_sell, num_big_fish_to_sell);
+	num_coin += BIG_FISH_COST*SELL_RETURN_VALUE*num_big_fish_to_sell;
+}
+
+function doBuy() {
+	// TODO: make less redundant with array of objects?
+	let num_buy_actions_remaining = num_bank * BANK_ACTION_UNIT;
+
+	// get inputs
+	let num_food_farm_to_buy = check(parseInt($('#buy-food-farm-input').val() ) );
+	let num_small_hatchery_to_buy = check(parseInt($('#buy-small-hatchery-input').val() ) );
+	let num_medium_hatchery_to_buy = check(parseInt($('#buy-medium-hatchery-input').val() ) );
+	let num_big_hatchery_to_buy = check(parseInt($('#buy-big-hatchery-input').val() ) );
+	let num_aquarium_factory_to_buy = check(parseInt($('#buy-aquarium-factory-input').val() ) );
+
+	// make sure they have enough money, and enough bank actions
+	console.log(num_food_farm_to_buy);
+	if(FARM_COST*num_food_farm_to_buy > num_coin) num_food_farm_to_buy = Math.floor(num_coin/FARM_COST);
+	console.log(num_food_farm_to_buy);
+	num_food_farm_to_buy = Math.min(num_food_farm_to_buy, num_buy_actions_remaining);
+	console.log(num_food_farm_to_buy);
+	num_buy_actions_remaining -= num_food_farm_to_buy;
+
+	if(SMALL_HATCHERY_COST*num_small_hatchery_to_buy > num_coin) num_small_hatchery_to_buy = Math.floor(num_coin/SMALL_HATCHERY_COST);
+	num_small_hatchery_to_buy = Math.min(num_small_hatchery_to_buy, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_small_hatchery_to_buy;
+
+	if(MEDIUM_HATCHERY_COST*num_medium_hatchery_to_buy > num_coin) num_medium_hatchery_to_buy = Math.floor(num_coin/MEDIUM_HATCHERY_COST);
+	num_medium_hatchery_to_buy = Math.min(num_medium_hatchery_to_buy, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_medium_hatchery_to_buy;
+
+	if(BIG_HATCHERY_COST*num_big_hatchery_to_buy > num_coin) num_big_hatchery_to_buy = Math.floor(num_coin/BIG_HATCHERY_COST);
+	num_big_hatchery_to_buy = Math.min(num_big_hatchery_to_buy, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_big_hatchery_to_buy;
+
+	if(AQUARIUM_FACTORY_COST*num_aquarium_factory_to_buy > num_coin) num_aquarium_factory_to_buy = Math.floor(num_coin/AQUARIUM_FACTORY_COST);
+	num_aquarium_factory_to_buy = Math.min(num_aquarium_factory_to_buy, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_aquarium_factory_to_buy;
+
+	// update input value displayed if not focused
+	if(!$('#buy-food-farm-input').is(':focus') ) {
+		$('#buy-food-farm-input').val(num_food_farm_to_buy);
+	}
+	if(!$('#buy-small-hatchery-input').is(':focus') ) {
+		$('#buy-small-hatchery-input').val(num_small_hatchery_to_buy);
+	}
+	if(!$('#buy-medium-hatchery-input').is(':focus') ) {
+		$('#buy-medium-hatchery-input').val(num_medium_hatchery_to_buy);
+	}
+	if(!$('#buy-big-hatchery-input').is(':focus') ) {
+		$('#buy-big-hatchery-input').val(num_big_hatchery_to_buy);
+	}
+	if(!$('#buy-aquarium-factory-input').is(':focus') ) {
+		$('#buy-aquarium-factory-input').val(num_aquarium_factory_to_buy);
+	}
+
+	$('#num-current-buying-rate').html(num_food_farm_to_buy+num_small_hatchery_to_buy+num_medium_hatchery_to_buy+num_big_hatchery_to_buy+num_aquarium_factory_to_buy);
+
+	// perform buy actions
+	num_coin -= FARM_COST * num_food_farm_to_buy;
+	num_farm += num_food_farm_to_buy;
+
+	num_coin -= SMALL_HATCHERY_COST * num_small_hatchery_to_buy;
+	num_small_hatchery += num_small_hatchery_to_buy;
+
+	num_coin -= MEDIUM_HATCHERY_COST * num_medium_hatchery_to_buy;
+	num_medium_hatchery += num_medium_hatchery_to_buy;
+
+	num_coin -= BIG_HATCHERY_COST * num_big_hatchery_to_buy;
+	num_big_hatchery += num_big_hatchery_to_buy;
+
+	num_coin -= AQUARIUM_FACTORY_COST * num_aquarium_factory_to_buy;
+	num_aquarium_factory += num_aquarium_factory_to_buy;
+}
+
+function check(num) {
+	if(isNaN(num)||num<0)
+		return 0;
+	return num;
 }
 
 // utility functions

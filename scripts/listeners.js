@@ -154,6 +154,17 @@ $(function() {
 			updateUI();
 		}
 	});
+	$('.btn.purchase-bank').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_coin < BANK_COST*amount) {
+			showSnackbar('Not enough coin', 'error');
+		} else {
+			num_coin -= BANK_COST*amount;
+			num_bank += amount;
+			showHighlight($('#num-bank') );
+			updateUI();
+		}
+	});
 
 	// sell fish stuff
 	$('.btn.sell-small-fish').click(function() {
@@ -161,6 +172,7 @@ $(function() {
 		if(small_fish.length < amount) {
 			showSnackbar('Not enough small fish', 'error');
 		} else {
+			stats['fish_sold'] += amount;
 			num_coin += Math.round(SMALL_FISH_COST*amount*SELL_RETURN_VALUE);
 			for(let i=0; i<amount; i++) {
 				small_fish.pop();
@@ -175,6 +187,7 @@ $(function() {
 		if(medium_fish.length < amount) {
 			showSnackbar('Not enough medium fish', 'error');
 		} else {
+			stats['fish_sold'] += amount;
 			num_coin += Math.round(MEDIUM_FISH_COST*amount*SELL_RETURN_VALUE);
 			for(let i=0; i<amount; i++) {
 				medium_fish.pop();
@@ -189,6 +202,7 @@ $(function() {
 		if(big_fish.length < amount) {
 			showSnackbar('Not enough big fish', 'error');
 		} else {
+			stats['fish_sold'] += amount;
 			num_coin += Math.round(BIG_FISH_COST*amount*SELL_RETURN_VALUE);
 			for(let i=0; i<amount; i++) {
 				big_fish.pop();

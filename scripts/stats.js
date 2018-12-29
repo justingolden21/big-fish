@@ -11,7 +11,9 @@ let stats = {
 
 	'money_from_small_fish': 0,
 	'money_from_medium_fish': 0,
-	'money_from_big_fish': 0
+	'money_from_big_fish': 0,
+
+	'fish_sold': 0 
 };
 
 function updateStats() {
@@ -28,4 +30,6 @@ function updateStats() {
 	$('#money-from-small-fish').html(stats['money_from_small_fish']);
 	$('#money-from-medium-fish').html(stats['money_from_medium_fish']);
 	$('#money-from-big-fish').html(stats['money_from_big_fish']);
+
+	$('#fish-sold').html(stats['fish_sold']);
 }

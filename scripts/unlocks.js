@@ -4,6 +4,7 @@ let unlocks = {
 	'purchase_medium_hatchery': false,
 	'purchase_big_hatchery': false,
 	'purchase_aquarium_factory': false,
+	'purchase_bank': false,
 
 	'sell_small_fish': false,
 	'sell_medium_fish': false,
@@ -29,7 +30,8 @@ let achievements = {
 	'Minimum Wage': ['Have 10,000 coins', -1],
 	'Monopoly Man': ['Have 1,000,000 coins', -1],
 	'Business Man': ['Make a total of over 100,000,000 coins', -1],
-	'Food Glorious Food': ['Purchase 10,000 food', -1]
+	'Food Glorious Food': ['Purchase 10,000 food', -1],
+	'Big Banking': ['Have 1,000 banks', -1]
 	// 'Gonna Need Swimming Lessons': ['Purchase 100 aquarium factories', -1]
 };
 
@@ -40,6 +42,7 @@ function checkUnlocks() {
 	checkUnlock('purchase_medium_hatchery', stats['medium_fish_purchased'] >= 250, '.medium-hatchery-unlock #producers-info', 'medium fish hatcheries');
 	checkUnlock('purchase_big_hatchery', stats['big_fish_purchased'] >= 250, '.big-hatchery-unlock #producers-info', 'big fish hatcheries');
 	checkUnlock('purchase_aquarium_factory', stats['aquarium_purchased'] >= 25, '.aquarium-factory-unlock #producers-info', 'aquarium factories');
+	checkUnlock('purchase_bank', (num_aquarium_factory >= 5) && (num_farm+num_small_hatchery+num_medium_hatchery+num_big_hatchery >= 1000) , '.bank-unlock', 'banks');
 
 	checkUnlock('sell_small_fish', small_fish.length >= 75, '.sell-small-fish-unlock #sell-info', 'ability to sell small fish');
 	checkUnlock('sell_medium_fish', medium_fish.length >= 75, '.sell-medium-fish-unlock #sell-info', 'ability to sell medium fish');
@@ -81,6 +84,8 @@ function checkUnlocks() {
 		checkAchievement('Business Man');
 	if(stats['food_purchased']>=10000)
 		checkAchievement('Food Glorious Food');
+	if(num_bank > 1000)
+		checkAchievement('Big Banking');
 }
 
 

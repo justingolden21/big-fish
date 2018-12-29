@@ -126,7 +126,7 @@
 					<div class="unlock aquarium-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-water"></i> <span id="num-aquarium">1</span> Aquarium</summary>
+						<summary><i class="fas fa-water"></i> <span id="num-aquarium">1</span> Aquariums</summary>
 						<p><i class="fas fa-water"></i> Provides <span id="num-aquarium-space">500</span> Space (<span id="num-aquarium-space-used">1</span> used / <span id="num-aquarium-space-total">100</span> total)</p>
 						<div class="btn-group">
 							<button class="btn sell-aquarium" value="1"><i class="fas fa-coins"></i> 1 Aquarium</button>
@@ -206,11 +206,66 @@
 						<p><i class="fas fa-water"></i> Makes <span id="num-aquarium-factory-aquarium">1</span> Aquarium Factories/s (<span id="num-aquarium-factory-aquarium-rate">0</span> Aquarium Factories/s total)</p>
 						<p><i class="fas fa-coins"></i> Sell Factories:</p>
 						<div class="btn-group">
-							<button class="btn sell-aquarium-factory" value="1"><i class="fas fa-coins"></i> 1 Factories</button>
+							<button class="btn sell-aquarium-factory" value="1"><i class="fas fa-coins"></i> 1 Factory</button>
 							<button class="btn sell-aquarium-factory" value="10"><i class="fas fa-coins"></i> 10 Factories</button>
 							<button class="btn sell-aquarium-factory" value="100"><i class="fas fa-coins"></i> 100 Factories</button>
 						</div>
 						<p><span class="sell-return-value">0.5</span> return value on sales</p>
+					</details>
+					</div>
+
+					<div class="unlock bank-unlock">
+					<hr>
+					<details>
+						<summary><i class="fas fa-university fa-3x"></i> <span id="num-bank">0</span> Banks</summary>
+						<p><i class="fas fa-fish"></i> Buys/Sells up to <span id="num-bank-rate">10</span> Items/s (up to <span id="num-bank-rate-total">0</span> Items/s total)</p>
+
+<!-- 						<select id="seller-sell-select" class="form-control form-control-sm">
+							<option value="small">Small Fish</option>
+							<option value="medium">Medium Fish</option>
+							<option value="big">Big Fish</option>
+							<option value="aquarium">Aquariums</option>
+						</select> -->
+
+						<p><i class="fas fa-coins"></i> Sell Fish:</p>
+						<div style="text-align: right !important;">
+						<label for="sell-small-fish-input">Small Fish:</label>
+						<input id="sell-small-fish-input" type="number" class="form-control form-control-sm" value="0"> /s
+						<br>
+						<label for="sell-medium-fish-input">Medium Fish:</label>
+						<input id="sell-medium-fish-input" type="number" class="form-control form-control-sm" value="0"> /s
+						<br>
+						<label for="sell-big-fish-input">Big Fish:</label>
+						<input id="sell-big-fish-input" type="number" class="form-control form-control-sm" value="0"> /s
+						<p>Currently selling <span id="num-current-selling-rate">0</span> fish/s</p>
+						</div>
+
+						<p><i class="fas fa-coins"></i> Buy Buildings:</p>
+						<div style="text-align: right !important;">
+						<label for="buy-food-farm-input">Food Farms:</label>
+						<input id="buy-food-farm-input" type="number" class="form-control form-control-sm" value="0"> /s
+						<br>
+						<label for="buy-small-hatchery-input">Small Hatcheries:</label>
+						<input id="buy-small-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /s
+						<br>
+						<label for="buy-medium-hatchery-input">Medium Hatcheries:</label>
+						<input id="buy-medium-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /s
+						<br>
+						<label for="buy-big-hatchery-input">Big Hatcheries:</label>
+						<input id="buy-big-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /s
+						<br>
+						<label for="buy-aquarium-factory-input">Aquarium Factories:</label>
+						<input id="buy-aquarium-factory-input" type="number" class="form-control form-control-sm" value="0"> /s
+						<p>Currently buying <span id="num-current-buying-rate">0</span> buildings/s</p>
+						</div>
+
+<!-- 						<p><i class="fas fa-coins"></i> Sell Banks:</p>
+						<div class="btn-group">
+							<button class="btn sell-bank" value="1"><i class="fas fa-coins"></i> 1 Bank</button>
+							<button class="btn sell-bank" value="10"><i class="fas fa-coins"></i> 10 Banks</button>
+							<button class="btn sell-bank" value="100"><i class="fas fa-coins"></i> 100 Banks</button>
+						</div>
+						<p><span class="sell-return-value">0.5</span> return value on sales</p> -->
 					</details>
 					</div>
 
@@ -364,6 +419,19 @@
 					</details>
 					</div>
 
+					<div class="unlock bank-unlock">
+					<hr>
+					<details>
+						<summary><i class="fas fa-university fa-3x"></i> Purchase Bank:</summary>
+						<div class="btn-group">
+							<button class="btn purchase-bank" value="1"><i class="fas fa-university"></i> 1 Bank</button>
+							<button class="btn purchase-bank" value="10"><i class="fas fa-university"></i> 10 Banks</button>
+							<button class="btn purchase-bank" value="100"><i class="fas fa-university"></i> 100 Banks</button>
+						</div>
+						<p><i class="fas fa-coins"></i> <span id="num-bank-per-cost">1</span> Bank costs <span id="num-bank-cost">1000000</span> Coin</p>
+					</details>
+					</div>
+
 				</div>
 				<!-- PURCHASE UPGRADES -->
 <!-- 				<div class="tab-pane" id="purchase-upgrades-tab" role="tabpanel">
@@ -480,7 +548,8 @@
 					<p><span id="money-from-small-fish"></span> money from small fish.</p>
 					<p class="unlock medium-fish-unlock"><span id="money-from-medium-fish"></span> money from medium fish.</p>
 					<p class="unlock big-fish-unlock"><span id="money-from-big-fish"></span> money from big fish.</p>
-					
+					<hr>
+					<p><span id="fish-sold"></span> fish sold.</p>
 				</div>
 			</div>
 		</div>

@@ -43,7 +43,6 @@ a:not(.nav-link):focus {
 	border: 2px solid #099;
 }
 
-
 /* game */
 span.highlight {
 	background-color: #099;
@@ -88,21 +87,38 @@ span.highlight {
 }
 
 /* buttons */
-.btn:focus {
+.btn:focus, select:focus {
 	outline: none !important;
-	box-shadow: none;
-	color: #099;
-	border-color: #099;
+	box-shadow: none !important;
+	color: #099 !important;
+	border-color: #099 !important;
 }
-.btn:hover {
-	color: #fff;
-	background-color: #099;
-	border-color: #fff;
+.btn:hover, select:hover {
+	color: #fff !important;
+	background-color: #099 !important;
+	border-color: #fff !important;
+	cursor: pointer;
 }
-.btn, .btn:active {
-	border: 2px solid #262673;
-	background-color: #fff;
-	color: #262673; 
+.btn, .btn:active, select {
+	border: 2px solid #262673 !important;
+	background-color: #fff !important;
+	color: #262673 !important; 
+}
+
+/* inputs */
+input:hover, input:focus {
+	outline: none !important;
+	box-shadow: none !important;
+	color: #099 !important;
+	border-color: #099 !important;
+}
+input {
+	border: 2px solid #262673 !important;
+	background-color: #fff !important;
+	color: #262673 !important;
+	text-align: center;
+	width: 200px !important;
+	display: inline-block !important;
 }
 
 /* summary */
