@@ -42,7 +42,7 @@ Keep playing, unlock all the achievements, and get as many coins and fish as you
 
 ### Using
 
-Built with jQuery, Bootstrap, and Font Awesome
+Built with [jQuery](http://jquery.com/), [Bootstrap](https://getbootstrap.com/), [Font Awesome](http://fontawesome.com), and [JS Cookie](https://github.com/js-cookie/js-cookie)
 
 
 ### Links
