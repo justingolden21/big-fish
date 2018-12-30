@@ -8,6 +8,11 @@ handle opening a snackbar when another is already open
 fish.ticks still doesn't work? but .hungry does?
 
 ================================TODO:================================
+keyboard shortcut or pause
+different colored snackbars for unlocks and warnings
+option checkbox to display buy max buttons
+onload open welcome modal
+
 load the consts in index on pageload (the ones in my stuff section)
 add fontawesome checkbox and option to remove accent
 checkbox for drawing aquarium at bottom
