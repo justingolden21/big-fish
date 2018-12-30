@@ -311,6 +311,7 @@ $(function() {
 		showSnackbar('Copied link to clipboard', 'success');
 	});
 
+	// cookies
 	$('.accept-cookies-btn').click(function() {
 		savingCookies = true;
 		$('#storing-cookies-para').html('Storing this game\'s cookies.');
@@ -341,6 +342,29 @@ $(function() {
 
 		//message
 		showSnackbar('Will save cookies this session. <br> Loaded any cookies from previous games.', 'info');
+	});
+
+	// text file export/import
+	$('#download-data-btn').click(function() {
+		downloadData();
+	});
+
+	$('#upload-data-btn').click(function() {
+		$('#upload-data-input').click();
+	});
+
+	$("#upload-data-input").change(function() {
+		if(!window.FileReader) {
+			showSnackbar('browser not supported', 'error');
+			return;
+		}
+		let input = $('#upload-data-input').get(0);
+		let reader = new FileReader();
+		if(input.files.length) { // file exists
+			let textFile = input.files[0];
+			reader.readAsText(textFile);
+			$(reader).on('load', processFile);
+		}
 	});
 
 	// scale icon to small, medium, or large fish on click

@@ -29,6 +29,7 @@
 <script src="scripts/stats.js"></script>
 <script src="scripts/unlocks.js"></script>
 <script src="scripts/cookies.js"></script>
+<script src="scripts/files.js"></script>
 
 </head>
 
@@ -527,6 +528,18 @@
 					<button class="btn btn-sm load-cookies-btn">Load Game from Previous Cookies</button>
 					<button class="btn btn-sm delete-cookies-btn">Delete All Cookies</button>
 					<p id="storing-cookies-para">Not storing this game's cookies.</p>
+					<hr>
+
+					<p><b>Export/Import Data from Text</b></p>
+
+					<button id="download-data-btn" class="btn btn-sm">
+						Download .txt File <i class="fas fa-download"></i>
+					</button>
+					<a id="download-data-link" class="hidden" target="_blank" download="data.txt"></a>
+					<button id="upload-data-btn" class="btn btn-sm">
+						Upload .txt File <i class="fas fa-upload"></i>
+					</button>
+					<input id="upload-data-input" class="hidden" type="file" accept=".txt">
 					<hr>
 
 					<p><b>Share</b></p>

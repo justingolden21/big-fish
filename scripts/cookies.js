@@ -19,6 +19,7 @@ function loadCookies() {
 	num_food = parseInt(Cookies.get('num_food') || num_food);
 	num_aquarium = parseInt(Cookies.get('num_aquarium') || num_aquarium);
 
+	num_farm = parseInt(Cookies.get('num_farm') || num_farm);
 	num_small_hatchery = parseInt(Cookies.get('num_small_hatchery') || num_small_hatchery);
 	num_medium_hatchery = parseInt(Cookies.get('num_medium_hatchery') || num_medium_hatchery);
 	num_big_hatchery = parseInt(Cookies.get('num_big_hatchery') || num_big_hatchery);
@@ -55,6 +56,7 @@ function setCookies() {
 	Cookies.set('num_food', num_food);
 	Cookies.set('num_aquarium', num_aquarium);
 
+	Cookies.set('num_farm', num_farm);
 	Cookies.set('num_small_hatchery', num_small_hatchery);
 	Cookies.set('num_medium_hatchery', num_medium_hatchery);
 	Cookies.set('num_big_hatchery', num_big_hatchery);
@@ -71,11 +73,12 @@ function setCookies() {
 
 function clearCookies() {
 	console.log('clearing cookies');
-	
+
 	Cookies.remove('num_coin');
 	Cookies.remove('num_food');
 	Cookies.remove('num_aquarium');
 
+	Cookies.remove('num_farm');
 	Cookies.remove('num_small_hatchery');
 	Cookies.remove('num_medium_hatchery');
 	Cookies.remove('num_big_hatchery');
