@@ -37,64 +37,75 @@ let achievements = {
 
 function checkUnlocks() {
 	// unlocks
-	checkUnlock('purchase_farm', stats['food_purchased'] >= 250, '.farm-unlock #producers-info', 'fish food farms');
-	checkUnlock('purchase_small_hatchery', stats['small_fish_purchased'] >= 250, '.small-hatchery-unlock #producers-info', 'small fish hatcheries');
-	checkUnlock('purchase_medium_hatchery', stats['medium_fish_purchased'] >= 250, '.medium-hatchery-unlock #producers-info', 'medium fish hatcheries');
-	checkUnlock('purchase_big_hatchery', stats['big_fish_purchased'] >= 250, '.big-hatchery-unlock #producers-info', 'big fish hatcheries');
-	checkUnlock('purchase_aquarium_factory', stats['aquarium_purchased'] >= 25, '.aquarium-factory-unlock #producers-info', 'aquarium factories');
-	checkUnlock('purchase_bank', (num_aquarium_factory >= 5) && (num_farm+num_small_hatchery+num_medium_hatchery+num_big_hatchery >= 1000) , '.bank-unlock', 'banks');
+	if(stats['food_purchased'] >= 250)
+		checkUnlock('purchase_farm', '.farm-unlock #producers-info', 'fish food farms');
+	if(stats['small_fish_purchased'] >= 250)
+		checkUnlock('purchase_small_hatchery', '.small-hatchery-unlock #producers-info', 'small fish hatcheries');
+	if(stats['medium_fish_purchased'] >= 250)
+		checkUnlock('purchase_medium_hatchery', '.medium-hatchery-unlock #producers-info', 'medium fish hatcheries');
+	if(stats['big_fish_purchased'] >= 250)
+		checkUnlock('purchase_big_hatchery', '.big-hatchery-unlock #producers-info', 'big fish hatcheries');
+	if(stats['aquarium_purchased'] >= 25)
+		checkUnlock('purchase_aquarium_factory', '.aquarium-factory-unlock #producers-info', 'aquarium factories');
+	if(num_aquarium_factory >= 5 && num_farm+num_small_hatchery+num_medium_hatchery+num_big_hatchery >= 1000)
+		checkUnlock('purchase_bank' , '.bank-unlock', 'banks');
 
-	checkUnlock('sell_small_fish', small_fish.length >= 75, '.sell-small-fish-unlock #sell-info', 'ability to sell small fish');
-	checkUnlock('sell_medium_fish', medium_fish.length >= 75, '.sell-medium-fish-unlock #sell-info', 'ability to sell medium fish');
-	checkUnlock('sell_big_fish', big_fish.length >= 75, '.sell-big-fish-unlock #sell-info', 'ability to sell big fish');
+	if(small_fish.length >= 75)
+		checkUnlock('sell_small_fish', '.sell-small-fish-unlock #sell-info', 'ability to sell small fish');
+	if(medium_fish.length >= 75)
+		checkUnlock('sell_medium_fish', '.sell-medium-fish-unlock #sell-info', 'ability to sell medium fish');
+	if(big_fish.length >= 75)
+		checkUnlock('sell_big_fish', '.sell-big-fish-unlock #sell-info', 'ability to sell big fish');
 
-	checkUnlock('medium_fish', small_fish.length >= 50, '.medium-fish-unlock', 'medium fish');
-	checkUnlock('big_fish', medium_fish.length >= 50, '.big-fish-unlock', 'big fish');
-	checkUnlock('aquarium', num_aquarium_space_used >= AQUARIUM_SPACE/2, '.aquarium-unlock',  'purchase aquarium');
+	if(small_fish.length >= 50)
+		checkUnlock('medium_fish', '.medium-fish-unlock', 'medium fish');
+	if(medium_fish.length >= 50)
+		checkUnlock('big_fish', '.big-fish-unlock', 'big fish');
+	if(num_aquarium_space_used >= AQUARIUM_SPACE/2)
+		checkUnlock('aquarium', '.aquarium-unlock',  'purchase aquarium');
 
 	// achievements
 	if(small_fish.length>1)
-		checkAchievement('One Fish Two Fish');
+		checkAchievement('One Fish Two Fish',false);
 	if(medium_fish.length>=1)
-		checkAchievement('Fish Sticks');
+		checkAchievement('Fish Sticks',false);
 	if(big_fish.length>=1)
-		checkAchievement('Bigger Fish to Fry');
+		checkAchievement('Bigger Fish to Fry',false);
 	if(small_fish.length+medium_fish.length+big_fish.length>=100)
-		checkAchievement('Always More Fish in the Sea');
+		checkAchievement('Always More Fish in the Sea',false);
 	if(num_small_hatchery>0||num_medium_hatchery>0||num_big_hatchery>0)
-		checkAchievement('Financially Responsible');
+		checkAchievement('Financially Responsible',false);
 	if(num_small_hatchery+num_medium_hatchery+num_big_hatchery>=100)
-		checkAchievement('Something Smells Fishy');
+		checkAchievement('Something Smells Fishy',false);
 	if(num_aquarium>1)
-		checkAchievement('Deep Sea Diving');
+		checkAchievement('Deep Sea Diving',false);
 	if(num_aquarium>100)
-		checkAchievement('Sea World');
+		checkAchievement('Sea World',false);
 	if(small_fish.length==0)
-		checkAchievement('Disrupt the Food Chain');
+		checkAchievement('Disrupt the Food Chain',false);
 	if(num_coin>=100) {
-		checkAchievement('Lemonade Stand');
+		checkAchievement('Lemonade Stand',false);
 		if(num_coin>=10000) {
-			checkAchievement('Minimum Wage');
+			checkAchievement('Minimum Wage',false);
 			if(num_coin>=1000000) {
-				checkAchievement('Monopoly Man');
+				checkAchievement('Monopoly Man',false);
 			}
 		}
 	}
 	if(stats['money_from_small_fish']+stats['money_from_medium_fish']+stats['money_from_big_fish']>=100000000)
-		checkAchievement('Business Man');
+		checkAchievement('Business Man',false);
 	if(stats['food_purchased']>=10000)
-		checkAchievement('Food Glorious Food');
+		checkAchievement('Food Glorious Food',false);
 	if(num_bank > 1000)
-		checkAchievement('Big Banking');
+		checkAchievement('Big Banking',false);
 }
 
 
 // params: unlockName is str idx in unlock object of the unlock bool
-// requirement is true if met, false otherwise
 // parts are parts to unlock (html elements)
 // message is displayed message in snackbar (will say "Unlocked " before it)
-function checkUnlock(unlockName, requirement, parts, message) {
-	if(!unlocks[unlockName] && requirement) {
+function checkUnlock(unlockName, parts, message) {
+	if(!unlocks[unlockName]) {
 		unlocks[unlockName] = true;
 		parts = parts.split(' ');
 		for(let i=0; i<parts.length; i++) {
@@ -104,14 +115,14 @@ function checkUnlock(unlockName, requirement, parts, message) {
 	}
 }
 
-
-// checkAchievement('One Fish Two Fish');
-
 // called when achievement is earned, even if not the first time
-function checkAchievement(achievementName) {
-	if(achievements[achievementName][1] == -1) {
+function checkAchievement(achievementName, loadedFromCookies) {
+	if(achievements[achievementName][1] == -1 || loadedFromCookies) { // wasn't already unlocked, or loaded from cookies
 		achievements[achievementName][1] = stats['total_ticks'];
-		showSnackbar('Achievement unlocked: ' + achievementName, 'achievement');
+		if(!loadedFromCookies) {
+			showSnackbar('Achievement unlocked: ' + achievementName, 'achievement');			
+		}
+
 		$('#achievements-div').append('<p><i class="fas fa-trophy"></i> <b>' + achievementName + '</b>	: ' + achievements[achievementName][0] + ' (' + achievements[achievementName][1] + 's)</p>');
 
 		// count completed achievements

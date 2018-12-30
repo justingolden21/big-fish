@@ -28,6 +28,7 @@
 <script src="scripts/ui.js"></script>
 <script src="scripts/stats.js"></script>
 <script src="scripts/unlocks.js"></script>
+<script src="scripts/cookies.js"></script>
 
 </head>
 
@@ -520,6 +521,12 @@
 					<hr>
 					</div>
 
+					<p><b>Cookies:</b></p>
+					<button class="btn accept-cookies-btn">Accept Storage of Cookies</button>
+					<button class="btn load-cookies-btn">Load Game from Previous Cookies</button>
+					<button class="btn delete-cookies-btn">Delete All Cookies</button>
+					<hr>
+
 					<p><b>Credits</b></p>
 					<p><i class="fab fa-font-awesome"></i> Made with <a href="https://fontawesome.com/icons" target="_blank">Font Awesome</a></p>
 					<hr>
@@ -575,6 +582,16 @@
 
 	<br>
 	<div id="snackbar"></div>
+
+	<div id="cookie-alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+		<p><i class="fas fa-cookie"></i> We can use cookies to remember your game data. Click to accept them:
+		<button id="alert-cookie-btn" class="btn accept-cookies-btn">Accept Cookies and Load</button></p>
+		<p>Or close this to dismiss and not use cookies. Change this any time under <b><i class="fas fa-info"></i> Info</b>.</p>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
 </div>
 </body>
 </html>

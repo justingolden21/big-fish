@@ -86,7 +86,7 @@ stupid dimension: monsters that eat aquariums
 DATA TO STORE:
 
 coins, food, aquariums, 
-farms, small, medium, and large hatcheries, aquarium factories
+farms, small, medium, and large hatcheries, aquarium factories, banks
 
 small, medium, big fish arrays
 stats, unlocks, achievements objects

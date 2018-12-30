@@ -2,16 +2,14 @@
 $(function() {
 	// set up game
 	window.setInterval(tick, 1000); //tick every s
+	window.setInterval(savingCookies, 5000); //save cookies every 5s; doesn't save unless user allowed it
 	window.addEventListener('resize', handleResize);
 	handleResize();
 
-	window.setTimeout( ()=> { if(num_food==0) showSnackbar('Hint: Purchase 10 Food', 'info')}, 3000);
+	// window.setTimeout( ()=> { if(num_food==0) showSnackbar('Hint: Purchase 10 Food', 'info')}, 2000);
 
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
-
-	console.log(Cookies.get('testCookie') );
-	window.setTimeout( ()=> Cookies.set('testCookie','testing') ,1000);
 
 	// set up player	
 	addFish(SMALL, 1); //starting fish
@@ -312,6 +310,34 @@ $(function() {
 
 		showSnackbar('Copied link to clipboard', 'success');
 	});
+
+	$('.accept-cookies-btn').click(function() {
+		savingCookies = true;
+		showSnackbar('Will save cookies this session.', 'info');
+		$('#cookie-alert').alert('close');
+	});
+	$('.load-cookies-btn').click(function() {
+		loadCookies();
+		showSnackbar('Loaded any cookies from previous games.', 'info');
+	});
+	$('.delete-cookies-btn').click(function() {
+		clearCookies();
+		savingCookies = false;
+		showSnackbar('Cleared all cookies. Click "Accept Cookies" to accept them.<br>Will not save any cookies this session.', 'info');
+	});
+
+	$('#alert-cookie-btn').click(function() {
+		// save in future
+		savingCookies = true;
+		$('#cookie-alert').alert('close');
+
+		// load
+		loadCookies();
+
+		//message
+		showSnackbar('Will save cookies this session. <br> Loaded any cookies from previous games.', 'info');
+	});
+
 	// scale icon to small, medium, or large fish on click
 	$('#top-logo').hover(function() {
 		$(this).css('transform', 'scale(1.5)');

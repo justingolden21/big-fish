@@ -9,7 +9,7 @@ body, html {
 	background-color: #262673 !important;
 	color: #fff !important;
 }
-img, button, br, .nav.nav-tabs, #canvas {
+img, .btn, br, .nav.nav-tabs, #canvas {
 	-webkit-user-select: none; /* Safari */
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+/Edge */
@@ -87,19 +87,19 @@ span.highlight {
 }
 
 /* buttons */
-.btn:focus, select:focus {
+.btn:focus, select:focus, .alert .close:focus {
 	outline: none !important;
 	box-shadow: none !important;
 	color: #099 !important;
 	border-color: #099 !important;
 }
-.btn:hover, select:hover {
+.btn:hover, select:hover, .alert .close:hover {
 	color: #fff !important;
 	background-color: #099 !important;
 	border-color: #fff !important;
 	cursor: pointer;
 }
-.btn, .btn:active, select {
+.btn, .btn:active, select, .alert .close, .alert .close:active {
 	border: 2px solid #262673 !important;
 	background-color: #fff !important;
 	color: #262673 !important; 
@@ -147,6 +147,7 @@ summary:focus {
 	margin-left: -125px;
 	border: 1px solid;
 	background-color: #262673;
+	z-index: 98;
 }
 #snackbar.show {
 	visibility: visible;
@@ -188,6 +189,16 @@ summary:focus {
 .modal .close:focus, .modal .close:hover {
 	border: 2px solid #099;
 	color: #099;
+}
+
+/* alert */
+.alert {
+	background-color: #262673;
+	color: #fff;
+	border: 2px solid #099;
+}
+.alert .close {
+	opacity: 1;
 }
 
 /* waves */
