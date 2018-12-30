@@ -13,6 +13,8 @@ stats, achievements
 let savingCookies = false;
 
 function loadCookies() {
+	console.log('loading cookies');
+
 	num_coin = parseInt(Cookies.get('num_coin') || num_coin);
 	num_food = parseInt(Cookies.get('num_food') || num_food);
 	num_aquarium = parseInt(Cookies.get('num_aquarium') || num_aquarium);
@@ -47,6 +49,8 @@ function setCookies() {
 	if(!savingCookies) {
 		return;
 	}
+	console.log('setting cookies');
+
 	Cookies.set('num_coin', num_coin);
 	Cookies.set('num_food', num_food);
 	Cookies.set('num_aquarium', num_aquarium);
@@ -66,6 +70,8 @@ function setCookies() {
 }
 
 function clearCookies() {
+	console.log('clearing cookies');
+	
 	Cookies.remove('num_coin');
 	Cookies.remove('num_food');
 	Cookies.remove('num_aquarium');
