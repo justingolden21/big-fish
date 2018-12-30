@@ -1,0 +1,17 @@
+game.js: basic game functions and data
+
+listeners.js: event listeners such as button presses, everything whe the window loads
+
+ui.js: user interface. updating display of numbers every tick, 
+	showing snackbars, and other interface functions
+
+canvas.js: loads fish images and renders them on the html canvas
+
+unlocks.js: objects for unlocks and achievents, function that checks if they're completed
+	and performs appropriate actions
+
+stats.js: object for stats and function that updates numbers/ui for stats in the stats modal
+
+cookies.js: functions for loading, saving, and deleting cookies
+
+files.js: download and updload logic and handlers for .txt files with game data

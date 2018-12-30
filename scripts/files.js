@@ -1,4 +1,7 @@
 //https://stackoverflow.com/questions/19038919/is-it-possible-to-upload-a-text-file-to-input-in-html-js?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+
+// TODO: encode data so can't be easily messed with
+
 function processFile(e) {
 	let file = e.target.result, results;
 	if(file && file.length) {

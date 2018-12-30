@@ -31,7 +31,8 @@ let achievements = {
 	'Monopoly Man': ['Have 1,000,000 coins', -1],
 	'Business Man': ['Make a total of over 100,000,000 coins', -1],
 	'Food Glorious Food': ['Purchase 10,000 food', -1],
-	'Big Banking': ['Have 1,000 banks', -1]
+	'Big Banking': ['Have 1,000 banks', -1],
+	'So Long and Thanks for all the Fish': ['Sell 1,000 fish', -1]
 	// 'Gonna Need Swimming Lessons': ['Purchase 100 aquarium factories', -1]
 };
 
@@ -98,6 +99,8 @@ function checkUnlocks() {
 		checkAchievement('Food Glorious Food',false);
 	if(num_bank > 1000)
 		checkAchievement('Big Banking',false);
+	if(stats['fish_sold'] > 1000)
+		checkAchievement('So Long and Thanks for all the Fish',false);
 }
 
 
