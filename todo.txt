@@ -2,6 +2,15 @@ do:
 
 fix bug ith banks selling items when you dont have enough so it goes down by 1 each time
 
+save data wtih cookies and txt files
+alert box about cookies, if click accept then usingCookies=true
+
+penguins:
+cost 1bil coins, eat 100 big fish/s
+every min give you 1 snowflake
+snowflakesmultiply the amount of coins you earn
+after 1st penguin next penguin costs 1 snowflake, then 2 then 3...
+
 big changes:
 rename producers into buildings
 hatchery factory:
