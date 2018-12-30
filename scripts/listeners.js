@@ -10,6 +10,9 @@ $(function() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
+	console.log(Cookies.get('testCookie') );
+	window.setTimeout( ()=> Cookies.set('testCookie','testing') ,1000);
+
 	// set up player	
 	addFish(SMALL, 1); //starting fish
 

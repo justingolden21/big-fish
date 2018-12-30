@@ -11,6 +11,8 @@ every min give you 1 snowflake
 snowflakesmultiply the amount of coins you earn
 after 1st penguin next penguin costs 1 snowflake, then 2 then 3...
 
+penguin hatchery that costs 10, then 20, then 30 snowflake and makes 1 penguin per min?
+
 big changes:
 rename producers into buildings
 hatchery factory:
