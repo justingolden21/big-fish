@@ -7,6 +7,9 @@ handle opening a snackbar when another is already open
 
 fish.ticks still doesn't work? but .hungry does?
 
+fix bank ui and updating number to purchase
+	(goes negative if not enough cash and purchasing multiple items)
+
 ================================TODO:================================
 keyboard shortcut or pause
 different colored snackbars for unlocks and warnings
