@@ -313,6 +313,8 @@ $(function() {
 
 	$('.accept-cookies-btn').click(function() {
 		savingCookies = true;
+		$('#storing-cookies-para').html('Storing this game\'s cookies.');
+
 		showSnackbar('Will save cookies this session.', 'info');
 		$('#cookie-alert').alert('close');
 	});
@@ -323,12 +325,15 @@ $(function() {
 	$('.delete-cookies-btn').click(function() {
 		clearCookies();
 		savingCookies = false;
+		$('#storing-cookies-para').html('Not storing this game\'s cookies.');
+
 		showSnackbar('Cleared all cookies. Click "Accept Cookies" to accept them.<br>Will not save any cookies this session.', 'info');
 	});
 
 	$('#alert-cookie-btn').click(function() {
 		// save in future
 		savingCookies = true;
+		$('#storing-cookies-para').html('Storing this game\'s cookies.');
 		$('#cookie-alert').alert('close');
 
 		// load

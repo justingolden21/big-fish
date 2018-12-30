@@ -507,6 +507,7 @@
 					<p><i class="fab fa-github"></i> GitHub repo: <a href="https://github.com/justingolden21/big-fish" target="_blank">here</a></p>
 					<p><i class="far fa-smile"></i> Made by <a href="https://justingolden21.github.io" target="_blank">JustinGolden21</a></p>
 					<p><i class="fas fa-envelope"></i> Contct me at <a href="mailto:justingolden@rgbstudios.org" target="_blank">justingolden@rgbstudios.org</a></p>
+					<p><i class="fab fa-font-awesome"></i> Made with <a href="https://fontawesome.com/icons" target="_blank">Font Awesome</a></p>
 					<hr>
 					
 					<!-- TODO: implement working for accent, replace with font-awesome checkbox icons -->
@@ -522,14 +523,12 @@
 					</div>
 
 					<p><b>Cookies:</b></p>
-					<button class="btn accept-cookies-btn">Accept Storage of Cookies</button>
-					<button class="btn load-cookies-btn">Load Game from Previous Cookies</button>
-					<button class="btn delete-cookies-btn">Delete All Cookies</button>
+					<button class="btn btn-sm accept-cookies-btn">Accept Storage of Cookies</button>
+					<button class="btn btn-sm load-cookies-btn">Load Game from Previous Cookies</button>
+					<button class="btn btn-sm delete-cookies-btn">Delete All Cookies</button>
+					<p id="storing-cookies-para">Not storing this game's cookies.</p>
 					<hr>
 
-					<p><b>Credits</b></p>
-					<p><i class="fab fa-font-awesome"></i> Made with <a href="https://fontawesome.com/icons" target="_blank">Font Awesome</a></p>
-					<hr>
 					<p><b>Share</b></p>
 					<p>Copy website link: <button id="copy-link" class="btn"> <i class="fas fa-link"></i></button></p>
 					<br>
@@ -582,7 +581,7 @@
 
 	<br>
 	<div id="snackbar"></div>
-
+	<br>
 	<div id="cookie-alert" class="alert alert-warning alert-dismissible fade show" role="alert">
 		<p><i class="fas fa-cookie"></i> We can use cookies to remember your game data. Click to accept them:
 		<button id="alert-cookie-btn" class="btn accept-cookies-btn">Accept Cookies and Load</button></p>
