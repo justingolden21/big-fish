@@ -102,6 +102,11 @@ function updateUI() {
 	checkUnlocks();
 }
 
+// num items in queue, don't need to keep an actual queue
+let snackbar_queue = 0;
+let snackbar_time = 3000;
+let snackbar_time_total = 3500;
+
 function showSnackbar(message, type) {
 	if(type=='error') {
 		message = '<i class="fas fa-exclamation-circle"></i> ' + message;
@@ -112,13 +117,18 @@ function showSnackbar(message, type) {
 	} else if(type=='achievement') {
 		message = '<i class="fas fa-trophy"></i> ' + message;
 	}
-	$('#snackbar').addClass('show');
-	$('#snackbar').html(message);
-	// $('#snackbar').css('animation', 'fadein 0.5s, fadeout 0.5s 2s');
-	setTimeout(()=> { $('#snackbar').removeClass('show') }, 3000);
-
-	$('#history-log').prepend('<p>'+message+'</p>');
+	
+	snackbar_queue++;
+	setTimeout(()=> { createSnackbar(message); }, snackbar_time_total*(snackbar_queue-1) );
 }
+function createSnackbar(message) {
+	$('#snackbar').html(message);
+	$('#snackbar').addClass('show');
+	$('#history-log').prepend('<p>'+message+'</p>');
+
+	setTimeout(()=> { $('#snackbar').removeClass('show'); snackbar_queue--; }, snackbar_time);
+}
+
 function showHighlight(elm, sec=0.5) {
 	elm.addClass('highlight');
 	setTimeout(()=> { elm.removeClass('highlight') }, sec*1000);

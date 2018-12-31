@@ -17,9 +17,11 @@ option checkbox to display buy max buttons
 onload open welcome modal
 
 load the consts in index on pageload (the ones in my stuff section)
+
 add fontawesome checkbox and option to remove accent
 checkbox for drawing aquarium at bottom
 add settings modal and move game progress backup stuff there?
+
 reflavor money into smiles?
 
 sync data with google account/loggin api
@@ -43,10 +45,6 @@ use sass
 encode .txt files so they cant be easily messed with
 store data more accuratly in cookies and .txt files.
 have date on txt files?
-variable in check unlocks called checkingForUnlocks and set to true at beginning of function
-	if set to false then unlocks dont run so that one unlock per that many ticks
-	maybe have timeout function for setting to false instead of beginning of function
-
 ================================BIG IDEAS:================================
 penguins:
 cost 1bil coins, eat 100 big fish/s
