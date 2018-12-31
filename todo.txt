@@ -19,6 +19,10 @@ view your stuff on left to view details, on right to purchase them
 explain how to reopen this modal.
 onclose resume game.
 
+clicking purchase too many times buffers many notifications.
+solution: highlight number of coins on not enough coins alert, highlight aquariums in not enough space alert.
+option for sound effects: purchasing and error sounds, unlock and achievement sound
+
 load the consts in index on pageload (the ones in my stuff section)
 
 add fontawesome checkbox and option to remove accent
