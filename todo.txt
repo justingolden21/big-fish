@@ -1,6 +1,8 @@
 ================================BUGS:================================
 clearing cookies doesn't work?...
 
+food can be negative...?
+
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 
 fish.ticks still doesn't work? but .hungry does?
