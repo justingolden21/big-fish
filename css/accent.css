@@ -1,4 +1,4 @@
-.btn, input, .close {
+.btn, input, .alert .close {
 	box-shadow: 2px 2px 0px #099 !important;
 }
 #canvas {

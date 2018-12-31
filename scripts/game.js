@@ -321,6 +321,18 @@ function check(num) {
 	return num;
 }
 
+function togglePause() {
+	if(!paused) {
+		$('#pause-btn').html('<i class="fas fa-play"></i>');
+		showSnackbar('Game paused', 'info');
+	} else {
+		$('#pause-btn').html('<i class="fas fa-pause"></i>');
+		showSnackbar('Game resumed', 'info');
+	}
+	$('hr').toggleClass('paused');
+	paused = !paused;
+}
+
 // utility functions
 // hatch amount of fish if room, else hatch as much as there is room for
 function hatchFish(type, amount, spacePerFish) {

@@ -290,15 +290,7 @@ $(function() {
 
 	// pause
 	$('#pause-btn').click(function() {
-		if(!paused) {
-			$(this).html('<i class="fas fa-play"></i>');
-			showSnackbar('Game paused', 'info');
-		} else {
-			$(this).html('<i class="fas fa-pause"></i>');
-			showSnackbar('Game resumed', 'info');
-		}
-		$('hr').toggleClass('paused');
-		paused = !paused;
+		togglePause();
 	});
 
 	$('#copy-link').click(function() {
@@ -375,3 +367,10 @@ $(function() {
 		$(this).css('transform', 'scale(' + scale_factor + ')');
 	});
 });
+
+window.onkeyup = function(e) {
+	let key = e.keyCode ? e.keyCode : e.which;
+	if(key==27) { //esc
+		togglePause();
+	}
+}

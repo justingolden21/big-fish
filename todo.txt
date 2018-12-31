@@ -3,15 +3,12 @@ clearing cookies doesn't work?...
 
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 
-handle opening a snackbar when another is already open
-
 fish.ticks still doesn't work? but .hungry does?
 
 fix bank ui and updating number to purchase
 	(goes negative if not enough cash and purchasing multiple items)
 
 ================================TODO:================================
-keyboard shortcut or pause
 different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
 onload open welcome modal
