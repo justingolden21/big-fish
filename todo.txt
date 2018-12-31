@@ -11,7 +11,11 @@ fix bank ui and updating number to purchase
 ================================TODO:================================
 different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
-onload open welcome modal
+onload open welcome modal, explain basics such as buy fish, missed messages in history, fish dont starve but dont make money unless full
+view fish, food, money overview on top
+view your stuff on left to view details, on right to purchase them
+explain how to reopen this modal.
+onclose resume game.
 
 load the consts in index on pageload (the ones in my stuff section)
 

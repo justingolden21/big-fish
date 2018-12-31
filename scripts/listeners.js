@@ -300,7 +300,7 @@ $(function() {
 		document.execCommand('copy');
 		tmp.remove();
 
-		showSnackbar('Copied link to clipboard', 'success');
+		showSnackbar('Copied link to clipboard', 'info');
 	});
 
 	// cookies

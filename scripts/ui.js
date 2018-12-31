@@ -113,11 +113,11 @@ function showSnackbar(message, type) {
 	} else if(type=='info') {
 		message = '<i class="fas fa-info-circle"></i> ' + message;
 	} else if(type=='success') {
-		message = '<i class="fas fa-check-circle"></i> ' + message;
+		message = '<i class="fas fa-check-circle fa-2x"></i> ' + message;
 	} else if(type=='achievement') {
-		message = '<i class="fas fa-trophy"></i> ' + message;
+		message = '<i class="fas fa-trophy fa-2x"></i> ' + message;
 	}
-	
+
 	snackbar_queue++;
 	setTimeout(()=> { createSnackbar(message); }, snackbar_time_total*(snackbar_queue-1) );
 }
