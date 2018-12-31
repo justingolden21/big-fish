@@ -22,6 +22,7 @@ onclose resume game.
 clicking purchase too many times buffers many notifications.
 solution: highlight number of coins on not enough coins alert, highlight aquariums in not enough space alert.
 option for sound effects: purchasing and error sounds, unlock and achievement sound
+button to clear queue of notifications to display? pause to clear?
 
 load the consts in index on pageload (the ones in my stuff section)
 
