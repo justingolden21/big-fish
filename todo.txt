@@ -1,7 +1,7 @@
 ================================BUGS:================================
 clearing cookies doesn't work?...
 
-food can be negative...?
+food can be negative...? number of food farms negative?
 
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 
