@@ -15,3 +15,5 @@ stats.js: object for stats and function that updates numbers/ui for stats in the
 cookies.js: functions for loading, saving, and deleting cookies
 
 files.js: download and updload logic and handlers for .txt files with game data
+
+number.js: handles number string displays
