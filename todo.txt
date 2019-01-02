@@ -1,7 +1,7 @@
 ================================BUGS:================================
 clearing cookies doesn't work?...
 
-food can be negative...?
+food can be negative...? number of food farms negative?
 
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 
@@ -18,6 +18,11 @@ view fish, food, money overview on top
 view your stuff on left to view details, on right to purchase them
 explain how to reopen this modal.
 onclose resume game.
+
+clicking purchase too many times buffers many notifications.
+solution: highlight number of coins on not enough coins alert, highlight aquariums in not enough space alert.
+option for sound effects: purchasing and error sounds, unlock and achievement sound
+button to clear queue of notifications to display? pause to clear?
 
 load the consts in index on pageload (the ones in my stuff section)
 
