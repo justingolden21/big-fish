@@ -21,7 +21,7 @@ onclose resume game.
 
 load the consts in index on pageload (the ones in my stuff section)
 
-add fontawesome checkbox and option to remove accent
+add checkbox icons from fontawesome and option to remove accent
 checkbox for drawing aquarium at bottom
 add settings modal and move game progress backup stuff there?
 
