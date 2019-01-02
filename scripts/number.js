@@ -3,14 +3,15 @@
 let places = 3;
 
 // https://officespace.zendesk.com/hc/en-us/articles/115000593531-Scientific-Notation-Large-Numbers-Guide
-let num_abrev = 'M B T Qa Qi Sx Sp Oc No Dc Ud Td'.split(' ');
+let num_abrev = 'K M B T Qa Qi Sx Sp Oc No Dc Ud Td'.split(' ');
 
 function prettyPrintNum(num) {
-	if(num<1e6)
-		return num.toLocaleString(); //adds commas
+	if(num<1e3)
+		return num.toString();
 
-	console.log(num/Math.pow(10, Math.floor( (numDigits(num)-1)/3)+4) );
-	console.log(num_abrev[Math.floor( (numDigits(num)-1)/3)-2] );
+	console.log(num/Math.pow(10, Math.floor( (numDigits(num)-1)/3)*3) );
+	console.log(num_abrev[Math.floor( (numDigits(num)-1)/3)-1] );
+
 
 /*
 
@@ -29,7 +30,8 @@ num digits: divide by 10**this
 14: 8
 15: 8
 */
-
+	if(num<1e6)
+		return round(num/1e3, places).toString() + "K";
 	if(num<1e9)
 		return round(num/1e6, places).toString() + "M";
 	if(num<1e12)
