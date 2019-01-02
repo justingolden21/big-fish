@@ -9,8 +9,14 @@ function prettyPrintNum(num) {
 	if(num<1e3)
 		return num.toString();
 
-	console.log(num/Math.pow(10, Math.floor( (numDigits(num)-1)/3)*3) );
-	console.log(num_abrev[Math.floor( (numDigits(num)-1)/3)-1] );
+	// index of mangnitude of number
+	// magnitude of 1 is thousands, 2 is millions, 3 is billions
+	let num_mag = Math.floor( (numDigits(num)-1)/3);
+
+	return round(num/Math.pow(10, num_mag*3), places) + num_abrev[num_mag-1];
+
+	// console.log(num/Math.pow(10, num_mag*3) );
+	// console.log(num_abrev[num_mag-1] );
 
 
 /*
