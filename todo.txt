@@ -4,6 +4,8 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 ================================TODO:================================
 add number scaling
 
+figure somethng out for user putting a bunch of messages in the queue for clicking a purchase button when they dont have coins or something?
+
 different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
 
