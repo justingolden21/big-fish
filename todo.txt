@@ -7,8 +7,6 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 fish.ticks still doesn't work? but .hungry does?
 
-***update bank numbers even if focused?
-
 ================================TODO:================================
 
 add welcome modal
