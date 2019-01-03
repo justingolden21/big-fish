@@ -211,16 +211,10 @@ function doSell() {
 	num_big_fish_to_sell = Math.min(num_big_fish_to_sell, num_sell_actions_remaining);
 	num_sell_actions_remaining -= num_big_fish_to_sell;
 
-	// update input value displayed if not focused
-	if(!$('#sell-small-fish-input').is(':focus') ) {
-		$('#sell-small-fish-input').val(num_small_fish_to_sell);		
-	}
-	if(!$('#sell-medium-fish-input').is(':focus') ) {
-		$('#sell-medium-fish-input').val(num_medium_fish_to_sell);
-	}
-	if(!$('#sell-big-fish-input').is(':focus') ) {
-		$('#sell-big-fish-input').val(num_big_fish_to_sell);
-	}
+	// update input value displayed
+	$('#sell-small-fish-input').val(num_small_fish_to_sell);		
+	$('#sell-medium-fish-input').val(num_medium_fish_to_sell);
+	$('#sell-big-fish-input').val(num_big_fish_to_sell);
 
 	let fish_sold = num_small_fish_to_sell+num_medium_fish_to_sell+num_big_fish_to_sell;
 	$('#num-current-selling-rate').html(fish_sold);
