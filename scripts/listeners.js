@@ -215,8 +215,11 @@ $(function() {
 	});
 	$('.btn.sell-aquarium').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_aquarium < amount) {
-			showSnackbar('Not enough aquariums', 'error');
+		if(num_aquarium < amount+1) { //must have 1 aquarium
+			if(num_aquarium==amount)
+				showSnackbar('Can\'t sell your last aquarium', 'error');
+			else
+				showSnackbar('Not enough aquariums', 'error');
 		} else {
 			num_coin += Math.round(AQUARIUM_COST*amount*SELL_RETURN_VALUE);
 			num_aquarium -= amount;

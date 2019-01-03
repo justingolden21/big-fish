@@ -7,10 +7,13 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 fish.ticks still doesn't work? but .hungry does?
 
-fix bank ui and updating number to purchase
-	(goes negative if not enough cash and purchasing multiple items)
+***update bank numbers even if focused?
 
 ================================TODO:================================
+
+add welcome modal
+add number scaling
+
 different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
 onload open welcome modal, explain basics such as buy fish, missed messages in history, fish dont starve but dont make money unless full
@@ -34,6 +37,8 @@ reflavor money into smiles?
 
 sync data with google account/loggin api
 use sharethis and realfavicongenerator.net
+
+help i broke it and i need a few extra coins button, to give plus one coin
 
 ================================MAYBE:================================
 add upgrades
