@@ -1,6 +1,5 @@
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
-
 ================================TODO:================================
 add number scaling
 
@@ -26,7 +25,6 @@ sync data with google account/loggin api
 use sharethis and realfavicongenerator.net
 
 help i broke it and i need a few extra coins button, to give plus one coin
-
 ================================MAYBE:================================
 add upgrades
 achievement idea: get to certain coins/second
