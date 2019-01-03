@@ -2,17 +2,10 @@
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 
 ================================TODO:================================
-
-add welcome modal
 add number scaling
 
 different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
-onload open welcome modal, explain basics such as buy fish, missed messages in history, fish dont starve but dont make money unless full
-view fish, food, money overview on top
-view your stuff on left to view details, on right to purchase them
-explain how to reopen this modal.
-onclose resume game.
 
 clicking purchase too many times buffers many notifications.
 solution: highlight number of coins on not enough coins alert, highlight aquariums in not enough space alert.

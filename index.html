@@ -460,13 +460,15 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title"><i class="fas fa-question"></i> Help</h4>
+					<h4 class="modal-title"><i class="fas fa-fish"></i> How to Play / Help</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
-					<p><b>How to Play</b></p>
+					<details open>
+					<summary><b>How to Play</b></summary>
 					<p>You start the game with 1 small fish <i class="fas fa-fish"></i>.</p>
 					<p>The fish earns you money <i class="fas fa-coins"></i> when it's full.</p>
+					<p>The fish won't starve when it's hungry, it just won't make you money.</p>
 					<p>The fish eats food <i class="fas fa-square"></i> which costs money <i class="fas fa-coins"></i>. </p>
 					<p>You can purchase food <i class="fas fa-square"></i> and fish <i class="fas fa-fish"></i> under the <b>Purchase</b> tab. </p>
 
@@ -482,7 +484,7 @@
 					<div id="sell-info" class="unlock">
 						<p>You can sell <i class="fas fa-coins"></i> stuff you don't need for a lower return value.</p>
 					</div>
-					<div id="producers-info" class="unlock">
+					<div class="unlock producers-info">
 						<p>You can purchase buildings to produce stuff for you <i class="fas fa-warehouse"></i>.</p>
 					</div>
 					<div class="unlock bank-unlock">
@@ -490,11 +492,20 @@
 					</div>
 					<p>Build your aquarium up and make as much money as you can!</p>
 					<p>Keep playing to unlock more features <i class="far fa-smile"></i> </p>
+					</details>
 
 					<hr>
-					<b><p>Misc</p></b>
+					<details>
+					<summary><b>User Interface</b></summary>
+					<p>You can see an overview of your fish <i class="fas fa-fish"></i>, food <i class="fas fa-square"></i>, and money <i class="fas fa-coins"></i> on the top</p>
+					<p>On the left(top on mobile), under <b>My Stuff:</b>, you can see your fish, <div class="unlock producers-info">producers,</div> and more. Click on one of them to learn more.</p>
+					<p>On the right(bottom on mobile), under <b>Purchase:</b>, you can purchase fish, <div class="unlock producers-info">producers,</div> and more.</p>
 					<p>Use the pause button at the top of the page or the <kbd>Esc</kbd> key to pause and unpause.</p>
 					<p>Miss a notification? Use the <b><i class="fas fa-history"></i> History</b> button on the bottom of the page to view previous messages.</p>
+					</details>
+
+					<br>
+					<p><i class="fas fa-info-circle"></i> To open this modal again, just click the <b><i class="fas fa-question"></i> Help</b> button on the bottom of the page.</p>
 					<br>
 				</div>
 			</div>

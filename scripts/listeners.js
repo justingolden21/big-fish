@@ -11,6 +11,9 @@ $(function() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
+	// start user on welcome/help modal
+	$('#help-modal').modal('show');
+
 	// set up player	
 	addFish(SMALL, 1); //starting fish
 
