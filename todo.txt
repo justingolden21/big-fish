@@ -1,11 +1,5 @@
 ================================BUGS:================================
-clearing cookies doesn't work?...
-
-food can be negative...? number of food farms negative?
-
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
-
-fish.ticks still doesn't work? but .hungry does?
 
 ================================TODO:================================
 
@@ -48,7 +42,7 @@ add commas to numbers, abreviations for mill, bill, trill...
 discount 10% for buy in bulk?
 hungry fish images?
 add keyboard controls for purcahses
-
+show graphs of food and fish and money vs ticks?
 ================================TODO LATER:================================
 collabertation with other players? online multiplayer?
 optimize fish data strcutres for redundancy

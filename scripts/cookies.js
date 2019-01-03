@@ -44,6 +44,8 @@ function loadCookies() {
 		}
 	}
 
+	updateUI();
+
 }
 
 function setCookies() {
