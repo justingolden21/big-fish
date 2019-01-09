@@ -109,6 +109,9 @@ let snackbar_time_total = 3500;
 let prev_message = '';
 
 function showSnackbar(message, type) {
+	if(message == 'Not enough coins')
+		showHighlight($('#num-coin') );
+
 	if(message == prev_message)
 		return;
 	prev_message = message;

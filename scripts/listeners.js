@@ -38,7 +38,7 @@ $(function() {
 	$('.btn.purchase-food').click( function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < FOOD_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else {
 			stats['food_purchased'] += FOOD_UNIT*amount;
 			num_coin -= FOOD_COST*amount;
@@ -50,7 +50,7 @@ $(function() {
 	$('.btn.purchase-small-fish').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < SMALL_FISH_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (SMALL_FISH_SPACE * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
@@ -64,7 +64,7 @@ $(function() {
 	$('.btn.purchase-medium-fish').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < MEDIUM_FISH_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (MEDIUM_FISH_SPACE * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
@@ -78,7 +78,7 @@ $(function() {
 	$('.btn.purchase-big-fish').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < BIG_FISH_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (BIG_FISH_SPACE * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
@@ -92,7 +92,7 @@ $(function() {
 	$('.btn.purchase-aquarium').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < AQUARIUM_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else {
 			stats['aquarium_purchased'] += amount;
 			num_coin -= AQUARIUM_COST*amount;
@@ -106,7 +106,7 @@ $(function() {
 	$('.btn.purchase-farm').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < FARM_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else {
 			num_coin -= FARM_COST*amount;
 			num_farm += amount;
@@ -117,7 +117,7 @@ $(function() {
 	$('.btn.purchase-small-hatchery').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < SMALL_HATCHERY_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else {
 			num_coin -= SMALL_HATCHERY_COST*amount;
 			num_small_hatchery += amount;
@@ -128,7 +128,7 @@ $(function() {
 	$('.btn.purchase-medium-hatchery').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < MEDIUM_HATCHERY_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else {
 			num_coin -= MEDIUM_HATCHERY_COST*amount;
 			num_medium_hatchery += amount;
@@ -139,7 +139,7 @@ $(function() {
 	$('.btn.purchase-big-hatchery').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < BIG_HATCHERY_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else {
 			num_coin -= BIG_HATCHERY_COST*amount;
 			num_big_hatchery += amount;
@@ -150,7 +150,7 @@ $(function() {
 	$('.btn.purchase-aquarium-factory').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < AQUARIUM_FACTORY_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else {
 			num_coin -= AQUARIUM_FACTORY_COST*amount;
 			num_aquarium_factory += amount;
@@ -161,7 +161,7 @@ $(function() {
 	$('.btn.purchase-bank').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < BANK_COST*amount) {
-			showSnackbar('Not enough coin', 'error');
+			showSnackbar('Not enough coins', 'error');
 		} else {
 			num_coin -= BANK_COST*amount;
 			num_bank += amount;
