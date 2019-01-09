@@ -106,8 +106,13 @@ function updateUI() {
 let snackbar_queue = 0;
 let snackbar_time = 3000;
 let snackbar_time_total = 3500;
+let prev_message = '';
 
 function showSnackbar(message, type) {
+	if(message == prev_message)
+		return;
+	prev_message = message;
+
 	if(type=='error') {
 		message = '<i class="fas fa-exclamation-circle"></i> ' + message;
 	} else if(type=='info') {
@@ -119,9 +124,11 @@ function showSnackbar(message, type) {
 	}
 
 	snackbar_queue++;
-	setTimeout(()=> { createSnackbar(message); }, snackbar_time_total*(snackbar_queue-1) );
+	setTimeout( ()=> { createSnackbar(message); }, snackbar_time_total*(snackbar_queue-1) );
 }
 function createSnackbar(message) {
+	prev_message = '';
+
 	$('#snackbar').html(message);
 	$('#snackbar').addClass('show');
 	$('#history-log').prepend('<p>'+message+'</p>');
