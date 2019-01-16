@@ -1,0 +1,13 @@
+if have x big hatcheries
+
+must buy x medium hatcheries per s
+
+must increase space by 5x (2x+3x) per s, so x/100 aquarium factories per s
+
+--------
+
+to increase rate at which earning money, buy y big fish hatcheries per s
+
+which means you must increase the number of medium fish hatcheries you buy per s by y
+
+and increase the number of aquarium factories you buy per s by y/100
