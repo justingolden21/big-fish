@@ -1,9 +1,13 @@
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 ================================TODO:================================
-add number scaling
+- add number scaling
 
-figure somethng out for user putting a bunch of messages in the queue for clicking a purchase button when they dont have coins or something?
+- add option to inrease the number of an item purhased or sold by a certain value in banks
+
+- add penguins, penguin hatcheries, and penguin banks
+
+- make it a pwa
 
 different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
@@ -18,8 +22,6 @@ load the consts in index on pageload (the ones in my stuff section)
 add checkbox icons from fontawesome and option to remove accent
 checkbox for drawing aquarium at bottom
 add settings modal and move game progress backup stuff there?
-
-reflavor money into smiles?
 
 sync data with google account/loggin api
 use sharethis and realfavicongenerator.net
