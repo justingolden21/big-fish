@@ -1,9 +1,15 @@
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 ================================TODO:================================
-add number scaling
+- display number of small, medium, and big fish on top option, as well as aquarium space on top (unlocked later)
 
-figure somethng out for user putting a bunch of messages in the queue for clicking a purchase button when they dont have coins or something?
+- add number scaling
+
+- add option to inrease the number of an item purhased or sold by a certain value in banks
+
+- add penguins, penguin hatcheries, and penguin banks
+
+- make it a pwa
 
 different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
@@ -21,8 +27,6 @@ add settings modal and move game progress backup stuff there?
 settings modal has button to close/open all summary elements?
 	$('details').prop('open','true')
 	$('details').prop('open','')
-
-reflavor money into smiles?
 
 sync data with google account/loggin api
 use sharethis and realfavicongenerator.net
