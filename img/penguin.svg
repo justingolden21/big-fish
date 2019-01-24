@@ -1,0 +1,10 @@
+<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<style type="text/css">
+.st0{fill:#262673;stroke:none;}
+</style>
+<path class="st0" d="M32,8C14.31,8,0,29.47,0,56h64C64,29.47,49.69,8,32,8z"/>  
+<path fill="#fff" d="M56,56c0-17.69-7.16-32-16-32c-4.42,0-8,3.58-8,8c0-4.42-3.58-8-8-8C15.16,24,8,38.31,8,56"/> 
+<circle class="st0" cx="24" cy="32" r="4"/>
+<circle class="st0" cx="40" cy="32" r="4"/>
+<polygon class="st0" points="28,32 36,32 32,40 "/>
+</svg>
