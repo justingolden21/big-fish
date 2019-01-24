@@ -18,6 +18,9 @@ load the consts in index on pageload (the ones in my stuff section)
 add checkbox icons from fontawesome and option to remove accent
 checkbox for drawing aquarium at bottom
 add settings modal and move game progress backup stuff there?
+settings modal has button to close/open all summary elements?
+	$('details').prop('open','true')
+	$('details').prop('open','')
 
 reflavor money into smiles?
 
@@ -52,6 +55,8 @@ after 1st penguin next penguin costs 1 snowflake, then 2 then 3...
 
 penguin hatchery that costs 10, then 20, then 30 snowflake and makes 1 penguin per min?
 
+something that eats snowflakes? eats penguins?
+
 big changes:
 rename producers into buildings
 
@@ -72,4 +77,4 @@ late game progress:
 monsters that eat aquariums
 - hunger based off of fish in aquarium?
 - later game challenges such as hunger killing fish, events that kill fish
-
+- hard mode option where fish die after 5s of being hungry?
