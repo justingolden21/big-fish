@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.core.min.js
+"></script>
 
 <link rel="stylesheet" href="css/styles.css">
 <link id="accent-link" rel="stylesheet" href="css/accent.css">
@@ -31,6 +33,7 @@
 <script src="scripts/cookies.js"></script>
 <script src="scripts/files.js"></script>
 <script src="scripts/number.js"></script>
+<script src="scripts/audio.js"></script>
 
 </head>
 
@@ -495,6 +498,12 @@
 					</details>
 
 					<hr>
+
+					<p><b><i>Pssst...</i> to turn on music and sounds, go to
+						<button class="btn" data-toggle="modal" data-target="#info-modal"><i class="fas fa-info"></i> Info</button>
+					</p></b>
+
+					<hr>
 					<details>
 					<summary><b>User Interface</b></summary>
 					<p>You can see an overview of your fish <i class="fas fa-fish"></i>, food <i class="fas fa-square"></i>, and coins <i class="fas fa-coins"></i> on the top</p>
@@ -533,6 +542,15 @@
 					<input id="display-accent-checkbox" type="checkbox">
 					<label for="display-accent-checkbox">Display Accent</label>
 					<hr> -->
+
+					<label for="audioSelect">Volume Setting:</label>
+					<select id="audioSelect">
+						<option value="3">On</option>
+						<option value="2">Background Only</option>
+						<option value="1">Effects Only</option>
+						<option selected value="0">Off</option>
+					</select>
+					<input id="volumeRange" type="range" min="0" max="1" step="0.1">
 
 					<div class="unlock medium-fish-unlock">
 					<p><b>Notes</b></p>
