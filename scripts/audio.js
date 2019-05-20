@@ -1,5 +1,3 @@
-// TODO: stylize checkbox, range inputs
-
 const DEFAULT_BACKGROUND_VOLUME = 0.25;
 const DEFAULT_EFFECT_VOLUME = 1;
 
