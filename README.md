@@ -42,8 +42,11 @@ Keep playing, unlock all the achievements, and get as many coins and fish as you
 
 ### Using
 
-Built with [jQuery](http://jquery.com/), [Bootstrap](https://getbootstrap.com/), [Font Awesome](http://fontawesome.com), and [JS Cookie](https://github.com/js-cookie/js-cookie)
+Built with [jQuery](http://jquery.com/), [Bootstrap](https://getbootstrap.com/), [Font Awesome](http://fontawesome.com), [JS Cookie](https://github.com/js-cookie/js-cookie), and [Howler JS](https://howlerjs.com/). Music from [Purple Planet](https://www.purple-planet.com/), fish sounds from yours truly.
 
+### Known Problems
+
+In Firefox, if you click on a link, it will permanently mute the tab as a protective measure. Simply ctrl+click to open links within this page to solve this problem.
 
 ### Links
 

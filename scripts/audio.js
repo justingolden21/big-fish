@@ -1,4 +1,3 @@
-// TODO: credit sounds from planet purple, howler.js in readme, info model
 // TODO: stylize checkbox, range inputs
 
 const DEFAULT_BACKGROUND_VOLUME = 0.25;
