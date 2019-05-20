@@ -33,6 +33,7 @@ use sharethis and realfavicongenerator.net
 
 help i broke it and i need a few extra coins button, to give plus one coin
 ================================MAYBE:================================
+option to change aesthetic/theme: default, simple, gradient
 add upgrades
 achievement idea: get to certain coins/second
 restart the game but with better costs once you get to certain point?
