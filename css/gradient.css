@@ -1,0 +1,9 @@
+#canvas, body {
+	background: #2680d9;
+	background: -moz-linear-gradient(top, #2680d9 10%, #262673 90%);
+	background: -webkit-linear-gradient(top, #2680d9 10%,#262673 90%);
+	background: linear-gradient(to bottom, #2680d9 10%,#262673 90%);
+}
+.sticky-header {
+	background-color: rgb(38, 38, 115, 0.5);
+}
