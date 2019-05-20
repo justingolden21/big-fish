@@ -295,9 +295,7 @@ $(function() {
 	});
 
 	// pause
-	$('#pause-btn').click(function() {
-		togglePause();
-	});
+	$('#pause-btn').click(togglePause);
 
 	$('#copy-link').click(function() {
 		let tmp = $('<input type="text">').appendTo(document.body);
@@ -372,6 +370,14 @@ $(function() {
 		let scale_factor = random(2,5)*0.5;
 		$(this).css('transform', 'scale(' + scale_factor + ')');
 	});
+
+	$('#audioSelect').change(function() {
+		changeAudioSetting($(this).val() );
+	}).change(); // in case firefox saved previous input
+	$('#volumeRange').change(function() {
+		setVolume($(this).val() );
+	}).change(); // in case firefox saved previous input
+
 });
 
 window.onkeyup = function(e) {

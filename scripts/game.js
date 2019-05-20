@@ -187,6 +187,7 @@ function tick() {
 	}
 
 	updateUI();
+	updateFishSounds();
 }
 
 // note: updates html input value with correct value
@@ -309,6 +310,8 @@ function togglePause() {
 	}
 	$('hr').toggleClass('paused');
 	paused = !paused;
+
+	audioHandlePause(paused);
 }
 
 // utility functions
