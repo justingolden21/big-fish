@@ -14,8 +14,7 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
 
-clicking purchase too many times buffers many notifications.
-solution: highlight number of coins on not enough coins alert, highlight aquariums in not enough space alert.
+
 option for sound effects: purchasing and error sounds, unlock and achievement sound
 button to clear queue of notifications to display? pause to clear?
 
@@ -46,7 +45,7 @@ add keyboard controls for purcahses
 show graphs of food and fish and money vs ticks?
 ================================TODO LATER:================================
 collabertation with other players? online multiplayer?
-optimize fish data strcutres for redundancy
+optimize fish data structres for redundancy
 use sass
 encode .txt files so they cant be easily messed with
 store data more accuratly in cookies and .txt files.
