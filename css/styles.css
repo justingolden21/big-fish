@@ -279,6 +279,14 @@ summary:focus .highlight {
 	display: block;
 }
 
+/* for #penguin-progress */
+.progress-bar {
+	height: 5px;
+	width: 100%;
+	background-color: #099;
+	margin-bottom: 5px;
+}
+
 /* smaller than 768px, when columns collapse */
 @media screen and (max-width: 767px) {
 	#right-col {

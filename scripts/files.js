@@ -31,6 +31,9 @@ function processFile(e) {
 		stats = JSON.parse(results[12]);
 		achievements = JSON.parse(results[13]);
 
+		num_penguin = parseInt(results[14]);
+		num_snowflake = parseInt(results[15]);
+
 		console.log(results);
 	}
 }
@@ -54,6 +57,9 @@ function downloadData() {
 
 	str += JSON.stringify(stats) + '\r\n';
 	str += JSON.stringify(achievements) + '\r\n';
+
+	str += num_penguin + '\r\n';
+	str += num_snowflake + '\r\n';
 
 	downloadFile(str, 'big-fish-save-data', 'download-data-link');
 }

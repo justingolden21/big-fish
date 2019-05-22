@@ -12,7 +12,8 @@ let unlocks = {
 
 	'medium_fish': false,
 	'big_fish': false,
-	'aquarium': false
+	'aquarium': false,
+	'penguins': false
 };
 
 // name, description, ticks when completed, -1 if incomplete
@@ -50,6 +51,8 @@ function checkUnlocks() {
 		checkUnlock('purchase_aquarium_factory', '.aquarium-factory-unlock .producers-info', 'aquarium factories');
 	if(num_aquarium_factory >= 5 && num_farm+num_small_hatchery+num_medium_hatchery+num_big_hatchery >= 1000)
 		checkUnlock('purchase_bank' , '.bank-unlock', 'banks');
+	if(big_fish.length >= 10000)
+		checkUnlock('penguins', '.penguin-unlock', 'PENGUINS');
 
 	if(small_fish.length >= 75)
 		checkUnlock('sell_small_fish', '.sell-small-fish-unlock #sell-info', 'ability to sell small fish');

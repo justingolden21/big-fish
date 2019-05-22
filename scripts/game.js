@@ -52,7 +52,7 @@ class Fish { // fish should go to class so they stay in school :)
 	}
 	produce() { // attempt to produce coin
 		if(!this.hungry) {
-			num_coin += this.coin;
+			num_coin += this.coin * num_snowflake;
 
 			if(this.type==SMALL) {
 				stats['money_from_small_fish'] += this.coin;
@@ -90,11 +90,13 @@ class Fish { // fish should go to class so they stay in school :)
 const SMALL_FISH_COIN = 1;
 const MEDIUM_FISH_COIN = 30;
 const BIG_FISH_COIN = 900;
+const PENGUIN_SNOWFLAKE = 1;
 
 // space in aquarium
 const SMALL_FISH_SPACE = 1;
 const MEDIUM_FISH_SPACE = 2;
 const BIG_FISH_SPACE = 3;
+const PENGUIN_SPACE = 10000;
 
 // cost to purchase
 const FOOD_COST = 1;
@@ -123,9 +125,11 @@ const FOOD_UNIT = 10;
 const BANK_ACTION_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
 const FISH_SPEEDS = [5,10,15]; //[small, medium, big]
+const PENGUIN_FOOD = 100; // 100 big fish/s
 
 // player vals
 let num_coin = 1;
+let num_snowflake = 1;
 let num_food = 0;
 let num_aquarium = 1;
 let num_farm = 0;
@@ -138,6 +142,7 @@ let num_bank = 0;
 let small_fish = [];
 let medium_fish = [];
 let big_fish = [];
+let penguins = [];
 
 // game vals
 let paused = false;
@@ -153,6 +158,38 @@ let num_hungry_small_fish;
 let num_hungry_medium_fish;
 let num_hungry_big_fish;
 
+class Penguin {
+	constructor() {
+		this.ticks = 0;
+		this.hungry = false;
+		this.stomach = 0;
+	}
+	eat() { // attempts to eat 100 big fish
+		if(big_fish.length >= PENGUIN_FOOD) {
+			for(let i=0; i<PENGUIN_FOOD; i++)
+				big_fish.pop();
+			stats['fish_eaten']++;
+			this.stomach++;
+			this.hungry = false;
+		} else {
+			this.hungry = true;
+		}
+	}
+	produce() { // attempt to produce snowflake
+		// 60s per min
+		// every min of being full (not in a row) produce a snowflake
+		if(this.stomach>60) {
+			num_snowflake += PENGUIN_SNOWFLAKE; // 1
+			stats['snowflake_gained'] += PENGUIN_SNOWFLAKE;
+			this.stomach -= 60;
+		}
+	}
+	update() {
+		this.ticks++;
+		this.eat();
+		this.produce();
+	}
+}
 
 // tick once per second
 // this is when everything happens
@@ -178,6 +215,9 @@ function tick() {
 				all_fish[i][j].draw();				
 			}
 		}
+	}
+	for(let i=0; i<penguins.length; i++) {
+		penguins[i].update();
 	}
 
 	bank_differential = 0;
@@ -338,12 +378,18 @@ function addFish(type, amount) {
 		}
 	}
 }
+function addPenguins(amount) {
+	for(let i=0; i<amount; i++) {
+		penguins.push(new Penguin() );
+	}
+}
 // min is inclusive, max is exclusive, returns an int
 function random(min, max) {
 	return Math.floor(Math.random() * (max - min) ) + min; 
 }
 
 // fisher–yates shuffle
+// WHY IS THIS HERE
 function shuffle(arr) {
 	let len = arr.length, idx = 0, temp;
 	while(len--) {
@@ -353,4 +399,11 @@ function shuffle(arr) {
 		arr[idx] = tmp;
 	}
 	return arr;
+}
+
+function sumNumsBetween(start, end) {
+	let sum = 0;
+	for(let i=start; i<end; i++)
+		sum += i;
+	return sum;
 }

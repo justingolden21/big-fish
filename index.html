@@ -54,7 +54,10 @@
 			<p><i class="fas fa-square"></i> <span id="num-food">0</span> Food (<span id="num-food-rate">0</span> Food/s)</p>
 		</div>
 		<div class="col-md-4">
-			<p><i class="fas fa-coins"></i> <span id="num-coin">0</span> Coin (<span id="num-coin-rate">0</span> Coin/s)</p>
+			<p><i class="fas fa-coins"></i> <span id="num-coin">0</span> Coins (<span id="num-coin-rate">0</span> Coin/s)</p>
+			<div class="unlock penguin-unlock">
+				<p><i class="fas fa-snowflake"></i> <span id="num-snowflake">1</span> Snowflakes (<span id="num-snowflake-rate">0</span> Snowflakes/min)</p>
+			</div>
 		</div>
 	</div>
 	</div>
@@ -68,6 +71,9 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#my-producers-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-warehouse"></i> Producers</a>
+				</li>
+				<li class="nav-item unlock penguin-unlock">
+					<a class="nav-link" href="#my-penguins-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-kiwi-bird"></i> Penguins</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#my-achievements-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-trophy"></i> Achievements</a>
@@ -286,6 +292,25 @@
 					<div id="achievements-div"></div>
 					<p id="num-achieve"></p>
 				</div>
+				<!-- MY PENGUINS -->
+				<div class="tab-pane" id="my-penguins-tab" role="tabpanel">
+					<i class="fas fa-kiwi-bird fa-3x"></i> <span id="num-penguin">0</span> Penguins (<span id="num-penguin-hungry">0</span> Hungry)
+						<p><i class="fas fa-snowflake fa-3x"></i> Makes <span id="num-penguin-snowflake">1</span> Snowflakes/min (<span id="num-penguin-snowflake-rate">0</span> Snowflakes/min total).<br>Snowflakes multiply the amount of coins your fish earn.</p>
+						<p><i class="fas fa-fish fa-3x"></i> Eats <span id="num-penguin-food">100</span> Big Fish/s (<span id="num-penguin-food-rate">0</span> Big Fish/s total)</p>
+						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-penguin-space">10000</span> Space (<span id="num-penguin-space-total">0</span> Space total)</p> </div>
+
+						<p>Snowflake Progress (first 10 penguins only):</p>
+						<div id="penguin-progress"></div>
+											
+					<p><i class="fas fa-snowflake"></i> Sell Penguins:</p>
+					<div class="btn-group">
+						<button class="btn sell-penguin" value="1"><i class="fas fa-snowflake"></i> 1 Penguin</button>
+						<button class="btn sell-penguin" value="10"><i class="fas fa-snowflake"></i> 10 Penguin</button>
+						<button class="btn sell-penguin" value="100"><i class="fas fa-snowflake"></i> 100 Penguin</button>
+					</div>
+					<p>1 snowflake per returned penguin</p>
+					
+				</div>
 			</div>
 		</div>
 		<div id="right-col" class="col-md-6">
@@ -296,6 +321,9 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#purchase-producers-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-warehouse"></i> Producers</a>
+				</li>
+				<li class="nav-item unlock penguin-unlock">
+					<a class="nav-link" href="#purchase-penguins-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-kiwi-bird"></i> Penguins</a>
 				</li>
 <!-- 				<li class="nav-item">
 					<a class="nav-link" href="#purchase-upgrades-tab" data-toggle="tab" aria-selected="false">Upgrades</a>
@@ -442,6 +470,21 @@
 					</details>
 					</div>
 
+				</div>
+				<!-- PURCHASE PENGUINS -->
+				<div class="tab-pane" id="purchase-penguins-tab" role="tabpanel">
+					<summary><i class="fas fa-kiwi-bird fa-3x"></i> Purchase Penguins:</summary>
+					<div class="btn-group">
+						<button class="btn purchase-penguin" value="1"><i class="fas fa-kiwi-bird"></i> 1 Penguin</button>
+						<button class="btn purchase-penguin" value="10"><i class="fas fa-kiwi-bird"></i> 10 Penguins</button>
+						<button class="btn purchase-penguin" value="100"><i class="fas fa-kiwi-bird"></i> 100 Penguins</button>
+					</div>
+					<p><i class="fas fa-snowflake"></i>
+						<span id="num-penguin-per-cost">1</span> Penguin costs <span id="num-penguin-cost">0</span> Snowflakes.<br>
+						<span id="num-penguin-per-cost-10">10</span> Penguins cost <span id="num-penguin-cost-10">45</span> Snowflakes.<br>
+						<span id="num-penguin-per-cost-100">100</span> Penguins cost <span id="num-penguin-cost-100">4950</span> Snowflakes.<br>
+						Each future penguin costs 1 more snowflake.
+					</p>
 				</div>
 				<!-- PURCHASE UPGRADES -->
 <!-- 				<div class="tab-pane" id="purchase-upgrades-tab" role="tabpanel">
@@ -609,6 +652,8 @@
 					<p><span id="money-from-small-fish"></span> coins from small fish.</p>
 					<p class="unlock medium-fish-unlock"><span id="money-from-medium-fish"></span> coins from medium fish.</p>
 					<p class="unlock big-fish-unlock"><span id="money-from-big-fish"></span> coins from big fish.</p>
+					<p class="unlock penguin-unlock"><span id="penguin-purchased"></span> penguins purchased.</p>
+					<p class="unlock penguin-unlock"><span id="snowflake-gained"></span> snowflakes gained.</p>
 					<hr>
 					<p><span id="fish-sold"></span> fish sold.</p>
 				</div>

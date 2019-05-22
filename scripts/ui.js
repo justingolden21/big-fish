@@ -3,11 +3,13 @@ let bank_differential = 0; //account for banks buying and selling
 function updateUI() {
 	num_aquarium_space_used = 0;
 	num_coin_rate = 0;
+	num_snowflake_rate = 0;
 	num_hungry_fish = 0;
 	
 	num_hungry_small_fish = 0;
 	num_hungry_medium_fish = 0;
 	num_hungry_big_fish = 0;
+	num_hungry_penguin = 0;
 
 	// counting numbers for UI
 	let all_fish = small_fish.concat(medium_fish, big_fish);
@@ -16,9 +18,21 @@ function updateUI() {
 		if(all_fish[i].hungry) {
 			num_hungry_fish++;
 		} else {
-			num_coin_rate += all_fish[i].coin;
+			num_coin_rate += all_fish[i].coin * num_snowflake;
 		}
 	}
+	for(let i=0; i<penguins.length; i++) {
+		if(penguins[i].hungry) {
+			num_hungry_penguin++;
+		} else {
+			// note: rate is estimated, because penguins produce every min big fish eaten
+			// and fish don't have to be eaten in a row
+			num_snowflake_rate += PENGUIN_SNOWFLAKE; // 1
+		}
+	}
+	num_aquarium_space_used += PENGUIN_SPACE * penguins.length;
+
+
 	for(let i=0, len=small_fish.length; i<len; i++) {
 		if(small_fish[i].hungry) {
 			num_hungry_small_fish++;
@@ -36,9 +50,12 @@ function updateUI() {
 	
 	// display numbers on UI
 	$('#num-coin').html(num_coin);
+	$('#num-snowflake').html(num_snowflake);
 	$('#num-food').html(num_food);
 	$('#num-fish').html(all_fish.length);
 	$('#num-coin-rate').html(num_coin_rate);
+	$('#num-snowflake-rate').html(num_snowflake_rate);
+	$('#num-penguin-snowflake-rate').html(num_snowflake_rate); // note: change if implementing more snowflake stuff
 	$('#num-food-rate').html( (num_farm*FARM_FOOD_RATE) - (small_fish.length-num_hungry_small_fish) );
 	$('#num-hungry-fish').html(num_hungry_fish);
 	if(num_hungry_fish>0) {
@@ -80,6 +97,15 @@ function updateUI() {
 		$('#num-big-fish-hungry').removeClass('highlight');
 	}
 
+	$('#num-penguin').html(penguins.length);
+	$('#num-penguin-hungry').html(num_hungry_penguin);
+	$('#num-penguin-food-rate').html( (penguins.length - num_hungry_penguin) * PENGUIN_FOOD);
+	$('#num-penguin-space-total').html(penguins.length*PENGUIN_SPACE);
+
+	$('#num-penguin-cost').html(sumNumsBetween(penguins.length+1, penguins.length+1+1) );
+	$('#num-penguin-cost-10').html(sumNumsBetween(penguins.length+1, penguins.length+10+1) );
+	$('#num-penguin-cost-100').html(sumNumsBetween(penguins.length+1, penguins.length+100+1) );
+
 	$('#num-aquarium').html(num_aquarium);
 	$('#num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);
 	$('#num-aquarium-space-used').html(num_aquarium_space_used);
@@ -98,6 +124,13 @@ function updateUI() {
 	$('#num-bank').html(num_bank);
 	$('#num-bank-rate-total').html(num_bank*BANK_ACTION_UNIT);
 
+	$('#penguin-progress').html('');
+	// display at most 10 penguins, snowflake progress
+	// 60s in a min
+	for(let i=0; i<Math.min(penguins.length,10); i++) {
+		$('#penguin-progress').append('<div class="progress-bar" style="width:' + penguins[i].stomach/60 * 100 + '%;"></div>');
+	}
+
 	updateStats();
 	checkUnlocks();
 }
@@ -111,6 +144,8 @@ let prev_message = '';
 function showSnackbar(message, type) {
 	if(message == 'Not enough coins')
 		showHighlight($('#num-coin') );
+	else if(message == 'Not enough snowflakes')
+		showHighlight($('#num-snowflake') );
 	else if(message == 'Not enough space in aquarium')
 		showHighlight($('#canvas') );
 

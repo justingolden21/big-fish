@@ -1,0 +1,18 @@
+penguin notes:
+
+penguins cost increasing number of snowflakes, starting at 1, increase by 1 per penguin
+penguins produce 1 snowflake per min
+penguins eat 100 big fish/s
+penguins take up 10000 aquarium space
+
+snowflakes multiply your coin increase by number of snowflakes, for fish only
+
+penguins only produce snowflakes if they've eaten 100*60 big fish
+
+unlocked after having 10000 big fish
+
+penguins can be returned for 1 snowflake
+
+later:
+add penguin hatcheries, penguin banks, all use snowflakes as currency
+add penguin achievements (for unlocking them, for having certain number of penguins, of snowflakes)

@@ -25,6 +25,7 @@ function loadCookies() {
 	num_big_hatchery = parseInt(Cookies.get('num_big_hatchery') || num_big_hatchery);
 	num_aquarium_factory = parseInt(Cookies.get('num_aquarium_factory') || num_aquarium_factory);
 	num_bank = parseInt(Cookies.get('num_bank') || num_bank);
+	num_snowflake = parseInt(Cookies.get('num_snowflake') || num_snowflake);
 
 	let num_small_fish = parseInt(Cookies.get('num_small_fish') || small_fish.length);
 	small_fish = [];
@@ -35,6 +36,9 @@ function loadCookies() {
 	let num_big_fish = parseInt(Cookies.get('num_big_fish') || big_fish.length);
 	big_fish = [];
 	addFish(BIG, num_big_fish);
+	let num_penguin = parseInt(Cookies.get('num_penguin') || penguins.length);
+	penguins = [];
+	addPenguins(num_penguin);
 
 	stats = Cookies.getJSON('stats') || stats;
 	achievements = Cookies.getJSON('achievements') || achievements;
@@ -64,10 +68,12 @@ function setCookies() {
 	Cookies.set('num_big_hatchery', num_big_hatchery);
 	Cookies.set('num_aquarium_factory', num_aquarium_factory);
 	Cookies.set('num_bank', num_bank);
+	Cookies.set('num_snowflake', num_snowflake);
 
 	Cookies.set('num_small_fish', small_fish.length);
 	Cookies.set('num_medium_fish', medium_fish.length);
 	Cookies.set('num_big_fish', big_fish.length);
+	Cookies.set('num_penguin', penguins.length);
 
 	Cookies.set('stats', stats);
 	Cookies.set('achievements', achievements);
@@ -86,10 +92,12 @@ function clearCookies() {
 	Cookies.remove('num_big_hatchery');
 	Cookies.remove('num_aquarium_factory');
 	Cookies.remove('num_bank');
+	Cookies.remove('num_snowflake');
 
 	Cookies.remove('num_small_fish');
 	Cookies.remove('num_medium_fish');
 	Cookies.remove('num_big_fish');
+	Cookies.remove('num_penguin');
 
 	Cookies.remove('stats');
 	Cookies.remove('achievements');
