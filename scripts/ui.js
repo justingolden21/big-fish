@@ -111,6 +111,8 @@ let prev_message = '';
 function showSnackbar(message, type) {
 	if(message == 'Not enough coins')
 		showHighlight($('#num-coin') );
+	else if(message == 'Not enough space in aquarium')
+		showHighlight($('#canvas') );
 
 	if(message == prev_message)
 		return;
