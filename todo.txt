@@ -3,8 +3,6 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 ================================TODO:================================
 - display number of small, medium, and big fish on top option, as well as aquarium space on top (unlocked later)
 
-- pause on start close modal to resume (first time only)
-
 - add number scaling
 
 - add option to inrease the number of an item purhased or sold by a certain value in banks

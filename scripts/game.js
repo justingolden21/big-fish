@@ -340,13 +340,15 @@ function check(num) {
 	return num;
 }
 
-function togglePause() {
+function togglePause(snackbar=true) {
 	if(!paused) {
 		$('#pause-btn').html('<i class="fas fa-play"></i>');
-		showSnackbar('Game paused', 'info');
+		if(snackbar)
+			showSnackbar('Game paused', 'info');
 	} else {
 		$('#pause-btn').html('<i class="fas fa-pause"></i>');
-		showSnackbar('Game resumed', 'info');
+		if(snackbar)
+			showSnackbar('Game resumed', 'info');
 	}
 	$('hr').toggleClass('paused');
 	paused = !paused;

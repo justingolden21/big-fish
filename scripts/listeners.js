@@ -1,3 +1,5 @@
+let firstUnpause = true;
+
 // onload, button listeners
 $(function() {
 	// set up game
@@ -16,6 +18,15 @@ $(function() {
 
 	// set up player	
 	addFish(SMALL, 1); //starting fish
+
+	// pause on game start, close help modal to resume (first time only)
+	togglePause(false);
+	$('#help-modal').on('hidden.bs.modal', function () {
+		if(firstUnpause) { // works once
+			firstUnpause = false;
+			togglePause(false);
+		}
+	});
 
 	// display game vals
 	//todo: add more const values from aquarium, sell value, etc
