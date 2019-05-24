@@ -5,11 +5,15 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - add penguin hatcheries, and snow banks (snow banks let you dynamically buy and sell penguins and penguin hatcheries for snowflakes)
 
+- sound effect for notificaitons, acheivements, hover and click
+
 - add number scaling
 
 - add option to inrease the number of an item purhased or sold by a certain value in banks
 
 - make it a pwa
+
+- use cookies for sound setting
 
 different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
