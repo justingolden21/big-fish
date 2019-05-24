@@ -29,11 +29,12 @@ $(function() {
 	});
 
 	$('.btn').hover(playHoverSound);
-	$('.nav-item').hover(playPopSound);
-	$('summary').hover(playPopSound);
-	$('input[type=range]').hover(playPopSound);
-	$('input[type=select]').hover(playPopSound);
-	$('a').hover(playPopSound);
+	$('button.close').hover(playHoverSound);
+	$('.nav-item').hover(playHoverSound);
+	$('summary').hover(playHoverSound);
+	$('input[type=range]').hover(playHoverSound);
+	$('input[type=select]').hover(playHoverSound);
+	$('a').hover(playHoverSound);
 
 	// display game vals
 	//todo: add more const values from aquarium, sell value, etc

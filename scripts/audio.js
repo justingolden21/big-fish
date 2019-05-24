@@ -16,29 +16,39 @@ let background_sound = new Howl({
 	rate: 1.25
 });
 let fish_lo_sound = new Howl({
-	src: ['audio/fish-lo.m4a'],
+	src: ['audio/fish-lo.mp3'],
 	volume: DEFAULT_EFFECT_VOLUME,
 	rate: 2
 });
 let fish_md_sound = new Howl({
-	src: ['audio/fish-md.m4a'],
+	src: ['audio/fish-md.mp3'],
 	volume: DEFAULT_EFFECT_VOLUME,
 	rate: 2
 });
 let fish_hi_sound = new Howl({
-	src: ['audio/fish-hi.m4a'],
+	src: ['audio/fish-hi.mp3'],
 	volume: DEFAULT_EFFECT_VOLUME,
 	rate: 2
 });
 let hover_sound = new Howl({
-	src: ['audio/hover.m4a'],
+	src: ['audio/hover.mp3'],
 	volume: DEFAULT_QUIET_EFFECT_VOLUME,
 	rate: 1
 });
-let pop_sound = new Howl({
-	src: ['audio/pop.m4a'],
+let notification_sound = new Howl({
+	src: ['audio/notification.mp3'],
 	volume: DEFAULT_EFFECT_VOLUME,
-	rate: 1
+	rate: 1.5
+});
+let error_sound = new Howl({
+	src: ['audio/error.mp3'],
+	volume: DEFAULT_EFFECT_VOLUME,
+	rate: 1.5
+});
+let success_sound = new Howl({
+	src: ['audio/success.mp3'],
+	volume: DEFAULT_EFFECT_VOLUME,
+	rate: 1.5
 });
 
 // called by game.js tick function
@@ -72,9 +82,16 @@ function playHoverSound() { // doesn't work in chrome
 	if(volume_setting==MUTED || volume_setting==BACKGROUND) return;
 	hover_sound.play();
 }
-function playPopSound() {
+
+// called by ui.js
+function playNotificationSound(type) {
 	if(volume_setting==MUTED || volume_setting==BACKGROUND) return;
-	pop_sound.play();
+	if(type=='error')
+		error_sound.play();
+	else if(type=='success' || type=='achievement')
+		success_sound.play();
+	else
+		notification_sound.play();
 }
 
 // called by listener.js
@@ -99,7 +116,9 @@ function setVolume(volume) {
 	fish_md_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
 	fish_lo_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
 	hover_sound.volume(DEFAULT_QUIET_EFFECT_VOLUME*volume);
-	pop_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
+	notification_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
+	error_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
+	success_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
 }
 
 // called by game.js

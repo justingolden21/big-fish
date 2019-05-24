@@ -149,6 +149,8 @@ function showSnackbar(message, type) {
 	else if(message == 'Not enough space in aquarium')
 		showHighlight($('#canvas') );
 
+	playNotificationSound(type); // even if redundant
+
 	if(message == prev_message)
 		return;
 	prev_message = message;
