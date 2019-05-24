@@ -7,8 +7,6 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - IMPORTANT: volume isn't working now???
 
-- remove whitenoise from sounds
-
 - add number scaling
 
 - add option to inrease the number of an item purhased or sold by a certain value in banks
