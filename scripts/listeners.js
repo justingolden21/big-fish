@@ -425,9 +425,15 @@ $(function() {
 	$('#audioSelect').change(function() {
 		changeAudioSetting($(this).val() );
 	}).change(); // in case firefox saved previous input
+
 	$('#volumeRange').change(function() {
 		setVolume($(this).val() );
 	}).change(); // in case firefox saved previous input
+
+	$('#backgroundMusicSelect').change(function() {
+		console.log($(this).val() );
+		changeBackgroundMusic($(this).val() );
+	});
 
 });
 

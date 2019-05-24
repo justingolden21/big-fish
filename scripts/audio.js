@@ -9,12 +9,21 @@ let fish_sound_frequency = 3; // ticks per sound
 let fish_sound_idx = 0;
 
 // note: to update volume, update it in two places: here and setVolume()
-let background_sound = new Howl({
+let background_sound_default = new Howl({
 	src: ['audio/background.mp3'],
 	loop: true,
 	volume: DEFAULT_BACKGROUND_VOLUME,
 	rate: 1.25
 });
+let background_sound_snow = new Howl({
+	src: ['audio/background-snow.mp3'],
+	loop: true,
+	volume: DEFAULT_BACKGROUND_VOLUME,
+	rate: 1.25
+});
+
+let current_background_sound = background_sound_default;
+
 let fish_lo_sound = new Howl({
 	src: ['audio/fish-lo.mp3'],
 	volume: DEFAULT_EFFECT_VOLUME,
@@ -71,10 +80,10 @@ function updateFishSounds() {
 	}
 }
 
-// scale logarithmically for number of fish, between 5 and 1 (very unlikely to get to 1), returns int
+// scale logarithmically for number of fish, between 5 and 2, returns int
 function calcFishSoundFrequency(num_fish) {
 	tmp = 5 - Math.floor(Math.log( (num_fish+20)/20)/Math.log(20) ); // log base 20 of fish/20
-	return (tmp < 1 ? 1 : tmp);
+	return (tmp < 2 ? 2 : tmp);
 }
 
 // called by listener js on button/summary hover
@@ -99,11 +108,11 @@ function changeAudioSetting(new_volume_setting) {
 	if(new_volume_setting==BACKGROUND || new_volume_setting==BOTH) {
 		// play if setting changed from not playing to playing
 		if(volume_setting!=BACKGROUND && volume_setting!=BOTH) {
-			if(!background_sound.playing() )
-				background_sound.play();
+			if(!current_background_sound.playing() )
+				current_background_sound.play();
 		}
 	} else {
-		background_sound.pause(); // pause if setting is now off
+		current_background_sound.pause(); // pause if setting is now off
 	}
 	volume_setting = new_volume_setting; // update setting
 }
@@ -111,7 +120,7 @@ function changeAudioSetting(new_volume_setting) {
 // called by listener.js
 function setVolume(volume) {
 	volume_rate = volume; // store it
-	background_sound.volume(DEFAULT_BACKGROUND_VOLUME*volume);
+	current_background_sound.volume(DEFAULT_BACKGROUND_VOLUME*volume);
 	fish_hi_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
 	fish_md_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
 	fish_lo_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
@@ -121,14 +130,29 @@ function setVolume(volume) {
 	success_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
 }
 
+function changeBackgroundMusic(name) {
+	let wasPlaying = current_background_sound.playing();
+	current_background_sound.pause();
+
+	if(name=='default') {
+		current_background_sound = background_sound_default;
+	} else if(name=='snow') {
+		current_background_sound = background_sound_snow;
+	}
+
+	if(wasPlaying) {
+		current_background_sound.play();
+	}
+}
+
 // called by game.js
 function audioHandlePause(paused) {
 	if(paused) {
-		background_sound.pause();
+		current_background_sound.pause();
 	} else {
 		if(volume_setting==BACKGROUND || volume_setting==BOTH) {
-			if(!background_sound.playing() )
-				background_sound.play();
+			if(!current_background_sound.playing() )
+				current_background_sound.play();
 		}
 	}
 }

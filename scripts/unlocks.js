@@ -57,7 +57,9 @@ function checkUnlocks() {
 		checkUnlock('purchase_bank' , '.bank-unlock', 'banks');
 	if(big_fish.length >= 10000) {
 		checkUnlock('penguins', '.penguin-unlock', 'PENGUINS');
-		checkAchievement('Tuxedo Time',false);		
+		checkAchievement('Tuxedo Time',false);
+		changeBackgroundMusic('snow');
+		showSnackbar('Note: You can always change the music back in settings', 'info');
 	}
 
 	if(small_fish.length >= 75)
