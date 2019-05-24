@@ -31,6 +31,9 @@ $(function() {
 	$('.btn').hover(playHoverSound);
 	$('.nav-item').hover(playPopSound);
 	$('summary').hover(playPopSound);
+	$('input[type=range]').hover(playPopSound);
+	$('input[type=select]').hover(playPopSound);
+	$('a').hover(playPopSound);
 
 	// display game vals
 	//todo: add more const values from aquarium, sell value, etc
