@@ -1,5 +1,6 @@
 const DEFAULT_BACKGROUND_VOLUME = 0.25;
 const DEFAULT_EFFECT_VOLUME = 1;
+const DEFAULT_QUIET_EFFECT_VOLUME = 0.25;
 
 const BOTH = 3, BACKGROUND = 2, EFFECTS = 1, MUTED = 0;
 let volume_setting = MUTED;
@@ -7,13 +8,13 @@ let volume_rate = 1;
 let fish_sound_frequency = 3; // ticks per sound
 let fish_sound_idx = 0;
 
+// note: to update volume, update it in two places: here and setVolume()
 let background_sound = new Howl({
 	src: ['audio/background.mp3'],
 	loop: true,
 	volume: DEFAULT_BACKGROUND_VOLUME,
 	rate: 1.25
 });
-
 let fish_lo_sound = new Howl({
 	src: ['audio/fish-lo.m4a'],
 	volume: DEFAULT_EFFECT_VOLUME,
@@ -28,6 +29,16 @@ let fish_hi_sound = new Howl({
 	src: ['audio/fish-hi.m4a'],
 	volume: DEFAULT_EFFECT_VOLUME,
 	rate: 2
+});
+let hover_sound = new Howl({
+	src: ['audio/hover.m4a'],
+	volume: DEFAULT_QUIET_EFFECT_VOLUME,
+	rate: 1
+});
+let pop_sound = new Howl({
+	src: ['audio/pop.m4a'],
+	volume: DEFAULT_EFFECT_VOLUME,
+	rate: 1
 });
 
 // called by game.js tick function
@@ -56,11 +67,23 @@ function calcFishSoundFrequency(num_fish) {
 	return (tmp < 1 ? 1 : tmp);
 }
 
+// called by listener js on button/summary hover
+function playHoverSound() { // doesn't work in chrome
+	if(volume_setting==MUTED || volume_setting==BACKGROUND) return;
+	hover_sound.play();
+}
+function playPopSound() {
+	if(volume_setting==MUTED || volume_setting==BACKGROUND) return;
+	pop_sound.play();
+}
+
 // called by listener.js
 function changeAudioSetting(new_volume_setting) {
 	if(new_volume_setting==BACKGROUND || new_volume_setting==BOTH) {
+		// play if setting changed from not playing to playing
 		if(volume_setting!=BACKGROUND && volume_setting!=BOTH) {
-			background_sound.play(); // play if setting changed from not playing to playing
+			if(!background_sound.playing() )
+				background_sound.play();
 		}
 	} else {
 		background_sound.pause(); // pause if setting is now off
@@ -75,6 +98,8 @@ function setVolume(volume) {
 	fish_hi_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
 	fish_md_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
 	fish_lo_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
+	hover_sound.volume(DEFAULT_QUIET_EFFECT_VOLUME*volume);
+	pop_sound.volume(DEFAULT_EFFECT_VOLUME*volume);
 }
 
 // called by game.js
@@ -83,7 +108,8 @@ function audioHandlePause(paused) {
 		background_sound.pause();
 	} else {
 		if(volume_setting==BACKGROUND || volume_setting==BOTH) {
-			background_sound.play();
+			if(!background_sound.playing() )
+				background_sound.play();
 		}
 	}
 }

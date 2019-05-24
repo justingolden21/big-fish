@@ -28,6 +28,10 @@ $(function() {
 		}
 	});
 
+	$('.btn').hover(playHoverSound);
+	$('.nav-item').hover(playPopSound);
+	$('summary').hover(playPopSound);
+
 	// display game vals
 	//todo: add more const values from aquarium, sell value, etc
 	$('#num-small-fish-coin').html(SMALL_FISH_COIN);
