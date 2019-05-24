@@ -5,8 +5,6 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - add penguin hatcheries, and snow banks (snow banks let you dynamically buy and sell penguins and penguin hatcheries for snowflakes)
 
-- add achievements for penguins, etc
-
 - IMPORTANT: volume isn't working now???
 
 - remove whitenoise from sounds

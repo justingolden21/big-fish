@@ -15,4 +15,3 @@ penguins can be returned for 1 snowflake
 
 later:
 add penguin hatcheries, penguin banks, all use snowflakes as currency
-add penguin achievements (for unlocking them, for having certain number of penguins, of snowflakes)
