@@ -33,7 +33,11 @@ let achievements = {
 	'Business Man': ['Make a total of over 100,000,000 coins', -1],
 	'Food Glorious Food': ['Purchase 10,000 food', -1],
 	'Big Banking': ['Have 1,000 banks', -1],
-	'So Long and Thanks for all the Fish': ['Sell 1,000 fish', -1]
+	'So Long and Thanks for all the Fish': ['Sell 1,000 fish', -1],
+
+	'Tuxedo Time': ['Unlock penguins!', -1],
+	'Special Snowflake': ['Have 10 snowflakes', -1],
+	'Perfection': ['Have 100 penguins', -1]
 	// 'Gonna Need Swimming Lessons': ['Purchase 100 aquarium factories', -1]
 };
 
@@ -51,8 +55,10 @@ function checkUnlocks() {
 		checkUnlock('purchase_aquarium_factory', '.aquarium-factory-unlock .producers-info', 'aquarium factories');
 	if(num_aquarium_factory >= 5 && num_farm+num_small_hatchery+num_medium_hatchery+num_big_hatchery >= 1000)
 		checkUnlock('purchase_bank' , '.bank-unlock', 'banks');
-	if(big_fish.length >= 10000)
+	if(big_fish.length >= 10000) {
 		checkUnlock('penguins', '.penguin-unlock', 'PENGUINS');
+		checkAchievement('Tuxedo Time',false);		
+	}
 
 	if(small_fish.length >= 75)
 		checkUnlock('sell_small_fish', '.sell-small-fish-unlock #sell-info', 'ability to sell small fish');
@@ -104,6 +110,10 @@ function checkUnlocks() {
 		checkAchievement('Big Banking',false);
 	if(stats['fish_sold'] > 1000)
 		checkAchievement('So Long and Thanks for all the Fish',false);
+	if(num_snowflake > 10)
+		checkAchievement('Special Snowflake',false);
+	if(penguins.length > 100)
+		checkAchievement('Perfection',false);
 }
 
 
