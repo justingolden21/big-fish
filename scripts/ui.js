@@ -49,12 +49,12 @@ function updateUI() {
 	num_coin_rate += bank_differential;
 	
 	// display numbers on UI
-	$('#num-coin').html(num_coin);
-	$('#num-snowflake').html(num_snowflake);
-	$('#num-food').html(num_food);
-	$('#num-fish').html(all_fish.length);
-	$('#num-coin-rate').html(num_coin_rate);
-	$('#num-snowflake-rate').html(num_snowflake_rate);
+	$('#num-coin').html(prettyPrintNum(num_coin) );
+	$('#num-snowflake').html(prettyPrintNum(num_snowflake) );
+	$('#num-food').html(prettyPrintNum(num_food) );
+	$('#num-fish').html(prettyPrintNum(all_fish.length) );
+	$('#num-coin-rate').html(prettyPrintNum(num_coin_rate) );
+	$('#num-snowflake-rate').html(prettyPrintNum(num_snowflake_rate) );
 	$('#num-penguin-snowflake-rate').html(num_snowflake_rate); // note: change if implementing more snowflake stuff
 	$('#num-food-rate').html( (num_farm*FARM_FOOD_RATE) - (small_fish.length-num_hungry_small_fish) );
 	$('#num-hungry-fish').html(num_hungry_fish);
@@ -107,8 +107,8 @@ function updateUI() {
 	$('#num-penguin-cost-100').html(sumNumsBetween(penguins.length+1, penguins.length+100+1) );
 
 	$('#num-aquarium').html(num_aquarium);
-	$('#num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);
-	$('#num-aquarium-space-used').html(num_aquarium_space_used);
+	$('.num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);
+	$('.num-aquarium-space-used').html(num_aquarium_space_used);
 
 	$('#num-farm').html(num_farm);
 	$('#num-farm-food-rate').html(num_farm*FARM_FOOD_RATE);

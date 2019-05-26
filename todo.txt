@@ -5,21 +5,21 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - add penguin hatcheries, and snow banks (snow banks let you dynamically buy and sell penguins and penguin hatcheries for snowflakes)
 
-- IMPORTANT: volume isn't working now???
-
-- edit html IDs for consistency
-
 - add number scaling
 
 - add option to inrease the number of an item purhased or sold by a certain value in banks
+
+- "big banks" that let you buy other banks, let you sell buildings, etc
 
 - make it a pwa
 
 - use cookies for sound setting
 
-different colored snackbars for unlocks and warnings
 option checkbox to display buy max buttons
 
+potential bug: with snowflakes and banks coin rate might be calcualted wrong.
+
+idea: have random events, such that you gain or lose resources, have thing go on "sale", more changes to gameplay to make less linear and more unexpected.
 
 option for sound effects: purchasing and error sounds, unlock and achievement sound
 button to clear queue of notifications to display? pause to clear?
@@ -49,6 +49,7 @@ discount 10% for buy in bulk?
 hungry fish images?
 add keyboard controls for purcahses
 show graphs of food and fish and money vs ticks?
+different colored snackbars for unlocks and warnings
 ================================TODO LATER:================================
 collabertation with other players? online multiplayer?
 optimize fish data structres for redundancy
