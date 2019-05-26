@@ -1,6 +1,6 @@
 .fas, .fab, .far {
 	text-shadow: 1px 2px 0px #099;
 }
-.btn:focus .fa-pause, .btn:focus .fa-play, .nav-link:focus .fas {
+.btn:focus .fas, .nav-link:focus .fas {
 	text-shadow: none !important;
 }
