@@ -9,12 +9,18 @@ hr {
 }
 
 /* accent tabs */
-/*.nav-tabs {
-	border-bottom: 4px solid #099 !important;
+.nav-tabs {
+	border-bottom: 2px solid #099 !important;
 }
 .nav-tabs .nav-item .nav-link {
 	border: 2px solid #099;
 }
 .nav-tabs .nav-item .nav-link:hover {
 	border: 2px solid #fff;
-}*/
+}
+.nav-tabs .nav-item .nav-link.active {
+		/*border-bottom: 2px solid #099 !important;*/
+}
+.nav-item {
+	margin-left: 4px;
+}
