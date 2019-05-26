@@ -390,19 +390,7 @@ function random(min, max) {
 	return Math.floor(Math.random() * (max - min) ) + min; 
 }
 
-// fisher–yates shuffle
-// WHY IS THIS HERE
-function shuffle(arr) {
-	let len = arr.length, idx = 0, temp;
-	while(len--) {
-		idx = Math.floor(Math.random() * (len+1));
-		tmp = arr[len];
-		arr[len] = arr[idx];
-		arr[idx] = tmp;
-	}
-	return arr;
-}
-
+// for snowflake costs
 function sumNumsBetween(start, end) {
 	let sum = 0;
 	for(let i=start; i<end; i++)
