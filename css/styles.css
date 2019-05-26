@@ -9,7 +9,7 @@ body, html {
 	background-color: #262673 !important;
 	color: #fff !important;
 }
-img, .btn, br, .nav.nav-tabs, #canvas {
+img, .btn, br, .nav.nav-tabs, canvas {
 	-webkit-user-select: none; /* Safari */
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* IE10+/Edge */
@@ -62,13 +62,14 @@ span.highlight {
 	margin-left: 2px;
 	margin-right: 2px;
 }
-#canvas.highlight {
+canvas.highlight {
 	background-color: #099;
 }
-#canvas {
+canvas {
 	border: 2px solid #fff;
 	/*transform: scale(2);*/
 	/*background-color: #099;*/
+	display: inline-block;
 }
 .unlock {
 	display: none;

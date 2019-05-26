@@ -1,7 +1,7 @@
 .btn, input, .alert .close {
 	box-shadow: 2px 2px 0px #099 !important;
 }
-#canvas {
+canvas {
 	box-shadow: 3px 3px 0px #099 !important;
 }
 hr {

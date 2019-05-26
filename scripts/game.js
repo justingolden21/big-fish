@@ -125,6 +125,7 @@ const FOOD_UNIT = 10;
 const BANK_ACTION_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
 const FISH_SPEEDS = [5,10,15]; //[small, medium, big]
+const PENGUIN_SPEEDS = [5,15]; // min and max speed
 const PENGUIN_FOOD = 100; // 100 big fish/s
 
 // player vals
@@ -147,7 +148,7 @@ let penguins = [];
 // game vals
 let paused = false;
 let draw_aquarium = true;
-let canvas, ctx;
+let canvas, ctx, penguinCanvas, penguinCtx;
 
 // global vars from updateUI()
 // so instead of recalcuating them we can use old ones from last tick()
@@ -164,6 +165,15 @@ class Penguin {
 		this.ticks = 0;
 		this.hungry = false;
 		this.stomach = 0;
+
+		// position
+		if(penguinImagesAreLoaded() ) {
+			this.x = random(Math.ceil(penguin_img_right.width/2), Math.floor(canvas.width-(penguin_img_right.width/2) ) );
+		} else {
+			this.x = 10;
+		}
+
+		this.facing_left = Math.random() >= 0.5;
 	}
 	eat() { // attempts to eat 100 big fish
 		if(big_fish.length >= PENGUIN_FOOD) {
@@ -185,10 +195,25 @@ class Penguin {
 			this.stomach -= 60;
 		}
 	}
+	move() { // move according to speed, random direction
+		if(Math.random() >= 0.5) {
+			this.x += parseInt(random(PENGUIN_SPEEDS[0], PENGUIN_SPEEDS[1]) );
+			this.x = Math.min(this.x, canvas.width - ( Math.floor(penguin_img_right.width/2) ) );
+			this.facing_left = false;
+		} else {
+			this.x -= parseInt(random(PENGUIN_SPEEDS[0], PENGUIN_SPEEDS[1]) );
+			this.x = Math.max(this.x, Math.ceil(penguin_img_right.width/2) );
+			this.facing_left = true;
+		}
+	}
+	draw() {
+		drawPenguin(this.x, this.facing_left);
+	}
 	update() {
 		this.ticks++;
 		this.eat();
 		this.produce();
+		this.move();
 	}
 }
 
@@ -212,13 +237,18 @@ function tick() {
 	for(let i=0, len=all_fish.length; i<len; i++) {
 		for(let j=0, ilen=all_fish[i].length; j<ilen; j++) {
 			all_fish[i][j].update();
-			if(j<20 && draw_aquarium) { //only draw first 20 of each size of fish
+			if(j<20 && draw_aquarium) { // only draw first 20 of each size of fish
 				all_fish[i][j].draw();
 			}
 		}
 	}
+	// penguin update
+	penguinCtx.clearRect(0, 0, canvas.width, canvas.height);
 	for(let i=0; i<penguins.length; i++) {
 		penguins[i].update();
+		if( i < 10 && draw_aquarium) { // only draw first 10 penguins
+			penguins[i].draw();
+		}
 	}
 
 	bank_differential = 0;

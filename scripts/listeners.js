@@ -13,6 +13,9 @@ $(function() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
+	penguinCanvas = document.getElementById('penguin-canvas');
+	penguinCtx = penguinCanvas.getContext('2d');
+
 	// start user on welcome/help modal
 	$('#help-modal').modal('show');
 
@@ -438,6 +441,7 @@ $(function() {
 
 	$('#aquarium-checkbox').change(function() {
 		$('#canvas').css('display', $(this).is(':checked') ? '' : 'none');
+		$('#penguin-canvas').css('display', $(this).is(':checked') ? '' : 'none');
 		draw_aquarium = !draw_aquarium;
 	});
 
