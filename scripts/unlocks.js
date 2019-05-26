@@ -58,8 +58,6 @@ function checkUnlocks() {
 	if(big_fish.length >= 10000) {
 		checkUnlock('penguins', '.penguin-unlock', 'PENGUINS');
 		checkAchievement('Tuxedo Time',false);
-		changeBackgroundMusic('snow');
-		showSnackbar('Note: You can always change the music back in settings', 'info');
 	}
 
 	if(small_fish.length >= 75)
@@ -130,6 +128,12 @@ function checkUnlock(unlockName, parts, message) {
 			unlock($(parts[i]) );
 		}
 		showSnackbar('Unlocked ' + message, 'success');
+
+		// special cases:
+		if(unlockName=='penguins') {
+			changeBackgroundMusic('snow');
+			showSnackbar('Note: You can always change the music back in settings', 'info');
+		}
 	}
 }
 
