@@ -19,8 +19,6 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - add checkbox icons from fontawesome and option to remove accent
 
-- add penguin habitat next to aquarium
-
 - settings modal has button to close/open all summary elements?
 	$('details').prop('open','true')
 	$('details').prop('open','')
