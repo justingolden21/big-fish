@@ -146,6 +146,7 @@ let penguins = [];
 
 // game vals
 let paused = false;
+let draw_aquarium = true;
 let canvas, ctx;
 
 // global vars from updateUI()
@@ -211,8 +212,8 @@ function tick() {
 	for(let i=0, len=all_fish.length; i<len; i++) {
 		for(let j=0, ilen=all_fish[i].length; j<ilen; j++) {
 			all_fish[i][j].update();
-			if(j<20) { //only draw first 20 of each size of fish
-				all_fish[i][j].draw();				
+			if(j<20 && draw_aquarium) { //only draw first 20 of each size of fish
+				all_fish[i][j].draw();
 			}
 		}
 	}

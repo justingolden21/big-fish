@@ -435,6 +435,12 @@ $(function() {
 		changeBackgroundMusic($(this).val() );
 	});
 
+
+	$('#aquarium-checkbox').change(function() {
+		$('#canvas').css('display', $(this).is(':checked') ? '' : 'none');
+		draw_aquarium = !draw_aquarium;
+	});
+
 });
 
 window.onkeyup = function(e) {

@@ -21,6 +21,8 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - checkbox for drawing aquarium at bottom
 
+- add penguin habitat next to aquarium
+
 - add settings modal and move game progress backup stuff there?
 
 - settings modal has button to close/open all summary elements?
