@@ -191,5 +191,5 @@ function handleResize() {
 }
 
 function setAccent(hasAccent) {
-	$('#accent-link').prop('href',hasAccent ? 'accent.css' : '');
+	$('#accent-link').prop('href', hasAccent ? 'accent.css' : '');
 }

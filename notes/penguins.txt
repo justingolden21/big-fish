@@ -15,3 +15,5 @@ penguins can be returned for 1 snowflake
 
 later:
 add penguin hatcheries, penguin banks, all use snowflakes as currency
+hatcheries cost 100, 200, 300, 400 snowflakes
+banks let you trade 100,000,000 coins for 1 snowflake

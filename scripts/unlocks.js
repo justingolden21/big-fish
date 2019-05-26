@@ -57,7 +57,7 @@ function checkUnlocks() {
 		checkUnlock('purchase_bank' , '.bank-unlock', 'banks');
 	if(big_fish.length >= 10000) {
 		checkUnlock('penguins', '.penguin-unlock', 'PENGUINS');
-		checkAchievement('Tuxedo Time',false);
+		checkAchievement('Tuxedo Time', false);
 	}
 
 	if(small_fish.length >= 75)
@@ -76,44 +76,44 @@ function checkUnlocks() {
 
 	// achievements
 	if(small_fish.length>1)
-		checkAchievement('One Fish Two Fish',false);
+		checkAchievement('One Fish Two Fish', false);
 	if(medium_fish.length>=1)
-		checkAchievement('Fish Sticks',false);
+		checkAchievement('Fish Sticks', false);
 	if(big_fish.length>=1)
-		checkAchievement('Bigger Fish to Fry',false);
+		checkAchievement('Bigger Fish to Fry', false);
 	if(small_fish.length+medium_fish.length+big_fish.length>=100)
-		checkAchievement('Always More Fish in the Sea',false);
+		checkAchievement('Always More Fish in the Sea', false);
 	if(num_small_hatchery>0||num_medium_hatchery>0||num_big_hatchery>0)
-		checkAchievement('Financially Responsible',false);
+		checkAchievement('Financially Responsible', false);
 	if(num_small_hatchery+num_medium_hatchery+num_big_hatchery>=100)
-		checkAchievement('Something Smells Fishy',false);
+		checkAchievement('Something Smells Fishy', false);
 	if(num_aquarium>1)
-		checkAchievement('Deep Sea Diving',false);
+		checkAchievement('Deep Sea Diving', false);
 	if(num_aquarium>100)
-		checkAchievement('Sea World',false);
+		checkAchievement('Sea World', false);
 	if(small_fish.length==0)
-		checkAchievement('Disrupt the Food Chain',false);
+		checkAchievement('Disrupt the Food Chain', false);
 	if(num_coin>=100) {
-		checkAchievement('Lemonade Stand',false);
+		checkAchievement('Lemonade Stand', false);
 		if(num_coin>=10000) {
-			checkAchievement('Minimum Wage',false);
+			checkAchievement('Minimum Wage', false);
 			if(num_coin>=1000000) {
-				checkAchievement('Monopoly Man',false);
+				checkAchievement('Monopoly Man', false);
 			}
 		}
 	}
 	if(stats['money_from_small_fish']+stats['money_from_medium_fish']+stats['money_from_big_fish']>=100000000)
-		checkAchievement('Business Man',false);
+		checkAchievement('Business Man', false);
 	if(stats['food_purchased']>=10000)
-		checkAchievement('Food Glorious Food',false);
+		checkAchievement('Food Glorious Food', false);
 	if(num_bank > 1000)
-		checkAchievement('Big Banking',false);
+		checkAchievement('Big Banking', false);
 	if(stats['fish_sold'] > 1000)
-		checkAchievement('So Long and Thanks for all the Fish',false);
+		checkAchievement('So Long and Thanks for all the Fish', false);
 	if(num_snowflake > 10)
-		checkAchievement('Special Snowflake',false);
+		checkAchievement('Special Snowflake', false);
 	if(penguins.length > 100)
-		checkAchievement('Perfection',false);
+		checkAchievement('Perfection', false);
 }
 
 

@@ -17,7 +17,7 @@ function prettyPrintNum(num) {
 	//max at length of abreviations, so that if above will just divide by smaller number and use that string
 	num_mag = Math.min(num_mag, num_abrev.length);
 
-	return round(num/Math.pow(10, num_mag*3), places) + num_abrev[num_mag-1];
+	return round(num/Math.pow(10, num_mag*3), places) + ' ' + num_abrev[num_mag-1];
 }
 // Note: goes up to e244 Uvg in O(1) time, after that JS calls the number infinity
 
@@ -30,7 +30,7 @@ function numDigits(num) {
 	return Math.max(Math.floor(Math.log10(Math.abs(num) ) ), 0) + 1;
 }
 
-function testing() {
+function testPrintNums() {
 	for(let i=0; i<100; i++) {
 		console.log(prettyPrintNum(Math.random()*1e30) );
 	}
