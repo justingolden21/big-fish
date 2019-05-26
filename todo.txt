@@ -19,8 +19,6 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - add checkbox icons from fontawesome and option to remove accent
 
-- checkbox for drawing aquarium at bottom
-
 - add penguin habitat next to aquarium
 
 - add settings modal and move game progress backup stuff there?
