@@ -1,13 +1,11 @@
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 ================================TODO:================================
-- display number of small, medium, and big fish on top option, as well as aquarium space on top (unlocked later)
+- display number of small, medium, and big fish on top option/checkbox
 
 - add penguin hatcheries, and snow banks (snow banks let you dynamically buy and sell penguins and penguin hatcheries for snowflakes)
 
-- add number scaling
-
-- add option to inrease the number of an item purhased or sold by a certain value in banks
+- add option for number display: pretty print checkbox/SI unit prefixes
 
 - "big banks" that let you buy other banks, let you sell buildings, etc
 
@@ -15,28 +13,26 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - use cookies for sound setting
 
-option checkbox to display buy max buttons
+- checkbox to display buy max possible buttons
 
-potential bug: with snowflakes and banks coin rate might be calcualted wrong.
+- load the consts in index on pageload (the ones in my stuff section), better quality code
 
-idea: have random events, such that you gain or lose resources, have thing go on "sale", more changes to gameplay to make less linear and more unexpected.
+- add checkbox icons from fontawesome and option to remove accent
 
-option for sound effects: purchasing and error sounds, unlock and achievement sound
-button to clear queue of notifications to display? pause to clear?
+- checkbox for drawing aquarium at bottom
 
-load the consts in index on pageload (the ones in my stuff section)
+- add settings modal and move game progress backup stuff there?
 
-add checkbox icons from fontawesome and option to remove accent
-checkbox for drawing aquarium at bottom
-add settings modal and move game progress backup stuff there?
-settings modal has button to close/open all summary elements?
+- settings modal has button to close/open all summary elements?
 	$('details').prop('open','true')
 	$('details').prop('open','')
 
-sync data with google account/loggin api
-use sharethis and realfavicongenerator.net
+- sync data with google account/loggin api
 
-help i broke it and i need a few extra coins button, to give plus one coin
+- use sharethis and realfavicongenerator.net
+
+================================BUGS:================================
+potential bug: with snowflakes and banks coin rate might be calcualted wrong
 ================================MAYBE:================================
 option to change aesthetic/theme: default, simple, gradient
 add upgrades
@@ -50,6 +46,11 @@ hungry fish images?
 add keyboard controls for purcahses
 show graphs of food and fish and money vs ticks?
 different colored snackbars for unlocks and warnings
+add option to inrease the number of an item purhased or sold by a certain value in banks
+help i broke it and i need a few extra coins button, to give plus one coin
+idea: have random events, such that you gain or lose resources, have thing go on "sale", more changes to gameplay to make less linear and more unexpected.
+options for sound effects: purchasing and error sounds, unlock and achievement sound
+button to clear queue of notifications to display? pause to clear?
 ================================TODO LATER:================================
 collabertation with other players? online multiplayer?
 optimize fish data structres for redundancy
