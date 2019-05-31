@@ -3,7 +3,7 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 ================================TODO:================================
 - display number of small, medium, and big fish on top option/checkbox
 
-- add penguin hatcheries, and snow banks (snow banks let you dynamically buy and sell penguins and penguin hatcheries for snowflakes)
+- add snow banks (snow banks let you dynamically buy and sell penguins and penguin hatcheries for snowflakes)
 
 - add option for number display: pretty print checkbox/SI unit prefixes
 
@@ -11,11 +11,7 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - make it a pwa
 
-- use cookies for sound setting
-
 - checkbox to display buy max possible buttons
-
-- load the consts in index on pageload (the ones in my stuff section), better quality code
 
 - add checkbox icons from fontawesome and option to remove accent
 
@@ -28,7 +24,7 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 - use sharethis and realfavicongenerator.net
 
 ================================BUGS:================================
-potential bug: with snowflakes and banks coin rate might be calcualted wrong
+potential bug: with snowflakes and banks displayed coin rate might be calcualted wrong
 ================================MAYBE:================================
 option to change aesthetic/theme: default, simple, gradient
 add upgrades
@@ -47,6 +43,8 @@ help i broke it and i need a few extra coins button, to give plus one coin
 idea: have random events, such that you gain or lose resources, have thing go on "sale", more changes to gameplay to make less linear and more unexpected.
 options for sound effects: purchasing and error sounds, unlock and achievement sound
 button to clear queue of notifications to display? pause to clear?
+use cookies for sound setting
+load the consts in index on pageload (the ones in my stuff section), better quality code
 ================================TODO LATER:================================
 collabertation with other players? online multiplayer?
 optimize fish data structres for redundancy

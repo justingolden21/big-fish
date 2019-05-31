@@ -288,6 +288,21 @@ summary:focus .highlight {
 	margin-bottom: 5px;
 }
 
+/* checkboxes */
+label input[type=checkbox] {
+  cursor: pointer;
+}
+
+input[type=checkbox] {
+	margin-left: 20px !important;
+	width: 20px;
+	height: 20px;
+
+	opacity: 0 !important;
+	width: 0px !important;
+	position: absolute !important;
+}
+
 /* smaller than 768px, when columns collapse */
 @media screen and (max-width: 767px) {
 	#right-col {

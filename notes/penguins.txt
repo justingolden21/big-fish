@@ -13,7 +13,8 @@ unlocked after having 10000 big fish
 
 penguins can be returned for 1 snowflake
 
+penguin hatcheries cost 100, 200, 300 snowflakes
+
 later:
-add penguin hatcheries, penguin banks, all use snowflakes as currency
-hatcheries cost 100, 200, 300, 400 snowflakes
-banks let you trade 100,000,000 coins for 1 snowflake
+penguin banks: use snowflakes as currency, dynamically buy penguins or penguin hatcheries
+banks let you trade 100,000,000 coins for 1 snowflake, up to 10 times per min per bank
