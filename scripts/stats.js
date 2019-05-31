@@ -19,7 +19,7 @@ let stats = {
 };
 
 function updateStats() {
-	$('#total-ticks').html(stats['total_ticks']);
+	$('#total-ticks').html(secToStr(stats['total_ticks']) );
 	$('#food-eaten').html(stats['food_eaten']);
 	$('#fish-eaten').html(stats['fish_eaten']);
 

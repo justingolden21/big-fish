@@ -36,3 +36,12 @@ function testPrintNums() {
 	}
 	console.log('done');
 }
+
+// convert seconds to string of sec, min, hrs
+function secToStr(sec) {
+	if(sec < 60)
+		return sec + 's';
+	else if(sec < 3600) // 60*60
+		return Math.floor(sec/60) + 'm ' + sec%60 + 's';
+	return Math.floor(sec/3600) + 'h ' + Math.floor(sec/60)%60 + 'm ' + sec%60 + 's';
+}

@@ -27,8 +27,6 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - use sharethis and realfavicongenerator.net
 
-- convert s played to min and hrs
-
 ================================BUGS:================================
 potential bug: with snowflakes and banks coin rate might be calcualted wrong
 ================================MAYBE:================================
