@@ -60,7 +60,6 @@ $(function() {
 
 	// checkbox aestheitc
 	$('input[type=checkbox').change(function() {
-		console.log('checkbox change');
 		$(this).next().toggleClass('fas').toggleClass('far').toggleClass('fa-check-square').toggleClass('fa-square');
 	});
 
