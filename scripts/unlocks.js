@@ -13,7 +13,8 @@ let unlocks = {
 	'medium_fish': false,
 	'big_fish': false,
 	'aquarium': false,
-	'penguins': false
+	'penguins': false,
+	'penguin_hatchery': false
 };
 
 // name, description, ticks when completed, -1 if incomplete
@@ -39,6 +40,7 @@ let achievements = {
 	'Special Snowflake': ['Have 10 snowflakes', -1],
 	'Perfection': ['Have 100 penguins', -1]
 	// 'Gonna Need Swimming Lessons': ['Purchase 100 aquarium factories', -1]
+	// add have 100 penguin hatcheries achievement?
 };
 
 function checkUnlocks() {
@@ -66,6 +68,8 @@ function checkUnlocks() {
 		checkUnlock('sell_medium_fish', '.sell-medium-fish-unlock #sell-info', 'ability to sell medium fish');
 	if(big_fish.length >= 75)
 		checkUnlock('sell_big_fish', '.sell-big-fish-unlock #sell-info', 'ability to sell big fish');
+	if(penguins.length >= 10)
+		checkUnlock('penguin_hatchery', '.penguin-hatchery-unlock', 'penguin hatcheries');
 
 	if(small_fish.length >= 50)
 		checkUnlock('medium_fish', '.medium-fish-unlock', 'medium fish');

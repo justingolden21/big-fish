@@ -23,6 +23,7 @@ function loadCookies() {
 	num_small_hatchery = parseInt(Cookies.get('num_small_hatchery') || num_small_hatchery);
 	num_medium_hatchery = parseInt(Cookies.get('num_medium_hatchery') || num_medium_hatchery);
 	num_big_hatchery = parseInt(Cookies.get('num_big_hatchery') || num_big_hatchery);
+	num_penguin_hatchery = parseInt(Cookies.get('num_penguin_hatchery') || num_penguin_hatchery);
 	num_aquarium_factory = parseInt(Cookies.get('num_aquarium_factory') || num_aquarium_factory);
 	num_bank = parseInt(Cookies.get('num_bank') || num_bank);
 	num_snowflake = parseInt(Cookies.get('num_snowflake') || num_snowflake);
@@ -66,6 +67,7 @@ function setCookies() {
 	Cookies.set('num_small_hatchery', num_small_hatchery);
 	Cookies.set('num_medium_hatchery', num_medium_hatchery);
 	Cookies.set('num_big_hatchery', num_big_hatchery);
+	Cookies.set('num_penguin_hatchery', num_penguin_hatchery);
 	Cookies.set('num_aquarium_factory', num_aquarium_factory);
 	Cookies.set('num_bank', num_bank);
 	Cookies.set('num_snowflake', num_snowflake);
@@ -90,6 +92,7 @@ function clearCookies() {
 	Cookies.remove('num_small_hatchery');
 	Cookies.remove('num_medium_hatchery');
 	Cookies.remove('num_big_hatchery');
+	Cookies.remove('num_penguin_hatchery');
 	Cookies.remove('num_aquarium_factory');
 	Cookies.remove('num_bank');
 	Cookies.remove('num_snowflake');

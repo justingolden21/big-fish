@@ -188,6 +188,19 @@ $(function() {
 			updateUI();
 		}
 	});
+	$('.btn.purchase-penguin-hatchery').click(function() {
+		let amount = parseInt($(this).val() );
+		// note: BASE_PENGUIN_HATCHERY_COST is 100
+		let amountPenguinHatcheriesCost = sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+amount+1) * BASE_PENGUIN_HATCHERY_COST;
+		if(num_snowflake < amountPenguinHatcheriesCost) {
+			showSnackbar('Not enough snowflakes', 'error');
+		} else {
+			num_snowflake -= amountPenguinHatcheriesCost;
+			num_penguin_hatchery += amount;
+			showHighlight($('#num-penguin-hatchery') );
+			updateUI();
+		}
+	});
 	$('.btn.purchase-aquarium-factory').click(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < AQUARIUM_FACTORY_COST*amount) {
@@ -332,6 +345,17 @@ $(function() {
 			num_big_hatchery -= amount;
 			showHighlight($('#num-big-hatchery') );
 			showHighlight($('#num-coin') );
+			updateUI();
+		}
+	});
+	$('.btn.sell-penguin-hatchery').click(function() {
+		let amount = parseInt($(this).val() );
+		if(num_penguin_hatchery < amount) {
+			showSnackbar('Not enough penguin hatcheries', 'error');
+		} else {
+			num_snowflake += amount * BASE_PENGUIN_HATCHERY_COST; // BASE_PENGUIN_HATCHERY_COST (is 100) snowflakes per penguin hatchery returned
+			num_penguin_hatchery -= amount;
+			showHighlight($('#num-penguin-hatchery') );
 			updateUI();
 		}
 	});

@@ -117,7 +117,12 @@ const FARM_FOOD_RATE = 5;
 const SMALL_HATCHERY_RATE = 1;
 const MEDIUM_HATCHERY_RATE = 1;
 const BIG_HATCHERY_RATE = 1;
+const PENGUIN_HATCHERY_RATE = 1;
 const AQUARIUM_FACTORY_RATE = 1;
+
+// base costs will rise, but consts stay for reference
+const BASE_PENGUIN_COST = 1;
+const BASE_PENGUIN_HATCHERY_COST = 100;
 
 // misc
 const AQUARIUM_SPACE = 500;
@@ -137,6 +142,7 @@ let num_farm = 0;
 let num_small_hatchery = 0;
 let num_medium_hatchery = 0;
 let num_big_hatchery = 0;
+let num_penguin_hatchery = 0;
 let num_aquarium_factory = 0;
 let num_bank = 0;
 
@@ -230,6 +236,10 @@ function tick() {
 	hatchFish(SMALL, num_small_hatchery, SMALL_FISH_SPACE);
 	hatchFish(MEDIUM, num_medium_hatchery, MEDIUM_FISH_SPACE);
 	hatchFish(BIG, num_big_hatchery, BIG_FISH_SPACE);
+
+	// every min (60 ticks)
+	if(stats['total_ticks'] % 60 == 0)
+		addPenguins(num_penguin_hatchery);
 
 	// fish update
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -412,9 +422,15 @@ function addFish(type, amount) {
 	}
 }
 function addPenguins(amount) {
+	// if not enough room, only add as many as room for
+	if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (PENGUIN_SPACE * amount) ) {
+		amount = ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / PENGUIN_SPACE;
+	}
+
 	for(let i=0; i<amount; i++) {
 		penguins.push(new Penguin() );
 	}
+
 }
 // min is inclusive, max is exclusive, returns an int
 function random(min, max) {

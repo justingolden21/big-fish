@@ -106,6 +106,11 @@ function updateUI() {
 	$('#num-penguin-cost-10').html(sumNumsBetween(penguins.length+1, penguins.length+10+1) );
 	$('#num-penguin-cost-100').html(sumNumsBetween(penguins.length+1, penguins.length+100+1) );
 
+	// note: BASE_PENGUIN_HATCHERY_COST is 100
+	$('#num-penguin-hatchery-cost').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+1+1) * BASE_PENGUIN_HATCHERY_COST);
+	$('#num-penguin-hatchery-cost-10').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+10+1) * BASE_PENGUIN_HATCHERY_COST);
+	$('#num-penguin-hatchery-cost-100').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+100+1) * BASE_PENGUIN_HATCHERY_COST);
+
 	$('#num-aquarium').html(num_aquarium);
 	$('.num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);
 	$('.num-aquarium-space-used').html(num_aquarium_space_used);
@@ -118,6 +123,8 @@ function updateUI() {
 	$('#num-medium-hatchery-fish-rate').html(num_medium_hatchery*MEDIUM_HATCHERY_RATE);
 	$('#num-big-hatchery').html(num_big_hatchery);
 	$('#num-big-hatchery-fish-rate').html(num_big_hatchery*BIG_HATCHERY_RATE);
+	$('#num-penguin-hatchery').html(num_penguin_hatchery);
+	$('#num-penguin-hatchery-penguin-rate').html(num_penguin_hatchery*PENGUIN_HATCHERY_RATE);
 	$('#num-aquarium-factory').html(num_aquarium_factory);
 	$('#num-aquarium-factory-aquarium-rate').html(num_aquarium_factory*AQUARIUM_FACTORY_RATE);
 

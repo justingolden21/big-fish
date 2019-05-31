@@ -15,7 +15,8 @@
 <link rel="shortcut icon" href="img/fish-blue.png">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+<script src="https://kit.fontawesome.com/fdf783ffe3.js"></script>
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
@@ -297,21 +298,39 @@
 				</div>
 				<!-- MY PENGUINS -->
 				<div class="tab-pane" id="my-penguins-tab" role="tabpanel">
-					<i class="fas fa-kiwi-bird fa-3x"></i> <span id="num-penguin">0</span> Penguins (<span id="num-penguin-hungry">0</span> Hungry)
-						<p><i class="fas fa-snowflake fa-3x"></i> Makes <span id="num-penguin-snowflake">1</span> Snowflakes/min (<span id="num-penguin-snowflake-rate">0</span> Snowflakes/min total).<br>Snowflakes multiply the amount of coins your fish earn.</p>
+					<details open>
+					<summary><i class="fas fa-kiwi-bird fa-3x"></i> <span id="num-penguin">0</span> Penguins (<span id="num-penguin-hungry">0</span> Hungry)</summary>
+						<p><i class="fas fa-snowflake fa-2x"></i> Makes <span id="num-penguin-snowflake">1</span> Snowflakes/min (<span id="num-penguin-snowflake-rate">0</span> Snowflakes/min total).<br>Snowflakes multiply the amount of coins your fish earn.</p>
 						<p><i class="fas fa-fish fa-3x"></i> Eats <span id="num-penguin-food">100</span> Big Fish/s (<span id="num-penguin-food-rate">0</span> Big Fish/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-penguin-space">10000</span> Space (<span id="num-penguin-space-total">0</span> Space total)</p> </div>
 
 						<p>Snowflake Progress (first 10 penguins only):</p>
 						<div id="penguin-progress"></div>
 											
-					<p><i class="fas fa-snowflake"></i> Sell Penguins:</p>
+					<p><i class="fas fa-snowflake fa-2x"></i> Sell Penguins:</p>
 					<div class="btn-group">
 						<button class="btn sell-penguin" value="1"><i class="fas fa-snowflake"></i> 1 Penguin</button>
 						<button class="btn sell-penguin" value="10"><i class="fas fa-snowflake"></i> 10 Penguin</button>
 						<button class="btn sell-penguin" value="100"><i class="fas fa-snowflake"></i> 100 Penguin</button>
 					</div>
 					<p>1 snowflake per returned penguin</p>
+					</details>
+
+
+					<div class="unlock penguin-hatchery-unlock">
+					<hr>
+					<details>
+						<summary><i class="fas fa-igloo fa-2x"></i> <span id="num-penguin-hatchery">0</span> Penguin Hatcheries</summary>
+						<p><i class="fas fa-kiwi-bird fa-3x"></i> Makes <span id="num-penguin-hatchery-penguins">1</span> Penguins/min (<span id="num-penguin-hatchery-penguin-rate">0</span> Penguins/min total)</p>
+						<p><i class="fas fa-snowflake fa-2x"></i> Sell Hatcheries:</p>
+						<div class="btn-group">
+							<button class="btn sell-penguin-hatchery" value="1"><i class="fas fa-snowflake"></i> 1 Hatchery</button>
+							<button class="btn sell-penguin-hatchery" value="10"><i class="fas fa-snowflake"></i> 10 Hatcheries</button>
+							<button class="btn sell-penguin-hatchery" value="100"><i class="fas fa-snowflake"></i> 100 Hatcheries</button>
+						</div>
+						<p>100 snowflakes per returned penguin hatchery</p>
+					</details>
+					</div>
 					
 				</div>
 			</div>
@@ -476,18 +495,39 @@
 				</div>
 				<!-- PURCHASE PENGUINS -->
 				<div class="tab-pane" id="purchase-penguins-tab" role="tabpanel">
-					<i class="fas fa-kiwi-bird fa-3x"></i> Purchase Penguins:
+					<details open>
+					<summary><i class="fas fa-kiwi-bird fa-3x"></i> Purchase Penguins:</summary>
 					<div class="btn-group">
 						<button class="btn purchase-penguin" value="1"><i class="fas fa-kiwi-bird"></i> 1 Penguin</button>
 						<button class="btn purchase-penguin" value="10"><i class="fas fa-kiwi-bird"></i> 10 Penguins</button>
 						<button class="btn purchase-penguin" value="100"><i class="fas fa-kiwi-bird"></i> 100 Penguins</button>
 					</div>
-					<p><i class="fas fa-snowflake"></i>
-						<span id="num-penguin-per-cost">1</span> Penguin costs <span id="num-penguin-cost">0</span> Snowflakes.<br>
-						<span id="num-penguin-per-cost-10">10</span> Penguins cost <span id="num-penguin-cost-10">45</span> Snowflakes.<br>
-						<span id="num-penguin-per-cost-100">100</span> Penguins cost <span id="num-penguin-cost-100">4950</span> Snowflakes.<br>
+					<p><i class="fas fa-snowflake fa-2x"></i>
+						<span id="num-penguin-per-cost">1</span> Penguin costs <span id="num-penguin-cost">1</span> Snowflakes.<br>
+						<span id="num-penguin-per-cost-10">10</span> Penguins cost <span id="num-penguin-cost-10">55</span> Snowflakes.<br>
+						<span id="num-penguin-per-cost-100">100</span> Penguins cost <span id="num-penguin-cost-100">5050</span> Snowflakes.<br>
 						Each future penguin costs 1 more snowflake.
 					</p>
+					</details>
+
+					<div class="unlock penguin-hatchery-unlock">
+					<hr>
+					<details>
+						<summary><i class="fas fa-igloo fa-2x"></i> Purchase Penguin Hatchery:</summary>
+						<div class="btn-group">
+							<button class="btn purchase-penguin-hatchery" value="1"><i class="fas fa-igloo"></i> 1 Hatchery</button>
+							<button class="btn purchase-penguin-hatchery" value="10"><i class="fas fa-igloo"></i> 10 Hatcheries</button>
+							<button class="btn purchase-penguin-hatchery" value="100"><i class="fas fa-igloo"></i> 100 Hatcheries</button>
+						</div>
+						<p><i class="fas fa-snowflake fa-2x"></i>
+							<span id="num-penguin-hatchery-per-cost">1</span> Penguin Hatchery costs <span id="num-penguin-hatchery-cost">100</span> Snowflakes.<br>
+							<span id="num-penguin-hatchery-per-cost-10">10</span> Penguin Hatcheries cost <span id="num-penguin-hatchery-cost-10">5500</span> Snowflakes.<br>
+							<span id="num-penguin-hatchery-per-cost-100">100</span> Penguin Hatcheries cost <span id="num-penguin-hatchery-cost-100">505000</span> Snowflakes.<br>
+							Each future penguin hatchery costs 100 more snowflakes.
+						</p>
+					</details>
+					</div>
+
 				</div>
 				<!-- PURCHASE UPGRADES -->
 <!-- 				<div class="tab-pane" id="purchase-upgrades-tab" role="tabpanel">
