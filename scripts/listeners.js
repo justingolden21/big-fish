@@ -60,6 +60,7 @@ $(function() {
 
 	// checkbox aestheitc
 	$('input[type=checkbox').each(function() {
+		$(this).after('<i></i>');
 		if($(this).is(':checked') ) {
 			$(this).next().removeClass().addClass('fas fa-check-square');
 		} else {
