@@ -294,12 +294,7 @@ label input[type=checkbox] {
 }
 
 input[type=checkbox] {
-	margin-left: 20px !important;
-	width: 20px;
-	height: 20px;
-
 	opacity: 0 !important;
-	width: 0px !important;
 	position: absolute !important;
 }
 
