@@ -58,19 +58,7 @@ $(function() {
 
 	// tick();
 
-	// checkbox aestheitc
-	$('input[type=checkbox').each(function() {
-		$(this).after('<i></i>');
-		if($(this).is(':checked') ) {
-			$(this).next().removeClass().addClass('fas fa-check-square');
-		} else {
-			$(this).next().removeClass().addClass('far fa-square');
-		}
-	});
-	$('input[type=checkbox').change(function() {
-		$(this).next().toggleClass('fas').toggleClass('far').toggleClass('fa-check-square').toggleClass('fa-square');
-	});
-
+	setupCheckboxes();
 
 	// button listeners
 
