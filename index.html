@@ -317,7 +317,6 @@
 					<p>1 snowflake per returned penguin</p>
 					</details>
 
-
 					<div class="unlock penguin-hatchery-unlock">
 					<hr>
 					<details>
@@ -330,6 +329,42 @@
 							<button class="btn sell-penguin-hatchery" value="100"><i class="fas fa-snowflake"></i> 100 Hatcheries</button>
 						</div>
 						<p>100 snowflakes per returned penguin hatchery</p>
+					</details>
+					</div>
+
+					<div class="unlock snow-bank-unlock">
+					<hr>
+					<details>
+						<summary><i class="fas fa-dungeon fa-2x"></i> <span id="num-snow-bank">0</span> Snow Banks</summary>
+						<p><i class="fas fa-igloo fa-2x"></i> Buys/Sells up to <span id="num-snow-bank-rate">10</span> items/min (up to <span id="num-snow-bank-rate-total">0</span> items/min total)</p>
+						<p><i class="fas fa-snowflake fa-2x"></i> Sell Snow Banks:</p>
+						<div class="btn-group">
+							<button class="btn sell-snow-bank" value="1"><i class="fas fa-snowflake"></i> 1 Snow Bank</button>
+							<button class="btn sell-snow-bank" value="10"><i class="fas fa-snowflake"></i> 10 Snow Banks</button>
+							<button class="btn sell-snow-bank" value="100"><i class="fas fa-snowflake"></i> 100 Snow Banks</button>
+						</div>
+						<p>10000 snowflakes per returned snow bank</p>
+
+						<p><i class="fas fa-snowflake"></i> Sell:</p>
+						<div style="text-align: right !important;">
+						<label for="sell-penguin-input">Penguins:</label>
+						<input id="sell-penguin-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<br>
+						<label for="sell-penguin-hatchery-input">Penguin Hatcheries:</label>
+						<input id="sell-penguin-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<p>Currently selling <span id="num-current-selling-rate-snow-bank">0</span> items/min</p>
+						</div>
+
+						<p><i class="fas fa-snowflake"></i> Buy:</p>
+						<div style="text-align: right !important;">
+						<label for="buy-penguin-input">Penguins:</label>
+						<input id="buy-penguin-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<br>
+						<label for="buy-penguin-hatchery-input">Penguin Hatcheries:</label>
+						<input id="buy-penguins-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<p>Currently buying <span id="num-current-buying-rate-snow-bank">0</span> items/min</p>
+						</div>
+
 					</details>
 					</div>
 					
@@ -529,6 +564,24 @@
 					</details>
 					</div>
 
+					<div class="unlock snow-bank-unlock">
+					<hr>
+						<details>
+							<summary><i class="fas fa-dungeon fa-2x"></i> Purchase Snow Bank:</summary>
+							<div class="btn-group">
+								<button class="btn purchase-snow-bank" value="1"><i class="fas fa-dungeon"></i> 1 Snow Bank</button>
+								<button class="btn purchase-snow-bank" value="10"><i class="fas fa-dungeon"></i> 10 Snow Banks</button>
+								<button class="btn purchase-snow-bank" value="100"><i class="fas fa-dungeon"></i> 100 Snow Banks</button>
+							</div>
+							<p><i class="fas fa-snowflake fa-2x"></i>
+								<span id="num-snow-bank-per-cost">1</span> Snow Bank costs <span id="num-snow-bank-cost">10000</span> Snowflakes.<br>
+								<span id="num-snow-bank-per-cost-10">10</span> Snow Banks cost <span id="num-snow-bank-cost-10">550000</span> Snowflakes.<br>
+								<span id="num-snow-bank-per-cost-100">100</span> Snow Banks cost <span id="num-snow-bank-cost-100">50500000</span> Snowflakes.<br>
+								Each future snow bank costs 10000 more snowflake.
+							</p>
+						</details>
+					</div>
+
 				</div>
 				<!-- PURCHASE UPGRADES -->
 <!-- 				<div class="tab-pane" id="purchase-upgrades-tab" role="tabpanel">
@@ -589,6 +642,12 @@
 					</div>
 					<div class="unlock penguin-unlock">
 						<p>Snowflakes <i class="fas fa-snowflake"></i> multiply the number of coins your fish earn you. Penguins <i class="fas fa-kiwi-bird fa-3x"></i> make 1 snowflake per min and cost an increasing amount of snowflakes.</p>
+					</div>
+					<div class="unlock penguin-hatchery-unlock">
+						<p>Penguin Hatcheries will hatch a new penguin every minute and cost an increasing amount of snowflakes.</p>
+					</div>
+					<div class="unlock snow-bank-unlock">
+						<p>Snow Banks will can automatically buy and sell penguins and penguin hatcheries, as well as converting coins to snowflakes. They cost an increasing amount of snowflakes.</p>
 					</div>
 					<p>Build your aquarium up and make as many coins as you can!</p>
 					<p>Keep playing to unlock more features <i class="far fa-smile"></i> </p>
@@ -738,6 +797,7 @@
 					<p class="unlock penguin-unlock"><span id="snowflake-gained"></span> snowflakes gained.</p>
 					<hr>
 					<p><span id="fish-sold"></span> fish sold.</p>
+					<p class="unlock unlock-snow-bank"><span id="penguin-sold"></span> penguins sold.</p>
 				</div>
 			</div>
 		</div>

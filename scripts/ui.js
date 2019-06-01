@@ -1,4 +1,7 @@
-let bank_differential = 0; //account for banks buying and selling
+
+// account for banks buying and selling
+let bank_differential = 0;
+let snow_bank_differential = 0;
 
 function updateUI() {
 	num_aquarium_space_used = 0;
@@ -47,6 +50,7 @@ function updateUI() {
 	num_hungry_big_fish = num_hungry_fish - num_hungry_small_fish - num_hungry_medium_fish;
 
 	num_coin_rate += bank_differential;
+	num_snowflake_rate += snow_bank_differential;
 	
 	// display numbers on UI
 	$('#num-coin').html(prettyPrintNum(num_coin) );
@@ -130,6 +134,8 @@ function updateUI() {
 
 	$('#num-bank').html(num_bank);
 	$('#num-bank-rate-total').html(num_bank*BANK_ACTION_UNIT);
+	$('#num-snow-bank').html(num_snow_bank);
+	$('#num-snow-bank-rate-total').html(num_snow_bank*SNOW_BANK_ACTION_UNIT);
 
 	$('#penguin-progress').html('');
 	// display at most 10 penguins, snowflake progress

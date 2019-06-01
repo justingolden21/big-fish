@@ -23,6 +23,8 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - use sharethis and realfavicongenerator.net
 
+- penguins don take up aquarium space, they take up snow space? buildings take up land space?
+
 ================================BUGS:================================
 potential bug: with snowflakes and banks displayed coin rate might be calcualted wrong
 ================================MAYBE:================================

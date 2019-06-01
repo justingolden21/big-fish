@@ -123,13 +123,15 @@ const AQUARIUM_FACTORY_RATE = 1;
 // base costs will rise, but consts stay for reference
 const BASE_PENGUIN_COST = 1;
 const BASE_PENGUIN_HATCHERY_COST = 100;
+const BASE_SNOW_BANK_COST = 10000;
 
 // misc
 const AQUARIUM_SPACE = 500;
 const FOOD_UNIT = 10;
 const BANK_ACTION_UNIT = 10;
+const SNOW_BANK_ACTION_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
-const FISH_SPEEDS = [5,10,15]; //[small, medium, big]
+const FISH_SPEEDS = [5,10,15]; // [small, medium, big]
 const PENGUIN_SPEEDS = [5,15]; // min and max speed
 const PENGUIN_FOOD = 100; // 100 big fish/s
 
@@ -145,6 +147,7 @@ let num_big_hatchery = 0;
 let num_penguin_hatchery = 0;
 let num_aquarium_factory = 0;
 let num_bank = 0;
+let num_snow_bank = 0;
 
 let small_fish = [];
 let medium_fish = [];
@@ -267,6 +270,12 @@ function tick() {
 		doBuy();
 	}
 
+	snow_bank_differential = 0;
+	if(num_snow_bank>0) {
+		doSnowSell();
+		doSnowBuy();
+	}
+
 	updateUI();
 	updateFishSounds();
 }
@@ -371,8 +380,78 @@ function doBuy() {
 	num_aquarium_factory += num_aquarium_factory_to_buy;
 
 	$('#num-current-buying-rate').html(num_food_farm_to_buy+num_small_hatchery_to_buy+num_medium_hatchery_to_buy+num_big_hatchery_to_buy+num_aquarium_factory_to_buy);
+}
 
+function doSnowSell() {
+	let num_sell_actions_remaining = num_snow_bank * SNOW_BANK_ACTION_UNIT;
 
+	// get inputs
+	let num_penguin_to_sell = check(parseInt($('#sell-penguin-input').val() ) );
+	let num_penguin_hatchery_to_sell = check(parseInt($('#sell-penguin-hatchery-input').val() ) );
+
+	// make sure they have enough items, and enough bank actions
+	num_penguin_to_sell = Math.min(penguins.length, num_penguin_to_sell);
+	num_penguin_to_sell = Math.min(num_penguin_to_sell, num_sell_actions_remaining);
+	num_sell_actions_remaining -= num_penguin_to_sell;
+
+	num_penguin_hatchery_to_sell = Math.min(num_penguin_hatchery, num_penguin_hatchery_to_sell);
+	num_penguin_hatchery_to_sell = Math.min(num_penguin_hatchery_to_sell, num_sell_actions_remaining);
+	num_sell_actions_remaining -= num_penguin_hatchery_to_sell;
+
+	// update input value displayed
+	$('#sell-penguin-input').val(num_penguin_to_sell);		
+	$('#sell-penguin-hatchery-input').val(num_penguin_hatchery_to_sell);
+
+	$('#num-current-selling-rate-snow-bank').html(num_penguin_to_sell+num_penguin_hatchery_to_sell);
+	stats['penguin_sold'] += num_penguin_to_sell;
+
+	// perform sell actions
+	penguins.splice(penguins.length-1-num_penguin_to_sell, num_penguin_to_sell);
+	num_snowflake += BASE_PENGUIN_COST*num_penguin_to_sell;
+	bank_differential += BASE_PENGUIN_COST*num_penguin_to_sell;
+
+	num_penguin_hatchery -= num_penguin_hatchery_to_sell;
+	num_snowflake += BASE_PENGUIN_HATCHERY_COST*num_penguin_hatchery_to_sell;
+	bank_differential += BASE_PENGUIN_HATCHERY_COST*num_penguin_hatchery_to_sell;
+}
+function doSnowBuy() {
+	let num_buy_actions_remaining = num_snow_bank * SNOW_BANK_ACTION_UNIT;
+
+	// get inputs
+	let num_penguin_to_buy = check(parseInt($('#buy-penguin-input').val() ) );
+	// calculate val first time
+	let amount_penguins_cost = sumNumsBetween(penguins.length+1, penguins.length+num_penguin_to_buy+1) * BASE_PENGUIN_COST;
+	// make sure they have enough money, and enough bank actions
+	if(amount_penguins_cost > num_snowflake) num_penguin_to_buy = 0; // TODO: consider calculating most penguins possible to buy? meh.
+	num_penguin_to_buy = Math.min(num_penguin_to_buy, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_penguin_to_buy;
+	// update input value displayed
+	$('#buy-penguin-input').val(num_penguin_to_buy);
+	// calculate val second time
+	amount_penguins_cost = sumNumsBetween(penguins.length+1, penguins.length+num_penguin_to_buy+1) * BASE_PENGUIN_COST;
+	// perform buy actions
+	num_snowflake -= amount_penguins_cost;
+	bank_differential -= amount_penguins_cost;
+	addPenguins(num_penguin_to_buy);
+
+	// get inputs
+	let num_penguin_hatchery_to_buy = check(parseInt($('#buy-penguin-hatchery-input').val() ) );
+	// calculate val first time
+	let amount_penguin_hatcheries_cost = sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+num_penguin_hatchery_to_buy+1) * BASE_PENGUIN_HATCHERY_COST;
+	// make sure they have enough money, and enough bank actions
+	if(amount_penguin_hatcheries_cost > num_snowflake) num_penguin_hatchery_to_buy = 0; // TODO: consider calculating most penguin hatcheries possible to buy? meh.
+	num_penguin_hatchery_to_buy = Math.min(num_penguin_hatchery_to_buy, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_penguin_hatchery_to_buy;
+	// update input value displayed
+	$('#buy-penguin-hatchery-input').val(num_penguin_hatchery_to_buy);
+	// calculate val second time
+	amount_penguin_hatcheries_cost = sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+num_penguin_hatchery_to_buy+1) * BASE_PENGUIN_HATCHERY_COST;
+	// perform buy actions
+	num_snowflake -= amount_penguin_hatcheries_cost;
+	bank_differential -= amount_penguin_hatcheries_cost;
+	num_penguin_hatchery += num_penguin_hatchery_to_buy;
+
+	$('#num-current-buying-rate').html(num_penguin_to_buy+num_penguin_hatchery_to_buy);
 }
 
 function check(num) {

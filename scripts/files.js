@@ -34,6 +34,7 @@ function processFile(e) {
 		num_penguin = parseInt(results[14]);
 		num_snowflake = parseInt(results[15]);
 		num_penguin_hatchery = parseInt(results[16]);
+		num_snow_bank = parseInt(results[17]);
 
 		console.log(results);
 	}
@@ -62,6 +63,7 @@ function downloadData() {
 	str += num_penguin + '\r\n';
 	str += num_snowflake + '\r\n';
 	str += num_penguin_hatchery + '\r\n';
+	str += num_snow_bank + '\r\n';
 
 	downloadFile(str, 'big-fish-save-data', 'download-data-link');
 }
