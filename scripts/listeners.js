@@ -56,6 +56,8 @@ $(function() {
 	$('#num-penguin-food').html(100);
 	$('#num-penguin-space').html(PENGUIN_SPACE); // 10000
 
+	$('#coin-snowflake-exchange-rate').html(COIN_SNOW_EXCHANGE_RATE); // 100000
+
 	// tick();
 
 	setupCheckboxes();

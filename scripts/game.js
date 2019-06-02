@@ -134,6 +134,7 @@ const SELL_RETURN_VALUE = 0.5;
 const FISH_SPEEDS = [5,10,15]; // [small, medium, big]
 const PENGUIN_SPEEDS = [5,15]; // min and max speed
 const PENGUIN_FOOD = 100; // 100 big fish/s
+const COIN_SNOW_EXCHANGE_RATE = 100000;
 
 // player vals
 let num_coin = 1;
@@ -408,11 +409,11 @@ function doSnowSell() {
 	// perform sell actions
 	penguins.splice(penguins.length-1-num_penguin_to_sell, num_penguin_to_sell);
 	num_snowflake += BASE_PENGUIN_COST*num_penguin_to_sell;
-	bank_differential += BASE_PENGUIN_COST*num_penguin_to_sell;
+	snow_bank_differential += BASE_PENGUIN_COST*num_penguin_to_sell;
 
 	num_penguin_hatchery -= num_penguin_hatchery_to_sell;
 	num_snowflake += BASE_PENGUIN_HATCHERY_COST*num_penguin_hatchery_to_sell;
-	bank_differential += BASE_PENGUIN_HATCHERY_COST*num_penguin_hatchery_to_sell;
+	snow_bank_differential += BASE_PENGUIN_HATCHERY_COST*num_penguin_hatchery_to_sell;
 }
 function doSnowBuy() {
 	let num_buy_actions_remaining = num_snow_bank * SNOW_BANK_ACTION_UNIT;
@@ -431,7 +432,7 @@ function doSnowBuy() {
 	amount_penguins_cost = sumNumsBetween(penguins.length+1, penguins.length+num_penguin_to_buy+1) * BASE_PENGUIN_COST;
 	// perform buy actions
 	num_snowflake -= amount_penguins_cost;
-	bank_differential -= amount_penguins_cost;
+	snow_bank_differential -= amount_penguins_cost;
 	addPenguins(num_penguin_to_buy);
 
 	// get inputs
@@ -448,10 +449,24 @@ function doSnowBuy() {
 	amount_penguin_hatcheries_cost = sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+num_penguin_hatchery_to_buy+1) * BASE_PENGUIN_HATCHERY_COST;
 	// perform buy actions
 	num_snowflake -= amount_penguin_hatcheries_cost;
-	bank_differential -= amount_penguin_hatcheries_cost;
+	snow_bank_differential -= amount_penguin_hatcheries_cost;
 	num_penguin_hatchery += num_penguin_hatchery_to_buy;
 
-	$('#num-current-buying-rate').html(num_penguin_to_buy+num_penguin_hatchery_to_buy);
+	// get inputs
+	let num_times_to_exchange = check(parseInt($('#exchange-coin-snowflake-input').val() ) );
+	// make sure they have enough money, and enough bank actions
+	if(num_times_to_exchange*COIN_SNOW_EXCHANGE_RATE > num_coin) num_times_to_exchange = 0; // TODO: consider changing?
+	num_times_to_exchange = Math.min(num_times_to_exchange, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_times_to_exchange;
+	// update input value displayed
+	$('#exchange-coin-snowflake-input').val(num_times_to_exchange);
+	// perform buy actions
+	num_coin -= num_times_to_exchange*COIN_SNOW_EXCHANGE_RATE;
+	bank_differential -= amount_penguin_hatcheries_cost*COIN_SNOW_EXCHANGE_RATE;
+	num_snowflake += num_times_to_exchange;
+	snow_bank_differential += amount_penguin_hatcheries_cost;
+
+	$('#num-current-buying-rate').html(num_penguin_to_buy+num_penguin_hatchery_to_buy+num_times_to_exchange);
 }
 
 function check(num) {
