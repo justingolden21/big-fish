@@ -235,11 +235,13 @@ hr:not(.paused) {
 
 @keyframes wave {
 	0% { background-position: 10px -2px; }
+	50% { background-position: 0px 0px; }
 	100% { background-position: -10px -2px; }
 }
 @-webkit-keyframes wave {
-	0% { background-position: 10px 0; }
-	100% { background-position: -10px 0; }
+	0% { background-position: 10px -2px; }
+	50% { background-position: 0px 0px; }
+	100% { background-position: -10px -2px; }
 }
 
 /* wave and box stuff */
