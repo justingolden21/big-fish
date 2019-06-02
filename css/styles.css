@@ -9,6 +9,10 @@ body, html {
 	background-color: #262673 !important;
 	color: #fff !important;
 }
+body {
+	margin-left: 20px;
+	margin-right: 20px;
+}
 img, .btn, br, .nav.nav-tabs, canvas {
 	-webkit-user-select: none; /* Safari */
 	-moz-user-select: none; /* Firefox */

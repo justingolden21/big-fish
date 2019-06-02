@@ -9,8 +9,6 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - "big banks" that let you buy other banks, let you sell buildings, etc
 
-- make it a pwa
-
 - checkbox to display buy max possible buttons
 
 - add checkbox icons from fontawesome and option to remove accent
@@ -23,7 +21,7 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - use sharethis and realfavicongenerator.net
 
-- penguins don take up aquarium space, they take up snow space? buildings take up land space?
+- add sound for success btn click, not just hover
 
 ================================BUGS:================================
 potential bug: with snowflakes and banks displayed coin rate might be calcualted wrong
@@ -47,6 +45,8 @@ options for sound effects: purchasing and error sounds, unlock and achievement s
 button to clear queue of notifications to display? pause to clear?
 use cookies for sound setting
 load the consts in index on pageload (the ones in my stuff section), better quality code
+penguins dont take up aquarium space, they take up snow space? buildings take up land space?
+make it a pwa
 ================================TODO LATER:================================
 collabertation with other players? online multiplayer?
 optimize fish data structres for redundancy
