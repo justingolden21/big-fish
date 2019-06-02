@@ -106,14 +106,20 @@ function updateUI() {
 	$('#num-penguin-food-rate').html( (penguins.length - num_hungry_penguin) * PENGUIN_FOOD);
 	$('#num-penguin-space-total').html(penguins.length*PENGUIN_SPACE);
 
-	$('#num-penguin-cost').html(sumNumsBetween(penguins.length+1, penguins.length+1+1) );
-	$('#num-penguin-cost-10').html(sumNumsBetween(penguins.length+1, penguins.length+10+1) );
-	$('#num-penguin-cost-100').html(sumNumsBetween(penguins.length+1, penguins.length+100+1) );
+	// note: BASE_PENGUIN_COST is 1
+	$('#num-penguin-cost').html(sumNumsBetween(penguins.length+1, penguins.length+1+1) * BASE_PENGUIN_COST);
+	$('#num-penguin-cost-10').html(sumNumsBetween(penguins.length+1, penguins.length+10+1) * BASE_PENGUIN_COST);
+	$('#num-penguin-cost-100').html(sumNumsBetween(penguins.length+1, penguins.length+100+1) * BASE_PENGUIN_COST);
 
 	// note: BASE_PENGUIN_HATCHERY_COST is 100
 	$('#num-penguin-hatchery-cost').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+1+1) * BASE_PENGUIN_HATCHERY_COST);
 	$('#num-penguin-hatchery-cost-10').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+10+1) * BASE_PENGUIN_HATCHERY_COST);
 	$('#num-penguin-hatchery-cost-100').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+100+1) * BASE_PENGUIN_HATCHERY_COST);
+
+	// note: BASE_SNOW_BANK_COST is 10000
+	$('#num-snow-bank-cost').html(sumNumsBetween(num_snow_bank+1, num_snow_bank+1+1) * BASE_SNOW_BANK_COST);
+	$('#num-snow-bank-cost-10').html(sumNumsBetween(num_snow_bank+1, num_snow_bank+10+1) * BASE_SNOW_BANK_COST);
+	$('#num-snow-bank-cost-100').html(sumNumsBetween(num_snow_bank+1, num_snow_bank+100+1) * BASE_SNOW_BANK_COST);
 
 	$('#num-aquarium').html(num_aquarium);
 	$('.num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);

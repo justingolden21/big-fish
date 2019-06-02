@@ -273,6 +273,7 @@ function tick() {
 
 	snow_bank_differential = 0;
 	if(num_snow_bank>0) {
+		// todo: only do every min (numtick %60==0)
 		doSnowSell();
 		doSnowBuy();
 	}
@@ -462,11 +463,11 @@ function doSnowBuy() {
 	$('#exchange-coin-snowflake-input').val(num_times_to_exchange);
 	// perform buy actions
 	num_coin -= num_times_to_exchange*COIN_SNOW_EXCHANGE_RATE;
-	bank_differential -= amount_penguin_hatcheries_cost*COIN_SNOW_EXCHANGE_RATE;
+	bank_differential -= num_times_to_exchange*COIN_SNOW_EXCHANGE_RATE;
 	num_snowflake += num_times_to_exchange;
-	snow_bank_differential += amount_penguin_hatcheries_cost;
+	snow_bank_differential += num_times_to_exchange;
 
-	$('#num-current-buying-rate').html(num_penguin_to_buy+num_penguin_hatchery_to_buy+num_times_to_exchange);
+	$('#num-current-buying-rate-snow-bank').html(num_penguin_to_buy+num_penguin_hatchery_to_buy+num_times_to_exchange);
 }
 
 function check(num) {

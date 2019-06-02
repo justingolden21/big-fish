@@ -25,8 +25,13 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - unlock the other tabs (achievements, etc)
 
+- banks provide buttons for sell all: sell all farms, sell all small hatcheries...
+
 ================================BUGS:================================
 potential bug: with snowflakes and banks displayed coin rate might be calcualted wrong
+coin rate caluated wrong doesnt account for fish eating before they die
+	important because when you have a bunch of hatcheries and penguins and no fish that live
+	it displays 0 but increases
 ================================MAYBE:================================
 option to change aesthetic/theme: default, simple, gradient
 add upgrades
