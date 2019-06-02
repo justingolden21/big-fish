@@ -506,6 +506,10 @@ $(function() {
 		$('#gradient-link').attr('href', $(this).is(':checked') ? 'css/gradient.css' : '');
 	});
 
+	$('#clear-notifications-btn').click(function() {
+		$('#history-log').html('');
+	});
+
 });
 
 window.onkeyup = function(e) {
