@@ -404,6 +404,42 @@ $(function() {
 		}
 	});
 
+	$('#sell-all-food-farm-btn').click(function() {	
+		num_coin += Math.round(FARM_COST*num_farm*SELL_RETURN_VALUE);
+		num_farm = 0;
+		showHighlight($('#num-farm') );
+		showHighlight($('#num-coin') );
+		updateUI();
+	});
+	$('#sell-all-small-hatchery-btn').click(function() {	
+		num_coin += Math.round(SMALL_HATCHERY_COST*num_small_hatchery*SELL_RETURN_VALUE);
+		num_small_hatchery = 0;
+		showHighlight($('#num-small-hatchery') );
+		showHighlight($('#num-coin') );
+		updateUI();
+	});
+	$('#sell-all-medium-hatchery-btn').click(function() {	
+		num_coin += Math.round(MEDIUM_HATCHERY_COST*num_medium_hatchery*SELL_RETURN_VALUE);
+		num_medium_hatchery = 0;
+		showHighlight($('#num-medium-hatchery') );
+		showHighlight($('#num-coin') );
+		updateUI();
+	});
+	$('#sell-all-big-hatchery-btn').click(function() {	
+		num_coin += Math.round(BIG_HATCHERY_COST*num_big_hatchery*SELL_RETURN_VALUE);
+		num_big_hatchery = 0;
+		showHighlight($('#num-big-hatchery') );
+		showHighlight($('#num-coin') );
+		updateUI();
+	});
+	$('#sell-all-aquarium-factory-btn').click(function() {	
+		num_coin += Math.round(AQUARIUM_FACTORY_COST*num_aquarium_factory*SELL_RETURN_VALUE);
+		num_aquarium_factory = 0;
+		showHighlight($('#num-aquarium-factory') );
+		showHighlight($('#num-coin') );
+		updateUI();
+	});
+
 	// pause
 	$('#pause-btn').click(togglePause);
 
