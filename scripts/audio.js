@@ -134,15 +134,13 @@ function changeBackgroundMusic(name) {
 	let wasPlaying = current_background_sound.playing();
 	current_background_sound.pause();
 
-	if(name=='default') {
+	if(name=='default')
 		current_background_sound = background_sound_default;
-	} else if(name=='snow') {
+	else if(name=='snow')
 		current_background_sound = background_sound_snow;
-	}
 
-	if(wasPlaying) {
+	if(wasPlaying)
 		current_background_sound.play();
-	}
 }
 
 // called by game.js

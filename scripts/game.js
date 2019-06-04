@@ -5,13 +5,10 @@ const MEDIUM = 1;
 const BIG = 2;
 
 class Fish { // fish should go to class so they stay in school :)
-	constructor(type, coin, space, food) {
+	constructor(type) {
 		this.type = type;
-		this.coin = coin;
-		this.space = space;
-		this.food = food;
 		this.hungry = false;
-		this.ticks = 0;
+		// this.ticks = 0;
 	
 		// position
 		if(imagesAreLoaded() ) {
@@ -24,7 +21,7 @@ class Fish { // fish should go to class so they stay in school :)
 		this.facing_left = Math.random() >= 0.5;
 	}
 	eat() { // attempts to eat
-		if(this.food == FOOD) {
+		if(this.type == SMALL) {
 			if(num_food < 1) {
 				this.hungry = true;
 			} else {
@@ -32,7 +29,7 @@ class Fish { // fish should go to class so they stay in school :)
 				stats['food_eaten']++;
 				this.hungry = false;
 			}
-		} else if(this.food == SMALL) {
+		} else if(this.type == MEDIUM) {
 			if(small_fish.length < 1) {
 				this.hungry = true;
 			} else {
@@ -40,7 +37,7 @@ class Fish { // fish should go to class so they stay in school :)
 				stats['fish_eaten']++;
 				this.hungry = false;
 			}
-		} else if(this.food == MEDIUM) {
+		} else if(this.type == BIG) {
 			if(medium_fish.length < 1) {
 				this.hungry = true;
 			} else {
@@ -52,14 +49,14 @@ class Fish { // fish should go to class so they stay in school :)
 	}
 	produce() { // attempt to produce coin
 		if(!this.hungry) {
-			num_coin += this.coin * num_snowflake;
+			num_coin += FISH_COIN[this.type] * num_snowflake;
 
 			if(this.type==SMALL) {
-				stats['money_from_small_fish'] += this.coin;
+				stats['money_from_small_fish'] += FISH_COIN[this.type];
 			} else if(this.type==MEDIUM) {
-				stats['money_from_medium_fish'] += this.coin;				
+				stats['money_from_medium_fish'] += FISH_COIN[this.type];				
 			} else if(this.type==BIG) {
-				stats['money_from_big_fish'] += this.coin;
+				stats['money_from_big_fish'] += FISH_COIN[this.type];
 			}
 		}
 	}
@@ -75,10 +72,10 @@ class Fish { // fish should go to class so they stay in school :)
 		}
 	}
 	draw() { // draws fish on canvas
-		drawFish(this.type, this.x, this.y, this.hungry, this.facing_left);
+		drawFish(this.type, this.x, this.y, this.facing_left);
 	}
 	update() {
-		this.ticks++;
+		// this.ticks++;
 		this.eat();
 		this.produce();
 
@@ -87,15 +84,17 @@ class Fish { // fish should go to class so they stay in school :)
 }
 
 // coin output
-const SMALL_FISH_COIN = 1;
-const MEDIUM_FISH_COIN = 30;
-const BIG_FISH_COIN = 900;
+let FISH_COIN = [];
+FISH_COIN[SMALL] = 1;
+FISH_COIN[MEDIUM] = 30;
+FISH_COIN[BIG] = 900;
 const PENGUIN_SNOWFLAKE = 1;
 
 // space in aquarium
-const SMALL_FISH_SPACE = 1;
-const MEDIUM_FISH_SPACE = 2;
-const BIG_FISH_SPACE = 3;
+let FISH_SPACE = [];
+FISH_SPACE[SMALL] = 1;
+FISH_SPACE[MEDIUM] = 2;
+FISH_SPACE[BIG] = 3;
 const PENGUIN_SPACE = 10000;
 
 // cost to purchase
@@ -172,7 +171,7 @@ let num_hungry_big_fish;
 
 class Penguin {
 	constructor() {
-		this.ticks = 0;
+		// this.ticks = 0;
 		this.hungry = false;
 		this.stomach = 0;
 
@@ -219,7 +218,7 @@ class Penguin {
 		drawPenguin(this.x, this.facing_left);
 	}
 	update() {
-		this.ticks++;
+		// this.ticks++;
 		this.eat();
 		this.produce();
 		this.move();
@@ -236,9 +235,9 @@ function tick() {
 	// producers produce
 	num_food += num_farm * FARM_FOOD_RATE;
 	num_aquarium += num_aquarium_factory * AQUARIUM_FACTORY_RATE;
-	hatchFish(SMALL, num_small_hatchery, SMALL_FISH_SPACE);
-	hatchFish(MEDIUM, num_medium_hatchery, MEDIUM_FISH_SPACE);
-	hatchFish(BIG, num_big_hatchery, BIG_FISH_SPACE);
+	hatchFish(SMALL, num_small_hatchery);
+	hatchFish(MEDIUM, num_medium_hatchery);
+	hatchFish(BIG, num_big_hatchery);
 
 	// every min (60 ticks)
 	if(stats['total_ticks'] % 60 == 0)
@@ -493,25 +492,25 @@ function togglePause(snackbar=true) {
 
 // utility functions
 // hatch amount of fish if room, else hatch as much as there is room for
-function hatchFish(type, amount, spacePerFish) {
-	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (spacePerFish * amount) ) {
+function hatchFish(type, amount) {
+	let space_per_fish = FISH_SPACE[type];
+	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (space_per_fish * amount) )
 		addFish(type, amount);
-	} else {
-		addFish(type, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / spacePerFish);
-	}
+	else
+		addFish(type, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / space_per_fish);
 }
 function addFish(type, amount) {
 	if(type==SMALL) {
 		for(let i=0; i<amount; i++) {
-			small_fish.push(new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
+			small_fish.push(new Fish(SMALL) );
 		}
 	} else if(type==MEDIUM) {
 		for(let i=0; i<amount; i++) {
-			medium_fish.push(new Fish(MEDIUM, MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
+			medium_fish.push(new Fish(MEDIUM) );
 		}
 	} else if(type==BIG) {
 		for(let i=0; i<amount; i++) {
-			big_fish.push(new Fish(BIG, BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
+			big_fish.push(new Fish(BIG) );
 		}
 	}
 }

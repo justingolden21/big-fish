@@ -41,15 +41,15 @@ $(function() {
 
 	// display game vals
 	//todo: add more const values from aquarium, sell value, etc
-	$('#num-small-fish-coin').html(SMALL_FISH_COIN);
+	$('#num-small-fish-coin').html(FISH_COIN[SMALL]);
 	$('#num-small-fish-food').html(1);
-	$('#num-small-fish-space').html(SMALL_FISH_SPACE);
-	$('#num-medium-fish-coin').html(MEDIUM_FISH_COIN);
+	$('#num-small-fish-space').html(FISH_SPACE[SMALL]);
+	$('#num-medium-fish-coin').html(FISH_COIN[MEDIUM]);
 	$('#num-medium-fish-food').html(1);
-	$('#num-medium-fish-space').html(MEDIUM_FISH_SPACE);
-	$('#num-big-fish-coin').html(BIG_FISH_COIN);
+	$('#num-medium-fish-space').html(FISH_SPACE[MEDIUM]);
+	$('#num-big-fish-coin').html(FISH_COIN[BIG]);
 	$('#num-big-fish-food').html(1);
-	$('#num-big-fish-space').html(BIG_FISH_SPACE);
+	$('#num-big-fish-space').html(FISH_SPACE[BIG]);
 	$('#sell-return-value').html(SELL_RETURN_VALUE);
 
 	$('#num-penguin-snowflake').html(PENGUIN_SNOWFLAKE); // 1
@@ -81,7 +81,7 @@ $(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < SMALL_FISH_COST*amount) {
 			showSnackbar('Not enough coins', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (SMALL_FISH_SPACE * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[SMALL] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['small_fish_purchased'] += amount;
@@ -95,7 +95,7 @@ $(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < MEDIUM_FISH_COST*amount) {
 			showSnackbar('Not enough coins', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (MEDIUM_FISH_SPACE * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[MEDIUM] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['medium_fish_purchased'] += amount;
@@ -109,7 +109,7 @@ $(function() {
 		let amount = parseInt($(this).val() );
 		if(num_coin < BIG_FISH_COST*amount) {
 			showSnackbar('Not enough coins', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (BIG_FISH_SPACE * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[MEDIUM] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['big_fish_purchased'] += amount;

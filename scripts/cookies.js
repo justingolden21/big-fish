@@ -44,9 +44,9 @@ function loadCookies() {
 
 	stats = Cookies.getJSON('stats') || stats;
 	achievements = Cookies.getJSON('achievements') || achievements;
-	for(achievementName in achievements) {
-		if(achievements[achievementName][1] != -1) { // if unlocked
-			checkAchievement(achievementName, true);			
+	for(achievement_name in achievements) {
+		if(achievements[achievement_name][1] != -1) { // if unlocked
+			checkAchievement(achievement_name, true);			
 		}
 	}
 
@@ -55,9 +55,9 @@ function loadCookies() {
 }
 
 function setCookies() {
-	if(!savingCookies) {
+	if(!savingCookies)
 		return;
-	}
+
 	console.log('setting cookies');
 
 	Cookies.set('num_coin', num_coin);
