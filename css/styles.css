@@ -217,6 +217,11 @@ summary:focus {
 }
 .alert .close {
 	opacity: 1;
+	text-shadow: none;
+	padding: 10px;
+}
+#cookie-alert {
+	font-size: 80%;
 }
 
 /* waves */
