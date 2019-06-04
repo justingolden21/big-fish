@@ -3,6 +3,8 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 ================================TODO:================================
 - remember/store settings in cookies, txt file
 
+- more efficient way of storing fish/penguins that arent displayed (dont need x, y coords for all 1000000 fish, only the top 20, and you sell the bottom ones first. check how many fish before assigning coords? before moving?)
+
 - "big banks" that let you buy other banks, let you sell buildings, etc
 
 - checkbox to display buy max possible buttons

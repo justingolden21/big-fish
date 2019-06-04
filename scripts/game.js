@@ -502,30 +502,26 @@ function hatchFish(type, amount) {
 		addFish(type, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / space_per_fish);
 }
 function addFish(type, amount) {
+	// check type outside of loop for computational efficiency
+
 	if(type==SMALL) {
-		for(let i=0; i<amount; i++) {
+		for(let i=0; i<amount; i++)
 			small_fish.push(new Fish(SMALL) );
-		}
 	} else if(type==MEDIUM) {
-		for(let i=0; i<amount; i++) {
+		for(let i=0; i<amount; i++)
 			medium_fish.push(new Fish(MEDIUM) );
-		}
 	} else if(type==BIG) {
-		for(let i=0; i<amount; i++) {
+		for(let i=0; i<amount; i++)
 			big_fish.push(new Fish(BIG) );
-		}
 	}
 }
 function addPenguins(amount) {
 	// if not enough room, only add as many as room for
-	if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (PENGUIN_SPACE * amount) ) {
+	if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (PENGUIN_SPACE * amount) )
 		amount = ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / PENGUIN_SPACE;
-	}
 
-	for(let i=0; i<amount; i++) {
+	for(let i=0; i<amount; i++)
 		penguins.push(new Penguin() );
-	}
-
 }
 
 // min is inclusive, max is exclusive, returns an int, used for starting positions
