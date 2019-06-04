@@ -163,6 +163,7 @@ function checkAchievement(achievementName, loadedFromCookies) {
 			}
 		}
 		$('#num-achieve').html(num_achieved + ' / ' + num_achievements);
+		unlock($('.achievement-unlock') );
 	}
 }
 
