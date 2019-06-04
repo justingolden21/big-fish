@@ -49,15 +49,15 @@ class Fish { // fish should go to class so they stay in school :)
 	}
 	produce() { // attempt to produce coin
 		if(!this.hungry) {
-			num_coin += FISH_COIN[this.type] * num_snowflake;
+			let added_coin = FISH_COIN[this.type] * num_snowflake;
+			 num_coin += added_coin;
 
-			if(this.type==SMALL) {
-				stats['money_from_small_fish'] += FISH_COIN[this.type];
-			} else if(this.type==MEDIUM) {
-				stats['money_from_medium_fish'] += FISH_COIN[this.type];				
-			} else if(this.type==BIG) {
-				stats['money_from_big_fish'] += FISH_COIN[this.type];
-			}
+			if(this.type==SMALL)
+				stats['money_from_small_fish'] += added_coin;
+			else if(this.type==MEDIUM)
+				stats['money_from_medium_fish'] += added_coin;				
+			else if(this.type==BIG)
+				stats['money_from_big_fish'] += added_coin;
 		}
 	}
 	move() { // move according to speed, random direction
@@ -195,7 +195,7 @@ class Penguin {
 	produce() { // attempt to produce snowflake
 		// 60s per min
 		// every min of being full (not in a row) produce a snowflake
-		if(this.stomach>60) {
+		if(this.stomach >= 60) {
 			num_snowflake += PENGUIN_SNOWFLAKE; // 1
 			stats['snowflake_gained'] += PENGUIN_SNOWFLAKE;
 			this.stomach -= 60;
