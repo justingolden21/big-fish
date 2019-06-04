@@ -1,19 +1,11 @@
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 ================================TODO:================================
-- display number of small, medium, and big fish on top option/checkbox
-
 - remember/store settings in cookies, txt file
 
 - "big banks" that let you buy other banks, let you sell buildings, etc
 
 - checkbox to display buy max possible buttons
-
-- add checkbox icons from fontawesome and option to remove accent
-
-- settings modal has button to close/open all summary elements?
-	$('details').prop('open','true')
-	$('details').prop('open','')
 
 - sync data with google account/loggin api
 
