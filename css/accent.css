@@ -22,5 +22,6 @@ hr {
 		/*border-bottom: 2px solid #099 !important;*/
 }
 .nav-item {
-	margin-left: 4px;
+	margin-left: 6px;
+	/*border-right: 3px solid #099 !important;*/
 }

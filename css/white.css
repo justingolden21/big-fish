@@ -5,3 +5,6 @@ hr {
 #main-box, #right-col, .nav-link, .nav-tabs {
 	border-color: #fff !important;
 }
+hr {
+	border-bottom: 4px solid #099 !important;
+}

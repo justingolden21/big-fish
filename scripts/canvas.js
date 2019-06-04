@@ -36,7 +36,7 @@ function drawFish(type, x, y, facing_left) {
 }
 
 function drawPenguin(x, facing_left) {
-	let y = Math.floor(canvas.height-(penguin_img_right.height/2) );
+	let y = Math.floor(penguin_canvas.height-(penguin_img_right.height/2) );
 
 	x -= Math.floor(penguin_img_right.width/2);
 	y -= Math.floor(penguin_img_right.height/2);
