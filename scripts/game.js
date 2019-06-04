@@ -271,9 +271,11 @@ function tick() {
 
 	snow_bank_differential = 0;
 	if(num_snow_bank>0) {
-		// todo: only do every min (numtick %60==0)
-		doSnowSell();
-		doSnowBuy();
+		if(stats['total_ticks']%60==0) {
+			doSnowSell();
+			doSnowBuy();
+		}
+
 	}
 
 	updateUI();
