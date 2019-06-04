@@ -5,13 +5,10 @@ const MEDIUM = 1;
 const BIG = 2;
 
 class Fish { // fish should go to class so they stay in school :)
-	constructor(type, coin, space, food) {
+	constructor(type) {
 		this.type = type;
-		this.coin = coin;
-		this.space = space;
-		this.food = food;
 		this.hungry = false;
-		this.ticks = 0;
+		// this.ticks = 0;
 	
 		// position
 		if(imagesAreLoaded() ) {
@@ -24,7 +21,7 @@ class Fish { // fish should go to class so they stay in school :)
 		this.facing_left = Math.random() >= 0.5;
 	}
 	eat() { // attempts to eat
-		if(this.food == FOOD) {
+		if(this.type == SMALL) {
 			if(num_food < 1) {
 				this.hungry = true;
 			} else {
@@ -32,7 +29,7 @@ class Fish { // fish should go to class so they stay in school :)
 				stats['food_eaten']++;
 				this.hungry = false;
 			}
-		} else if(this.food == SMALL) {
+		} else if(this.type == MEDIUM) {
 			if(small_fish.length < 1) {
 				this.hungry = true;
 			} else {
@@ -40,7 +37,7 @@ class Fish { // fish should go to class so they stay in school :)
 				stats['fish_eaten']++;
 				this.hungry = false;
 			}
-		} else if(this.food == MEDIUM) {
+		} else if(this.type == BIG) {
 			if(medium_fish.length < 1) {
 				this.hungry = true;
 			} else {
@@ -52,14 +49,14 @@ class Fish { // fish should go to class so they stay in school :)
 	}
 	produce() { // attempt to produce coin
 		if(!this.hungry) {
-			num_coin += this.coin * num_snowflake;
+			num_coin += FISH_COIN[this.type] * num_snowflake;
 
 			if(this.type==SMALL) {
-				stats['money_from_small_fish'] += this.coin;
+				stats['money_from_small_fish'] += FISH_COIN[this.type];
 			} else if(this.type==MEDIUM) {
-				stats['money_from_medium_fish'] += this.coin;				
+				stats['money_from_medium_fish'] += FISH_COIN[this.type];				
 			} else if(this.type==BIG) {
-				stats['money_from_big_fish'] += this.coin;
+				stats['money_from_big_fish'] += FISH_COIN[this.type];
 			}
 		}
 	}
@@ -75,10 +72,10 @@ class Fish { // fish should go to class so they stay in school :)
 		}
 	}
 	draw() { // draws fish on canvas
-		drawFish(this.type, this.x, this.y, this.hungry, this.facing_left);
+		drawFish(this.type, this.x, this.y, this.facing_left);
 	}
 	update() {
-		this.ticks++;
+		// this.ticks++;
 		this.eat();
 		this.produce();
 
@@ -87,15 +84,17 @@ class Fish { // fish should go to class so they stay in school :)
 }
 
 // coin output
-const SMALL_FISH_COIN = 1;
-const MEDIUM_FISH_COIN = 30;
-const BIG_FISH_COIN = 900;
+let FISH_COIN = [];
+FISH_COIN[SMALL] = 1;
+FISH_COIN[MEDIUM] = 30;
+FISH_COIN[BIG] = 900;
 const PENGUIN_SNOWFLAKE = 1;
 
 // space in aquarium
-const SMALL_FISH_SPACE = 1;
-const MEDIUM_FISH_SPACE = 2;
-const BIG_FISH_SPACE = 3;
+let FISH_SPACE = [];
+FISH_SPACE[SMALL] = 1;
+FISH_SPACE[MEDIUM] = 2;
+FISH_SPACE[BIG] = 3;
 const PENGUIN_SPACE = 10000;
 
 // cost to purchase
@@ -123,15 +122,18 @@ const AQUARIUM_FACTORY_RATE = 1;
 // base costs will rise, but consts stay for reference
 const BASE_PENGUIN_COST = 1;
 const BASE_PENGUIN_HATCHERY_COST = 100;
+const BASE_SNOW_BANK_COST = 10000;
 
 // misc
 const AQUARIUM_SPACE = 500;
 const FOOD_UNIT = 10;
 const BANK_ACTION_UNIT = 10;
+const SNOW_BANK_ACTION_UNIT = 10;
 const SELL_RETURN_VALUE = 0.5;
-const FISH_SPEEDS = [5,10,15]; //[small, medium, big]
+const FISH_SPEEDS = [5,10,15]; // [small, medium, big]
 const PENGUIN_SPEEDS = [5,15]; // min and max speed
 const PENGUIN_FOOD = 100; // 100 big fish/s
+const COIN_SNOW_EXCHANGE_RATE = 100000;
 
 // player vals
 let num_coin = 1;
@@ -145,6 +147,7 @@ let num_big_hatchery = 0;
 let num_penguin_hatchery = 0;
 let num_aquarium_factory = 0;
 let num_bank = 0;
+let num_snow_bank = 0;
 
 let small_fish = [];
 let medium_fish = [];
@@ -154,7 +157,7 @@ let penguins = [];
 // game vals
 let paused = false;
 let draw_aquarium = true;
-let canvas, ctx, penguinCanvas, penguinCtx;
+let canvas, ctx, penguin_canvas, penguin_ctx;
 
 // global vars from updateUI()
 // so instead of recalcuating them we can use old ones from last tick()
@@ -168,16 +171,15 @@ let num_hungry_big_fish;
 
 class Penguin {
 	constructor() {
-		this.ticks = 0;
+		// this.ticks = 0;
 		this.hungry = false;
 		this.stomach = 0;
 
 		// position
-		if(penguinImagesAreLoaded() ) {
+		if(penguinImagesAreLoaded() )
 			this.x = random(Math.ceil(penguin_img_right.width/2), Math.floor(canvas.width-(penguin_img_right.width/2) ) );
-		} else {
+		else
 			this.x = 10;
-		}
 
 		this.facing_left = Math.random() >= 0.5;
 	}
@@ -216,7 +218,7 @@ class Penguin {
 		drawPenguin(this.x, this.facing_left);
 	}
 	update() {
-		this.ticks++;
+		// this.ticks++;
 		this.eat();
 		this.produce();
 		this.move();
@@ -233,9 +235,9 @@ function tick() {
 	// producers produce
 	num_food += num_farm * FARM_FOOD_RATE;
 	num_aquarium += num_aquarium_factory * AQUARIUM_FACTORY_RATE;
-	hatchFish(SMALL, num_small_hatchery, SMALL_FISH_SPACE);
-	hatchFish(MEDIUM, num_medium_hatchery, MEDIUM_FISH_SPACE);
-	hatchFish(BIG, num_big_hatchery, BIG_FISH_SPACE);
+	hatchFish(SMALL, num_small_hatchery);
+	hatchFish(MEDIUM, num_medium_hatchery);
+	hatchFish(BIG, num_big_hatchery);
 
 	// every min (60 ticks)
 	if(stats['total_ticks'] % 60 == 0)
@@ -253,7 +255,7 @@ function tick() {
 		}
 	}
 	// penguin update
-	penguinCtx.clearRect(0, 0, canvas.width, canvas.height);
+	penguin_ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for(let i=0; i<penguins.length; i++) {
 		penguins[i].update();
 		if( i < 10 && draw_aquarium) { // only draw first 10 penguins
@@ -265,6 +267,13 @@ function tick() {
 	if(num_bank>0) { //check isn't necessary but saves cpu
 		doSell();
 		doBuy();
+	}
+
+	snow_bank_differential = 0;
+	if(num_snow_bank>0) {
+		// todo: only do every min (numtick %60==0)
+		doSnowSell();
+		doSnowBuy();
 	}
 
 	updateUI();
@@ -371,8 +380,92 @@ function doBuy() {
 	num_aquarium_factory += num_aquarium_factory_to_buy;
 
 	$('#num-current-buying-rate').html(num_food_farm_to_buy+num_small_hatchery_to_buy+num_medium_hatchery_to_buy+num_big_hatchery_to_buy+num_aquarium_factory_to_buy);
+}
 
+function doSnowSell() {
+	let num_sell_actions_remaining = num_snow_bank * SNOW_BANK_ACTION_UNIT;
 
+	// get inputs
+	let num_penguin_to_sell = check(parseInt($('#sell-penguin-input').val() ) );
+	let num_penguin_hatchery_to_sell = check(parseInt($('#sell-penguin-hatchery-input').val() ) );
+
+	// make sure they have enough items, and enough bank actions
+	num_penguin_to_sell = Math.min(penguins.length, num_penguin_to_sell);
+	num_penguin_to_sell = Math.min(num_penguin_to_sell, num_sell_actions_remaining);
+	num_sell_actions_remaining -= num_penguin_to_sell;
+
+	num_penguin_hatchery_to_sell = Math.min(num_penguin_hatchery, num_penguin_hatchery_to_sell);
+	num_penguin_hatchery_to_sell = Math.min(num_penguin_hatchery_to_sell, num_sell_actions_remaining);
+	num_sell_actions_remaining -= num_penguin_hatchery_to_sell;
+
+	// update input value displayed
+	$('#sell-penguin-input').val(num_penguin_to_sell);		
+	$('#sell-penguin-hatchery-input').val(num_penguin_hatchery_to_sell);
+
+	$('#num-current-selling-rate-snow-bank').html(num_penguin_to_sell+num_penguin_hatchery_to_sell);
+	stats['penguin_sold'] += num_penguin_to_sell;
+
+	// perform sell actions
+	penguins.splice(penguins.length-1-num_penguin_to_sell, num_penguin_to_sell);
+	num_snowflake += BASE_PENGUIN_COST*num_penguin_to_sell;
+	snow_bank_differential += BASE_PENGUIN_COST*num_penguin_to_sell;
+
+	num_penguin_hatchery -= num_penguin_hatchery_to_sell;
+	num_snowflake += BASE_PENGUIN_HATCHERY_COST*num_penguin_hatchery_to_sell;
+	snow_bank_differential += BASE_PENGUIN_HATCHERY_COST*num_penguin_hatchery_to_sell;
+}
+function doSnowBuy() {
+	let num_buy_actions_remaining = num_snow_bank * SNOW_BANK_ACTION_UNIT;
+
+	// get inputs
+	let num_penguin_to_buy = check(parseInt($('#buy-penguin-input').val() ) );
+	// calculate val first time
+	let amount_penguins_cost = sumNumsBetween(penguins.length+1, penguins.length+num_penguin_to_buy+1) * BASE_PENGUIN_COST;
+	// make sure they have enough money, and enough bank actions
+	if(amount_penguins_cost > num_snowflake) num_penguin_to_buy = 0; // TODO: consider calculating most penguins possible to buy? meh.
+	num_penguin_to_buy = Math.min(num_penguin_to_buy, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_penguin_to_buy;
+	// update input value displayed
+	$('#buy-penguin-input').val(num_penguin_to_buy);
+	// calculate val second time
+	amount_penguins_cost = sumNumsBetween(penguins.length+1, penguins.length+num_penguin_to_buy+1) * BASE_PENGUIN_COST;
+	// perform buy actions
+	num_snowflake -= amount_penguins_cost;
+	snow_bank_differential -= amount_penguins_cost;
+	addPenguins(num_penguin_to_buy);
+
+	// get inputs
+	let num_penguin_hatchery_to_buy = check(parseInt($('#buy-penguin-hatchery-input').val() ) );
+	// calculate val first time
+	let amount_penguin_hatcheries_cost = sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+num_penguin_hatchery_to_buy+1) * BASE_PENGUIN_HATCHERY_COST;
+	// make sure they have enough money, and enough bank actions
+	if(amount_penguin_hatcheries_cost > num_snowflake) num_penguin_hatchery_to_buy = 0; // TODO: consider calculating most penguin hatcheries possible to buy? meh.
+	num_penguin_hatchery_to_buy = Math.min(num_penguin_hatchery_to_buy, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_penguin_hatchery_to_buy;
+	// update input value displayed
+	$('#buy-penguin-hatchery-input').val(num_penguin_hatchery_to_buy);
+	// calculate val second time
+	amount_penguin_hatcheries_cost = sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+num_penguin_hatchery_to_buy+1) * BASE_PENGUIN_HATCHERY_COST;
+	// perform buy actions
+	num_snowflake -= amount_penguin_hatcheries_cost;
+	snow_bank_differential -= amount_penguin_hatcheries_cost;
+	num_penguin_hatchery += num_penguin_hatchery_to_buy;
+
+	// get inputs
+	let num_times_to_exchange = check(parseInt($('#exchange-coin-snowflake-input').val() ) );
+	// make sure they have enough money, and enough bank actions
+	if(num_times_to_exchange*COIN_SNOW_EXCHANGE_RATE > num_coin) num_times_to_exchange = 0; // TODO: consider changing?
+	num_times_to_exchange = Math.min(num_times_to_exchange, num_buy_actions_remaining);
+	num_buy_actions_remaining -= num_times_to_exchange;
+	// update input value displayed
+	$('#exchange-coin-snowflake-input').val(num_times_to_exchange);
+	// perform buy actions
+	num_coin -= num_times_to_exchange*COIN_SNOW_EXCHANGE_RATE;
+	bank_differential -= num_times_to_exchange*COIN_SNOW_EXCHANGE_RATE;
+	num_snowflake += num_times_to_exchange;
+	snow_bank_differential += num_times_to_exchange;
+
+	$('#num-current-buying-rate-snow-bank').html(num_penguin_to_buy+num_penguin_hatchery_to_buy+num_times_to_exchange);
 }
 
 function check(num) {
@@ -399,25 +492,25 @@ function togglePause(snackbar=true) {
 
 // utility functions
 // hatch amount of fish if room, else hatch as much as there is room for
-function hatchFish(type, amount, spacePerFish) {
-	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (spacePerFish * amount) ) {
+function hatchFish(type, amount) {
+	let space_per_fish = FISH_SPACE[type];
+	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (space_per_fish * amount) )
 		addFish(type, amount);
-	} else {
-		addFish(type, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / spacePerFish);
-	}
+	else
+		addFish(type, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / space_per_fish);
 }
 function addFish(type, amount) {
 	if(type==SMALL) {
 		for(let i=0; i<amount; i++) {
-			small_fish.push(new Fish(SMALL, SMALL_FISH_COIN, SMALL_FISH_SPACE, FOOD) );
+			small_fish.push(new Fish(SMALL) );
 		}
 	} else if(type==MEDIUM) {
 		for(let i=0; i<amount; i++) {
-			medium_fish.push(new Fish(MEDIUM, MEDIUM_FISH_COIN, MEDIUM_FISH_SPACE, SMALL) );
+			medium_fish.push(new Fish(MEDIUM) );
 		}
 	} else if(type==BIG) {
 		for(let i=0; i<amount; i++) {
-			big_fish.push(new Fish(BIG, BIG_FISH_COIN, BIG_FISH_SPACE, MEDIUM) );
+			big_fish.push(new Fish(BIG) );
 		}
 	}
 }
@@ -432,7 +525,8 @@ function addPenguins(amount) {
 	}
 
 }
-// min is inclusive, max is exclusive, returns an int
+
+// min is inclusive, max is exclusive, returns an int, used for starting positions
 function random(min, max) {
 	return Math.floor(Math.random() * (max - min) ) + min; 
 }

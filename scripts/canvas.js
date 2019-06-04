@@ -3,10 +3,10 @@ let img_arr = [];
 
 let img_names = 'small-fish medium-fish big-fish small-fish-left medium-fish-left big-fish-left'.split(' ');
 for(let i=0; i<img_names.length; i++) {
-	let tmpImg = new Image();
-	tmpImg.src = 'img/' + img_names[i] + '.png';
-	tmpImg.onload = ()=>num_imgs_loaded++;
-	img_arr.push(tmpImg);
+	let tmp_img = new Image();
+	tmp_img.src = 'img/' + img_names[i] + '.png';
+	tmp_img.onload = ()=>num_imgs_loaded++;
+	img_arr.push(tmp_img);
 }
 
 let num_penguin_imgs_loaded = 0;
@@ -20,22 +20,19 @@ penguin_img_right.onload = ()=>num_penguin_imgs_loaded++;
 function imagesAreLoaded() {
 	return num_imgs_loaded==img_arr.length;
 }
-
 function penguinImagesAreLoaded() {
 	return num_penguin_imgs_loaded==2;	
 }
 
-// todo: phase out hungry param
-function drawFish(type, x, y, hungry, facing_left) {
+function drawFish(type, x, y, facing_left) {
 	//params x and y are img center, converted to img top left for canvas
 	x -= Math.floor(img_arr[type].width/2);
 	y -= Math.floor(img_arr[type].height/2);
 
-	if(!facing_left) {
+	if(!facing_left)
 		ctx.drawImage(img_arr[type], x, y);
-	} else {
+	else
 		ctx.drawImage(img_arr[type+3], x, y);
-	}
 }
 
 function drawPenguin(x, facing_left) {
@@ -44,9 +41,8 @@ function drawPenguin(x, facing_left) {
 	x -= Math.floor(penguin_img_right.width/2);
 	y -= Math.floor(penguin_img_right.height/2);
 
-	if(!facing_left) {
-		penguinCtx.drawImage(penguin_img_right, x, y);
-	} else {
-		penguinCtx.drawImage(penguin_img_left, x, y);
-	}	
+	if(!facing_left)
+		penguin_ctx.drawImage(penguin_img_right, x, y);
+	else
+		penguin_ctx.drawImage(penguin_img_left, x, y);
 }

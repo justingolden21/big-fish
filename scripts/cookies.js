@@ -26,6 +26,7 @@ function loadCookies() {
 	num_penguin_hatchery = parseInt(Cookies.get('num_penguin_hatchery') || num_penguin_hatchery);
 	num_aquarium_factory = parseInt(Cookies.get('num_aquarium_factory') || num_aquarium_factory);
 	num_bank = parseInt(Cookies.get('num_bank') || num_bank);
+	num_snow_bank = parseInt(Cookies.get('num_snow_bank') || num_snow_bank);
 	num_snowflake = parseInt(Cookies.get('num_snowflake') || num_snowflake);
 
 	let num_small_fish = parseInt(Cookies.get('num_small_fish') || small_fish.length);
@@ -43,9 +44,9 @@ function loadCookies() {
 
 	stats = Cookies.getJSON('stats') || stats;
 	achievements = Cookies.getJSON('achievements') || achievements;
-	for(achievementName in achievements) {
-		if(achievements[achievementName][1] != -1) { // if unlocked
-			checkAchievement(achievementName, true);			
+	for(achievement_name in achievements) {
+		if(achievements[achievement_name][1] != -1) { // if unlocked
+			checkAchievement(achievement_name, true);			
 		}
 	}
 
@@ -54,9 +55,9 @@ function loadCookies() {
 }
 
 function setCookies() {
-	if(!savingCookies) {
+	if(!savingCookies)
 		return;
-	}
+
 	console.log('setting cookies');
 
 	Cookies.set('num_coin', num_coin);
@@ -70,6 +71,7 @@ function setCookies() {
 	Cookies.set('num_penguin_hatchery', num_penguin_hatchery);
 	Cookies.set('num_aquarium_factory', num_aquarium_factory);
 	Cookies.set('num_bank', num_bank);
+	Cookies.set('num_snow_bank', num_snow_bank);
 	Cookies.set('num_snowflake', num_snowflake);
 
 	Cookies.set('num_small_fish', small_fish.length);
@@ -95,6 +97,7 @@ function clearCookies() {
 	Cookies.remove('num_penguin_hatchery');
 	Cookies.remove('num_aquarium_factory');
 	Cookies.remove('num_bank');
+	Cookies.remove('num_snow_bank');
 	Cookies.remove('num_snowflake');
 
 	Cookies.remove('num_small_fish');

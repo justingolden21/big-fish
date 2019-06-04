@@ -1,0 +1,7 @@
+hr {
+	background-image: radial-gradient(circle at 10px -5px, transparent 12px, #fff 13px);
+}
+/* note: not including .alert currently */
+#main-box, #right-col, .nav-link, .nav-tabs {
+	border-color: #fff !important;
+}

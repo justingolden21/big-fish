@@ -24,9 +24,10 @@
 "></script>
 
 <link rel="stylesheet" href="css/styles.css">
-<link id="accent-link" rel="stylesheet" href="css/accent.css">
+<link rel="stylesheet" href="css/accent.css">
 <link id="gradient-link" rel="stylesheet" href="">
-<link rel="stylesheet" href="css/icon-shadow.css">
+<!-- <link rel="stylesheet" href="css/icon-shadow.css"> -->
+<link rel="stylesheet" href="css/white.css">
 
 <script src="scripts/canvas.js"></script>
 <script src="scripts/listeners.js"></script>
@@ -43,14 +44,17 @@
 </head>
 
 <body>
-<div class="text-center container">
+<div class="text-center">
 	<br>
 
 	<div class="sticky-header">
-	<h3><i id="top-logo" class="fas fa-fish"></i> &nbsp; BIG FISH <button id="pause-btn" class="btn"><i class="fas fa-pause"></i></button></h3>
+	<h3><i class="unlock penguin-unlock fas fa-kiwi-bird"></i><i id="top-logo" class="fas fa-fish"></i> &nbsp; BIG FISH <button id="pause-btn" class="btn"><i class="fas fa-pause"></i></button></h3>
 	<div id="info-row" class="row">
 		<div class="col-md-4">
 			<p><i class="fas fa-fish"></i> <span id="num-fish">1</span> Fish (<span id="num-hungry-fish">0</span> Hungry Fish)</p>
+			<div id="top-fish-div">
+				<i class="fas fa-fish"></i> <span class="num-small-fish">0</span> small, <span class="num-medium-fish">0</span> medium, <span class="num-big-fish">0</span> big fish.
+			</div>
 			<div class="unlock aquarium-unlock">
 				<i class="fas fa-water"></i> <span class="num-aquarium-space-used">1</span> space used / <span class="num-aquarium-space-total">100</span> total)
 			</div>
@@ -80,7 +84,7 @@
 				<li class="nav-item unlock penguin-unlock">
 					<a class="nav-link" href="#my-penguins-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-kiwi-bird"></i> Penguins</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item unlock achievement-unlock">
 					<a class="nav-link" href="#my-achievements-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-trophy"></i> Achievements</a>
 				</li>
 			</ul>
@@ -88,7 +92,7 @@
 				<!-- MY FISH -->
 				<div class="tab-pane active" id="my-fish-tab" role="tabpanel">
 					<details open>
-						<summary><i class="fas fa-fish"></i> <span id="num-small-fish">1</span> Small Fish (<span id="num-small-fish-hungry">0</span> Hungry)</summary>
+						<summary><i class="fas fa-fish"></i> <span class="num-small-fish">1</span> Small Fish (<span id="num-small-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-small-fish-coin">1</span> Coin/s (<span id="num-small-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-square"></i> Eats <span id="num-small-fish-food">1</span> Food/s (<span id="num-small-fish-food-rate">0</span> Food/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-small-fish-space">1</span> Space (<span id="num-small-fish-space-total">1</span> Space total)</p> </div>
@@ -107,7 +111,7 @@
 					<div class="unlock medium-fish-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-fish fa-2x"></i> <span id="num-medium-fish">1</span> Medium Fish (<span id="num-medium-fish-hungry">0</span> Hungry)</summary>
+						<summary><i class="fas fa-fish fa-2x"></i> <span class="num-medium-fish">1</span> Medium Fish (<span id="num-medium-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-medium-fish-coin">30</span> Coin/s (<span id="num-medium-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-fish"></i> Eats <span id="num-medium-fish-food">1</span> Small Fish/s (<span id="num-medium-fish-food-rate">0</span> Small Fish/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-medium-fish-space">2</span> Space (<span id="num-medium-fish-space-total">0</span> Space total)</p> </div>
@@ -127,7 +131,7 @@
 					<div class="unlock big-fish-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-fish fa-3x"></i> <span id="num-big-fish">1</span> Big Fish (<span id="num-big-fish-hungry">0</span> Hungry)</summary>
+						<summary><i class="fas fa-fish fa-3x"></i> <span class="num-big-fish">1</span> Big Fish (<span id="num-big-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-big-fish-coin">900</span> Coin/s (<span id="num-big-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-fish fa-2x"></i> Eats <span id="num-big-fish-food">1</span> Medium Fish/s (<span id="num-big-fish-food-rate">0</span> Medium Fish/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-big-fish-space">3</span> Space (<span id="num-big-fish-space-total">0</span> Space total)</p> </div>
@@ -317,7 +321,6 @@
 					<p>1 snowflake per returned penguin</p>
 					</details>
 
-
 					<div class="unlock penguin-hatchery-unlock">
 					<hr>
 					<details>
@@ -330,6 +333,45 @@
 							<button class="btn sell-penguin-hatchery" value="100"><i class="fas fa-snowflake"></i> 100 Hatcheries</button>
 						</div>
 						<p>100 snowflakes per returned penguin hatchery</p>
+					</details>
+					</div>
+
+					<div class="unlock snow-bank-unlock">
+					<hr>
+					<details>
+						<summary><i class="fas fa-dungeon fa-2x"></i> <span id="num-snow-bank">0</span> Snow Banks</summary>
+						<p><i class="fas fa-igloo fa-2x"></i> Buys/Sells up to <span id="num-snow-bank-rate">10</span> items/min (up to <span id="num-snow-bank-rate-total">0</span> items/min total)</p>
+						<p><i class="fas fa-snowflake fa-2x"></i> Sell Snow Banks:</p>
+						<div class="btn-group">
+							<button class="btn sell-snow-bank" value="1"><i class="fas fa-snowflake"></i> 1 Snow Bank</button>
+							<button class="btn sell-snow-bank" value="10"><i class="fas fa-snowflake"></i> 10 Snow Banks</button>
+							<button class="btn sell-snow-bank" value="100"><i class="fas fa-snowflake"></i> 100 Snow Banks</button>
+						</div>
+						<p>10000 snowflakes per returned snow bank</p>
+
+						<p><i class="fas fa-snowflake"></i> Sell:</p>
+						<div style="text-align: right !important;">
+						<label for="sell-penguin-input">Penguins:</label>
+						<input id="sell-penguin-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<br>
+						<label for="sell-penguin-hatchery-input">Penguin Hatcheries:</label>
+						<input id="sell-penguin-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<p>Currently selling <span id="num-current-selling-rate-snow-bank">0</span> items/min</p>
+						</div>
+
+						<p><i class="fas fa-snowflake"></i> Buy:</p>
+						<div style="text-align: right !important;">
+						<label for="buy-penguin-input">Penguins:</label>
+						<input id="buy-penguin-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<br>
+						<label for="buy-penguin-hatchery-input">Penguin Hatcheries:</label>
+						<input id="buy-penguin-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<br>
+						<label for="exchange-coin-snowflake-input">Exchange <span id="coin-snowflake-exchange-rate">100000</span> coins for <span>1</span> snowflake :</label>
+						<input id="exchange-coin-snowflake-input" type="number" class="form-control form-control-sm" value="0"> times/min
+						<p>Currently buying <span id="num-current-buying-rate-snow-bank">0</span> items/min</p>
+						</div>
+
 					</details>
 					</div>
 					
@@ -529,6 +571,24 @@
 					</details>
 					</div>
 
+					<div class="unlock snow-bank-unlock">
+					<hr>
+						<details>
+							<summary><i class="fas fa-dungeon fa-2x"></i> Purchase Snow Bank:</summary>
+							<div class="btn-group">
+								<button class="btn purchase-snow-bank" value="1"><i class="fas fa-dungeon"></i> 1 Snow Bank</button>
+								<button class="btn purchase-snow-bank" value="10"><i class="fas fa-dungeon"></i> 10 Snow Banks</button>
+								<button class="btn purchase-snow-bank" value="100"><i class="fas fa-dungeon"></i> 100 Snow Banks</button>
+							</div>
+							<p><i class="fas fa-snowflake fa-2x"></i>
+								<span id="num-snow-bank-per-cost">1</span> Snow Bank costs <span id="num-snow-bank-cost">10000</span> Snowflakes.<br>
+								<span id="num-snow-bank-per-cost-10">10</span> Snow Banks cost <span id="num-snow-bank-cost-10">550000</span> Snowflakes.<br>
+								<span id="num-snow-bank-per-cost-100">100</span> Snow Banks cost <span id="num-snow-bank-cost-100">50500000</span> Snowflakes.<br>
+								Each future snow bank costs 10000 more snowflake.
+							</p>
+						</details>
+					</div>
+
 				</div>
 				<!-- PURCHASE UPGRADES -->
 <!-- 				<div class="tab-pane" id="purchase-upgrades-tab" role="tabpanel">
@@ -590,6 +650,12 @@
 					<div class="unlock penguin-unlock">
 						<p>Snowflakes <i class="fas fa-snowflake"></i> multiply the number of coins your fish earn you. Penguins <i class="fas fa-kiwi-bird fa-3x"></i> make 1 snowflake per min and cost an increasing amount of snowflakes.</p>
 					</div>
+					<div class="unlock penguin-hatchery-unlock">
+						<p>Penguin Hatcheries will hatch a new penguin every minute and cost an increasing amount of snowflakes.</p>
+					</div>
+					<div class="unlock snow-bank-unlock">
+						<p>Snow Banks will can automatically buy and sell penguins and penguin hatcheries, as well as converting coins to snowflakes. They cost an increasing amount of snowflakes.</p>
+					</div>
 					<p>Build your aquarium up and make as many coins as you can!</p>
 					<p>Keep playing to unlock more features <i class="far fa-smile"></i> </p>
 					</details>
@@ -604,14 +670,14 @@
 					<details>
 					<summary><b>User Interface</b></summary>
 					<p>You can see an overview of your fish <i class="fas fa-fish"></i>, food <i class="fas fa-square"></i>, and coins <i class="fas fa-coins"></i> on the top</p>
-					<p>On the left(top on mobile), under <b>My Stuff:</b>, you can see your fish <div class="unlock producers-info">, producers,</div> and more. Click on one of them to learn more.</p>
+					<p>On the left (top on mobile), under <b>My Stuff:</b>, you can see your fish <div class="unlock producers-info">, producers,</div> and more. Click on one of them to learn more.</p>
 					<p>On the right(bottom on mobile), under <b>Purchase:</b>, you can purchase fish, <div class="unlock producers-info">producers,</div> and more.</p>
 					<p>Use the pause button at the top of the page or the <kbd>Esc</kbd> key to pause and unpause.</p>
 					<p>Miss a notification? Use the <b><i class="fas fa-history"></i> Notifications</b> button on the bottom of the page to view previous messages.</p>
 					</details>
 
 					<br>
-					<p><i class="fas fa-info-circle"></i> To open this modal again, just click the <b><i class="fas fa-question"></i> Help</b> button on the bottom of the page.</p>
+					<p><i class="fas fa-info-circle"></i> To open this again, just click the <b><i class="fas fa-question"></i> Help</b> button on the bottom of the page.</p>
 					<br>
 				</div>
 			</div>
@@ -656,20 +722,26 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
-					<!-- TODO: implement working for accent, replace with font-awesome checkbox icons -->
-<!-- 					<p><b>Options</b></p>
-					<input id="display-accent-checkbox" type="checkbox">
-					<label for="display-accent-checkbox">Display Accent</label>
-					<hr> -->
-
 					<p><b><i class="fas fa-tv"></i> Display</b></p>
 						<label>Display Aquarium:
 						<input checked id="aquarium-checkbox" type="checkbox">
 						</label>
 
-						<label>Display Background Gradient:
+<!-- 						<label>Display Background Gradient:
 						<input id="gradient-checkbox" type="checkbox">
+						</label> -->
+
+						<label class="unlock big-fish-unlock">Display Types of Fish on Top:
+						<input id="top-fish-checkbox" type="checkbox">
 						</label>
+
+						<label>Display number prefixes:
+						<input id="number-prefix-checkbox" type="checkbox">
+						</label>
+
+						<button id="open-summaries-btn" class="btn btn-sm">Open Summaries</button>
+						<button id="close-summaries-btn" class="btn btn-sm">Close Summaries</button>
+
 					<hr>
 
 					<p><b><i class="fas fa-volume-up"></i> Sound</b></p>
@@ -738,6 +810,7 @@
 					<p class="unlock penguin-unlock"><span id="snowflake-gained"></span> snowflakes gained.</p>
 					<hr>
 					<p><span id="fish-sold"></span> fish sold.</p>
+					<p class="unlock snow-bank-unlock"><span id="penguin-sold"></span> penguins sold.</p>
 				</div>
 			</div>
 		</div>
@@ -751,6 +824,8 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
+					<button id="clear-notifications-btn" type="button" class="btn">Clear All</button>
+					<hr>
 					<div id="history-log"></div>
 				</div>
 			</div>

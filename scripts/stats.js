@@ -15,7 +15,8 @@ let stats = {
 	'money_from_medium_fish': 0,
 	'money_from_big_fish': 0,
 
-	'fish_sold': 0 
+	'fish_sold': 0,
+	'penguin_sold': 0 
 };
 
 function updateStats() {
@@ -34,6 +35,7 @@ function updateStats() {
 	$('#money-from-big-fish').html(stats['money_from_big_fish']);
 
 	$('#fish-sold').html(stats['fish_sold']);
+	$('#penguin-sold').html(stats['penguin_sold']);
 
 	$('#penguin-purchased').html(stats['penguin_purchased']);
 	$('#snowflake-gained').html(stats['snowflake_gained']);

@@ -1,10 +1,16 @@
+// setting for numbers
+let prefixes_enabled = true;
 
 let places = 3;
 
 // https://officespace.zendesk.com/hc/en-us/articles/115000593531-Scientific-Notation-Large-Numbers-Guide
 let num_abrev = 'K M B T Qa Qi Sx Sp Oc No Dc Ud Td Qad Qid Sxd Spd Ocd Nod Vg Uvg'.split(' ');
 
-
+function getNum(num) {
+	if(prefixes_enabled)
+		return prettyPrintNum(num);
+	return num;
+}
 
 function prettyPrintNum(num) {
 	if(num<1e3)

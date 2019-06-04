@@ -9,6 +9,10 @@ body, html {
 	background-color: #262673 !important;
 	color: #fff !important;
 }
+body {
+	margin-left: 20px;
+	margin-right: 20px;
+}
 img, .btn, br, .nav.nav-tabs, canvas {
 	-webkit-user-select: none; /* Safari */
 	-moz-user-select: none; /* Firefox */
@@ -127,7 +131,7 @@ input:hover, input:focus {
 	color: #099 !important;
 	border-color: #099 !important;
 }
-input {
+input:not([type=checkbox]) {
 	border: 2px solid #262673 !important;
 	background-color: #fff !important;
 	color: #262673 !important;
@@ -231,11 +235,13 @@ hr:not(.paused) {
 
 @keyframes wave {
 	0% { background-position: 10px -2px; }
+	50% { background-position: 0px 0px; }
 	100% { background-position: -10px -2px; }
 }
 @-webkit-keyframes wave {
-	0% { background-position: 10px 0; }
-	100% { background-position: -10px 0; }
+	0% { background-position: 10px -2px; }
+	50% { background-position: 0px 0px; }
+	100% { background-position: -10px -2px; }
 }
 
 /* wave and box stuff */

@@ -1,4 +1,7 @@
-let bank_differential = 0; //account for banks buying and selling
+
+// account for banks buying and selling
+let bank_differential = 0;
+let snow_bank_differential = 0;
 
 function updateUI() {
 	num_aquarium_space_used = 0;
@@ -14,11 +17,11 @@ function updateUI() {
 	// counting numbers for UI
 	let all_fish = small_fish.concat(medium_fish, big_fish);
 	for(let i=0, len=all_fish.length; i<len; i++) {
-		num_aquarium_space_used += all_fish[i].space;
+		num_aquarium_space_used += FISH_SPACE[all_fish[i].type];
 		if(all_fish[i].hungry) {
 			num_hungry_fish++;
 		} else {
-			num_coin_rate += all_fish[i].coin * num_snowflake;
+			num_coin_rate += FISH_COIN[all_fish[i].type] * num_snowflake;
 		}
 	}
 	for(let i=0; i<penguins.length; i++) {
@@ -47,69 +50,60 @@ function updateUI() {
 	num_hungry_big_fish = num_hungry_fish - num_hungry_small_fish - num_hungry_medium_fish;
 
 	num_coin_rate += bank_differential;
+	num_snowflake_rate += snow_bank_differential;
 	
 	// display numbers on UI
-	$('#num-coin').html(prettyPrintNum(num_coin) );
-	$('#num-snowflake').html(prettyPrintNum(num_snowflake) );
-	$('#num-food').html(prettyPrintNum(num_food) );
-	$('#num-fish').html(prettyPrintNum(all_fish.length) );
-	$('#num-coin-rate').html(prettyPrintNum(num_coin_rate) );
-	$('#num-snowflake-rate').html(prettyPrintNum(num_snowflake_rate) );
+	$('#num-coin').html(getNum(num_coin) );
+	$('#num-snowflake').html(getNum(num_snowflake) );
+	$('#num-food').html(getNum(num_food) );
+	$('#num-fish').html(getNum(all_fish.length) );
+	$('#num-coin-rate').html(getNum(num_coin_rate) );
+	$('#num-snowflake-rate').html(getNum(num_snowflake_rate) );
 	$('#num-penguin-snowflake-rate').html(num_snowflake_rate); // note: change if implementing more snowflake stuff
 	$('#num-food-rate').html( (num_farm*FARM_FOOD_RATE) - (small_fish.length-num_hungry_small_fish) );
 	$('#num-hungry-fish').html(num_hungry_fish);
-	if(num_hungry_fish>0) {
-		$('#num-hungry-fish').addClass('highlight');
-	} else {
-		$('#num-hungry-fish').removeClass('highlight');
-	}
+	highlightIf($('#num-hungry-fish'), num_hungry_fish>0);
 	
-	$('#num-small-fish').html(small_fish.length);
+	$('.num-small-fish').html(small_fish.length);
 	$('#num-small-fish-food-rate').html(small_fish.length - num_hungry_small_fish);
-	$('#num-small-fish-coin-rate').html( (small_fish.length - num_hungry_small_fish)*SMALL_FISH_COIN);
-	$('#num-small-fish-space-total').html(small_fish.length*SMALL_FISH_SPACE);
+	$('#num-small-fish-coin-rate').html( (small_fish.length - num_hungry_small_fish)*FISH_COIN[SMALL]);
+	$('#num-small-fish-space-total').html(small_fish.length*FISH_SPACE[SMALL]);
 	$('#num-small-fish-hungry').html(num_hungry_small_fish);
-	if(num_hungry_small_fish>0) {
-		$('#num-small-fish-hungry').addClass('highlight');
-	} else {
-		$('#num-small-fish-hungry').removeClass('highlight');
-	}
+	highlightIf($('#num-small-fish-hungry'), num_hungry_small_fish>0);
 
-	$('#num-medium-fish').html(medium_fish.length);
+	$('.num-medium-fish').html(medium_fish.length);
 	$('#num-medium-fish-food-rate').html(medium_fish.length - num_hungry_medium_fish);
-	$('#num-medium-fish-coin-rate').html( (medium_fish.length - num_hungry_medium_fish)*MEDIUM_FISH_COIN);
-	$('#num-medium-fish-space-total').html(medium_fish.length*MEDIUM_FISH_SPACE);
+	$('#num-medium-fish-coin-rate').html( (medium_fish.length - num_hungry_medium_fish)*FISH_COIN[MEDIUM]);
+	$('#num-medium-fish-space-total').html(medium_fish.length*FISH_SPACE[MEDIUM]);
 	$('#num-medium-fish-hungry').html(num_hungry_medium_fish);
-	if(num_hungry_medium_fish>0) {
-		$('#num-medium-fish-hungry').addClass('highlight');
-	} else {
-		$('#num-medium-fish-hungry').removeClass('highlight');
-	}
+	highlightIf($('#num-medium-fish-hungry'), num_hungry_medium_fish>0);
 
-	$('#num-big-fish').html(big_fish.length);
+	$('.num-big-fish').html(big_fish.length);
 	$('#num-big-fish-food-rate').html(big_fish.length - num_hungry_big_fish);
-	$('#num-big-fish-coin-rate').html( (big_fish.length - num_hungry_big_fish)*BIG_FISH_COIN);
-	$('#num-big-fish-space-total').html(big_fish.length*BIG_FISH_SPACE);
+	$('#num-big-fish-coin-rate').html( (big_fish.length - num_hungry_big_fish)*FISH_COIN[BIG]);
+	$('#num-big-fish-space-total').html(big_fish.length*FISH_SPACE[BIG]);
 	$('#num-big-fish-hungry').html(num_hungry_big_fish);
-	if(num_hungry_big_fish>0) {
-		$('#num-big-fish-hungry').addClass('highlight');
-	} else {
-		$('#num-big-fish-hungry').removeClass('highlight');
-	}
+	highlightIf($('#num-big-fish-hungry'), num_hungry_big_fish>0);
 
 	$('#num-penguin').html(penguins.length);
 	$('#num-penguin-hungry').html(num_hungry_penguin);
 	$('#num-penguin-food-rate').html( (penguins.length - num_hungry_penguin) * PENGUIN_FOOD);
 	$('#num-penguin-space-total').html(penguins.length*PENGUIN_SPACE);
 
-	$('#num-penguin-cost').html(sumNumsBetween(penguins.length+1, penguins.length+1+1) );
-	$('#num-penguin-cost-10').html(sumNumsBetween(penguins.length+1, penguins.length+10+1) );
-	$('#num-penguin-cost-100').html(sumNumsBetween(penguins.length+1, penguins.length+100+1) );
+	// note: BASE_PENGUIN_COST is 1
+	$('#num-penguin-cost').html(sumNumsBetween(penguins.length+1, penguins.length+1+1) * BASE_PENGUIN_COST);
+	$('#num-penguin-cost-10').html(sumNumsBetween(penguins.length+1, penguins.length+10+1) * BASE_PENGUIN_COST);
+	$('#num-penguin-cost-100').html(sumNumsBetween(penguins.length+1, penguins.length+100+1) * BASE_PENGUIN_COST);
 
 	// note: BASE_PENGUIN_HATCHERY_COST is 100
 	$('#num-penguin-hatchery-cost').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+1+1) * BASE_PENGUIN_HATCHERY_COST);
 	$('#num-penguin-hatchery-cost-10').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+10+1) * BASE_PENGUIN_HATCHERY_COST);
 	$('#num-penguin-hatchery-cost-100').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+100+1) * BASE_PENGUIN_HATCHERY_COST);
+
+	// note: BASE_SNOW_BANK_COST is 10000
+	$('#num-snow-bank-cost').html(sumNumsBetween(num_snow_bank+1, num_snow_bank+1+1) * BASE_SNOW_BANK_COST);
+	$('#num-snow-bank-cost-10').html(sumNumsBetween(num_snow_bank+1, num_snow_bank+10+1) * BASE_SNOW_BANK_COST);
+	$('#num-snow-bank-cost-100').html(sumNumsBetween(num_snow_bank+1, num_snow_bank+100+1) * BASE_SNOW_BANK_COST);
 
 	$('#num-aquarium').html(num_aquarium);
 	$('.num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);
@@ -130,12 +124,15 @@ function updateUI() {
 
 	$('#num-bank').html(num_bank);
 	$('#num-bank-rate-total').html(num_bank*BANK_ACTION_UNIT);
+	$('#num-snow-bank').html(num_snow_bank);
+	$('#num-snow-bank-rate-total').html(num_snow_bank*SNOW_BANK_ACTION_UNIT);
 
 	$('#penguin-progress').html('');
 	// display at most 10 penguins, snowflake progress
 	// 60s in a min
 	for(let i=0; i<Math.min(penguins.length,10); i++) {
-		$('#penguin-progress').append('<div class="progress-bar" style="width:' + penguins[i].stomach/60 * 100 + '%;"></div>');
+		$('#penguin-progress').append('<div class="progress-bar" style="width:' + 
+			penguins[i].stomach/60 * 100 + '%;"></div>');
 	}
 
 	updateStats();
@@ -147,6 +144,12 @@ let snackbar_queue = 0;
 let snackbar_time = 3000;
 let snackbar_time_total = 3500;
 let prev_message = '';
+let icon_types = {
+	'error': 'fas fa-exclamation-circle',
+	'info': 'fas fa-info-circle',
+	'success': 'fas fa-check-circle fa-2x',
+	'achievement': 'fas fa-trophy fa-2x'
+};
 
 function showSnackbar(message, type) {
 	if(message == 'Not enough coins')
@@ -162,15 +165,8 @@ function showSnackbar(message, type) {
 		return;
 	prev_message = message;
 
-	if(type=='error') {
-		message = '<i class="fas fa-exclamation-circle"></i> ' + message;
-	} else if(type=='info') {
-		message = '<i class="fas fa-info-circle"></i> ' + message;
-	} else if(type=='success') {
-		message = '<i class="fas fa-check-circle fa-2x"></i> ' + message;
-	} else if(type=='achievement') {
-		message = '<i class="fas fa-trophy fa-2x"></i> ' + message;
-	}
+	if(type in icon_types)
+		message = '<i class="' + icon_types[type] + '"></i> ' + message;
 
 	snackbar_queue++;
 	setTimeout( ()=> { createSnackbar(message); }, snackbar_time_total*(snackbar_queue-1) );
@@ -189,14 +185,15 @@ function showHighlight(elm, sec=0.5) {
 	elm.addClass('highlight');
 	setTimeout(()=> { elm.removeClass('highlight') }, sec*1000);
 }
-function handleResize() {
-	if(window.innerWidth <= 1024) {
-		$('.btn-group').addClass('btn-group-vertical').removeClass('btn-group');
-	} else {
-		$('.btn-group-vertical').addClass('btn-group').removeClass('btn-group-vertical');
-	}
+function highlightIf(elm, condition) {
+	if(condition)
+		elm.addClass('highlight');
+	else
+		elm.removeClass('highlight');
 }
-
-function setAccent(hasAccent) {
-	$('#accent-link').prop('href', hasAccent ? 'accent.css' : '');
+function handleResize() {
+	if(window.innerWidth <= 1024)
+		$('.btn-group').addClass('btn-group-vertical').removeClass('btn-group');
+	else
+		$('.btn-group-vertical').addClass('btn-group').removeClass('btn-group-vertical');
 }
