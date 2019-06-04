@@ -1,4 +1,4 @@
-# <img src="img/fish.svg" width="64px"> BIG FISH
+# <img src="img/fish-blue.png" width="64px"> BIG FISH
 
 A simple game, work your way up
 
