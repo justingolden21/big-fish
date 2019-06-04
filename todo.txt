@@ -13,8 +13,6 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - add sound for success btn click, not just hover
 
-- unlock the other tabs (achievements, etc)
-
 - banks provide buttons for sell all: sell all farms, sell all small hatcheries...
 
 ================================BUGS:================================
