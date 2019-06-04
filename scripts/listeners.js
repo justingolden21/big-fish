@@ -8,8 +8,6 @@ $(function() {
 	window.addEventListener('resize', handleResize);
 	handleResize();
 
-	// window.setTimeout( ()=> { if(num_food==0) showSnackbar('Hint: Purchase 10 Food', 'info')}, 2000);
-
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
@@ -28,6 +26,7 @@ $(function() {
 		if(firstUnpause) { // works once
 			firstUnpause = false;
 			togglePause(false);
+				window.setTimeout( ()=> { if(num_food==0) showSnackbar('Hint: Purchase 10 Food', 'info')}, 2000);
 		}
 	});
 
