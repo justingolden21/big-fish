@@ -45,8 +45,8 @@ function drawPenguin(x, facing_left) {
 	y -= Math.floor(penguin_img_right.height/2);
 
 	if(!facing_left) {
-		penguinCtx.drawImage(penguin_img_right, x, y);
+		penguin_ctx.drawImage(penguin_img_right, x, y);
 	} else {
-		penguinCtx.drawImage(penguin_img_left, x, y);
-	}	
+		penguin_ctx.drawImage(penguin_img_left, x, y);
+	}
 }

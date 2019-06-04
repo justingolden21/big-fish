@@ -158,7 +158,7 @@ let penguins = [];
 // game vals
 let paused = false;
 let draw_aquarium = true;
-let canvas, ctx, penguinCanvas, penguinCtx;
+let canvas, ctx, penguin_canvas, penguin_ctx;
 
 // global vars from updateUI()
 // so instead of recalcuating them we can use old ones from last tick()
@@ -177,11 +177,10 @@ class Penguin {
 		this.stomach = 0;
 
 		// position
-		if(penguinImagesAreLoaded() ) {
+		if(penguinImagesAreLoaded() )
 			this.x = random(Math.ceil(penguin_img_right.width/2), Math.floor(canvas.width-(penguin_img_right.width/2) ) );
-		} else {
+		else
 			this.x = 10;
-		}
 
 		this.facing_left = Math.random() >= 0.5;
 	}
@@ -257,7 +256,7 @@ function tick() {
 		}
 	}
 	// penguin update
-	penguinCtx.clearRect(0, 0, canvas.width, canvas.height);
+	penguin_ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for(let i=0; i<penguins.length; i++) {
 		penguins[i].update();
 		if( i < 10 && draw_aquarium) { // only draw first 10 penguins
@@ -527,7 +526,8 @@ function addPenguins(amount) {
 	}
 
 }
-// min is inclusive, max is exclusive, returns an int
+
+// min is inclusive, max is exclusive, returns an int, used for starting positions
 function random(min, max) {
 	return Math.floor(Math.random() * (max - min) ) + min; 
 }

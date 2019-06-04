@@ -13,8 +13,8 @@ $(function() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
-	penguinCanvas = document.getElementById('penguin-canvas');
-	penguinCtx = penguinCanvas.getContext('2d');
+	penguin_canvas = document.getElementById('penguin-canvas');
+	penguin_ctx = penguin_canvas.getContext('2d');
 
 	// start user on welcome/help modal
 	$('#help-modal').modal('show');
