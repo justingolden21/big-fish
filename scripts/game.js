@@ -78,8 +78,6 @@ class Fish { // fish should go to class so they stay in school :)
 		// this.ticks++;
 		this.eat();
 		this.produce();
-
-		this.move();
 	}
 }
 
@@ -221,7 +219,6 @@ class Penguin {
 		// this.ticks++;
 		this.eat();
 		this.produce();
-		this.move();
 	}
 }
 
@@ -250,6 +247,7 @@ function tick() {
 		for(let j=0, ilen=all_fish[i].length; j<ilen; j++) {
 			all_fish[i][j].update();
 			if(j<20 && draw_aquarium) { // only draw first 20 of each size of fish
+				all_fish[i][j].move();
 				all_fish[i][j].draw();
 			}
 		}
@@ -259,6 +257,7 @@ function tick() {
 	for(let i=0; i<penguins.length; i++) {
 		penguins[i].update();
 		if( i < 10 && draw_aquarium) { // only draw first 10 penguins
+			penguins[i].move();
 			penguins[i].draw();
 		}
 	}
