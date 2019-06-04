@@ -502,12 +502,29 @@ $(function() {
 		draw_aquarium = !draw_aquarium;
 	});
 
-	$('#gradient-checkbox').change(function() {
-		$('#gradient-link').attr('href', $(this).is(':checked') ? 'css/gradient.css' : '');
+	// $('#gradient-checkbox').change(function() {
+	// 	$('#gradient-link').attr('href', $(this).is(':checked') ? 'css/gradient.css' : '');
+	// });
+
+	$('#top-fish-checkbox').change(function() {
+		$('#top-fish-div').css('display', $(this).is(':checked') ? '' : 'none');
+	});
+	$('#top-fish-div').css('display', 'none');
+
+	$('#number-prefix-checkbox').change(function() {
+		prefixes_enabled = !prefixes_enabled;
+		// updateUI();
 	});
 
 	$('#clear-notifications-btn').click(function() {
 		$('#history-log').html('');
+	});
+
+	$('#open-summaries-btn').click(function() {
+		$('details').prop('open','true');
+	});
+	$('#close-summaries-btn').click(function() {
+		$('details').prop('open','');
 	});
 
 });

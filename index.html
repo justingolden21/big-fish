@@ -52,6 +52,9 @@
 	<div id="info-row" class="row">
 		<div class="col-md-4">
 			<p><i class="fas fa-fish"></i> <span id="num-fish">1</span> Fish (<span id="num-hungry-fish">0</span> Hungry Fish)</p>
+			<div id="top-fish-div">
+				<i class="fas fa-fish"></i> <span class="num-small-fish">0</span> small, <span class="num-medium-fish">0</span> medium, <span class="num-big-fish">0</span> big fish.
+			</div>
 			<div class="unlock aquarium-unlock">
 				<i class="fas fa-water"></i> <span class="num-aquarium-space-used">1</span> space used / <span class="num-aquarium-space-total">100</span> total)
 			</div>
@@ -89,7 +92,7 @@
 				<!-- MY FISH -->
 				<div class="tab-pane active" id="my-fish-tab" role="tabpanel">
 					<details open>
-						<summary><i class="fas fa-fish"></i> <span id="num-small-fish">1</span> Small Fish (<span id="num-small-fish-hungry">0</span> Hungry)</summary>
+						<summary><i class="fas fa-fish"></i> <span class="num-small-fish">1</span> Small Fish (<span id="num-small-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-small-fish-coin">1</span> Coin/s (<span id="num-small-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-square"></i> Eats <span id="num-small-fish-food">1</span> Food/s (<span id="num-small-fish-food-rate">0</span> Food/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-small-fish-space">1</span> Space (<span id="num-small-fish-space-total">1</span> Space total)</p> </div>
@@ -108,7 +111,7 @@
 					<div class="unlock medium-fish-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-fish fa-2x"></i> <span id="num-medium-fish">1</span> Medium Fish (<span id="num-medium-fish-hungry">0</span> Hungry)</summary>
+						<summary><i class="fas fa-fish fa-2x"></i> <span class="num-medium-fish">1</span> Medium Fish (<span id="num-medium-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-medium-fish-coin">30</span> Coin/s (<span id="num-medium-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-fish"></i> Eats <span id="num-medium-fish-food">1</span> Small Fish/s (<span id="num-medium-fish-food-rate">0</span> Small Fish/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-medium-fish-space">2</span> Space (<span id="num-medium-fish-space-total">0</span> Space total)</p> </div>
@@ -128,7 +131,7 @@
 					<div class="unlock big-fish-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-fish fa-3x"></i> <span id="num-big-fish">1</span> Big Fish (<span id="num-big-fish-hungry">0</span> Hungry)</summary>
+						<summary><i class="fas fa-fish fa-3x"></i> <span class="num-big-fish">1</span> Big Fish (<span id="num-big-fish-hungry">0</span> Hungry)</summary>
 						<p><i class="fas fa-coins"></i> Makes <span id="num-big-fish-coin">900</span> Coin/s (<span id="num-big-fish-coin-rate">0</span> Coin/s total)</p>
 						<p><i class="fas fa-fish fa-2x"></i> Eats <span id="num-big-fish-food">1</span> Medium Fish/s (<span id="num-big-fish-food-rate">0</span> Medium Fish/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-big-fish-space">3</span> Space (<span id="num-big-fish-space-total">0</span> Space total)</p> </div>
@@ -730,9 +733,21 @@
 						<input checked id="aquarium-checkbox" type="checkbox">
 						</label>
 
-						<label>Display Background Gradient:
+<!-- 						<label>Display Background Gradient:
 						<input id="gradient-checkbox" type="checkbox">
+						</label> -->
+
+						<label class="unlock big-fish-unlock">Display Types of Fish on Top:
+						<input id="top-fish-checkbox" type="checkbox">
 						</label>
+
+						<label>Display number prefixes:
+						<input id="number-prefix-checkbox" type="checkbox">
+						</label>
+
+						<button id="open-summaries-btn" class="btn btn-sm">Open Summaries</button>
+						<button id="close-summaries-btn" class="btn btn-sm">Close Summaries</button>
+
 					<hr>
 
 					<p><b><i class="fas fa-volume-up"></i> Sound</b></p>

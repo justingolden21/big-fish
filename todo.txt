@@ -3,9 +3,7 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 ================================TODO:================================
 - display number of small, medium, and big fish on top option/checkbox
 
-- add snow banks (snow banks let you dynamically buy and sell penguins and penguin hatcheries for snowflakes)
-
-- add option for number display: pretty print checkbox/SI unit prefixes
+- remember/store settings in cookies, txt file
 
 - "big banks" that let you buy other banks, let you sell buildings, etc
 

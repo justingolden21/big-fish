@@ -53,12 +53,12 @@ function updateUI() {
 	num_snowflake_rate += snow_bank_differential;
 	
 	// display numbers on UI
-	$('#num-coin').html(prettyPrintNum(num_coin) );
-	$('#num-snowflake').html(prettyPrintNum(num_snowflake) );
-	$('#num-food').html(prettyPrintNum(num_food) );
-	$('#num-fish').html(prettyPrintNum(all_fish.length) );
-	$('#num-coin-rate').html(prettyPrintNum(num_coin_rate) );
-	$('#num-snowflake-rate').html(prettyPrintNum(num_snowflake_rate) );
+	$('#num-coin').html(getNum(num_coin) );
+	$('#num-snowflake').html(getNum(num_snowflake) );
+	$('#num-food').html(getNum(num_food) );
+	$('#num-fish').html(getNum(all_fish.length) );
+	$('#num-coin-rate').html(getNum(num_coin_rate) );
+	$('#num-snowflake-rate').html(getNum(num_snowflake_rate) );
 	$('#num-penguin-snowflake-rate').html(num_snowflake_rate); // note: change if implementing more snowflake stuff
 	$('#num-food-rate').html( (num_farm*FARM_FOOD_RATE) - (small_fish.length-num_hungry_small_fish) );
 	$('#num-hungry-fish').html(num_hungry_fish);
@@ -68,7 +68,7 @@ function updateUI() {
 		$('#num-hungry-fish').removeClass('highlight');
 	}
 	
-	$('#num-small-fish').html(small_fish.length);
+	$('.num-small-fish').html(small_fish.length);
 	$('#num-small-fish-food-rate').html(small_fish.length - num_hungry_small_fish);
 	$('#num-small-fish-coin-rate').html( (small_fish.length - num_hungry_small_fish)*SMALL_FISH_COIN);
 	$('#num-small-fish-space-total').html(small_fish.length*SMALL_FISH_SPACE);
@@ -79,7 +79,7 @@ function updateUI() {
 		$('#num-small-fish-hungry').removeClass('highlight');
 	}
 
-	$('#num-medium-fish').html(medium_fish.length);
+	$('.num-medium-fish').html(medium_fish.length);
 	$('#num-medium-fish-food-rate').html(medium_fish.length - num_hungry_medium_fish);
 	$('#num-medium-fish-coin-rate').html( (medium_fish.length - num_hungry_medium_fish)*MEDIUM_FISH_COIN);
 	$('#num-medium-fish-space-total').html(medium_fish.length*MEDIUM_FISH_SPACE);
@@ -90,7 +90,7 @@ function updateUI() {
 		$('#num-medium-fish-hungry').removeClass('highlight');
 	}
 
-	$('#num-big-fish').html(big_fish.length);
+	$('.num-big-fish').html(big_fish.length);
 	$('#num-big-fish-food-rate').html(big_fish.length - num_hungry_big_fish);
 	$('#num-big-fish-coin-rate').html( (big_fish.length - num_hungry_big_fish)*BIG_FISH_COIN);
 	$('#num-big-fish-space-total').html(big_fish.length*BIG_FISH_SPACE);
