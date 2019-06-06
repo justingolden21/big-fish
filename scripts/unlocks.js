@@ -47,15 +47,15 @@ let achievements = {
 function checkUnlocks() {
 	// unlocks
 	if(stats['food_purchased'] >= 250)
-		checkUnlock('purchase_farm', '.farm-unlock .producers-info', 'fish food farms');
+		checkUnlock('purchase_farm', '.farm-unlock .buildings-info', 'fish food farms');
 	if(stats['small_fish_purchased'] >= 250)
-		checkUnlock('purchase_small_hatchery', '.small-hatchery-unlock .producers-info', 'small fish hatcheries');
+		checkUnlock('purchase_small_hatchery', '.small-hatchery-unlock .buildings-info', 'small fish hatcheries');
 	if(stats['medium_fish_purchased'] >= 250)
-		checkUnlock('purchase_medium_hatchery', '.medium-hatchery-unlock .producers-info', 'medium fish hatcheries');
+		checkUnlock('purchase_medium_hatchery', '.medium-hatchery-unlock .buildings-info', 'medium fish hatcheries');
 	if(stats['big_fish_purchased'] >= 250)
-		checkUnlock('purchase_big_hatchery', '.big-hatchery-unlock .producers-info', 'big fish hatcheries');
+		checkUnlock('purchase_big_hatchery', '.big-hatchery-unlock .buildings-info', 'big fish hatcheries');
 	if(stats['aquarium_purchased'] >= 25)
-		checkUnlock('purchase_aquarium_factory', '.aquarium-factory-unlock .producers-info', 'aquarium factories');
+		checkUnlock('purchase_aquarium_factory', '.aquarium-factory-unlock .buildings-info', 'aquarium factories');
 	if(num_aquarium_factory >= 5 && num_farm+num_small_hatchery+num_medium_hatchery+num_big_hatchery >= 1000)
 		checkUnlock('purchase_bank' , '.bank-unlock', 'banks');
 	if(big_fish.length >= 10000) {

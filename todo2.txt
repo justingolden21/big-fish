@@ -1,6 +1,5 @@
 click sound effect not just hover
 hover sound quieter, fish sound louder
-rename producers buildings
 graph of money rate each 10s interval past 20 intervals
 
 add more music
