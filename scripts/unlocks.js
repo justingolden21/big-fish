@@ -139,20 +139,21 @@ function checkUnlock(unlockName, parts, message) {
 		// special cases:
 		if(unlockName=='penguins') {
 			changeBackgroundMusic('snow');
+			$('#background-music-select').val('snow');
 			showSnackbar('Note: You can always change the music back in settings', 'info');
 		}
 	}
 }
 
 // called when achievement is earned, even if not the first time
-function checkAchievement(achievementName, loadedFromCookies) {
-	if(achievements[achievementName][1] == -1 || loadedFromCookies) { // wasn't already unlocked, or loaded from cookies
-		achievements[achievementName][1] = stats['total_ticks'];
-		if(!loadedFromCookies) {
-			showSnackbar('Achievement unlocked: ' + achievementName, 'achievement');			
+function checkAchievement(achievement_name, loaded_from_cookies) {
+	if(achievements[achievement_name][1] == -1 || loaded_from_cookies) { // wasn't already unlocked, or loaded from cookies
+		achievements[achievement_name][1] = stats['total_ticks'];
+		if(!loaded_from_cookies) {
+			showSnackbar('Achievement unlocked: ' + achievement_name, 'achievement');			
 		}
 
-		$('#achievements-div').append('<p><i class="fas fa-trophy"></i> <b>' + achievementName + '</b>	: ' + achievements[achievementName][0] + ' (' + achievements[achievementName][1] + 's)</p>');
+		$('#achievements-div').append('<p><i class="fas fa-trophy"></i> <b>' + achievement_name + '</b>	: ' + achievements[achievement_name][0] + ' (' + secToStr(achievements[achievement_name][1]) + ')</p>');
 
 		// count completed achievements
 		let num_achieved = 0;

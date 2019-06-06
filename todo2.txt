@@ -1,12 +1,7 @@
 click sound effect not just hover
 hover sound quieter, fish sound louder
 rename producers buildings
-show achievement time in time format not just seconds
 graph of money rate each 10s interval past 20 intervals
-
-bank gives better deal on selling/buying? nah
-
-bug: when background music changes, update dropdown in settings too
 
 add more music
 

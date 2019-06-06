@@ -13,14 +13,18 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - add sound for success btn click, not just hover
 
+- system for displaying locked achievements that aren't spoilers
+
 ================================BUGS:================================
 potential bug: with snowflakes and banks displayed coin rate might be calcualted wrong
 coin rate caluated wrong doesnt account for fish eating before they die
 	important because when you have a bunch of hatcheries and penguins and no fish that live
 	it displays 0 but increases
+needs testing (unsure if fixed): when background music changes, update dropdown in settings too
 ================================MAYBE:================================
 option to change aesthetic/theme: default, simple, gradient
 add upgrades
+bank gives better deal on selling/buying?
 achievement idea: get to certain coins/second
 restart the game but with better costs once you get to certain point?
 fish that eats aquariums?
