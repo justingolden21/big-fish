@@ -14,6 +14,19 @@ $(function() {
 	penguin_canvas = document.getElementById('penguin-canvas');
 	penguin_ctx = penguin_canvas.getContext('2d');
 
+	// coin graph
+	coin_graph_canvas = document.getElementById('coin-graph-canvas');
+	coin_graph_ctx = coin_graph_canvas.getContext('2d');
+	coin_graph_ctx.strokeStyle = '#099';
+	coin_graph_ctx.lineWidth = 5;
+	coin_rate_graph_canvas = document.getElementById('coin-rate-graph-canvas');
+	coin_rate_graph_ctx = coin_rate_graph_canvas.getContext('2d');
+	coin_rate_graph_ctx.strokeStyle = '#099';
+	coin_rate_graph_ctx.lineWidth = 5;
+
+	setupCoinGraph();
+	setupCheckboxes();
+
 	// start user on welcome/help modal
 	$('#help-modal').modal('show');
 
@@ -78,8 +91,6 @@ $(function() {
 	$('#coin-snowflake-exchange-rate').html(getNum(COIN_SNOW_EXCHANGE_RATE) ); // 100000
 
 	// tick();
-
-	setupCheckboxes();
 
 	// button listeners
 
@@ -546,10 +557,22 @@ $(function() {
 	}).change(); // in case firefox saved previous input
 
 	$('#background-music-select').change(function() {
-		console.log($(this).val() );
 		changeBackgroundMusic($(this).val() );
 	});
 
+	$('#coin-graph-select').change(function() {
+		if($(this).val() == 'top') {
+			$('#graph-div').appendTo($('#top-graph-div') );
+			$('#graph-div').css('display', '');
+		}
+		else if($(this).val() == 'stat') {
+			$('#graph-div').appendTo($('#stat-graph-div') );
+			$('#graph-div').css('display', '');
+		}
+		else { // 'none'
+			$('#graph-div').css('display', 'none');
+		}
+	});
 
 	$('#aquarium-checkbox').change(function() {
 		$('#canvas').css('display', $(this).is(':checked') ? '' : 'none');

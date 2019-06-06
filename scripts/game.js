@@ -165,6 +165,7 @@ let penguins = [];
 let paused = false;
 let draw_aquarium = true;
 let canvas, ctx, penguin_canvas, penguin_ctx;
+let coin_graph_canvas, coin_graph_ctx, coin_rate_graph_canvas, coin_rate_graph_ctx;
 
 // global vars from updateUI()
 // so instead of recalcuating them we can use old ones from last tick()
@@ -266,7 +267,7 @@ function tick() {
 		}
 	}
 	// penguin update
-	penguin_ctx.clearRect(0, 0, canvas.width, canvas.height);
+	penguin_ctx.clearRect(0, 0, penguin_canvas.width, penguin_canvas.height);
 	for(let i=0; i<penguins.length; i++) {
 		penguins[i].update();
 		// only draw first NUM_DRAWN_PENGUIN (10) penguins
@@ -293,6 +294,11 @@ function tick() {
 
 	updateUI();
 	updateFishSounds();
+
+	// for coin graphs
+	updateCoin();
+	updateCoinRate();
+	updateCoinGraph();
 }
 
 // note: updates html input value with correct value
