@@ -4,6 +4,9 @@ const SMALL = 0;
 const MEDIUM = 1;
 const BIG = 2;
 
+const NUM_DRAWN_FISH = 20;
+const NUM_DRAWN_PENGUIN = 10;
+
 class Fish { // fish should go to class so they stay in school :)
 	constructor(type) {
 		this.type = type;
@@ -11,14 +14,20 @@ class Fish { // fish should go to class so they stay in school :)
 		// this.ticks = 0;
 	
 		// position
-		if(imagesAreLoaded() ) {
-			this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
-			this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
-		} else {
-			this.x = 10;
-			this.y = 9;
+		// only assigned if necessary
+		if(this.type == SMALL && small_fish.length <= NUM_DRAWN_FISH ||
+			this.type == MEDIUM && medium_fish.length <= NUM_DRAWN_FISH ||
+			this.type == BIG && big_fish.length <= NUM_DRAWN_FISH) {
+
+			if(imagesAreLoaded() ) {
+				this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
+				this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
+			} else {
+				this.x = 10;
+				this.y = 9;
+			}
+			this.facing_left = Math.random() >= 0.5;
 		}
-		this.facing_left = Math.random() >= 0.5;
 	}
 	eat() { // attempts to eat
 		if(this.type == SMALL) {
@@ -174,12 +183,15 @@ class Penguin {
 		this.stomach = 0;
 
 		// position
-		if(penguinImagesAreLoaded() )
-			this.x = random(Math.ceil(penguin_img_right.width/2), Math.floor(canvas.width-(penguin_img_right.width/2) ) );
-		else
-			this.x = 10;
+		// only assigned if necessary
+		if(penguins.length <= NUM_DRAWN_PENGUIN) {
+			if(penguinImagesAreLoaded() )
+				this.x = random(Math.ceil(penguin_img_right.width/2), Math.floor(canvas.width-(penguin_img_right.width/2) ) );
+			else
+				this.x = 10;
 
-		this.facing_left = Math.random() >= 0.5;
+			this.facing_left = Math.random() >= 0.5;
+		}
 	}
 	eat() { // attempts to eat 100 big fish
 		if(big_fish.length >= PENGUIN_FOOD) {
@@ -246,7 +258,8 @@ function tick() {
 	for(let i=0, len=all_fish.length; i<len; i++) {
 		for(let j=0, ilen=all_fish[i].length; j<ilen; j++) {
 			all_fish[i][j].update();
-			if(j<20 && draw_aquarium) { // only draw first 20 of each size of fish
+			// only draw first NUM_DRAWN_FISH (20) of each size of fish
+			if(j<NUM_DRAWN_FISH && draw_aquarium) {
 				all_fish[i][j].move();
 				all_fish[i][j].draw();
 			}
@@ -256,7 +269,8 @@ function tick() {
 	penguin_ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for(let i=0; i<penguins.length; i++) {
 		penguins[i].update();
-		if( i < 10 && draw_aquarium) { // only draw first 10 penguins
+		// only draw first NUM_DRAWN_PENGUIN (10) penguins
+		if( i < NUM_DRAWN_PENGUIN && draw_aquarium) {
 			penguins[i].move();
 			penguins[i].draw();
 		}

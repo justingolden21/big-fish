@@ -5,7 +5,6 @@ show achievement time in time format not just seconds
 graph of money rate each 10s interval past 20 intervals
 
 bar of percentage of aquarium space used (on top and under fish)
-highlight aquarium space if full
 
 bank gives better deal on selling/buying? nah
 
@@ -16,5 +15,3 @@ use prefixes for more numbers too (costs of things, hungry fish, coin rate etc)
 add more music
 
 move penguins purchased in stats to other stuff purchased
-
-if num fish < 20, then assign x, y, facingleft
