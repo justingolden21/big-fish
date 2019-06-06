@@ -509,10 +509,15 @@ function togglePause(snackbar=true) {
 // hatch amount of fish if room, else hatch as much as there is room for
 function hatchFish(type, amount) {
 	let space_per_fish = FISH_SPACE[type];
-	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (space_per_fish * amount) )
+	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (space_per_fish * amount) ) {
 		addFish(type, amount);
-	else
+	}
+	else {
 		addFish(type, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / space_per_fish);
+		showHighlight($('#canvas') );
+		showHighlight($('.num-aquarium-space-used') );
+		showHighlight($('.num-aquarium-space-total') );
+	}
 }
 function addFish(type, amount) {
 	// check type outside of loop for computational efficiency
