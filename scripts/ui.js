@@ -108,6 +108,7 @@ function updateUI() {
 	$('#num-aquarium').html(num_aquarium);
 	$('.num-aquarium-space-total').html(num_aquarium * AQUARIUM_SPACE);
 	$('.num-aquarium-space-used').html(num_aquarium_space_used);
+	$('.aquarium-space-display-bar').css('width',num_aquarium_space_used/(num_aquarium*AQUARIUM_SPACE)*100+'%');
 
 	$('#num-farm').html(num_farm);
 	$('#num-farm-food-rate').html(num_farm*FARM_FOOD_RATE);

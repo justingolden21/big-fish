@@ -4,8 +4,6 @@ rename producers buildings
 show achievement time in time format not just seconds
 graph of money rate each 10s interval past 20 intervals
 
-bar of percentage of aquarium space used (on top and under fish)
-
 bank gives better deal on selling/buying? nah
 
 bug: when background music changes, update dropdown in settings too
