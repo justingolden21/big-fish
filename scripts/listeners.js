@@ -49,13 +49,33 @@ $(function() {
 	$('#num-big-fish-coin').html(FISH_COIN[BIG]);
 	$('#num-big-fish-food').html(1);
 	$('#num-big-fish-space').html(FISH_SPACE[BIG]);
-	$('#sell-return-value').html(SELL_RETURN_VALUE);
+	$('#num-aquarium-space').html(AQUARIUM_SPACE);
+	$('.sell-return-value').html(SELL_RETURN_VALUE);
+
+	$('#num-food-per-cost').html(FOOD_UNIT);
+	$('#num-small-fish-cost').html(getNum(SMALL_FISH_COST) );
+	$('#num-medium-fish-cost').html(getNum(MEDIUM_FISH_COST) );
+	$('#num-big-fish-cost').html(getNum(BIG_FISH_COST) );
+	$('#num-aquarium-cost').html(getNum(AQUARIUM_COST) );
+
+	$('#num-farm-food').html(FARM_FOOD_RATE);
+	
+	$('#num-farm-cost').html(getNum(FARM_COST) );
+	$('#num-small-hatchery-cost').html(getNum(SMALL_HATCHERY_COST) );
+	$('#num-medium-hatchery-cost').html(getNum(MEDIUM_HATCHERY_COST) );
+	$('#num-big-hatchery-cost').html(getNum(BIG_HATCHERY_COST) );
+	$('#num-aquarium-factory-cost').html(getNum(AQUARIUM_FACTORY_COST) );
+	$('#num-bank-cost').html(getNum(BANK_COST) );
 
 	$('#num-penguin-snowflake').html(PENGUIN_SNOWFLAKE); // 1
-	$('#num-penguin-food').html(100);
-	$('#num-penguin-space').html(PENGUIN_SPACE); // 10000
-
-	$('#coin-snowflake-exchange-rate').html(COIN_SNOW_EXCHANGE_RATE); // 100000
+	$('#num-penguin-food').html(PENGUIN_FOOD); // 100
+	$('#num-penguin-space').html(getNum(PENGUIN_SPACE) ); // 10000
+	
+	$('#num-penguin-hatchery-penguins').html(PENGUIN_HATCHERY_RATE); // 1
+	$('.num-base-penguin-cost').html(BASE_PENGUIN_COST); // 1
+	$('.num-base-penguin-hatchery-cost').html(BASE_PENGUIN_HATCHERY_COST); // 100
+	$('.num-base-snow-bank-cost').html(getNum(BASE_SNOW_BANK_COST) ); // 10000
+	$('#coin-snowflake-exchange-rate').html(getNum(COIN_SNOW_EXCHANGE_RATE) ); // 100000
 
 	// tick();
 

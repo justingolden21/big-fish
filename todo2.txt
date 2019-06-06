@@ -8,8 +8,6 @@ bank gives better deal on selling/buying? nah
 
 bug: when background music changes, update dropdown in settings too
 
-use prefixes for more numbers too (costs of things, hungry fish, coin rate etc)
-
 add more music
 
 move penguins purchased in stats to other stuff purchased
