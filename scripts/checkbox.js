@@ -14,5 +14,6 @@ function setupCheckboxes() {
 	$('input[type=checkbox]').css('cursor', 'pointer');
 	$('label input[type=checkbox]').css('cursor', 'pointer');
 	$('input[type=checkbox]').css('opacity', '0');
+	$('input[type=checkbox]').css('margin-top', '5px');
 	$('input[type=checkbox]').css('position', 'absolute');
 }
