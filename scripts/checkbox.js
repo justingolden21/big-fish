@@ -12,6 +12,7 @@ function setupCheckboxes() {
 		$(this).next().toggleClass('fas').toggleClass('far').toggleClass('fa-check-square').toggleClass('fa-square');
 	});
 	$('input[type=checkbox]').css('cursor', 'pointer');
+	$('label input[type=checkbox]').css('cursor', 'pointer');
 	$('input[type=checkbox]').css('opacity', '0');
 	$('input[type=checkbox]').css('position', 'absolute');
 }
