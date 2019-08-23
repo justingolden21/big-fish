@@ -70,14 +70,22 @@ class Fish { // fish should go to class so they stay in school :)
 		}
 	}
 	move() { // move according to speed, random direction
-		if(Math.random() >= 0.5) {
+		this.facing_left = Math.random() >= 0.1 ? this.facing_left : !this.facing_left;
+		if(this.x < Math.ceil(img_arr[this.type].width/2) ) {
+			this.x = Math.ceil(img_arr[this.type].width/2);
+			this.facing_left = !this.facing_left;
+		}
+		if(this.x > canvas.width - (Math.floor(img_arr[this.type].width/2) ) ) {
+			this.x = canvas.width - (Math.floor(img_arr[this.type].width/2) );
+			this.facing_left = !this.facing_left;
+		}
+
+		if(!this.facing_left) {
 			this.x += FISH_SPEEDS[this.type];
-			this.x = Math.min(this.x, canvas.width - ( Math.floor(img_arr[this.type].width/2) ) );
-			this.facing_left = false;
+			// this.x = Math.min(this.x, canvas.width - ( Math.floor(img_arr[this.type].width/2) ) );
 		} else {
 			this.x -= FISH_SPEEDS[this.type];
-			this.x = Math.max(this.x, Math.ceil(img_arr[this.type].width/2) );
-			this.facing_left = true;
+			// this.x = Math.max(this.x, Math.ceil(img_arr[this.type].width/2) );
 		}
 	}
 	draw() { // draws fish on canvas

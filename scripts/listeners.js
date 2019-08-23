@@ -3,7 +3,7 @@ let firstUnpause = true;
 // onload, button listeners
 $(function() {
 	// set up game
-	window.setInterval(tick, 1000); //tick every s
+	window.setInterval(tick, 1000); //tick every s. note: maybe try 250?
 	window.setInterval(setCookies, 5000); //save cookies every 5s; doesn't save unless user allowed it
 	window.addEventListener('resize', handleResize);
 	handleResize();
