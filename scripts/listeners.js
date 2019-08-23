@@ -485,11 +485,15 @@ $(function() {
 	});
 
 	// cookies
-	$('.accept-cookies-btn').click(function() {
+	$('.accept-cookies-btn').click(function(evt) {
 		savingCookies = true;
 		$('#storing-cookies-para').html('Storing this game\'s cookies.');
 
-		showSnackbar('Will save cookies this session.', 'info');
+		if(evt.target.id == 'alert-cookie-btn')
+			showSnackbar('Will save cookies this session. <br> Loaded any cookies from previous games.', 'info');
+		else
+			showSnackbar('Will save cookies this session.', 'info');
+
 		$('#cookie-alert').alert('close');
 	});
 	$('.load-cookies-btn').click(function() {
@@ -512,9 +516,6 @@ $(function() {
 
 		// load
 		loadCookies();
-
-		//message
-		showSnackbar('Will save cookies this session. <br> Loaded any cookies from previous games.', 'info');
 	});
 
 	// text file export/import
