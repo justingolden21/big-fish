@@ -2,12 +2,17 @@
 dark blue: #262673;
 white: #fff;
 accent turquoise: #099;
+
+light blue: #a1d6e7;
+
+note: replaced dark blue with light blue, and replaced white with dark blue
+
 */
 
 /* basics */
 body, html {
-	background-color: #262673 !important;
-	color: #fff !important;
+	background-color: #a1d6e7 !important;
+	color: #262673 !important;
 }
 body {
 	margin-left: 20px;
@@ -21,20 +26,41 @@ img, .btn, br, .nav.nav-tabs, canvas {
 }
 ::-moz-selection {
 	background: #099 !important;
-	color: #fff;
+	color: #262673;
 }
 ::selection {
 	background: #099 !important;
-	color: #fff;
+	color: #262673;
 }
 .sticky-header {
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
 	top: 0;
 	z-index: 99;
-	background-color: #262673;
+	background-color: #a1d6e7;
 	padding-top: 10px;
 	padding-bottom: 10px;
+
+		background-image: url('../img/water.png');
+		background-repeat: repeat-x;
+}
+.sticky-footer {
+	/*position: -webkit-sticky; /* Safari */
+	position: sticky;
+	/*bottom: 0;*/
+	z-index: 99;
+
+ /*position:fixed;*/
+    bottom:0px !important;
+    left:50%;
+    height: 64px;
+
+/*	background-color: #a1d6e7;
+	padding-top: 10px;
+	padding-bottom: 10px;*/
+
+		background-image: url('../img/sand-1.png');
+		background-repeat: repeat-x;
 }
 #info-row p {
 	font-weight: bold;
@@ -48,7 +74,7 @@ a:not(.nav-link):focus {
 }
 kbd {
 	background-color: #099;
-	color: #fff;
+	color: #262673;
 }
 .hidden{
 	display: none !important;
@@ -70,7 +96,7 @@ canvas.highlight {
 	background-color: #099;
 }
 canvas {
-	border: 2px solid #fff;
+	border: 2px solid #262673;
 	/*transform: scale(2);*/
 	/*background-color: #099;*/
 	display: inline-block;
@@ -81,12 +107,12 @@ canvas {
 
 /* tabs */
 .nav.nav-tabs {
-	border-bottom: 2px solid #fff;
+	border-bottom: 2px solid #262673;
 }
 .nav-tabs .nav-item .nav-link {
-	color: #fff;
-	border: 2px solid #262673;
-	border-bottom: 0px solid #fff;
+	color: #262673;
+	border: 2px solid #a1d6e7;
+	border-bottom: 0px solid #262673;
 }
 .nav-tabs .nav-item .nav-link:focus { /* focus */
 	outline: none !important;
@@ -95,14 +121,14 @@ canvas {
 	border-color: #099;
 }
 .nav-tabs .nav-item .nav-link:hover { /* hover */
-	color: #fff;
+	color: #262673;
 	background-color: #099;
-	border: 2px solid #fff;
+	border: 2px solid #262673;
 }
 .nav-tabs .nav-item .nav-link.active { /* active */
-	color: #262673;
-	background-color: #fff;
-	border: 2px solid #fff;
+	color: #a1d6e7;
+	background-color: #262673;
+	border: 2px solid #262673;
 }
 
 /* buttons */
@@ -113,15 +139,15 @@ canvas {
 	border-color: #099 !important;
 }
 .btn:hover, select:hover, .alert .close:hover {
-	color: #fff !important;
+	color: #262673 !important;
 	background-color: #099 !important;
-	border-color: #fff !important;
+	border-color: #262673 !important;
 	cursor: pointer;
 }
 .btn, .btn:active, select, .alert .close, .alert .close:active {
-	border: 2px solid #262673 !important;
-	background-color: #fff !important;
-	color: #262673 !important; 
+	border: 2px solid #a1d6e7 !important;
+	background-color: #262673 !important;
+	color: #a1d6e7 !important; 
 }
 
 /* inputs */
@@ -131,10 +157,10 @@ input:hover, input:focus {
 	color: #099 !important;
 	border-color: #099 !important;
 }
-input:not([type=checkbox]) {
-	border: 2px solid #262673 !important;
-	background-color: #fff !important;
-	color: #262673 !important;
+input:not([type=checkbox]):not([type=file]) {
+	border: 2px solid #a1d6e7 !important;
+	background-color: #262673 !important;
+	color: #a1d6e7 !important;
 	text-align: center;
 	width: 200px !important;
 	display: inline-block !important;
@@ -144,10 +170,10 @@ input:not([type=checkbox]) {
 summary {
 	outline: none !important;
 	box-shadow: none;
-	border: 2px solid #262673;
+	border: 2px solid #a1d6e7;
 }
 summary:hover {
-	border-color: #fff;
+	border-color: #262673;
 }
 summary:focus {
 	border: 2px solid #099;
@@ -164,7 +190,7 @@ summary:focus {
 	bottom: 40px;
 	min-width: 250px;
 	border: 1px solid;
-	background-color: #262673;
+	background-color: #a1d6e7;
 	z-index: 98;
 }
 #snackbar.show {
@@ -191,18 +217,18 @@ summary:focus {
 
 /* modal */
 .modal-content {
-	background-color: #262673;
+	background-color: #a1d6e7;
 }
 .modal-header {
-	border-bottom: 2px solid #fff;
+	border-bottom: 2px solid #262673;
 }
 .modal .close {
-	color: #fff;
+	color: #262673;
 	opacity: 1;
 	box-shadow: none;
 	text-shadow: none;
 	outline: none;
-	border: 2px solid #262673;
+	border: 2px solid #a1d6e7;
 }
 .modal .close:focus, .modal .close:hover {
 	border: 2px solid #099;
@@ -211,8 +237,8 @@ summary:focus {
 
 /* alert */
 .alert {
-	background-color: #262673;
-	color: #fff;
+	background-color: #a1d6e7;
+	color: #262673;
 	border: 2px solid #099;
 }
 .alert .close {
@@ -284,7 +310,7 @@ hr:not(.paused) {
 
 /* fixes */
 summary:focus .highlight {
-	color: #fff !important;
+	color: #262673 !important;
 }
 
 #bottom-btns {
