@@ -44,6 +44,10 @@ Keep playing, unlock all the achievements, and get as many coins and fish as you
 
 Built with [jQuery](http://jquery.com/), [Bootstrap](https://getbootstrap.com/), [Font Awesome](http://fontawesome.com), [JS Cookie](https://github.com/js-cookie/js-cookie), and [Howler JS](https://howlerjs.com/). Music from [Purple Planet](https://www.purple-planet.com/), fish sounds from yours truly.
 
+Font from https://www.1001fonts.com/magical-mystery-tour-font.html
+
+Sprites from https://www.kenney.nl/assets/fish-pack
+
 ### Known Problems
 
 In Firefox, if you click on a link, it will permanently mute the tab as a protective measure. Simply ctrl+click to open links within this page to solve this problem.

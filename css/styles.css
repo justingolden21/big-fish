@@ -9,6 +9,16 @@ note: replaced dark blue with light blue, and replaced white with dark blue
 
 */
 
+
+@font-face {
+	font-family: 'MAGIMT__';
+	src: url('../font/MAGIMT__.ttf');
+}
+* {
+	font-family: 'MAGIMT__';
+}
+
+
 /* basics */
 body, html {
 	background-color: #a1d6e7 !important;
