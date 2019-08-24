@@ -5,6 +5,7 @@ add different sprites for colors of fish
 make sprite system all in one file
 add vectors too and update icon etc
 add credit to https://www.kenney.nl/assets/fish-pack
+reflavor coins and snowflakes to shells and stars, get the ones from the asset pack inside the sand
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 ================================TODO:================================

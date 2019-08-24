@@ -135,6 +135,8 @@ canvas:not(#canvas):not(#penguin-canvas) {
 	top: 16px !important;
 }
 .sea-item {
+	position: relative;
+	margin-right: -24px;
 }
 
 /* tabs */

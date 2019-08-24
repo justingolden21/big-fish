@@ -9,7 +9,7 @@ $(function() {
 	handleResize();
 
 
-	for(let i=0; i<30; i++) { // num is arbitrary, just has to be larger than screen
+	for(let i=0; i<60; i++) { // num is arbitrary, just has to be larger than screen
 		if(Math.random() >= 0.6)
 			$('#sea-items').append('<img src="img/sea-item-' + random(1,9) + '.png" class="sea-item">');
 		else
