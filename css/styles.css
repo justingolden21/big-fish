@@ -201,7 +201,8 @@ input:not([type=checkbox]):not([type=file]) {
 summary {
 	outline: none !important;
 	box-shadow: none;
-	border: 2px solid #a1d6e7;
+	/*border: 2px solid #a1d6e7;*/
+	border: 2px solid rgba(0,0,0,0);
 }
 summary:hover {
 	border-color: #262673;

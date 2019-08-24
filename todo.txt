@@ -22,8 +22,7 @@ coin rate caluated wrong doesnt account for fish eating before they die
 	it displays 0 but increases
 needs testing (unsure if fixed): when background music changes, update dropdown in settings too
 ================================GRAPHICAL BUGS:================================
-fish can go over top area and be wonky with header
-fish going over summary element can have liune through for the border of summary
+
 ================================MAYBE:================================
 option to change aesthetic/theme: default, simple, gradient
 add upgrades
