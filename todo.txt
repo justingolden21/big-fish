@@ -34,6 +34,10 @@ needs testing (unsure if fixed): when background music changes, update dropdown 
 ================================MAYBE:================================
 make sand go all the way to bottom of screen on larger screens
 new bubbly font?
+	https://fonts.google.com/specimen/Chicle
+	https://fonts.google.com/specimen/Bubblegum+Sans
+	https://www.fonts.com/font/okaycat/bubbly-hills?QueryFontType=Web&src=GoogleWebFonts (money)
+	https://www.1001fonts.com/bubbly-fonts.html
 
 option to change aesthetic/theme: default, simple, gradient
 add upgrades
