@@ -522,6 +522,7 @@ function togglePause(snackbar=true) {
 // utility functions
 // hatch amount of fish if room, else hatch as much as there is room for
 function hatchFish(type, amount) {
+	num_aquarium_space_used = num_aquarium_space_used ? num_aquarium_space_used : 0;
 	let space_per_fish = FISH_SPACE[type];
 	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (space_per_fish * amount) ) {
 		addFish(type, amount);
