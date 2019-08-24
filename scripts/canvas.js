@@ -34,14 +34,15 @@ function drawFish(type, x, y, facing_left) {
 	else
 		ctx.drawImage(img_arr[type+3], x, y);
 
-	let num_bubble = random(0,2);
-	for(let i=0; i<num_bubble; i++) {
-		ctx.beginPath();
-		// cx, cy, r
-		ctx.arc(x+random(-5,5)+(facing_left?0:img_arr[type].width), y+random(-5,5), random(2,5), 0, 2*Math.PI, false);
-		ctx.fillStyle = '#fff';
-		ctx.fill();		
-	}
+	// Bubbles
+	// let num_bubble = random(0,2);
+	// for(let i=0; i<num_bubble; i++) {
+	// 	ctx.beginPath();
+	// 	// cx, cy, r
+	// 	ctx.arc(x+random(-5,5)+(facing_left?0:img_arr[type].width), y+random(-5,5), random(2,5), 0, 2*Math.PI, false);
+	// 	ctx.fillStyle = '#fff';
+	// 	ctx.fill();
+	// }
 
 }
 
@@ -55,4 +56,20 @@ function drawPenguin(x, facing_left) {
 		penguin_ctx.drawImage(penguin_img_right, x, y);
 	else
 		penguin_ctx.drawImage(penguin_img_left, x, y);
+}
+
+// https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
+function updateCanvas(canvas) {
+	// Lookup the size the browser is displaying the canvas.
+	let displayWidth  = canvas.clientWidth;
+	let displayHeight = canvas.clientHeight;
+
+	// Check if the canvas is not the same size.
+	if (canvas.width  != displayWidth ||
+		canvas.height != displayHeight) {
+
+		// Make the canvas the same size
+		canvas.width  = displayWidth;
+		canvas.height = displayHeight;
+	}	
 }

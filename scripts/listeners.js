@@ -23,6 +23,13 @@ $(function() {
 	penguin_canvas = document.getElementById('penguin-canvas');
 	penguin_ctx = penguin_canvas.getContext('2d');
 
+	updateCanvas(canvas);
+	updateCanvas(penguin_canvas);
+	$(window).resize( ()=> {
+		updateCanvas(canvas);
+		updateCanvas(penguin_canvas);
+	});
+
 	// coin graph
 	coin_graph_canvas = document.getElementById('coin-graph-canvas');
 	coin_graph_ctx = coin_graph_canvas.getContext('2d');

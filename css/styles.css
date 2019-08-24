@@ -19,6 +19,13 @@ body {
 	margin-right: 20px;*/
 	overflow-x: hidden;
 }
+/*body:not(canvas) {*/
+button, summary, .tab-pane, .tab-content, .text-center,  #main-box, .nav-item, .alert {
+	z-index: 97 !important;
+}
+summary {
+	position: relative;
+}
 img, .btn, br, .nav.nav-tabs, canvas {
 	-webkit-user-select: none; /* Safari */
 	-moz-user-select: none; /* Firefox */
@@ -42,9 +49,9 @@ img, .btn, br, .nav.nav-tabs, canvas {
 	padding-top: 10px;
 	padding-bottom: 10px;
 
-		background-image: url('../img/water-bg.png');
-		background-repeat: repeat-x;
-		border: 2px solid #fff;
+	background-image: url('../img/water-bg.png');
+	background-repeat: repeat-x;
+	border: 2px solid #fff;
 }
 #white-div {
 	height: 32px;
@@ -90,11 +97,14 @@ kbd {
 	margin: 0px !important;
 }
 
-#canvas-div {
-/*	width: 80%;
-	display: block;
-*/}
-#canvas {
+#canvas, #penguin-canvas {
+
+	position: fixed;
+	top: 32px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1 !important;
 	/*width: 100%;*/
 	/*display: inline-block !important;*/
 }
