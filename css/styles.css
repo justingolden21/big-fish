@@ -20,7 +20,7 @@ body {
 	overflow-x: hidden;
 }
 /*body:not(canvas) {*/
-button, summary, .tab-pane, .tab-content, .text-center,  #main-box, .nav-item, .alert {
+button, summary, .nav-item, .alert {
 	z-index: 97 !important;
 }
 summary {
@@ -117,7 +117,7 @@ span.highlight {
 	margin-left: 2px;
 	margin-right: 2px;
 }
-canvas {
+canvas:not(#canvas):not(#penguin-canvas) {
 	border: 2px solid #262673;
 
 	/*background-color: #099;*/
@@ -309,7 +309,7 @@ hr:not(.paused) {
 
 /* wave and box stuff */
 #main-box {
-	border: 2px solid #099;
+	/*border: 2px solid #099;*/
 	/*border-radius: 10px;*/
 	border-bottom: 0px;
 	margin-right: 0px;
