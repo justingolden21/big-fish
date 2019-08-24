@@ -98,6 +98,7 @@ kbd {
 }
 
 #canvas, #penguin-canvas {
+	opacity: 0.75;
 
 	position: fixed;
 	top: 32px;
