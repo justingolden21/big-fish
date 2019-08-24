@@ -160,7 +160,6 @@ function showSnackbar(message, type) {
 	else if(message == 'Not enough snowflakes')
 		showHighlight($('#num-snowflake') );
 	else if(message == 'Not enough space in aquarium') {
-		showHighlight($('#canvas') );
 		showHighlight($('.num-aquarium-space-used') );
 		showHighlight($('.num-aquarium-space-total') );
 	}
