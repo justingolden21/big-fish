@@ -33,6 +33,16 @@ function drawFish(type, x, y, facing_left) {
 		ctx.drawImage(img_arr[type], x, y);
 	else
 		ctx.drawImage(img_arr[type+3], x, y);
+
+	let num_bubble = random(0,2);
+	for(let i=0; i<num_bubble; i++) {
+		ctx.beginPath();
+		// cx, cy, r
+		ctx.arc(x+random(-5,5)+(facing_left?0:img_arr[type].width), y+random(-5,5), random(2,5), 0, 2*Math.PI, false);
+		ctx.fillStyle = '#fff';
+		ctx.fill();		
+	}
+
 }
 
 function drawPenguin(x, facing_left) {
