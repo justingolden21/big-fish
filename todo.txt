@@ -32,6 +32,8 @@ needs testing (unsure if fixed): when background music changes, update dropdown 
 ================================GRAPHICAL BUGS:================================
 
 ================================MAYBE:================================
+make sand go all the way to bottom of screen on larger screens
+
 option to change aesthetic/theme: default, simple, gradient
 add upgrades
 bank gives better deal on selling/buying?
