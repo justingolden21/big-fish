@@ -1,3 +1,10 @@
+================================BIG NEWS:================================
+change penguins to a type of fish, make the canvas just one canvas, delete penguin sprites and related info and change for whatever type of fish
+================================BIG IDEAS:================================
+add different sprites for colors of fish
+make sprite system all in one file
+add vectors too and update icon etc
+add credit to https://www.kenney.nl/assets/fish-pack
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 ================================TODO:================================
