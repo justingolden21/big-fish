@@ -33,6 +33,7 @@ needs testing (unsure if fixed): when background music changes, update dropdown 
 
 ================================MAYBE:================================
 make sand go all the way to bottom of screen on larger screens
+new bubbly font?
 
 option to change aesthetic/theme: default, simple, gradient
 add upgrades
