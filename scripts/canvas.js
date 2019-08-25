@@ -34,8 +34,6 @@ function drawFish(type, x, y, facing_left) {
 	else
 		ctx.drawImage(img_arr[type+3], x, y);
 
-		// console.log(img_arr[type], x, y);
-
 	// Bubbles
 	// let num_bubble = random(0,2);
 	// for(let i=0; i<num_bubble; i++) {
