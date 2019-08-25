@@ -22,6 +22,10 @@ let sprite_coords = {
 		[LEFT]: {x:3, y:1},
 		[RIGHT]: {x:3, y:0}
 	},
+	[PUFF]: {
+		[LEFT]: {x:3, y:4},
+		[RIGHT]: {x:2, y:4}
+	}
 };
 
 // call onload
