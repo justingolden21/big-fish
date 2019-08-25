@@ -1,3 +1,7 @@
+note: replacing penguins with pufferfish
+replacing coins with shells and snowflakes with stars
+snow bank is star bank
+
 penguin notes:
 
 penguins cost increasing number of snowflakes, starting at 1, increase by 1 per penguin

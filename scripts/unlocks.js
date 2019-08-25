@@ -13,9 +13,9 @@ let unlocks = {
 	'medium_fish': false,
 	'big_fish': false,
 	'aquarium': false,
-	'penguins': false,
-	'penguin_hatchery': false,
-	'snow_bank': false
+	'pufferfishes': false,
+	'pufferfish_hatchery': false,
+	'star_bank': false
 };
 
 // name, description, ticks when completed, -1 if incomplete
@@ -29,19 +29,19 @@ let achievements = {
 	'Deep Sea Diving': ['Purchase another aquarium', -1],
 	'Sea World': ['Have 100 aquariums', -1],
 	'Disrupt the Food Chain': ['Run out of small fish', -1],
-	'Lemonade Stand': ['Have 100 coins', -1],
-	'Minimum Wage': ['Have 10,000 coins', -1],
-	'Monopoly Man': ['Have 1,000,000 coins', -1],
-	'Business Man': ['Make a total of over 100,000,000 coins', -1],
+	'Lemonade Stand': ['Have 100 shells', -1],
+	'Minimum Wage': ['Have 10,000 shells', -1],
+	'Monopoly Man': ['Have 1,000,000 shells', -1],
+	'Business Man': ['Make a total of over 100,000,000 shells', -1],
 	'Food Glorious Food': ['Purchase 10,000 food', -1],
 	'Big Banking': ['Have 1,000 banks', -1],
 	'So Long and Thanks for all the Fish': ['Sell 1,000 fish', -1],
 
-	'Tuxedo Time': ['Unlock penguins!', -1],
-	'Special Snowflake': ['Have 10 snowflakes', -1],
-	'Perfection': ['Have 100 penguins', -1]
+	'Balloon Time': ['Unlock pufferfishes!', -1],
+	'Special Star': ['Have 10 stars', -1],
+	'Perfection': ['Have 100 pufferfishes', -1]
 	// 'Gonna Need Swimming Lessons': ['Purchase 100 aquarium factories', -1]
-	// add have 100 penguin hatcheries achievement? have 100 snow banks achievement? 'let it snow'
+	// add have 100 pufferfish hatcheries achievement? have 100 star banks achievement?
 };
 
 function checkUnlocks() {
@@ -59,8 +59,8 @@ function checkUnlocks() {
 	if(num_aquarium_factory >= 5 && num_farm+num_small_hatchery+num_medium_hatchery+num_big_hatchery >= 1000)
 		checkUnlock('purchase_bank' , '.bank-unlock', 'banks');
 	if(big_fish.length >= 10000) {
-		checkUnlock('penguins', '.penguin-unlock', 'PENGUINS');
-		checkAchievement('Tuxedo Time', false);
+		checkUnlock('pufferfishes', '.pufferfish-unlock', 'PUFFERFISHES');
+		checkAchievement('Balloon Time', false);
 	}
 
 	if(small_fish.length >= 75)
@@ -69,10 +69,10 @@ function checkUnlocks() {
 		checkUnlock('sell_medium_fish', '.sell-medium-fish-unlock #sell-info', 'ability to sell medium fish');
 	if(big_fish.length >= 75)
 		checkUnlock('sell_big_fish', '.sell-big-fish-unlock #sell-info', 'ability to sell big fish');
-	if(penguins.length >= 10)
-		checkUnlock('penguin_hatchery', '.penguin-hatchery-unlock', 'penguin hatcheries');
-	if(num_penguin_hatchery >= 100)
-		checkUnlock('snow_bank', '.snow-bank-unlock', 'snow banks');
+	if(pufferfishes.length >= 10)
+		checkUnlock('pufferfish_hatchery', '.pufferfish-hatchery-unlock', 'pufferfish hatcheries');
+	if(num_pufferfish_hatchery >= 100)
+		checkUnlock('star_bank', '.star-bank-unlock', 'star banks');
 
 	if(small_fish.length >= 50)
 		checkUnlock('medium_fish', '.medium-fish-unlock', 'medium fish');
@@ -100,11 +100,11 @@ function checkUnlocks() {
 		checkAchievement('Sea World', false);
 	if(small_fish.length==0)
 		checkAchievement('Disrupt the Food Chain', false);
-	if(num_coin>=100) {
+	if(num_shell>=100) {
 		checkAchievement('Lemonade Stand', false);
-		if(num_coin>=10000) {
+		if(num_shell>=10000) {
 			checkAchievement('Minimum Wage', false);
-			if(num_coin>=1000000) {
+			if(num_shell>=1000000) {
 				checkAchievement('Monopoly Man', false);
 			}
 		}
@@ -117,9 +117,9 @@ function checkUnlocks() {
 		checkAchievement('Big Banking', false);
 	if(stats['fish_sold'] > 1000)
 		checkAchievement('So Long and Thanks for all the Fish', false);
-	if(num_snowflake > 10)
-		checkAchievement('Special Snowflake', false);
-	if(penguins.length > 100)
+	if(num_star > 10)
+		checkAchievement('Special Star', false);
+	if(pufferfishes.length > 100)
 		checkAchievement('Perfection', false);
 }
 
@@ -137,7 +137,7 @@ function checkUnlock(unlockName, parts, message) {
 		showSnackbar('Unlocked ' + message, 'success');
 
 		// special cases:
-		if(unlockName=='penguins') {
+		if(unlockName=='pufferfishes') {
 			changeBackgroundMusic('snow');
 			$('#background-music-select').val('snow');
 			showSnackbar('Note: You can always change the music back in settings', 'info');
@@ -149,9 +149,8 @@ function checkUnlock(unlockName, parts, message) {
 function checkAchievement(achievement_name, loaded_from_cookies) {
 	if(achievements[achievement_name][1] == -1 || loaded_from_cookies) { // wasn't already unlocked, or loaded from cookies
 		achievements[achievement_name][1] = stats['total_ticks'];
-		if(!loaded_from_cookies) {
-			showSnackbar('Achievement unlocked: ' + achievement_name, 'achievement');			
-		}
+		if(!loaded_from_cookies)
+			showSnackbar('Achievement unlocked: ' + achievement_name, 'achievement');
 
 		$('#achievements-div').append('<p><i class="fas fa-trophy"></i> <b>' + achievement_name + '</b>	: ' + achievements[achievement_name][0] + ' (' + secToStr(achievements[achievement_name][1]) + ')</p>');
 

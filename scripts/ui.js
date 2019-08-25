@@ -1,18 +1,18 @@
 
 // account for banks buying and selling
 let bank_differential = 0;
-let snow_bank_differential = 0;
+let star_bank_differential = 0;
 
 function updateUI() {
 	num_aquarium_space_used = 0;
-	num_coin_rate = 0;
-	num_snowflake_rate = 0;
+	num_shell_rate = 0;
+	num_star_rate = 0;
 	num_hungry_fish = 0;
 	
 	num_hungry_small_fish = 0;
 	num_hungry_medium_fish = 0;
 	num_hungry_big_fish = 0;
-	num_hungry_penguin = 0;
+	num_hungry_pufferfish = 0;
 
 	// counting numbers for UI
 	let all_fish = small_fish.concat(medium_fish, big_fish);
@@ -21,19 +21,19 @@ function updateUI() {
 		if(all_fish[i].hungry) {
 			num_hungry_fish++;
 		} else {
-			num_coin_rate += FISH_COIN[all_fish[i].type] * num_snowflake;
+			num_shell_rate += FISH_SHELL[all_fish[i].type] * num_star;
 		}
 	}
-	for(let i=0; i<penguins.length; i++) {
-		if(penguins[i].hungry) {
-			num_hungry_penguin++;
+	for(let i=0; i<pufferfishes.length; i++) {
+		if(pufferfishes[i].hungry) {
+			num_hungry_pufferfish++;
 		} else {
-			// note: rate is estimated, because penguins produce every min big fish eaten
+			// note: rate is estimated, because pufferfishes produce every min big fish eaten
 			// and fish don't have to be eaten in a row
-			num_snowflake_rate += PENGUIN_SNOWFLAKE; // 1
+			num_star_rate += PUFFERFISH_STAR; // 1
 		}
 	}
-	num_aquarium_space_used += PENGUIN_SPACE * penguins.length;
+	num_aquarium_space_used += FISH_SPACE[PUFF] * pufferfishes.length;
 
 
 	for(let i=0, len=small_fish.length; i<len; i++) {
@@ -49,63 +49,63 @@ function updateUI() {
 	// save time instead of for loop
 	num_hungry_big_fish = num_hungry_fish - num_hungry_small_fish - num_hungry_medium_fish;
 
-	num_coin_rate += bank_differential;
-	num_snowflake_rate += snow_bank_differential;
+	num_shell_rate += bank_differential;
+	num_star_rate += star_bank_differential;
 	
 	// todo: use getNum() on more
 
 	// display numbers on UI
-	$('#num-coin').html(getNum(num_coin) );
-	$('#num-snowflake').html(getNum(num_snowflake) );
+	$('#num-shell').html(getNum(num_shell) );
+	$('#num-star').html(getNum(num_star) );
 	$('#num-food').html(getNum(num_food) );
 	$('#num-fish').html(getNum(all_fish.length) );
-	$('#num-coin-rate').html(getNum(num_coin_rate) );
-	$('#num-snowflake-rate').html(getNum(num_snowflake_rate) );
-	$('#num-penguin-snowflake-rate').html(getNum(num_snowflake_rate) ); // note: change if implementing more snowflake stuff
+	$('#num-shell-rate').html(getNum(num_shell_rate) );
+	$('#num-star-rate').html(getNum(num_star_rate) );
+	$('#num-pufferfish-star-rate').html(getNum(num_star_rate) ); // note: change if implementing more star stuff
 	$('#num-food-rate').html(getNum( (num_farm*FARM_FOOD_RATE) - (small_fish.length-num_hungry_small_fish) ) );
 	$('#num-hungry-fish').html(getNum(num_hungry_fish) );
 	highlightIf($('#num-hungry-fish'), num_hungry_fish>0);
 	
 	$('.num-small-fish').html(small_fish.length);
 	$('#num-small-fish-food-rate').html(small_fish.length - num_hungry_small_fish);
-	$('#num-small-fish-coin-rate').html( (small_fish.length - num_hungry_small_fish)*FISH_COIN[SMALL]);
+	$('#num-small-fish-shell-rate').html( (small_fish.length - num_hungry_small_fish)*FISH_SHELL[SMALL]);
 	$('#num-small-fish-space-total').html(small_fish.length*FISH_SPACE[SMALL]);
 	$('#num-small-fish-hungry').html(num_hungry_small_fish);
 	highlightIf($('#num-small-fish-hungry'), num_hungry_small_fish>0);
 
 	$('.num-medium-fish').html(medium_fish.length);
 	$('#num-medium-fish-food-rate').html(medium_fish.length - num_hungry_medium_fish);
-	$('#num-medium-fish-coin-rate').html( (medium_fish.length - num_hungry_medium_fish)*FISH_COIN[MEDIUM]);
+	$('#num-medium-fish-shell-rate').html( (medium_fish.length - num_hungry_medium_fish)*FISH_SHELL[MEDIUM]);
 	$('#num-medium-fish-space-total').html(medium_fish.length*FISH_SPACE[MEDIUM]);
 	$('#num-medium-fish-hungry').html(num_hungry_medium_fish);
 	highlightIf($('#num-medium-fish-hungry'), num_hungry_medium_fish>0);
 
 	$('.num-big-fish').html(big_fish.length);
 	$('#num-big-fish-food-rate').html(big_fish.length - num_hungry_big_fish);
-	$('#num-big-fish-coin-rate').html( (big_fish.length - num_hungry_big_fish)*FISH_COIN[BIG]);
+	$('#num-big-fish-shell-rate').html( (big_fish.length - num_hungry_big_fish)*FISH_SHELL[BIG]);
 	$('#num-big-fish-space-total').html(big_fish.length*FISH_SPACE[BIG]);
 	$('#num-big-fish-hungry').html(num_hungry_big_fish);
 	highlightIf($('#num-big-fish-hungry'), num_hungry_big_fish>0);
 
-	$('#num-penguin').html(penguins.length);
-	$('#num-penguin-hungry').html(num_hungry_penguin);
-	$('#num-penguin-food-rate').html( (penguins.length - num_hungry_penguin) * PENGUIN_FOOD);
-	$('#num-penguin-space-total').html(penguins.length*PENGUIN_SPACE);
+	$('#num-pufferfish').html(pufferfishes.length);
+	$('#num-pufferfish-hungry').html(num_hungry_pufferfish);
+	$('#num-pufferfish-food-rate').html( (pufferfishes.length - num_hungry_pufferfish) * PUFFERFISH_FOOD);
+	$('#num-pufferfish-space-total').html(pufferfishes.length*FISH_SPACE[PUFF]);
 
-	// note: BASE_PENGUIN_COST is 1
-	$('#num-penguin-cost').html(sumNumsBetween(penguins.length+1, penguins.length+1+1) * BASE_PENGUIN_COST);
-	$('#num-penguin-cost-10').html(sumNumsBetween(penguins.length+1, penguins.length+10+1) * BASE_PENGUIN_COST);
-	$('#num-penguin-cost-100').html(sumNumsBetween(penguins.length+1, penguins.length+100+1) * BASE_PENGUIN_COST);
+	// note: BASE_PUFFERFISH_COST is 1
+	$('#num-pufferfish-cost').html(sumNumsBetween(pufferfishes.length+1, pufferfishes.length+1+1) * BASE_PUFFERFISH_COST);
+	$('#num-pufferfish-cost-10').html(sumNumsBetween(pufferfishes.length+1, pufferfishes.length+10+1) * BASE_PUFFERFISH_COST);
+	$('#num-pufferfish-cost-100').html(sumNumsBetween(pufferfishes.length+1, pufferfishes.length+100+1) * BASE_PUFFERFISH_COST);
 
-	// note: BASE_PENGUIN_HATCHERY_COST is 100
-	$('#num-penguin-hatchery-cost').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+1+1) * BASE_PENGUIN_HATCHERY_COST);
-	$('#num-penguin-hatchery-cost-10').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+10+1) * BASE_PENGUIN_HATCHERY_COST);
-	$('#num-penguin-hatchery-cost-100').html(sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+100+1) * BASE_PENGUIN_HATCHERY_COST);
+	// note: BASE_PUFFERFISH_HATCHERY_COST is 100
+	$('#num-pufferfish-hatchery-cost').html(sumNumsBetween(num_pufferfish_hatchery+1, num_pufferfish_hatchery+1+1) * BASE_PUFFERFISH_HATCHERY_COST);
+	$('#num-pufferfish-hatchery-cost-10').html(sumNumsBetween(num_pufferfish_hatchery+1, num_pufferfish_hatchery+10+1) * BASE_PUFFERFISH_HATCHERY_COST);
+	$('#num-pufferfish-hatchery-cost-100').html(sumNumsBetween(num_pufferfish_hatchery+1, num_pufferfish_hatchery+100+1) * BASE_PUFFERFISH_HATCHERY_COST);
 
-	// note: BASE_SNOW_BANK_COST is 10000
-	$('#num-snow-bank-cost').html(sumNumsBetween(num_snow_bank+1, num_snow_bank+1+1) * BASE_SNOW_BANK_COST);
-	$('#num-snow-bank-cost-10').html(sumNumsBetween(num_snow_bank+1, num_snow_bank+10+1) * BASE_SNOW_BANK_COST);
-	$('#num-snow-bank-cost-100').html(sumNumsBetween(num_snow_bank+1, num_snow_bank+100+1) * BASE_SNOW_BANK_COST);
+	// note: BASE_STAR_BANK_COST is 10000
+	$('#num-star-bank-cost').html(sumNumsBetween(num_star_bank+1, num_star_bank+1+1) * BASE_STAR_BANK_COST);
+	$('#num-star-bank-cost-10').html(sumNumsBetween(num_star_bank+1, num_star_bank+10+1) * BASE_STAR_BANK_COST);
+	$('#num-star-bank-cost-100').html(sumNumsBetween(num_star_bank+1, num_star_bank+100+1) * BASE_STAR_BANK_COST);
 
 	$('#num-aquarium').html(num_aquarium);
 	$('.num-aquarium-space-total').html(getNum(num_aquarium * AQUARIUM_SPACE) );
@@ -120,22 +120,22 @@ function updateUI() {
 	$('#num-medium-hatchery-fish-rate').html(num_medium_hatchery*MEDIUM_HATCHERY_RATE);
 	$('#num-big-hatchery').html(num_big_hatchery);
 	$('#num-big-hatchery-fish-rate').html(num_big_hatchery*BIG_HATCHERY_RATE);
-	$('#num-penguin-hatchery').html(num_penguin_hatchery);
-	$('#num-penguin-hatchery-penguin-rate').html(num_penguin_hatchery*PENGUIN_HATCHERY_RATE);
+	$('#num-pufferfish-hatchery').html(num_pufferfish_hatchery);
+	$('#num-pufferfish-hatchery-pufferfish-rate').html(num_pufferfish_hatchery*PUFFERFISH_HATCHERY_RATE);
 	$('#num-aquarium-factory').html(num_aquarium_factory);
 	$('#num-aquarium-factory-aquarium-rate').html(num_aquarium_factory*AQUARIUM_FACTORY_RATE);
 
 	$('#num-bank').html(num_bank);
 	$('#num-bank-rate-total').html(num_bank*BANK_ACTION_UNIT);
-	$('#num-snow-bank').html(num_snow_bank);
-	$('#num-snow-bank-rate-total').html(num_snow_bank*SNOW_BANK_ACTION_UNIT);
+	$('#num-star-bank').html(num_star_bank);
+	$('#num-star-bank-rate-total').html(num_star_bank*STAR_BANK_ACTION_UNIT);
 
-	$('#penguin-progress').html('');
-	// display at most 10 penguins, snowflake progress
+	$('#pufferfish-progress').html('');
+	// display at most 10 pufferfishes, star progress
 	// 60s in a min
-	for(let i=0; i<Math.min(penguins.length,10); i++) {
-		$('#penguin-progress').append('<div class="progress-bar" style="width:' + 
-			penguins[i].stomach/60 * 100 + '%;"></div>');
+	for(let i=0; i<Math.min(pufferfishes.length,10); i++) {
+		$('#pufferfish-progress').append('<div class="progress-bar" style="width:' + 
+			pufferfishes[i].stomach/60 * 100 + '%;"></div>');
 	}
 
 	updateStats();
@@ -155,10 +155,10 @@ let icon_types = {
 };
 
 function showSnackbar(message, type) {
-	if(message == 'Not enough coins')
-		showHighlight($('#num-coin') );
-	else if(message == 'Not enough snowflakes')
-		showHighlight($('#num-snowflake') );
+	if(message == 'Not enough shells')
+		showHighlight($('#num-shell') );
+	else if(message == 'Not enough stars')
+		showHighlight($('#num-star') );
 	else if(message == 'Not enough space in aquarium') {
 		showHighlight($('.num-aquarium-space-used') );
 		showHighlight($('.num-aquarium-space-total') );

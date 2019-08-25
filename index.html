@@ -53,12 +53,11 @@
 
 <body>
 <div class="text-center">
-	<!-- <br> -->
 
 	<div id="white-div"></div>
 	<div class="sticky-header">
 
-	<h3><i class="unlock penguin-unlock fas fa-kiwi-bird"></i><i id="top-logo" class="fas fa-fish"></i> &nbsp; <span style="color: #fff"><b>BIG FISH</b></span> <button id="pause-btn" class="btn"><i class="fas fa-pause"></i></button></h3>
+	<h3><img id="top-logo" src="img/small-fish.png" class="icon-sm"> &nbsp; <span style="color: #fff"><b>BIG FISH</b></span> <button id="pause-btn" class="btn"><i class="fas fa-pause"></i></button></h3>
 	<div id="info-row" class="row">
 		<div class="col-md-4">
 			<p><i class="fas fa-fish"></i> <span id="num-fish">1</span> Fish (<span id="num-hungry-fish">0</span> Hungry Fish)</p>
@@ -75,9 +74,9 @@
 		</div>
 		<div class="col-md-4">
 			<div id="top-graph-div"></div>
-			<p><i class="fas fa-coins"></i> <span id="num-coin">0</span> Coins (<span id="num-coin-rate">0</span> Coin/s)</p>
-			<div class="unlock penguin-unlock">
-				<p><i class="fas fa-snowflake"></i> <span id="num-snowflake">1</span> Snowflakes (<span id="num-snowflake-rate">0</span> Snowflakes/min)</p>
+			<p><img src="img/shell.png" class="icon-sm"> <span id="num-shell">0</span> Shells (<span id="num-shell-rate">0</span> Shell/s)</p>
+			<div class="unlock pufferfish-unlock">
+				<p><img src="img/star.png" class="icon-sm"> <span id="num-star">1</span> Stars (<span id="num-star-rate">0</span> Stars/min)</p>
 			</div>
 		</div>
 	</div>
@@ -93,8 +92,8 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#my-buildings-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-warehouse"></i> Buildings</a>
 				</li>
-				<li class="nav-item unlock penguin-unlock">
-					<a class="nav-link" href="#my-penguins-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-kiwi-bird"></i> Penguins</a>
+				<li class="nav-item unlock pufferfish-unlock">
+					<a class="nav-link" href="#my-pufferfishes-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-grin-stars"></i> Pufferfishes</a>
 				</li>
 				<li class="nav-item unlock achievement-unlock">
 					<a class="nav-link" href="#my-achievements-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-trophy"></i> Achievements</a>
@@ -104,17 +103,17 @@
 				<!-- MY FISH -->
 				<div class="tab-pane active" id="my-fish-tab" role="tabpanel">
 					<details open>
-						<summary><i class="fas fa-fish"></i> <span class="num-small-fish">1</span> Small Fish (<span id="num-small-fish-hungry">0</span> Hungry)</summary>
-						<p><i class="fas fa-coins"></i> Makes <span id="num-small-fish-coin">1</span> Coin/s (<span id="num-small-fish-coin-rate">0</span> Coin/s total)</p>
+						<summary><img src="img/small-fish.png" class="icon-sm"> <span class="num-small-fish">1</span> Small Fish (<span id="num-small-fish-hungry">0</span> Hungry)</summary>
+						<p><img src="img/shell.png" class="icon-sm"> Makes <span id="num-small-fish-shell">1</span> Shell/s (<span id="num-small-fish-shell-rate">0</span> Shell/s total)</p>
 						<p><i class="fas fa-square"></i> Eats <span id="num-small-fish-food">1</span> Food/s (<span id="num-small-fish-food-rate">0</span> Food/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-small-fish-space">1</span> Space (<span id="num-small-fish-space-total">1</span> Space total)</p> </div>
 						
 						<div class="unlock sell-small-fish-unlock">
-							<p><i class="fas fa-coins"></i> Sell Small Fish:</p>
+							<p><img src="img/shell.png" class="icon-sm"> Sell Small Fish:</p>
 							<div class="btn-group">
-								<button class="btn sell-small-fish" value="1"><i class="fas fa-coins"></i> 1 Small Fish</button>
-								<button class="btn sell-small-fish" value="10"><i class="fas fa-coins"></i> 10 Small Fish</button>
-								<button class="btn sell-small-fish" value="100"><i class="fas fa-coins"></i> 100 Small Fish</button>
+								<button class="btn sell-small-fish" value="1"><img src="img/shell.png" class="icon-sm"> 1 Small Fish</button>
+								<button class="btn sell-small-fish" value="10"><img src="img/shell.png" class="icon-sm"> 10 Small Fish</button>
+								<button class="btn sell-small-fish" value="100"><img src="img/shell.png" class="icon-sm"> 100 Small Fish</button>
 							</div>
 							<p><span class="sell-return-value">0.5</span> return value on sales</p>
 						</div>
@@ -123,17 +122,17 @@
 					<div class="unlock medium-fish-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-fish fa-2x"></i> <span class="num-medium-fish">1</span> Medium Fish (<span id="num-medium-fish-hungry">0</span> Hungry)</summary>
-						<p><i class="fas fa-coins"></i> Makes <span id="num-medium-fish-coin">30</span> Coin/s (<span id="num-medium-fish-coin-rate">0</span> Coin/s total)</p>
-						<p><i class="fas fa-fish"></i> Eats <span id="num-medium-fish-food">1</span> Small Fish/s (<span id="num-medium-fish-food-rate">0</span> Small Fish/s total)</p>
+						<summary><img src="img/medium-fish.png" class="icon-sm"> <span class="num-medium-fish">1</span> Medium Fish (<span id="num-medium-fish-hungry">0</span> Hungry)</summary>
+						<p><img src="img/shell.png" class="icon-sm"> Makes <span id="num-medium-fish-shell">30</span> Shell/s (<span id="num-medium-fish-shell-rate">0</span> Shell/s total)</p>
+						<p><img src="img/small-fish.png" class="icon-sm"> Eats <span id="num-medium-fish-food">1</span> Small Fish/s (<span id="num-medium-fish-food-rate">0</span> Small Fish/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-medium-fish-space">2</span> Space (<span id="num-medium-fish-space-total">0</span> Space total)</p> </div>
 						
 						<div class="unlock sell-medium-fish-unlock">
-							<p><i class="fas fa-coins"></i> Sell Medium Fish:</p>
+							<p><img src="img/shell.png" class="icon-sm"> Sell Medium Fish:</p>
 							<div class="btn-group">
-								<button class="btn sell-medium-fish" value="1"><i class="fas fa-coins"></i> 1 Medium Fish</button>
-								<button class="btn sell-medium-fish" value="10"><i class="fas fa-coins"></i> 10 Medium Fish</button>
-								<button class="btn sell-medium-fish" value="100"><i class="fas fa-coins"></i> 100 Medium Fish</button>
+								<button class="btn sell-medium-fish" value="1"><img src="img/shell.png" class="icon-sm"> 1 Medium Fish</button>
+								<button class="btn sell-medium-fish" value="10"><img src="img/shell.png" class="icon-sm"> 10 Medium Fish</button>
+								<button class="btn sell-medium-fish" value="100"><img src="img/shell.png" class="icon-sm"> 100 Medium Fish</button>
 							</div>
 							<p><span class="sell-return-value">0.5</span> return value on sales</p>
 						</div>
@@ -143,17 +142,17 @@
 					<div class="unlock big-fish-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-fish fa-3x"></i> <span class="num-big-fish">1</span> Big Fish (<span id="num-big-fish-hungry">0</span> Hungry)</summary>
-						<p><i class="fas fa-coins"></i> Makes <span id="num-big-fish-coin">900</span> Coin/s (<span id="num-big-fish-coin-rate">0</span> Coin/s total)</p>
-						<p><i class="fas fa-fish fa-2x"></i> Eats <span id="num-big-fish-food">1</span> Medium Fish/s (<span id="num-big-fish-food-rate">0</span> Medium Fish/s total)</p>
+						<summary><img src="img/big-fish.png" class="icon-sm"> <span class="num-big-fish">1</span> Big Fish (<span id="num-big-fish-hungry">0</span> Hungry)</summary>
+						<p><img src="img/shell.png" class="icon-sm"> Makes <span id="num-big-fish-shell">900</span> Shell/s (<span id="num-big-fish-shell-rate">0</span> Shell/s total)</p>
+						<p><img src="img/medium-fish.png" class="icon-sm"> Eats <span id="num-big-fish-food">1</span> Medium Fish/s (<span id="num-big-fish-food-rate">0</span> Medium Fish/s total)</p>
 						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-big-fish-space">3</span> Space (<span id="num-big-fish-space-total">0</span> Space total)</p> </div>
 						
 						<div class="unlock sell-big-fish-unlock">
-							<p><i class="fas fa-coins"></i> Sell Big Fish:</p>
+							<p><img src="img/shell.png" class="icon-sm"> Sell Big Fish:</p>
 							<div class="btn-group">
-								<button class="btn sell-big-fish" value="1"><i class="fas fa-coins"></i> 1 Big Fish</button>
-								<button class="btn sell-big-fish" value="10"><i class="fas fa-coins"></i> 10 Big Fish</button>
-								<button class="btn sell-big-fish" value="100"><i class="fas fa-coins"></i> 100 Big Fish</button>
+								<button class="btn sell-big-fish" value="1"><img src="img/shell.png" class="icon-sm"> 1 Big Fish</button>
+								<button class="btn sell-big-fish" value="10"><img src="img/shell.png" class="icon-sm"> 10 Big Fish</button>
+								<button class="btn sell-big-fish" value="100"><img src="img/shell.png" class="icon-sm"> 100 Big Fish</button>
 							</div>
 							<p><span class="sell-return-value">0.5</span> return value on sales</p>
 						</div>
@@ -168,9 +167,9 @@
 						<div class="progress-bar aquarium-space-display-bar"></div>
 						</p>
 						<div class="btn-group">
-							<button class="btn sell-aquarium" value="1"><i class="fas fa-coins"></i> 1 Aquarium</button>
-							<button class="btn sell-aquarium" value="10"><i class="fas fa-coins"></i> 10 Aquarium</button>
-							<button class="btn sell-aquarium" value="100"><i class="fas fa-coins"></i> 100 Aquarium</button>
+							<button class="btn sell-aquarium" value="1"><img src="img/shell.png" class="icon-sm"> 1 Aquarium</button>
+							<button class="btn sell-aquarium" value="10"><img src="img/shell.png" class="icon-sm"> 10 Aquarium</button>
+							<button class="btn sell-aquarium" value="100"><img src="img/shell.png" class="icon-sm"> 100 Aquarium</button>
 						</div>
 						<p><span class="sell-return-value">0.5</span> return value on sales</p>
 					</details>
@@ -183,11 +182,11 @@
 					<details>
 						<summary><i class="fas fa-warehouse"></i> <span id="num-farm">0</span> Fish Food Farms</summary>
 						<p><i class="fas fa-square"></i> Makes <span id="num-farm-food">5</span> Food/s (<span id="num-farm-food-rate">0</span> Food/s total)</p>
-						<p><i class="fas fa-coins"></i> Sell Farms:</p>
+						<p><img src="img/shell.png" class="icon-sm"> Sell Farms:</p>
 						<div class="btn-group">
-							<button class="btn sell-farm" value="1"><i class="fas fa-coins"></i> 1 Farm</button>
-							<button class="btn sell-farm" value="10"><i class="fas fa-coins"></i> 10 Farms</button>
-							<button class="btn sell-farm" value="100"><i class="fas fa-coins"></i> 100 Farms</button>
+							<button class="btn sell-farm" value="1"><img src="img/shell.png" class="icon-sm"> 1 Farm</button>
+							<button class="btn sell-farm" value="10"><img src="img/shell.png" class="icon-sm"> 10 Farms</button>
+							<button class="btn sell-farm" value="100"><img src="img/shell.png" class="icon-sm"> 100 Farms</button>
 						</div>
 						<p><span class="sell-return-value">0.5</span> return value on sales</p>
 					</details>
@@ -197,12 +196,12 @@
 					<hr>
 					<details>
 						<summary><i class="fas fa-building"></i> <span id="num-small-hatchery">0</span> Small Fish Hatcheries</summary>
-						<p><i class="fas fa-fish"></i> Makes <span id="num-small-hatchery-fish">1</span> Small Fish/s (<span id="num-small-hatchery-fish-rate">0</span> Small Fish/s total)</p>
-						<p><i class="fas fa-coins"></i> Sell Hatcheries:</p>
+						<p><img src="img/small-fish.png" class="icon-sm"> Makes <span id="num-small-hatchery-fish">1</span> Small Fish/s (<span id="num-small-hatchery-fish-rate">0</span> Small Fish/s total)</p>
+						<p><img src="img/shell.png" class="icon-sm"> Sell Hatcheries:</p>
 						<div class="btn-group">
-							<button class="btn sell-small-hatchery" value="1"><i class="fas fa-coins"></i> 1 Hatchery</button>
-							<button class="btn sell-small-hatchery" value="10"><i class="fas fa-coins"></i> 10 Hatcheries</button>
-							<button class="btn sell-small-hatchery" value="100"><i class="fas fa-coins"></i> 100 Hatcheries</button>
+							<button class="btn sell-small-hatchery" value="1"><img src="img/shell.png" class="icon-sm"> 1 Hatchery</button>
+							<button class="btn sell-small-hatchery" value="10"><img src="img/shell.png" class="icon-sm"> 10 Hatcheries</button>
+							<button class="btn sell-small-hatchery" value="100"><img src="img/shell.png" class="icon-sm"> 100 Hatcheries</button>
 						</div>
 						<p><span class="sell-return-value">0.5</span> return value on sales</p>
 					</details>
@@ -212,12 +211,12 @@
 					<hr>
 					<details>
 						<summary><i class="fas fa-building fa-2x"></i> <span id="num-medium-hatchery">0</span> Medium Fish Hatcheries</summary>
-						<p><i class="fas fa-fish fa-2x"></i> Makes <span id="num-medium-hatchery-fish">1</span> Medium Fish/s (<span id="num-medium-hatchery-fish-rate">0</span> Medium Fish/s total)</p>
-						<p><i class="fas fa-coins"></i> Sell Hatcheries:</p>
+						<p><img src="img/medium-fish.png" class="icon-sm"> Makes <span id="num-medium-hatchery-fish">1</span> Medium Fish/s (<span id="num-medium-hatchery-fish-rate">0</span> Medium Fish/s total)</p>
+						<p><img src="img/shell.png" class="icon-sm"> Sell Hatcheries:</p>
 						<div class="btn-group">
-							<button class="btn sell-medium-hatchery" value="1"><i class="fas fa-coins"></i> 1 Hatchery</button>
-							<button class="btn sell-medium-hatchery" value="10"><i class="fas fa-coins"></i> 10 Hatcheries</button>
-							<button class="btn sell-medium-hatchery" value="100"><i class="fas fa-coins"></i> 100 Hatcheries</button>
+							<button class="btn sell-medium-hatchery" value="1"><img src="img/shell.png" class="icon-sm"> 1 Hatchery</button>
+							<button class="btn sell-medium-hatchery" value="10"><img src="img/shell.png" class="icon-sm"> 10 Hatcheries</button>
+							<button class="btn sell-medium-hatchery" value="100"><img src="img/shell.png" class="icon-sm"> 100 Hatcheries</button>
 						</div>
 						<p><span class="sell-return-value">0.5</span> return value on sales</p>
 					</details>
@@ -227,12 +226,12 @@
 					<hr>
 					<details>
 						<summary><i class="fas fa-building fa-3x"></i> <span id="num-big-hatchery">0</span> Big Fish Hatcheries</summary>
-						<p><i class="fas fa-fish fa-3x"></i> Makes <span id="num-big-hatchery-fish">1</span> Big Fish/s (<span id="num-big-hatchery-fish-rate">0</span> Big Fish/s total)</p>
-						<p><i class="fas fa-coins"></i> Sell Hatcheries:</p>
+						<p><img src="img/big-fish.png" class="icon-sm"> Makes <span id="num-big-hatchery-fish">1</span> Big Fish/s (<span id="num-big-hatchery-fish-rate">0</span> Big Fish/s total)</p>
+						<p><img src="img/shell.png" class="icon-sm"> Sell Hatcheries:</p>
 						<div class="btn-group">
-							<button class="btn sell-big-hatchery" value="1"><i class="fas fa-coins"></i> 1 Hatchery</button>
-							<button class="btn sell-big-hatchery" value="10"><i class="fas fa-coins"></i> 10 Hatcheries</button>
-							<button class="btn sell-big-hatchery" value="100"><i class="fas fa-coins"></i> 100 Hatcheries</button>
+							<button class="btn sell-big-hatchery" value="1"><img src="img/shell.png" class="icon-sm"> 1 Hatchery</button>
+							<button class="btn sell-big-hatchery" value="10"><img src="img/shell.png" class="icon-sm"> 10 Hatcheries</button>
+							<button class="btn sell-big-hatchery" value="100"><img src="img/shell.png" class="icon-sm"> 100 Hatcheries</button>
 						</div>
 						<p><span class="sell-return-value">0.5</span> return value on sales</p>
 					</details>
@@ -243,11 +242,11 @@
 					<details>
 						<summary><i class="fas fa-city fa-3x"></i> <span id="num-aquarium-factory">0</span> Aquarium Factories</summary>
 						<p><i class="fas fa-water"></i> Makes <span id="num-aquarium-factory-aquarium">1</span> Aquarium Factory/s (<span id="num-aquarium-factory-aquarium-rate">0</span> Aquarium Factories/s total)</p>
-						<p><i class="fas fa-coins"></i> Sell Factories:</p>
+						<p><img src="img/shell.png" class="icon-sm"> Sell Factories:</p>
 						<div class="btn-group">
-							<button class="btn sell-aquarium-factory" value="1"><i class="fas fa-coins"></i> 1 Factory</button>
-							<button class="btn sell-aquarium-factory" value="10"><i class="fas fa-coins"></i> 10 Factories</button>
-							<button class="btn sell-aquarium-factory" value="100"><i class="fas fa-coins"></i> 100 Factories</button>
+							<button class="btn sell-aquarium-factory" value="1"><img src="img/shell.png" class="icon-sm"> 1 Factory</button>
+							<button class="btn sell-aquarium-factory" value="10"><img src="img/shell.png" class="icon-sm"> 10 Factories</button>
+							<button class="btn sell-aquarium-factory" value="100"><img src="img/shell.png" class="icon-sm"> 100 Factories</button>
 						</div>
 						<p><span class="sell-return-value">0.5</span> return value on sales</p>
 					</details>
@@ -266,7 +265,7 @@
 							<option value="aquarium">Aquariums</option>
 						</select> -->
 
-						<p><i class="fas fa-coins"></i> Sell Fish:</p>
+						<p><img src="img/shell.png" class="icon-sm"> Sell Fish:</p>
 						<div style="text-align: right !important;">
 						<label for="sell-small-fish-input">Small Fish:</label>
 						<input id="sell-small-fish-input" type="number" class="form-control form-control-sm" value="0"> /s
@@ -279,7 +278,7 @@
 						<p>Currently selling <span id="num-current-selling-rate">0</span> fish/s</p>
 						</div>
 
-						<p><i class="fas fa-coins"></i> Buy Buildings:</p>
+						<p><img src="img/shell.png" class="icon-sm"> Buy Buildings:</p>
 						<div style="text-align: right !important;">
 						<label for="buy-food-farm-input">Food Farms:</label>
 						<input id="buy-food-farm-input" type="number" class="form-control form-control-sm" value="0"> /s
@@ -298,7 +297,7 @@
 						<p>Currently buying <span id="num-current-buying-rate">0</span> buildings/s</p>
 						</div>
 
-						<p><i class="fas fa-coins"></i> Sell All:</p>
+						<p><img src="img/shell.png" class="icon-sm"> Sell All:</p>
 						<div style="text-align: right !important;">
 							<button id="sell-all-food-farm-btn" class="btn btn-sm">Food Farms</button>
 							<button id="sell-all-small-hatchery-btn" class="btn btn-sm">Small Hatcheries</button>
@@ -307,11 +306,11 @@
 							<button id="sell-all-aquarium-factory-btn" class="btn btn-sm">Aquarium Factories</button>
 						</div>
 
-<!-- 						<p><i class="fas fa-coins"></i> Sell Banks:</p>
+<!-- 						<p><img src="img/shell.png" class="icon-sm"> Sell Banks:</p>
 						<div class="btn-group">
-							<button class="btn sell-bank" value="1"><i class="fas fa-coins"></i> 1 Bank</button>
-							<button class="btn sell-bank" value="10"><i class="fas fa-coins"></i> 10 Banks</button>
-							<button class="btn sell-bank" value="100"><i class="fas fa-coins"></i> 100 Banks</button>
+							<button class="btn sell-bank" value="1"><img src="img/shell.png" class="icon-sm"> 1 Bank</button>
+							<button class="btn sell-bank" value="10"><img src="img/shell.png" class="icon-sm"> 10 Banks</button>
+							<button class="btn sell-bank" value="100"><img src="img/shell.png" class="icon-sm"> 100 Banks</button>
 						</div>
 						<p><span class="sell-return-value">0.5</span> return value on sales</p> -->
 					</details>
@@ -324,75 +323,75 @@
 					<div id="achievements-div"></div>
 					<p id="num-achieve"></p>
 				</div>
-				<!-- MY PENGUINS -->
-				<div class="tab-pane" id="my-penguins-tab" role="tabpanel">
+				<!-- MY PUFFERFISHES -->
+				<div class="tab-pane" id="my-pufferfishes-tab" role="tabpanel">
 					<details open>
-					<summary><i class="fas fa-kiwi-bird fa-3x"></i> <span id="num-penguin">0</span> Penguins (<span id="num-penguin-hungry">0</span> Hungry)</summary>
-						<p><i class="fas fa-snowflake fa-2x"></i> Makes <span id="num-penguin-snowflake">1</span> Snowflakes/min (<span id="num-penguin-snowflake-rate">0</span> Snowflakes/min total).<br>Snowflakes multiply the amount of coins your fish earn.</p>
-						<p><i class="fas fa-fish fa-3x"></i> Eats <span id="num-penguin-food">100</span> Big Fish/s (<span id="num-penguin-food-rate">0</span> Big Fish/s total)</p>
-						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-penguin-space">10000</span> Space (<span id="num-penguin-space-total">0</span> Space total)</p> </div>
+					<summary><img src="img/pufferfish.png" class="icon-sm"> <span id="num-pufferfish">0</span> Pufferfishes (<span id="num-pufferfish-hungry">0</span> Hungry)</summary>
+						<p><img src="img/star.png" class="icon-sm"> Makes <span id="num-pufferfish-star">1</span> Stars/min (<span id="num-pufferfish-star-rate">0</span> Stars/min total).<br>Stars multiply the amount of shells your fish earn.</p>
+						<p><img src="img/big-fish.png" class="icon-sm"> Eats <span id="num-pufferfish-food">100</span> Big Fish/s (<span id="num-pufferfish-food-rate">0</span> Big Fish/s total)</p>
+						<div class="unlock aquarium-unlock"> <p><i class="fas fa-water"></i> Uses <span id="num-pufferfish-space">10000</span> Space (<span id="num-pufferfish-space-total">0</span> Space total)</p> </div>
 
-						<p>Snowflake Progress (first 10 penguins only):</p>
-						<div id="penguin-progress"></div>
+						<p>Star Progress (first 10 pufferfishes only):</p>
+						<div id="pufferfish-progress"></div>
 											
-					<p><i class="fas fa-snowflake fa-2x"></i> Sell Penguins:</p>
+					<p><img src="img/star.png" class="icon-sm"> Sell Pufferfishes:</p>
 					<div class="btn-group">
-						<button class="btn sell-penguin" value="1"><i class="fas fa-snowflake"></i> 1 Penguin</button>
-						<button class="btn sell-penguin" value="10"><i class="fas fa-snowflake"></i> 10 Penguin</button>
-						<button class="btn sell-penguin" value="100"><i class="fas fa-snowflake"></i> 100 Penguin</button>
+						<button class="btn sell-pufferfish" value="1"><img src="img/star.png" class="icon-sm"> 1 Pufferfish</button>
+						<button class="btn sell-pufferfish" value="10"><img src="img/star.png" class="icon-sm"> 10 Pufferfish</button>
+						<button class="btn sell-pufferfish" value="100"><img src="img/star.png" class="icon-sm"> 100 Pufferfish</button>
 					</div>
-					<p><span class="num-base-penguin-cost">1</span> snowflake per returned penguin</p>
+					<p><span class="num-base-pufferfish-cost">1</span> star per returned pufferfish</p>
 					</details>
 
-					<div class="unlock penguin-hatchery-unlock">
+					<div class="unlock pufferfish-hatchery-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-igloo fa-2x"></i> <span id="num-penguin-hatchery">0</span> Penguin Hatcheries</summary>
-						<p><i class="fas fa-kiwi-bird fa-3x"></i> Makes <span id="num-penguin-hatchery-penguins">1</span> Penguins/min (<span id="num-penguin-hatchery-penguin-rate">0</span> Penguins/min total)</p>
-						<p><i class="fas fa-snowflake fa-2x"></i> Sell Hatcheries:</p>
+						<summary><i class="fas fa-monument fa-2x"></i> <span id="num-pufferfish-hatchery">0</span> Pufferfish Hatcheries</summary>
+						<p><img src="img/pufferfish.png" class="icon-sm"> Makes <span id="num-pufferfish-hatchery-pufferfishes">1</span> Pufferfishes/min (<span id="num-pufferfish-hatchery-pufferfish-rate">0</span> Pufferfishes/min total)</p>
+						<p><img src="img/star.png" class="icon-sm"> Sell Hatcheries:</p>
 						<div class="btn-group">
-							<button class="btn sell-penguin-hatchery" value="1"><i class="fas fa-snowflake"></i> 1 Hatchery</button>
-							<button class="btn sell-penguin-hatchery" value="10"><i class="fas fa-snowflake"></i> 10 Hatcheries</button>
-							<button class="btn sell-penguin-hatchery" value="100"><i class="fas fa-snowflake"></i> 100 Hatcheries</button>
+							<button class="btn sell-pufferfish-hatchery" value="1"><img src="img/star.png" class="icon-sm"> 1 Hatchery</button>
+							<button class="btn sell-pufferfish-hatchery" value="10"><img src="img/star.png" class="icon-sm"> 10 Hatcheries</button>
+							<button class="btn sell-pufferfish-hatchery" value="100"><img src="img/star.png" class="icon-sm"> 100 Hatcheries</button>
 						</div>
-						<p><span class="num-base-penguin-hatchery-cost">100</span> snowflakes per returned penguin hatchery</p>
+						<p><span class="num-base-pufferfish-hatchery-cost">100</span> stars per returned pufferfish hatchery</p>
 					</details>
 					</div>
 
-					<div class="unlock snow-bank-unlock">
+					<div class="unlock star-bank-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-dungeon fa-2x"></i> <span id="num-snow-bank">0</span> Snow Banks</summary>
-						<p><i class="fas fa-igloo fa-2x"></i> Buys/Sells up to <span id="num-snow-bank-rate">10</span> items/min (up to <span id="num-snow-bank-rate-total">0</span> items/min total)</p>
-						<p><i class="fas fa-snowflake fa-2x"></i> Sell Snow Banks:</p>
+						<summary><i class="fas fa-dungeon fa-2x"></i> <span id="num-star-bank">0</span> Star Banks</summary>
+						<p><i class="fas fa-monument fa-2x"></i> Buys/Sells up to <span id="num-star-bank-rate">10</span> items/min (up to <span id="num-star-bank-rate-total">0</span> items/min total)</p>
+						<p><img src="img/star.png" class="icon-sm"> Sell Star Banks:</p>
 						<div class="btn-group">
-							<button class="btn sell-snow-bank" value="1"><i class="fas fa-snowflake"></i> 1 Snow Bank</button>
-							<button class="btn sell-snow-bank" value="10"><i class="fas fa-snowflake"></i> 10 Snow Banks</button>
-							<button class="btn sell-snow-bank" value="100"><i class="fas fa-snowflake"></i> 100 Snow Banks</button>
+							<button class="btn sell-star-bank" value="1"><img src="img/star.png" class="icon-sm"> 1 Star Bank</button>
+							<button class="btn sell-star-bank" value="10"><img src="img/star.png" class="icon-sm"> 10 Star Banks</button>
+							<button class="btn sell-star-bank" value="100"><img src="img/star.png" class="icon-sm"> 100 Star Banks</button>
 						</div>
-						<p><span class="num-base-snow-bank-cost">10000</span> snowflakes per returned snow bank</p>
+						<p><span class="num-base-star-bank-cost">10000</span> stars per returned star bank</p>
 
-						<p><i class="fas fa-snowflake"></i> Sell:</p>
+						<p><img src="img/star.png" class="icon-sm"> Sell:</p>
 						<div style="text-align: right !important;">
-						<label for="sell-penguin-input">Penguins:</label>
-						<input id="sell-penguin-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<label for="sell-pufferfish-input">Pufferfishes:</label>
+						<input id="sell-pufferfish-input" type="number" class="form-control form-control-sm" value="0"> /min
 						<br>
-						<label for="sell-penguin-hatchery-input">Penguin Hatcheries:</label>
-						<input id="sell-penguin-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /min
-						<p>Currently selling <span id="num-current-selling-rate-snow-bank">0</span> items/min</p>
+						<label for="sell-pufferfish-hatchery-input">Pufferfish Hatcheries:</label>
+						<input id="sell-pufferfish-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<p>Currently selling <span id="num-current-selling-rate-star-bank">0</span> items/min</p>
 						</div>
 
-						<p><i class="fas fa-snowflake"></i> Buy:</p>
+						<p><img src="img/star.png" class="icon-sm"> Buy:</p>
 						<div style="text-align: right !important;">
-						<label for="buy-penguin-input">Penguins:</label>
-						<input id="buy-penguin-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<label for="buy-pufferfish-input">Pufferfishes:</label>
+						<input id="buy-pufferfish-input" type="number" class="form-control form-control-sm" value="0"> /min
 						<br>
-						<label for="buy-penguin-hatchery-input">Penguin Hatcheries:</label>
-						<input id="buy-penguin-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /min
+						<label for="buy-pufferfish-hatchery-input">Pufferfish Hatcheries:</label>
+						<input id="buy-pufferfish-hatchery-input" type="number" class="form-control form-control-sm" value="0"> /min
 						<br>
-						<label for="exchange-coin-snowflake-input">Exchange <span id="coin-snowflake-exchange-rate">100000</span> coins for <span>1</span> snowflake :</label>
-						<input id="exchange-coin-snowflake-input" type="number" class="form-control form-control-sm" value="0"> times/min
-						<p>Currently buying <span id="num-current-buying-rate-snow-bank">0</span> items/min</p>
+						<label for="exchange-shell-star-input">Exchange <span id="shell-star-exchange-rate">100000</span> shells for <span>1</span> star :</label>
+						<input id="exchange-shell-star-input" type="number" class="form-control form-control-sm" value="0"> times/min
+						<p>Currently buying <span id="num-current-buying-rate-star-bank">0</span> items/min</p>
 						</div>
 
 					</details>
@@ -410,8 +409,8 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#purchase-buildings-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-warehouse"></i> Buildings</a>
 				</li>
-				<li class="nav-item unlock penguin-unlock">
-					<a class="nav-link" href="#purchase-penguins-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-kiwi-bird"></i> Penguins</a>
+				<li class="nav-item unlock pufferfish-unlock">
+					<a class="nav-link" href="#purchase-pufferfishes-tab" data-toggle="tab" aria-selected="false"><i class="fas fa-grin-stars"></i> Pufferfishes</a>
 				</li>
 <!-- 				<li class="nav-item">
 					<a class="nav-link" href="#purchase-upgrades-tab" data-toggle="tab" aria-selected="false">Upgrades</a>
@@ -427,41 +426,41 @@
 							<button class="btn purchase-food" value="10"><i class="fas fa-square"></i> 100 Food</button>
 							<button class="btn purchase-food" value="100"><i class="fas fa-square"></i> 1000 Food</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-food-per-cost">10</span> Food costs <span id="num-food-cost">1</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-food-per-cost">10</span> Food costs <span id="num-food-cost">1</span> Shell</p>
 					</details>
 					<hr>
 					<details open>
-						<summary><i class="fas fa-fish"></i> Purchase Small Fish:</summary>
+						<summary><img src="img/small-fish.png" class="icon-sm"> Purchase Small Fish:</summary>
 						<div class="btn-group">
 							<button class="btn purchase-small-fish" value="1"><i class="fas fa-fish"></i> 1 Small Fish</button>
 							<button class="btn purchase-small-fish" value="10"><i class="fas fa-fish"></i> 10 Small Fish</button>
 							<button class="btn purchase-small-fish" value="100"><i class="fas fa-fish"></i> 100 Small Fish</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-small-fish-per-cost">1</span> Small Fish costs <span id="num-small-fish-cost">20</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-small-fish-per-cost">1</span> Small Fish costs <span id="num-small-fish-cost">20</span> Shell</p>
 					</details>
 					<div class="unlock medium-fish-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-fish fa-2x"></i> Purchase Medium Fish:</summary>
+						<summary><img src="img/medium-fish.png" class="icon-sm"> Purchase Medium Fish:</summary>
 						<div class="btn-group">
 							<button class="btn purchase-medium-fish" value="1"><i class="fas fa-fish"></i> 1 Medium Fish</button>
 							<button class="btn purchase-medium-fish" value="10"><i class="fas fa-fish"></i> 10 Medium Fish</button>
 							<button class="btn purchase-medium-fish" value="100"><i class="fas fa-fish"></i> 100 Medium Fish</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-medium-fish-per-cost">1</span> Medium Fish costs <span id="num-medium-fish-cost">400</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-medium-fish-per-cost">1</span> Medium Fish costs <span id="num-medium-fish-cost">400</span> Shell</p>
 					</details>
 					</div>
 
 					<div class="unlock big-fish-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-fish fa-3x"></i> Purchase Big Fish:</summary>
+						<summary><img src="img/big-fish.png" class="icon-sm"> Purchase Big Fish:</summary>
 						<div class="btn-group">
 							<button class="btn purchase-big-fish" value="1"><i class="fas fa-fish"></i> 1 Big Fish</button>
 							<button class="btn purchase-big-fish" value="10"><i class="fas fa-fish"></i> 10 Big Fish</button>
 							<button class="btn purchase-big-fish" value="100"><i class="fas fa-fish"></i> 100 Big Fish</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-big-fish-per-cost">1</span> Big Fish costs <span id="num-big-fish-cost">8000</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-big-fish-per-cost">1</span> Big Fish costs <span id="num-big-fish-cost">8000</span> Shell</p>
 					</details>
 					</div>
 
@@ -474,7 +473,7 @@
 							<button class="btn purchase-aquarium" value="10"><i class="fas fa-water"></i> 10 Aquariums</button>
 							<button class="btn purchase-aquarium" value="100"><i class="fas fa-water"></i> 100 Aquariums</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-aquarium-per-cost">1</span> Aquarium costs <span id="num-aquarium-cost">160000</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-aquarium-per-cost">1</span> Aquarium costs <span id="num-aquarium-cost">160000</span> Shell</p>
 					</details>
 					</div>
 
@@ -489,7 +488,7 @@
 							<button class="btn purchase-farm" value="10"><i class="fas fa-warehouse"></i> 10 Farms</button>
 							<button class="btn purchase-farm" value="100"><i class="fas fa-warehouse"></i> 100 Farms</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-farm-per-cost">1</span> Farm costs <span id="num-farm-cost">100</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-farm-per-cost">1</span> Farm costs <span id="num-farm-cost">100</span> Shell</p>
 					</details>
 					</div>
 
@@ -502,7 +501,7 @@
 							<button class="btn purchase-small-hatchery" value="10"><i class="fas fa-building"></i> 10 Hatcheries</button>
 							<button class="btn purchase-small-hatchery" value="100"><i class="fas fa-building"></i> 100 Hatcheries</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-small-hatchery-per-cost">1</span> Small Hatchery costs <span id="num-small-hatchery-cost">1000</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-small-hatchery-per-cost">1</span> Small Hatchery costs <span id="num-small-hatchery-cost">1000</span> Shell</p>
 					</details>
 					</div>
 
@@ -515,7 +514,7 @@
 							<button class="btn purchase-medium-hatchery" value="10"><i class="fas fa-building"></i> 10 Hatcheries</button>
 							<button class="btn purchase-medium-hatchery" value="100"><i class="fas fa-building"></i> 100 Hatcheries</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-medium-hatchery-per-cost">1</span> Medium Hatchery costs <span id="num-medium-hatchery-cost">10000</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-medium-hatchery-per-cost">1</span> Medium Hatchery costs <span id="num-medium-hatchery-cost">10000</span> Shell</p>
 					</details>
 					</div>
 
@@ -528,7 +527,7 @@
 							<button class="btn purchase-big-hatchery" value="10"><i class="fas fa-building"></i> 10 Hatcheries</button>
 							<button class="btn purchase-big-hatchery" value="100"><i class="fas fa-building"></i> 100 Hatcheries</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-big-hatchery-per-cost">1</span> Big Hatchery costs <span id="num-big-hatchery-cost">100000</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-big-hatchery-per-cost">1</span> Big Hatchery costs <span id="num-big-hatchery-cost">100000</span> Shell</p>
 					</details>
 					</div>
 
@@ -541,7 +540,7 @@
 							<button class="btn purchase-aquarium-factory" value="10"><i class="fas fa-city"></i> 10 Factories</button>
 							<button class="btn purchase-aquarium-factory" value="100"><i class="fas fa-city"></i> 100 Factories</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-aquarium-factory-per-cost">1</span> Aquarium Factory costs <span id="num-aquarium-factory-cost">1000000</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-aquarium-factory-per-cost">1</span> Aquarium Factory costs <span id="num-aquarium-factory-cost">1000000</span> Shell</p>
 					</details>
 					</div>
 
@@ -554,60 +553,60 @@
 							<button class="btn purchase-bank" value="10"><i class="fas fa-university"></i> 10 Banks</button>
 							<button class="btn purchase-bank" value="100"><i class="fas fa-university"></i> 100 Banks</button>
 						</div>
-						<p><i class="fas fa-coins"></i> <span id="num-bank-per-cost">1</span> Bank costs <span id="num-bank-cost">1000000</span> Coin</p>
+						<p><img src="img/shell.png" class="icon-sm"> <span id="num-bank-per-cost">1</span> Bank costs <span id="num-bank-cost">1000000</span> Shell</p>
 					</details>
 					</div>
 
 				</div>
-				<!-- PURCHASE PENGUINS -->
-				<div class="tab-pane" id="purchase-penguins-tab" role="tabpanel">
+				<!-- PURCHASE PUFFERFISHES -->
+				<div class="tab-pane" id="purchase-pufferfishes-tab" role="tabpanel">
 					<details open>
-					<summary><i class="fas fa-kiwi-bird fa-3x"></i> Purchase Penguins:</summary>
+					<summary><img src="img/pufferfish.png" class="icon-sm"> Purchase Pufferfishes:</summary>
 					<div class="btn-group">
-						<button class="btn purchase-penguin" value="1"><i class="fas fa-kiwi-bird"></i> 1 Penguin</button>
-						<button class="btn purchase-penguin" value="10"><i class="fas fa-kiwi-bird"></i> 10 Penguins</button>
-						<button class="btn purchase-penguin" value="100"><i class="fas fa-kiwi-bird"></i> 100 Penguins</button>
+						<button class="btn purchase-pufferfish" value="1"><img src="img/pufferfish.png" class="icon-sm"> 1 Pufferfish</button>
+						<button class="btn purchase-pufferfish" value="10"><img src="img/pufferfish.png" class="icon-sm"> 10 Pufferfishes</button>
+						<button class="btn purchase-pufferfish" value="100"><img src="img/pufferfish.png" class="icon-sm"> 100 Pufferfishes</button>
 					</div>
-					<p><i class="fas fa-snowflake fa-2x"></i>
-						<span id="num-penguin-per-cost">1</span> Penguin costs <span id="num-penguin-cost">1</span> Snowflakes.<br>
-						<span id="num-penguin-per-cost-10">10</span> Penguins cost <span id="num-penguin-cost-10">55</span> Snowflakes.<br>
-						<span id="num-penguin-per-cost-100">100</span> Penguins cost <span id="num-penguin-cost-100">5050</span> Snowflakes.<br>
-						Each future penguin costs <span class="num-base-penguin-cost">1</span> more snowflake.
+					<p><img src="img/star.png" class="icon-sm">
+						<span id="num-pufferfish-per-cost">1</span> Pufferfish costs <span id="num-pufferfish-cost">1</span> Stars.<br>
+						<span id="num-pufferfish-per-cost-10">10</span> Pufferfishes cost <span id="num-pufferfish-cost-10">55</span> Stars.<br>
+						<span id="num-pufferfish-per-cost-100">100</span> Pufferfishes cost <span id="num-pufferfish-cost-100">5050</span> Stars.<br>
+						Each future pufferfish costs <span class="num-base-pufferfish-cost">1</span> more star.
 					</p>
 					</details>
 
-					<div class="unlock penguin-hatchery-unlock">
+					<div class="unlock pufferfish-hatchery-unlock">
 					<hr>
 					<details>
-						<summary><i class="fas fa-igloo fa-2x"></i> Purchase Penguin Hatchery:</summary>
+						<summary><i class="fas fa-monument fa-2x"></i> Purchase Pufferfish Hatchery:</summary>
 						<div class="btn-group">
-							<button class="btn purchase-penguin-hatchery" value="1"><i class="fas fa-igloo"></i> 1 Hatchery</button>
-							<button class="btn purchase-penguin-hatchery" value="10"><i class="fas fa-igloo"></i> 10 Hatcheries</button>
-							<button class="btn purchase-penguin-hatchery" value="100"><i class="fas fa-igloo"></i> 100 Hatcheries</button>
+							<button class="btn purchase-pufferfish-hatchery" value="1"><i class="fas fa-monument"></i> 1 Hatchery</button>
+							<button class="btn purchase-pufferfish-hatchery" value="10"><i class="fas fa-monument"></i> 10 Hatcheries</button>
+							<button class="btn purchase-pufferfish-hatchery" value="100"><i class="fas fa-monument"></i> 100 Hatcheries</button>
 						</div>
-						<p><i class="fas fa-snowflake fa-2x"></i>
-							<span id="num-penguin-hatchery-per-cost">1</span> Penguin Hatchery costs <span id="num-penguin-hatchery-cost">100</span> Snowflakes.<br>
-							<span id="num-penguin-hatchery-per-cost-10">10</span> Penguin Hatcheries cost <span id="num-penguin-hatchery-cost-10">5500</span> Snowflakes.<br>
-							<span id="num-penguin-hatchery-per-cost-100">100</span> Penguin Hatcheries cost <span id="num-penguin-hatchery-cost-100">505000</span> Snowflakes.<br>
-							Each future penguin hatchery costs <span class="num-base-penguin-hatchery-cost">100</span> more snowflakes.
+						<p><img src="img/star.png" class="icon-sm">
+							<span id="num-pufferfish-hatchery-per-cost">1</span> Pufferfish Hatchery costs <span id="num-pufferfish-hatchery-cost">100</span> Stars.<br>
+							<span id="num-pufferfish-hatchery-per-cost-10">10</span> Pufferfish Hatcheries cost <span id="num-pufferfish-hatchery-cost-10">5500</span> Stars.<br>
+							<span id="num-pufferfish-hatchery-per-cost-100">100</span> Pufferfish Hatcheries cost <span id="num-pufferfish-hatchery-cost-100">505000</span> Stars.<br>
+							Each future pufferfish hatchery costs <span class="num-base-pufferfish-hatchery-cost">100</span> more stars.
 						</p>
 					</details>
 					</div>
 
-					<div class="unlock snow-bank-unlock">
+					<div class="unlock star-bank-unlock">
 					<hr>
 						<details>
-							<summary><i class="fas fa-dungeon fa-2x"></i> Purchase Snow Bank:</summary>
+							<summary><i class="fas fa-dungeon fa-2x"></i> Purchase Star Bank:</summary>
 							<div class="btn-group">
-								<button class="btn purchase-snow-bank" value="1"><i class="fas fa-dungeon"></i> 1 Snow Bank</button>
-								<button class="btn purchase-snow-bank" value="10"><i class="fas fa-dungeon"></i> 10 Snow Banks</button>
-								<button class="btn purchase-snow-bank" value="100"><i class="fas fa-dungeon"></i> 100 Snow Banks</button>
+								<button class="btn purchase-star-bank" value="1"><i class="fas fa-dungeon"></i> 1 Star Bank</button>
+								<button class="btn purchase-star-bank" value="10"><i class="fas fa-dungeon"></i> 10 Star Banks</button>
+								<button class="btn purchase-star-bank" value="100"><i class="fas fa-dungeon"></i> 100 Star Banks</button>
 							</div>
-							<p><i class="fas fa-snowflake fa-2x"></i>
-								<span id="num-snow-bank-per-cost">1</span> Snow Bank costs <span id="num-snow-bank-cost">10000</span> Snowflakes.<br>
-								<span id="num-snow-bank-per-cost-10">10</span> Snow Banks cost <span id="num-snow-bank-cost-10">550000</span> Snowflakes.<br>
-								<span id="num-snow-bank-per-cost-100">100</span> Snow Banks cost <span id="num-snow-bank-cost-100">50500000</span> Snowflakes.<br>
-								Each future snow bank costs <span class="num-base-snow-bank-cost">10000</span> more snowflake.
+							<p><img src="img/star.png" class="icon-sm">
+								<span id="num-star-bank-per-cost">1</span> Star Bank costs <span id="num-star-bank-cost">10000</span> Stars.<br>
+								<span id="num-star-bank-per-cost-10">10</span> Star Banks cost <span id="num-star-bank-cost-10">550000</span> Stars.<br>
+								<span id="num-star-bank-per-cost-100">100</span> Star Banks cost <span id="num-star-bank-cost-100">50500000</span> Stars.<br>
+								Each future star bank costs <span class="num-base-star-bank-cost">10000</span> more star.
 							</p>
 						</details>
 					</div>
@@ -643,23 +642,23 @@
 				<div class="modal-body">
 					<details open>
 					<summary><b>How to Play</b></summary>
-					<p>You start the game with 1 small fish <i class="fas fa-fish"></i>.</p>
-					<p>Your fish earn you coins <i class="fas fa-coins"></i> when they're full.</p>
-					<p>Your fish won't starve when they're hungry, they just won't give you coins.</p>
-					<p>Your fish eat food <i class="fas fa-square"></i> which costs coins <i class="fas fa-coins"></i>. </p>
+					<p>You start the game with 1 small fish <img src="img/small-fish.png" class="icon-sm">.</p>
+					<p>Your fish earn you shells <img src="img/shell.png" class="icon-sm"> when they're full.</p>
+					<p>Your fish won't starve when they're hungry, they just won't give you shells.</p>
+					<p>Your fish eat food <i class="fas fa-square"></i> which costs shells <img src="img/shell.png" class="icon-sm">. </p>
 					<p>You can purchase food <i class="fas fa-square"></i> and fish <i class="fas fa-fish"></i> under the <b>Purchase</b> tab. </p>
 
 					<div class="unlock medium-fish-unlock">
-						<p>You can purchase medium fish <i class="fas fa-fish fa-2x"></i> which eat small fish and earn you lots of coins <i class="fas fa-coins"></i><i class="fas fa-coins"></i>.</p>
+						<p>You can purchase medium fish <img src="img/medium-fish.png" class="icon-sm"> which eat small fish and earn you lots of shells <img src="img/shell.png" class="icon-sm"><img src="img/shell.png" class="icon-sm">.</p>
 					</div>
 					<div class="unlock big-fish-unlock">
-						<p>You can purchase large fish <i class="fas fa-fish fa-3x"></i> which eat medium fish and earn you lots more coins <i class="fas fa-coins"></i><i class="fas fa-coins"></i><i class="fas fa-coins"></i>.</p>
+						<p>You can purchase large fish <img src="img/big-fish.png" class="icon-sm"> which eat medium fish and earn you lots more shells <img src="img/shell.png" class="icon-sm"><img src="img/shell.png" class="icon-sm"><img src="img/shell.png" class="icon-sm">.</p>
 					</div>
 					<div class="unlock aquarium-unlock">
 						<p>You only have room in your aquarium <i class="fas fa-water"></i> for so many fish <i class="fas fa-fish"></i>! You can purchase new aquariums to hold more fish <i class="fas fa-fish"></i>.</p>
 					</div>
 					<div id="sell-info" class="unlock">
-						<p>You can sell <i class="fas fa-coins"></i> stuff you don't need for a lower return value.</p>
+						<p>You can sell <img src="img/shell.png" class="icon-sm"> stuff you don't need for a lower return value.</p>
 					</div>
 					<div class="unlock buildings-info">
 						<p>You can purchase buildings to produce stuff for you <i class="fas fa-warehouse"></i>.</p>
@@ -667,16 +666,16 @@
 					<div class="unlock bank-unlock">
 						<p>You can purchase banks to automatically buy and sell items for you <i class="fas fa-university"></i>.</p>
 					</div>
-					<div class="unlock penguin-unlock">
-						<p>Snowflakes <i class="fas fa-snowflake"></i> multiply the number of coins your fish earn you. Penguins <i class="fas fa-kiwi-bird fa-3x"></i> make 1 snowflake per min and cost an increasing amount of snowflakes.</p>
+					<div class="unlock pufferfish-unlock">
+						<p>Stars <img src="img/star.png" class="icon-sm"> multiply the number of shells your fish earn you. Pufferfishes <img src="img/pufferfish.png" class="icon-sm"> make 1 star per min and cost an increasing amount of stars.</p>
 					</div>
-					<div class="unlock penguin-hatchery-unlock">
-						<p>Penguin Hatcheries will hatch a new penguin every minute and cost an increasing amount of snowflakes.</p>
+					<div class="unlock pufferfish-hatchery-unlock">
+						<p>Pufferfish Hatcheries will hatch a new pufferfish every minute and cost an increasing amount of stars.</p>
 					</div>
-					<div class="unlock snow-bank-unlock">
-						<p>Snow Banks will can automatically buy and sell penguins and penguin hatcheries, as well as converting coins to snowflakes. They cost an increasing amount of snowflakes.</p>
+					<div class="unlock star-bank-unlock">
+						<p>Star Banks will can automatically buy and sell pufferfishes and pufferfish hatcheries, as well as converting shells to stars. They cost an increasing amount of stars.</p>
 					</div>
-					<p>Build your aquarium up and make as many coins <i class="fas fa-coins"></i> as you can!</p>
+					<p>Build your aquarium up and make as many shells <img src="img/shell.png" class="icon-sm"> as you can!</p>
 					<p>Keep playing to unlock more features <i class="far fa-smile"></i> </p>
 					</details>
 
@@ -689,7 +688,7 @@
 					<hr>
 					<details>
 					<summary><b>User Interface</b></summary>
-					<p>You can see an overview of your fish <i class="fas fa-fish"></i>, food <i class="fas fa-square"></i>, and coins <i class="fas fa-coins"></i> on the top</p>
+					<p>You can see an overview of your fish <i class="fas fa-fish"></i>, food <i class="fas fa-square"></i>, and shells <img src="img/shell.png" class="icon-sm"> on the top</p>
 					<p>On the left (top on mobile), under <b>My Stuff:</b>, you can see your fish <div class="unlock buildings-info">, buildings,</div> and more. Click on one of them to learn more.</p>
 					<p>On the right(bottom on mobile), under <b>Purchase:</b>, you can purchase fish, <div class="unlock buildings-info">buildings,</div> and more.</p>
 					<p>Use the pause button at the top of the page or the <kbd>Esc</kbd> key to pause and unpause.</p>
@@ -759,8 +758,8 @@
 						<input id="number-prefix-checkbox" type="checkbox">
 						</label>
 
-						<p>Display Coin Graphs: </p>
-						<select id="coin-graph-select">
+						<p>Display Shell Graphs: </p>
+						<select id="shell-graph-select">
 							<option value="stat">In Stats Modal</option>
 							<option value="top">On Top</option>
 							<option value="none">Nowhere</option>
@@ -781,7 +780,7 @@
 						<option selected value="0">Off</option>
 					</select>
 					<input id="volume-range" type="range" min="0" max="1" step="0.1" value="1">
-					<div class="unlock penguin-unlock">
+					<div class="unlock pufferfish-unlock">
 						<p>Background Music: </p>
 						<select id="background-music-select">
 							<option value="default">Default</option>
@@ -824,10 +823,10 @@
 				<div class="modal-body">
 					<div id="stat-graph-div">
 						<div id="graph-div">
-							<p>Coins:</p>
-							<canvas id="coin-graph-canvas"></canvas>
-							<p>Coin Rate:</p>
-							<canvas id="coin-rate-graph-canvas"></canvas>
+							<p>Shells:</p>
+							<canvas id="shell-graph-canvas"></canvas>
+							<p>Shell Rate:</p>
+							<canvas id="shell-rate-graph-canvas"></canvas>
 						</div>					
 					</div>
 
@@ -841,14 +840,14 @@
 					<p class="unlock big-fish-unlock"><span id="big-fish-purchased"></span> big fish purchased.</p>
 					<p class="unlock aquarium-unlock"><span id="aquarium-purchased"></span> aquariums purchased.</p>
 					<hr>
-					<p><span id="money-from-small-fish"></span> coins from small fish.</p>
-					<p class="unlock medium-fish-unlock"><span id="money-from-medium-fish"></span> coins from medium fish.</p>
-					<p class="unlock big-fish-unlock"><span id="money-from-big-fish"></span> coins from big fish.</p>
-					<p class="unlock penguin-unlock"><span id="penguin-purchased"></span> penguins purchased.</p>
-					<p class="unlock penguin-unlock"><span id="snowflake-gained"></span> snowflakes gained.</p>
+					<p><span id="money-from-small-fish"></span> shells from small fish.</p>
+					<p class="unlock medium-fish-unlock"><span id="money-from-medium-fish"></span> shells from medium fish.</p>
+					<p class="unlock big-fish-unlock"><span id="money-from-big-fish"></span> shells from big fish.</p>
+					<p class="unlock pufferfish-unlock"><span id="pufferfish-purchased"></span> pufferfishes purchased.</p>
+					<p class="unlock pufferfish-unlock"><span id="star-gained"></span> stars gained.</p>
 					<hr>
 					<p><span id="fish-sold"></span> fish sold.</p>
-					<p class="unlock snow-bank-unlock"><span id="penguin-sold"></span> penguins sold.</p>
+					<p class="unlock star-bank-unlock"><span id="pufferfish-sold"></span> pufferfishes sold.</p>
 				</div>
 			</div>
 		</div>

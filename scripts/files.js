@@ -7,7 +7,7 @@ function processFile(e) {
 	if(file && file.length) {
 		results = file.split('\r\n');
 		//todo: error handling
-		num_coin = parseInt(results[0]);
+		num_shell = parseInt(results[0]);
 		num_food = parseInt(results[1]);
 		num_aquarium = parseInt(results[2]);
 
@@ -31,10 +31,13 @@ function processFile(e) {
 		stats = JSON.parse(results[12]);
 		achievements = JSON.parse(results[13]);
 
-		num_penguin = parseInt(results[14]);
-		num_snowflake = parseInt(results[15]);
-		num_penguin_hatchery = parseInt(results[16]);
-		num_snow_bank = parseInt(results[17]);
+		let num_pufferfish = parseInt(results[14]);
+		pufferfishes = [];
+		addFish(PUFF, num_pufferfish);
+
+		num_star = parseInt(results[15]);
+		num_pufferfish_hatchery = parseInt(results[16]);
+		num_star_bank = parseInt(results[17]);
 
 		console.log(results);
 	}
@@ -42,7 +45,7 @@ function processFile(e) {
 
 function downloadData() {
 	let str = '';
-	str += num_coin + '\r\n';
+	str += num_shell + '\r\n';
 	str += num_food + '\r\n';
 	str += num_aquarium + '\r\n';
 
@@ -60,21 +63,21 @@ function downloadData() {
 	str += JSON.stringify(stats) + '\r\n';
 	str += JSON.stringify(achievements) + '\r\n';
 
-	str += num_penguin + '\r\n';
-	str += num_snowflake + '\r\n';
-	str += num_penguin_hatchery + '\r\n';
-	str += num_snow_bank + '\r\n';
+	str += pufferfishes.length + '\r\n';
+	str += num_star + '\r\n';
+	str += num_pufferfish_hatchery + '\r\n';
+	str += num_star_bank + '\r\n';
 
 	downloadFile(str, 'big-fish-save-data', 'download-data-link');
 }
 
 function downloadFile(str, fileName, linkName) {
 	let data = [str];
-
-	properties = {type: 'plain/text'};
+	let properties = {type: 'plain/text'};
 	try {
 		file = new File(data, fileName + '.txt', properties);
-	} catch(e) {
+	}
+	catch(e) {
 		file = new Blob(data, properties);
 	}
 	document.getElementById(linkName).download = fileName + '.txt';

@@ -32,7 +32,10 @@ let sprite_coords = {
 function setupSprites() {
 
 	sprites_img = new Image();
-	sprites_img.onload = ()=> sprites_loaded = true;
+	sprites_img.onload = ()=> {
+		sprites_loaded = true;
+		afterImagesLoaded();
+	}
 	sprites_img.src = 'img/tilesheet.png';
 }
 
@@ -52,4 +55,15 @@ function drawFish(type, x, y, facing_left) {
 
 function drawSprite(spriteX, spriteY, canvasX, canvasY) {
 	ctx.drawImage(sprites_img, spriteX*64, spriteY*64, 64, 64, canvasX, canvasY, 64,64);
+}
+
+
+// values for fish minimum and maxiumum coords
+let MIN_X;
+let MAX_X;
+
+function afterImagesLoaded() {
+	// calculate now so we don't have to every time they move
+	MIN_X = Math.ceil(SPRITE_SIZE/2);
+	MAX_X = canvas.width - (Math.floor(SPRITE_SIZE/2) );
 }

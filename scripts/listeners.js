@@ -22,24 +22,23 @@ $(function() {
 
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
-	loadImages();
 
 	setupSprites();
 
 	updateCanvas();
 	$(window).resize(updateCanvas);
 
-	// coin graph
-	coin_graph_canvas = document.getElementById('coin-graph-canvas');
-	coin_graph_ctx = coin_graph_canvas.getContext('2d');
-	coin_graph_ctx.strokeStyle = '#099';
-	coin_graph_ctx.lineWidth = 5;
-	coin_rate_graph_canvas = document.getElementById('coin-rate-graph-canvas');
-	coin_rate_graph_ctx = coin_rate_graph_canvas.getContext('2d');
-	coin_rate_graph_ctx.strokeStyle = '#099';
-	coin_rate_graph_ctx.lineWidth = 5;
+	// shell graph
+	shell_graph_canvas = document.getElementById('shell-graph-canvas');
+	shell_graph_ctx = shell_graph_canvas.getContext('2d');
+	shell_graph_ctx.strokeStyle = '#099';
+	shell_graph_ctx.lineWidth = 5;
+	shell_rate_graph_canvas = document.getElementById('shell-rate-graph-canvas');
+	shell_rate_graph_ctx = shell_rate_graph_canvas.getContext('2d');
+	shell_rate_graph_ctx.strokeStyle = '#099';
+	shell_rate_graph_ctx.lineWidth = 5;
 
-	setupCoinGraph();
+	setupShellGraph();
 	setupCheckboxes();
 
 	// start user on welcome/help modal
@@ -68,13 +67,13 @@ $(function() {
 
 	// display game vals
 	//todo: add more const values from aquarium, sell value, etc
-	$('#num-small-fish-coin').html(FISH_COIN[SMALL]);
+	$('#num-small-fish-shell').html(FISH_SHELL[SMALL]);
 	$('#num-small-fish-food').html(1);
 	$('#num-small-fish-space').html(FISH_SPACE[SMALL]);
-	$('#num-medium-fish-coin').html(FISH_COIN[MEDIUM]);
+	$('#num-medium-fish-shell').html(FISH_SHELL[MEDIUM]);
 	$('#num-medium-fish-food').html(1);
 	$('#num-medium-fish-space').html(FISH_SPACE[MEDIUM]);
-	$('#num-big-fish-coin').html(FISH_COIN[BIG]);
+	$('#num-big-fish-shell').html(FISH_SHELL[BIG]);
 	$('#num-big-fish-food').html(1);
 	$('#num-big-fish-space').html(FISH_SPACE[BIG]);
 	$('#num-aquarium-space').html(AQUARIUM_SPACE);
@@ -95,15 +94,15 @@ $(function() {
 	$('#num-aquarium-factory-cost').html(getNum(AQUARIUM_FACTORY_COST) );
 	$('#num-bank-cost').html(getNum(BANK_COST) );
 
-	$('#num-penguin-snowflake').html(PENGUIN_SNOWFLAKE); // 1
-	$('#num-penguin-food').html(PENGUIN_FOOD); // 100
-	$('#num-penguin-space').html(getNum(PENGUIN_SPACE) ); // 10000
+	$('#num-pufferfish-star').html(PUFFERFISH_STAR); // 1
+	$('#num-pufferfish-food').html(PUFFERFISH_FOOD); // 100
+	$('#num-pufferfish-space').html(getNum(FISH_SPACE[PUFF]) ); // 10000
 	
-	$('#num-penguin-hatchery-penguins').html(PENGUIN_HATCHERY_RATE); // 1
-	$('.num-base-penguin-cost').html(BASE_PENGUIN_COST); // 1
-	$('.num-base-penguin-hatchery-cost').html(BASE_PENGUIN_HATCHERY_COST); // 100
-	$('.num-base-snow-bank-cost').html(getNum(BASE_SNOW_BANK_COST) ); // 10000
-	$('#coin-snowflake-exchange-rate').html(getNum(COIN_SNOW_EXCHANGE_RATE) ); // 100000
+	$('#num-pufferfish-hatchery-pufferfishes').html(PUFFERFISH_HATCHERY_RATE); // 1
+	$('.num-base-pufferfish-cost').html(BASE_PUFFERFISH_COST); // 1
+	$('.num-base-pufferfish-hatchery-cost').html(BASE_PUFFERFISH_HATCHERY_COST); // 100
+	$('.num-base-star-bank-cost').html(getNum(BASE_STAR_BANK_COST) ); // 10000
+	$('#shell-star-exchange-rate').html(getNum(SHELL_STAR_EXCHANGE_RATE) ); // 100000
 
 	// tick();
 
@@ -112,11 +111,11 @@ $(function() {
 	// purchase fish stuff
 	$('.btn.purchase-food').click( function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < FOOD_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < FOOD_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else {
 			stats['food_purchased'] += FOOD_UNIT*amount;
-			num_coin -= FOOD_COST*amount;
+			num_shell -= FOOD_COST*amount;
 			num_food += FOOD_UNIT*amount;
 			showHighlight($('#num-food') );
 			updateUI();
@@ -124,13 +123,13 @@ $(function() {
 	});
 	$('.btn.purchase-small-fish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < SMALL_FISH_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < SMALL_FISH_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[SMALL] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['small_fish_purchased'] += amount;
-			num_coin -= SMALL_FISH_COST*amount;
+			num_shell -= SMALL_FISH_COST*amount;
 			addFish(SMALL, amount);
 			updateUI();
 			showHighlight($('#num-small-fish') );
@@ -138,13 +137,13 @@ $(function() {
 	});
 	$('.btn.purchase-medium-fish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < MEDIUM_FISH_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < MEDIUM_FISH_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[MEDIUM] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['medium_fish_purchased'] += amount;
-			num_coin -= MEDIUM_FISH_COST*amount;
+			num_shell -= MEDIUM_FISH_COST*amount;
 			addFish(MEDIUM, amount);
 			showHighlight($('#num-medium-fish') );
 			updateUI();
@@ -152,40 +151,40 @@ $(function() {
 	});
 	$('.btn.purchase-big-fish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < BIG_FISH_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < BIG_FISH_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[MEDIUM] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['big_fish_purchased'] += amount;
-			num_coin -= BIG_FISH_COST*amount;
+			num_shell -= BIG_FISH_COST*amount;
 			addFish(BIG, amount);
 			showHighlight($('#num-big-fish') );
 			updateUI();
 		}
 	});
-	$('.btn.purchase-penguin').click(function() {
+	$('.btn.purchase-pufferfish').click(function() {
 		let amount = parseInt($(this).val() );
-		let amount_penguins_cost = sumNumsBetween(penguins.length+1, penguins.length+amount+1) * BASE_PENGUIN_COST;
-		if(num_snowflake < amount_penguins_cost) {
-			showSnackbar('Not enough snowflakes', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (PENGUIN_SPACE * amount) ) {
+		let amount_pufferfishes_cost = sumNumsBetween(pufferfishes.length+1, pufferfishes.length+amount+1) * BASE_PUFFERFISH_COST;
+		if(num_star < amount_pufferfishes_cost) {
+			showSnackbar('Not enough stars', 'error');
+		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[PUFF] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
-			stats['penguin_purchased'] += amount;
-			num_snowflake -= amount_penguins_cost;
-			addPenguins(amount);
-			showHighlight($('#num-penguin') );
+			stats['pufferfish_purchased'] += amount;
+			num_star -= amount_pufferfishes_cost;
+			addPufferfishes(amount);
+			showHighlight($('#num-pufferfish') );
 			updateUI();
 		}
 	});
 	$('.btn.purchase-aquarium').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < AQUARIUM_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < AQUARIUM_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else {
 			stats['aquarium_purchased'] += amount;
-			num_coin -= AQUARIUM_COST*amount;
+			num_shell -= AQUARIUM_COST*amount;
 			num_aquarium += amount;
 			showHighlight($('#num-aquarium') );
 			updateUI();
@@ -195,10 +194,10 @@ $(function() {
 	// purchase producers
 	$('.btn.purchase-farm').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < FARM_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < FARM_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else {
-			num_coin -= FARM_COST*amount;
+			num_shell -= FARM_COST*amount;
 			num_farm += amount;
 			showHighlight($('#num-farm') );
 			updateUI();
@@ -206,10 +205,10 @@ $(function() {
 	});
 	$('.btn.purchase-small-hatchery').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < SMALL_HATCHERY_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < SMALL_HATCHERY_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else {
-			num_coin -= SMALL_HATCHERY_COST*amount;
+			num_shell -= SMALL_HATCHERY_COST*amount;
 			num_small_hatchery += amount;
 			showHighlight($('#num-small-hatchery') );
 			updateUI();
@@ -217,10 +216,10 @@ $(function() {
 	});
 	$('.btn.purchase-medium-hatchery').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < MEDIUM_HATCHERY_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < MEDIUM_HATCHERY_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else {
-			num_coin -= MEDIUM_HATCHERY_COST*amount;
+			num_shell -= MEDIUM_HATCHERY_COST*amount;
 			num_medium_hatchery += amount;
 			showHighlight($('#num-medium-hatchery') );
 			updateUI();
@@ -228,34 +227,34 @@ $(function() {
 	});
 	$('.btn.purchase-big-hatchery').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < BIG_HATCHERY_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < BIG_HATCHERY_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else {
-			num_coin -= BIG_HATCHERY_COST*amount;
+			num_shell -= BIG_HATCHERY_COST*amount;
 			num_big_hatchery += amount;
 			showHighlight($('#num-big-hatchery') );
 			updateUI();
 		}
 	});
-	$('.btn.purchase-penguin-hatchery').click(function() {
+	$('.btn.purchase-pufferfish-hatchery').click(function() {
 		let amount = parseInt($(this).val() );
-		// note: BASE_PENGUIN_HATCHERY_COST is 100
-		let amount_penguin_hatcheries_cost = sumNumsBetween(num_penguin_hatchery+1, num_penguin_hatchery+amount+1) * BASE_PENGUIN_HATCHERY_COST;
-		if(num_snowflake < amount_penguin_hatcheries_cost) {
-			showSnackbar('Not enough snowflakes', 'error');
+		// note: BASE_PUFFERFISH_HATCHERY_COST is 100
+		let amount_pufferfish_hatcheries_cost = sumNumsBetween(num_pufferfish_hatchery+1, num_pufferfish_hatchery+amount+1) * BASE_PUFFERFISH_HATCHERY_COST;
+		if(num_star < amount_pufferfish_hatcheries_cost) {
+			showSnackbar('Not enough stars', 'error');
 		} else {
-			num_snowflake -= amount_penguin_hatcheries_cost;
-			num_penguin_hatchery += amount;
-			showHighlight($('#num-penguin-hatchery') );
+			num_star -= amount_pufferfish_hatcheries_cost;
+			num_pufferfish_hatchery += amount;
+			showHighlight($('#num-pufferfish-hatchery') );
 			updateUI();
 		}
 	});
 	$('.btn.purchase-aquarium-factory').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < AQUARIUM_FACTORY_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < AQUARIUM_FACTORY_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else {
-			num_coin -= AQUARIUM_FACTORY_COST*amount;
+			num_shell -= AQUARIUM_FACTORY_COST*amount;
 			num_aquarium_factory += amount;
 			showHighlight($('#num-aquarium-factory') );
 			updateUI();
@@ -263,25 +262,25 @@ $(function() {
 	});
 	$('.btn.purchase-bank').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_coin < BANK_COST*amount) {
-			showSnackbar('Not enough coins', 'error');
+		if(num_shell < BANK_COST*amount) {
+			showSnackbar('Not enough shells', 'error');
 		} else {
-			num_coin -= BANK_COST*amount;
+			num_shell -= BANK_COST*amount;
 			num_bank += amount;
 			showHighlight($('#num-bank') );
 			updateUI();
 		}
 	});
-	$('.btn.purchase-snow-bank').click(function() {
+	$('.btn.purchase-star-bank').click(function() {
 		let amount = parseInt($(this).val() );
-		// note: BASE_SNOW_BANK_COST is 10000
-		let amountSnowBanksCost = sumNumsBetween(num_snow_bank+1, num_snow_bank+amount+1) * BASE_SNOW_BANK_COST;
-		if(num_snowflake < amountSnowBanksCost) {
-			showSnackbar('Not enough snowflakes', 'error');
+		// note: BASE_STAR_BANK_COST is 10000
+		let amount_star_banks_cost = sumNumsBetween(num_star_bank+1, num_star_bank+amount+1) * BASE_STAR_BANK_COST;
+		if(num_star < amount_star_banks_cost) {
+			showSnackbar('Not enough stars', 'error');
 		} else {
-			num_snowflake -= amountSnowBanksCost;
-			num_snow_bank += amount;
-			showHighlight($('#num-snow-bank') );
+			num_star -= amount_star_banks_cost;
+			num_star_bank += amount;
+			showHighlight($('#num-star-bank') );
 			updateUI();
 		}
 	});
@@ -293,12 +292,12 @@ $(function() {
 			showSnackbar('Not enough small fish', 'error');
 		} else {
 			stats['fish_sold'] += amount;
-			num_coin += Math.round(SMALL_FISH_COST*amount*SELL_RETURN_VALUE);
+			num_shell += Math.round(SMALL_FISH_COST*amount*SELL_RETURN_VALUE);
 			for(let i=0; i<amount; i++) {
 				small_fish.pop();
 			}
 			showHighlight($('#num-small-fish') );
-			showHighlight($('#num-coin') );
+			showHighlight($('#num-shell') );
 			updateUI();
 		}
 	});
@@ -308,12 +307,12 @@ $(function() {
 			showSnackbar('Not enough medium fish', 'error');
 		} else {
 			stats['fish_sold'] += amount;
-			num_coin += Math.round(MEDIUM_FISH_COST*amount*SELL_RETURN_VALUE);
+			num_shell += Math.round(MEDIUM_FISH_COST*amount*SELL_RETURN_VALUE);
 			for(let i=0; i<amount; i++) {
 				medium_fish.pop();
 			}
 			showHighlight($('#num-medium-fish') );
-			showHighlight($('#num-coin') );
+			showHighlight($('#num-shell') );
 			updateUI();
 		}
 	});
@@ -323,26 +322,26 @@ $(function() {
 			showSnackbar('Not enough big fish', 'error');
 		} else {
 			stats['fish_sold'] += amount;
-			num_coin += Math.round(BIG_FISH_COST*amount*SELL_RETURN_VALUE);
+			num_shell += Math.round(BIG_FISH_COST*amount*SELL_RETURN_VALUE);
 			for(let i=0; i<amount; i++) {
 				big_fish.pop();
 			}
 			showHighlight($('#num-big-fish') );
-			showHighlight($('#num-coin') );
+			showHighlight($('#num-shell') );
 			updateUI();
 		}
 	});
-	$('.btn.sell-penguin').click(function() {
+	$('.btn.sell-pufferfish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(penguins.length < amount) {
-			showSnackbar('Not enough penguins', 'error');
+		if(pufferfishes.length < amount) {
+			showSnackbar('Not enough pufferfishes', 'error');
 		} else {
-			num_snowflake += amount; // 1 snowflake per penguin returned
+			num_star += amount; // 1 star per pufferfish returned
 			for(let i=0; i<amount; i++) {
-				penguins.pop();
+				pufferfishes.pop();
 			}
-			showHighlight($('#num-penguin') );
-			showHighlight($('#num-snowflake') );
+			showHighlight($('#num-pufferfish') );
+			showHighlight($('#num-star') );
 			updateUI();
 		}
 	});
@@ -354,10 +353,10 @@ $(function() {
 			else
 				showSnackbar('Not enough aquariums', 'error');
 		} else {
-			num_coin += Math.round(AQUARIUM_COST*amount*SELL_RETURN_VALUE);
+			num_shell += Math.round(AQUARIUM_COST*amount*SELL_RETURN_VALUE);
 			num_aquarium -= amount;
 			showHighlight($('#num-aquarium') );
-			showHighlight($('#num-coin') );
+			showHighlight($('#num-shell') );
 			updateUI();
 		}
 	});
@@ -368,10 +367,10 @@ $(function() {
 		if(num_farm < amount) {
 			showSnackbar('Not enough farms', 'error');
 		} else {
-			num_coin += Math.round(FARM_COST*amount*SELL_RETURN_VALUE);
+			num_shell += Math.round(FARM_COST*amount*SELL_RETURN_VALUE);
 			num_farm -= amount;
 			showHighlight($('#num-farm') );
-			showHighlight($('#num-coin') );
+			showHighlight($('#num-shell') );
 			updateUI();
 		}
 	});
@@ -380,10 +379,10 @@ $(function() {
 		if(num_small_hatchery < amount) {
 			showSnackbar('Not enough small hatcheries', 'error');
 		} else {
-			num_coin += Math.round(SMALL_HATCHERY_COST*amount*SELL_RETURN_VALUE);
+			num_shell += Math.round(SMALL_HATCHERY_COST*amount*SELL_RETURN_VALUE);
 			num_small_hatchery -= amount;
 			showHighlight($('#num-small-hatchery') );
-			showHighlight($('#num-coin') );
+			showHighlight($('#num-shell') );
 			updateUI();
 		}
 	});
@@ -392,10 +391,10 @@ $(function() {
 		if(num_medium_hatchery < amount) {
 			showSnackbar('Not enough medium hatcheries', 'error');
 		} else {
-			num_coin += Math.round(MEDIUM_HATCHERY_COST*amount*SELL_RETURN_VALUE);
+			num_shell += Math.round(MEDIUM_HATCHERY_COST*amount*SELL_RETURN_VALUE);
 			num_medium_hatchery -= amount;
 			showHighlight($('#num-medium-hatchery') );
-			showHighlight($('#num-coin') );
+			showHighlight($('#num-shell') );
 			updateUI();
 		}
 	});
@@ -404,36 +403,36 @@ $(function() {
 		if(num_big_hatchery < amount) {
 			showSnackbar('Not enough big hatcheries', 'error');
 		} else {
-			num_coin += Math.round(BIG_HATCHERY_COST*amount*SELL_RETURN_VALUE);
+			num_shell += Math.round(BIG_HATCHERY_COST*amount*SELL_RETURN_VALUE);
 			num_big_hatchery -= amount;
 			showHighlight($('#num-big-hatchery') );
-			showHighlight($('#num-coin') );
+			showHighlight($('#num-shell') );
 			updateUI();
 		}
 	});
-	$('.btn.sell-penguin-hatchery').click(function() {
+	$('.btn.sell-pufferfish-hatchery').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_penguin_hatchery < amount) {
-			showSnackbar('Not enough penguin hatcheries', 'error');
+		if(num_pufferfish_hatchery < amount) {
+			showSnackbar('Not enough pufferfish hatcheries', 'error');
 		} else {
-			// note: BASE_PENGUIN_HATCHERY_COST is 100, snowflakes returned per penguin hatchery
-			num_snowflake += amount * BASE_PENGUIN_HATCHERY_COST;
-			num_penguin_hatchery -= amount;
-			showHighlight($('#num-penguin-hatchery') );
-			showHighlight($('#num-snowflake') );
+			// note: BASE_PUFFERFISH_HATCHERY_COST is 100, stars returned per pufferfish hatchery
+			num_star += amount * BASE_PUFFERFISH_HATCHERY_COST;
+			num_pufferfish_hatchery -= amount;
+			showHighlight($('#num-pufferfish-hatchery') );
+			showHighlight($('#num-star') );
 			updateUI();
 		}
 	});
-	$('.btn.sell-snow-bank').click(function() {
+	$('.btn.sell-star-bank').click(function() {
 		let amount = parseInt($(this).val() );
-		if(num_snow_bank < amount) { 
-			showSnackbar('Not enough snow banks', 'error');
+		if(num_star_bank < amount) { 
+			showSnackbar('Not enough star banks', 'error');
 		} else {
-			// note: BASE_SNOW_BANK_COST is 10000, snowflakes returned per snow bank
-			num_snowflake += amount * BASE_SNOW_BANK_COST;
-			num_snow_bank -= amount;
-			showHighlight($('#num-snow-bank') );
-			showHighlight($('#num-snowflake') );
+			// note: BASE_STAR_BANK_COST is 10000, stars returned per star bank
+			num_star += amount * BASE_STAR_BANK_COST;
+			num_star_bank -= amount;
+			showHighlight($('#num-star-bank') );
+			showHighlight($('#num-star') );
 			updateUI();
 		}
 	});
@@ -442,47 +441,47 @@ $(function() {
 		if(num_aquarium_factory < amount) {
 			showSnackbar('Not enough aquarium factories', 'error');
 		} else {
-			num_coin += Math.round(AQUARIUM_FACTORY_COST*amount*SELL_RETURN_VALUE);
+			num_shell += Math.round(AQUARIUM_FACTORY_COST*amount*SELL_RETURN_VALUE);
 			num_aquarium_factory -= amount;
 			showHighlight($('#num-aquarium-factory') );
-			showHighlight($('#num-coin') );
+			showHighlight($('#num-shell') );
 			updateUI();
 		}
 	});
 
 	$('#sell-all-food-farm-btn').click(function() {	
-		num_coin += Math.round(FARM_COST*num_farm*SELL_RETURN_VALUE);
+		num_shell += Math.round(FARM_COST*num_farm*SELL_RETURN_VALUE);
 		num_farm = 0;
 		showHighlight($('#num-farm') );
-		showHighlight($('#num-coin') );
+		showHighlight($('#num-shell') );
 		updateUI();
 	});
 	$('#sell-all-small-hatchery-btn').click(function() {	
-		num_coin += Math.round(SMALL_HATCHERY_COST*num_small_hatchery*SELL_RETURN_VALUE);
+		num_shell += Math.round(SMALL_HATCHERY_COST*num_small_hatchery*SELL_RETURN_VALUE);
 		num_small_hatchery = 0;
 		showHighlight($('#num-small-hatchery') );
-		showHighlight($('#num-coin') );
+		showHighlight($('#num-shell') );
 		updateUI();
 	});
 	$('#sell-all-medium-hatchery-btn').click(function() {	
-		num_coin += Math.round(MEDIUM_HATCHERY_COST*num_medium_hatchery*SELL_RETURN_VALUE);
+		num_shell += Math.round(MEDIUM_HATCHERY_COST*num_medium_hatchery*SELL_RETURN_VALUE);
 		num_medium_hatchery = 0;
 		showHighlight($('#num-medium-hatchery') );
-		showHighlight($('#num-coin') );
+		showHighlight($('#num-shell') );
 		updateUI();
 	});
 	$('#sell-all-big-hatchery-btn').click(function() {	
-		num_coin += Math.round(BIG_HATCHERY_COST*num_big_hatchery*SELL_RETURN_VALUE);
+		num_shell += Math.round(BIG_HATCHERY_COST*num_big_hatchery*SELL_RETURN_VALUE);
 		num_big_hatchery = 0;
 		showHighlight($('#num-big-hatchery') );
-		showHighlight($('#num-coin') );
+		showHighlight($('#num-shell') );
 		updateUI();
 	});
 	$('#sell-all-aquarium-factory-btn').click(function() {	
-		num_coin += Math.round(AQUARIUM_FACTORY_COST*num_aquarium_factory*SELL_RETURN_VALUE);
+		num_shell += Math.round(AQUARIUM_FACTORY_COST*num_aquarium_factory*SELL_RETURN_VALUE);
 		num_aquarium_factory = 0;
 		showHighlight($('#num-aquarium-factory') );
-		showHighlight($('#num-coin') );
+		showHighlight($('#num-shell') );
 		updateUI();
 	});
 
@@ -558,10 +557,8 @@ $(function() {
 
 	// scale icon to small, medium, or large fish on click
 	$('#top-logo').hover(function() {
-		$(this).css('transform', 'scale(1.5)');
-		// 1, 1.5, or 2 for small, medium, or big fish
-		let scale_factor = random(2,5)*0.5;
-		$(this).css('transform', 'scale(' + scale_factor + ')');
+		let fish_type = 'small medium big'.split(' ')[random(0,3)];
+		$(this).prop('src', 'img/' + fish_type + '-fish.png');
 	});
 
 	$('#audio-select').change(function() {
@@ -576,7 +573,7 @@ $(function() {
 		changeBackgroundMusic($(this).val() );
 	});
 
-	$('#coin-graph-select').change(function() {
+	$('#shell-graph-select').change(function() {
 		if($(this).val() == 'top') {
 			$('#graph-div').appendTo($('#top-graph-div') );
 			$('#graph-div').css('display', '');
@@ -592,7 +589,7 @@ $(function() {
 
 	$('#aquarium-checkbox').change(function() {
 		$('#canvas').css('display', $(this).is(':checked') ? '' : 'none');
-		$('#penguin-canvas').css('display', $(this).is(':checked') ? '' : 'none');
+		$('#pufferfish-canvas').css('display', $(this).is(':checked') ? '' : 'none');
 		draw_aquarium = !draw_aquarium;
 	});
 

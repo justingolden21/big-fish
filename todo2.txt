@@ -3,4 +3,4 @@ hover sound quieter, fish sound louder
 
 add more music
 
-move penguins purchased in stats to other stuff purchased
+move pufferfishes purchased in stats to other stuff purchased

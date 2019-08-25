@@ -1,21 +1,33 @@
+================================NOTE:================================
+still need to bug test a LOT on every aspect of the game due to the large number of changes to many files
+================================TO TEST:================================
+need to test download and upload files remembering medium fish and puffer hatcheries
+also need to test aesthetic
+test loading from file and not unlocking ability to sell until buying fish
+================================GRAPHIC UPDATES TODO:================================
+make sand stick to bottom
+NEED TO make so if your fish are eaten then you hatch new ones, they dont seem to teleport (cause theyre different fish) remember previous x and y coords?
 ================================BIG NEWS:================================
-change penguins to a type of fish, make the canvas just one canvas, delete penguin sprites and related info and change for whatever type of fish
+change pufferfishes to a type of fish, make the canvas just one canvas, delete pufferfish sprites and related info and change for whatever type of fish
 ================================BIG IDEAS:================================
 add different sprites for colors of fish
 change fish icons ot the sprite images (use vectors? eh)
 make sprite system all in one file
 add vectors too and update icon etc
 add credit to font and sprites not just readme but also modal in site
-reflavor coins and snowflakes to shells and stars, get the ones from the asset pack inside the sand
-show coins being dropped
-fix for running out of coins?
+reflavor shells and stars to shells and stars, get the ones from the asset pack inside the sand
+show shells being dropped
+fix for running out of shells?
 draw fish more often than game tick?
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
+figure out checkbox with tabbation/tab key/focus
 ================================TODO:================================
 - remember/store settings in cookies, txt file
 
-- more efficient way of storing fish/penguins that arent displayed (dont need x, y coords for all 1000000 fish, only the top 20, and you sell the bottom ones first. check how many fish before assigning coords? before moving?)
+- remember previous banks buy/sell inputs in cookies/txt
+
+- more efficient way of storing fish/pufferfishes that arent displayed (dont need x, y coords for all 1000000 fish, only the top 20, and you sell the bottom ones first. check how many fish before assigning coords? before moving?)
 
 - checkbox to display buy max possible buttons
 
@@ -29,9 +41,9 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - figure out system for less annoying/more fun upon page load. cookie alert is annoying, lack of music is boring.
 ================================BUGS:================================
-potential bug: with snowflakes and banks displayed coin rate might be calcualted wrong
-coin rate caluated wrong doesnt account for fish eating before they die
-	important because when you have a bunch of hatcheries and penguins and no fish that live
+potential bug: with stars and banks displayed shell rate might be calcualted wrong
+shell rate caluated wrong doesnt account for fish eating before they die
+	important because when you have a bunch of hatcheries and pufferfishes and no fish that live
 	it displays 0 but increases
 needs testing (unsure if fixed): when background music changes, update dropdown in settings too
 ================================GRAPHICAL BUGS:================================
@@ -42,7 +54,7 @@ make sand go all the way to bottom of screen on larger screens
 option to change aesthetic/theme: default, simple, gradient
 add upgrades
 bank gives better deal on selling/buying?
-achievement idea: get to certain coins/second
+achievement idea: get to certain shells/second
 restart the game but with better costs once you get to certain point?
 fish that eats aquariums?
 disable buttons for things you cant purchase in updateUI()
@@ -53,13 +65,13 @@ add keyboard controls for purcahses
 show graphs of food and fish and money vs ticks?
 different colored snackbars for unlocks and warnings
 add option to inrease the number of an item purhased or sold by a certain value in banks
-help i broke it and i need a few extra coins button, to give plus one coin
+help i broke it and i need a few extra shells button, to give plus one shell
 idea: have random events, such that you gain or lose resources, have thing go on "sale", more changes to gameplay to make less linear and more unexpected.
 options for sound effects: purchasing and error sounds, unlock and achievement sound
 button to clear queue of notifications to display? pause to clear?
 use cookies for sound setting
 load the consts in index on pageload (the ones in my stuff section), better quality code
-penguins dont take up aquarium space, they take up snow space? buildings take up land space?
+pufferfishes dont take up aquarium space, they take up snow space? buildings take up land space?
 make it a pwa
 ================================TODO LATER:================================
 collabertation with other players? online multiplayer?
@@ -69,15 +81,15 @@ encode .txt files so they cant be easily messed with
 store data more accuratly in cookies and .txt files.
 have date on txt files?
 ================================BIG IDEAS:================================
-penguins:
-cost 1bil coins, eat 100 big fish/s
-every min give you 1 snowflake
-snowflakesmultiply the amount of coins you earn
-after 1st penguin next penguin costs 1 snowflake, then 2 then 3...
+pufferfishes:
+cost 1bil shells, eat 100 big fish/s
+every min give you 1 star
+starsmultiply the amount of shells you earn
+after 1st pufferfish next pufferfish costs 1 star, then 2 then 3...
 
-penguin hatchery that costs 10, then 20, then 30 snowflake and makes 1 penguin per min?
+pufferfish hatchery that costs 10, then 20, then 30 star and makes 1 pufferfish per min?
 
-something that eats snowflakes? eats penguins?
+something that eats stars? eats pufferfishes?
 
 big changes:
 rename producers into buildings
@@ -91,8 +103,8 @@ start with 1,000,000 land (1 land unit)
 aquariums take up 1 land units
 farms take 10, small hatchery 100, medium hatchery 1000, big hatchery 10000, aquarium factory 100,000
 medium fish hatchery factory 1,000,000, big fish hatchery factory 10,000,000
-land upgrades cost 1,000,000,000 coin for 1 land unit of land
-land factory (tank?) costs 1,000,000,000,000 coins and makes 1 land unit per second and takes up 1,000,000,000 land
+land upgrades cost 1,000,000,000 shell for 1 land unit of land
+land factory (tank?) costs 1,000,000,000,000 shells and makes 1 land unit per second and takes up 1,000,000,000 land
 bank takes 10,000 land
 
 late game progress:
