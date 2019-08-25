@@ -2,10 +2,12 @@
 change penguins to a type of fish, make the canvas just one canvas, delete penguin sprites and related info and change for whatever type of fish
 ================================BIG IDEAS:================================
 add different sprites for colors of fish
+change fish icons ot the sprite images (use vectors? eh)
 make sprite system all in one file
 add vectors too and update icon etc
 add credit to font and sprites not just readme but also modal in site
 reflavor coins and snowflakes to shells and stars, get the ones from the asset pack inside the sand
+show coins being dropped
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 ================================TODO:================================
@@ -23,6 +25,7 @@ fix bug with banks selling items when you dont have enough so it goes down by 1 
 
 - system for displaying locked achievements that aren't spoilers
 
+- figure out system for less annoying/more fun upon page load. cookie alert is annoying, lack of music is boring.
 ================================BUGS:================================
 potential bug: with snowflakes and banks displayed coin rate might be calcualted wrong
 coin rate caluated wrong doesnt account for fish eating before they die

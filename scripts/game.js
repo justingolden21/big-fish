@@ -172,7 +172,7 @@ let penguins = [];
 // game vals
 let paused = false;
 let draw_aquarium = true;
-let canvas, ctx, penguin_canvas, penguin_ctx;
+let canvas, ctx;
 let coin_graph_canvas, coin_graph_ctx, coin_rate_graph_canvas, coin_rate_graph_ctx;
 
 // global vars from updateUI()
@@ -275,7 +275,6 @@ function tick() {
 		}
 	}
 	// penguin update
-	penguin_ctx.clearRect(0, 0, penguin_canvas.width, penguin_canvas.height);
 	for(let i=0; i<penguins.length; i++) {
 		penguins[i].update();
 		// only draw first NUM_DRAWN_PENGUIN (10) penguins

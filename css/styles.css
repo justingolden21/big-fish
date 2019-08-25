@@ -30,10 +30,10 @@ body {
 	overflow-x: hidden;
 }
 /*body:not(canvas) {*/
-button, summary, .nav-item, .alert {
+input, button, summary, .nav-item, .alert, .tab-content input, body:not(canvas) {
 	z-index: 97 !important;
 }
-summary {
+summary, input, button {
 	position: relative;
 }
 img, .btn, br, .nav.nav-tabs, canvas {
