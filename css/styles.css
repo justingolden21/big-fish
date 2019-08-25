@@ -122,7 +122,8 @@ kbd {
 
 /* game */
 span.highlight {
-	background-color: #099;
+	/*background-color: #099;*/
+	background-color: #fff;
 	padding-left: 1px;
 	padding-right: 1px;
 	margin-left: 2px;
