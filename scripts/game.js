@@ -4,6 +4,11 @@ const SMALL = 0;
 const MEDIUM = 1;
 const BIG = 2;
 
+const PUFF = 3;
+const SHELL = 4;
+const STAR = 5;
+
+// consts
 const NUM_DRAWN_FISH = 20;
 const NUM_DRAWN_PENGUIN = 10;
 
@@ -23,8 +28,8 @@ class Fish { // fish should go to class so they stay in school :)
 				this.x = random(Math.ceil(img_arr[this.type].width/2), Math.floor(canvas.width-(img_arr[this.type].width/2) ) );
 				this.y = random(Math.ceil(img_arr[this.type].height/2), Math.floor(canvas.height-(img_arr[this.type].height/2) ) );
 			} else {
-				this.x = 10;
-				this.y = 9;
+				this.x = 120;
+				this.y = 120;
 			}
 			this.facing_left = Math.random() >= 0.5;
 		}
@@ -71,22 +76,21 @@ class Fish { // fish should go to class so they stay in school :)
 	}
 	move() { // move according to speed, random direction
 		this.facing_left = Math.random() >= 0.1 ? this.facing_left : !this.facing_left;
-		if(this.x < Math.ceil(img_arr[this.type].width/2) ) {
-			this.x = Math.ceil(img_arr[this.type].width/2);
+		
+		if(!this.facing_left)
+			this.x += FISH_SPEEDS[this.type];
+		else
+			this.x -= FISH_SPEEDS[this.type];
+
+		if(this.x <= MIN_X[this.type]) {
+			this.x = MIN_X[this.type];
 			this.facing_left = !this.facing_left;
 		}
-		if(this.x > canvas.width - (Math.floor(img_arr[this.type].width/2) ) ) {
-			this.x = canvas.width - (Math.floor(img_arr[this.type].width/2) );
+		if(this.x >= MAX_X[this.type]) {
+			this.x = MAX_X[this.type];
 			this.facing_left = !this.facing_left;
 		}
 
-		if(!this.facing_left) {
-			this.x += FISH_SPEEDS[this.type];
-			// this.x = Math.min(this.x, canvas.width - ( Math.floor(img_arr[this.type].width/2) ) );
-		} else {
-			this.x -= FISH_SPEEDS[this.type];
-			// this.x = Math.max(this.x, Math.ceil(img_arr[this.type].width/2) );
-		}
 	}
 	draw() { // draws fish on canvas
 		drawFish(this.type, this.x, this.y, this.facing_left);

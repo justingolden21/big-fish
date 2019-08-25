@@ -8,6 +8,8 @@ add vectors too and update icon etc
 add credit to font and sprites not just readme but also modal in site
 reflavor coins and snowflakes to shells and stars, get the ones from the asset pack inside the sand
 show coins being dropped
+fix for running out of coins?
+draw fish more often than game tick?
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 ================================TODO:================================

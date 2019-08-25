@@ -69,7 +69,7 @@ img, .btn, br, .nav.nav-tabs, canvas {
 	border: 2px solid #fff;
 }
 #footer-top {
-	position: -webkit-sticky; /* Safari */
+	position: -webkit-sticky;
 	position: sticky;
 	bottom: 0;
     height: 64px;
@@ -80,10 +80,18 @@ img, .btn, br, .nav.nav-tabs, canvas {
 
 	background-image: url('../img/sand-1.png');
 	background-repeat: repeat-x;
+
+
+/*	position: absolute;
+	bottom: 0;*/
 }
 #footer-bottom {
 	background-image: url('../img/sand-0.png');
 	height: 72px;
+
+/*	position: absolute;
+	bottom: 0;*/
+
 }
 #info-row p {
 	font-weight: bold;
@@ -107,11 +115,12 @@ kbd {
 	margin: 0px !important;
 }
 
-#canvas, #penguin-canvas {
+#canvas {
 	opacity: 0.75;
 
 	position: fixed;
 	top: 32px;
+	/*bottom: 32px;*/
 	left: 0;
 	width: 100%;
 	height: 100%;
@@ -129,7 +138,7 @@ span.highlight {
 	margin-left: 2px;
 	margin-right: 2px;
 }
-canvas:not(#canvas):not(#penguin-canvas) {
+canvas:not(#canvas) {
 	border: 2px solid #262673;
 
 	/*background-color: #099;*/
