@@ -175,6 +175,9 @@ canvas:not(#canvas):not(#penguin-canvas) {
 	background-color: #262673;
 	border: 2px solid #262673;
 }
+.nav-tabs .nav-item .nav-link.active:focus { /* active focus */
+	color: #099;
+}
 
 /* buttons */
 .btn:focus, select:focus, .alert .close:focus {

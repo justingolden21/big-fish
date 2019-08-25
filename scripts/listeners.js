@@ -16,6 +16,10 @@ $(function() {
 			$('#sea-items').append('<img src="img/blank.png" class="sea-item">');
 	}
 
+	$('.modal').on('shown.bs.modal', (evt)=> {
+		$(evt.target).find('.close').focus();
+	});
+
 
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
