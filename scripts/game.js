@@ -27,8 +27,8 @@ class Fish { // fish should go to class so they stay in school :)
 				this.x = random(Math.ceil(SPRITE_SIZE/2), Math.floor(canvas.width-(SPRITE_SIZE/2) ) );
 				this.y = random(Math.ceil(SPRITE_SIZE/2), Math.floor(canvas.height-(SPRITE_SIZE/2) ) );
 			} else {
-				this.x = 120;
-				this.y = 120;
+				this.x = 160;
+				this.y = 160;
 			}
 			this.facing_left = Math.random() >= 0.5;
 		}
@@ -115,8 +115,8 @@ class Pufferfish {
 				this.y = random(Math.ceil(SPRITE_SIZE/2), Math.floor(canvas.height-(SPRITE_SIZE/2) ) );
 			}
 			else {
-				this.x = 120;
-				this.y = 120;
+				this.x = 160;
+				this.y = 160;
 			}
 
 			this.facing_left = Math.random() >= 0.5;

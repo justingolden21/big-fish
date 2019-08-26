@@ -79,6 +79,8 @@ $(function() {
 	$('#num-aquarium-space').html(AQUARIUM_SPACE);
 	$('.sell-return-value').html(SELL_RETURN_VALUE);
 
+	$('#num-drawn-fish').html(NUM_DRAWN_FISH);
+
 	$('#num-food-per-cost').html(FOOD_UNIT);
 	$('#num-small-fish-cost').html(getNum(SMALL_FISH_COST) );
 	$('#num-medium-fish-cost').html(getNum(MEDIUM_FISH_COST) );

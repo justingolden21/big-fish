@@ -19,6 +19,7 @@ reflavor shells and stars to shells and stars, get the ones from the asset pack 
 show shells being dropped
 fix for running out of shells?
 draw fish more often than game tick?
+display fish as skeleton if hungry, if over 20 fish, display a percentage equal to hungry percentage out of 20 as hungry sprites
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 figure out checkbox with tabbation/tab key/focus
