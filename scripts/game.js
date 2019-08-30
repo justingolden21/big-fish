@@ -8,6 +8,9 @@ const PUFF = 3;
 // const SHELL = 4;
 // const STAR = 5;
 
+const MEDIUM2 = 11;
+const BIG2 = 12;
+
 // consts
 const NUM_DRAWN_FISH = 20;
 
@@ -31,6 +34,7 @@ class Fish { // fish should go to class so they stay in school :)
 				this.y = 160;
 			}
 			this.facing_left = Math.random() >= 0.5;
+			this.subtype = Math.random() >= 0.5 ? 1 : 2;
 		}
 	}
 	eat() { // attempts to eat
@@ -92,7 +96,7 @@ class Fish { // fish should go to class so they stay in school :)
 
 	}
 	draw() { // draws fish on canvas
-		drawFish(this.type, this.x, this.y, this.facing_left);
+		drawFish(this.type, this.subtype, this.x, this.y, this.facing_left);
 	}
 	update() {
 		// this.ticks++;
@@ -118,8 +122,8 @@ class Pufferfish {
 				this.x = 160;
 				this.y = 160;
 			}
-
 			this.facing_left = Math.random() >= 0.5;
+			this.subtype = 1;
 		}
 	}
 	eat() { // attempts to eat 100 big fish
@@ -155,7 +159,7 @@ class Pufferfish {
 		}
 	}
 	draw() {
-		drawFish(PUFF, this.x, this.y, this.facing_left);
+		drawFish(PUFF, this.subtype, this.x, this.y, this.facing_left);
 	}
 	update() {
 		// this.ticks++;
@@ -520,6 +524,7 @@ function togglePause(snackbar=true) {
 			showSnackbar('Game resumed', 'info');
 	}
 	$('hr').toggleClass('paused');
+	$('.sticky-header').toggleClass('paused');
 	paused = !paused;
 
 	audioHandlePause(paused);

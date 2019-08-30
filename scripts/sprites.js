@@ -11,20 +11,41 @@ const SPRITE_SIZE = 64;
 
 let sprite_coords = {
 	[SMALL]: {
-		[LEFT]: {x:0, y:1},
-		[RIGHT]: {x:0, y:0}
+		1: {
+			[LEFT]: {x:0, y:1},
+			[RIGHT]: {x:0, y:0}
+		},
+		2: {
+			[LEFT]: {x:0, y:1},
+			[RIGHT]: {x:0, y:0}
+		}
 	},
 	[MEDIUM]: {
-		[LEFT]: {x:1, y:1},
-		[RIGHT]: {x:1, y:0}
+		1: {
+			[LEFT]: {x:1, y:1},
+			[RIGHT]: {x:1, y:0}
+		},
+		2: {
+			[LEFT]: {x:2, y:1},
+			[RIGHT]: {x:2, y:0}
+		}
 	},
 	[BIG]: {
-		[LEFT]: {x:3, y:1},
-		[RIGHT]: {x:3, y:0}
+		1: {
+			[LEFT]: {x:3, y:1},
+			[RIGHT]: {x:3, y:0}
+		},
+		2: {
+			[LEFT]: {x:4, y:1},
+			[RIGHT]: {x:4, y:0}
+		}
 	},
 	[PUFF]: {
-		[LEFT]: {x:3, y:4},
-		[RIGHT]: {x:2, y:4}
+		1: {
+			[LEFT]: {x:3, y:4},
+			[RIGHT]: {x:2, y:4}
+		}
+
 	}
 };
 
@@ -41,7 +62,7 @@ function setupSprites() {
 
 // note: changed params and order
 // function drawFish(type, x, y, facing_left) {
-function drawFish(type, x, y, facing_left) {
+function drawFish(type, subtype, x, y, facing_left) {
 	if(!sprites_loaded) return;
 
 	// params x and y are img center, converted to img top left for canvas
@@ -49,7 +70,7 @@ function drawFish(type, x, y, facing_left) {
 	y -= Math.floor(SPRITE_SIZE/2);
 
 	// example SMALL, 341, 422, LEFT
-	let cur_sprite = sprite_coords[type][facing_left?LEFT:RIGHT];
+	let cur_sprite = sprite_coords[type][subtype][facing_left?LEFT:RIGHT];
 	drawSprite(cur_sprite.x, cur_sprite.y, x, y);
 }
 

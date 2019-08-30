@@ -13,6 +13,10 @@ note: replaced dark blue with light blue, and replaced white with dark blue
 	width: 32px;
 	display: inline;
 }
+.icon-md {
+	width: 48px;
+	display: inline;
+}
 
 
 @font-face {
@@ -60,14 +64,34 @@ img, .btn, br, .nav.nav-tabs, canvas {
 	position: sticky;
 	top: 0;
 	z-index: 99;
-	background-color: #a1d6e7;
+	background-color: #fff;
 	padding-top: 10px;
-	padding-bottom: 10px;
+	/*padding-bottom: 10px;*/
 
 	background-image: url('../img/water-bg.png');
 	background-repeat: repeat-x;
 	border: 2px solid #fff;
 }
+#info-row {
+	background-color: #a1d6e7;
+}
+
+.sticky-header:not(.paused) {
+	animation: bigwave 1s linear infinite;
+	-webkit-animation: bigwave 1s linear infinite;
+}
+@keyframes bigwave {
+	0% { background-position: 32px 4px; }
+	50% { background-position: 0px 0px; }
+	100% { background-position: -32px 4px; }
+}
+@-webkit-keyframes bigwave {
+	0% { background-position: 32px 4px; }
+	50% { background-position: 0px 0px; }
+	100% { background-position: -32px 4px; }
+}
+
+
 #white-div {
 	height: 32px;
 	background-color: #fff;
