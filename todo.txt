@@ -6,20 +6,18 @@ also need to test aesthetic
 test loading from file and not unlocking ability to sell until buying fish
 ================================GRAPHIC UPDATES TODO:================================
 make sand stick to bottom
-NEED TO make so if your fish are eaten then you hatch new ones, they dont seem to teleport (cause theyre different fish) remember previous x and y coords?
+NEED TO make so if your fish are eaten then you hatch new ones, they dont seem to teleport (cause theyre different fish) remember previous x and y coords? facing left and subtype?
 ================================BIG NEWS:================================
 change pufferfishes to a type of fish, make the canvas just one canvas, delete pufferfish sprites and related info and change for whatever type of fish
 ================================BIG IDEAS:================================
-add different sprites for colors of fish
-change fish icons ot the sprite images (use vectors? eh)
 make sprite system all in one file
 add vectors too and update icon etc
 add credit to font and sprites not just readme but also modal in site
-reflavor shells and stars to shells and stars, get the ones from the asset pack inside the sand
 show shells being dropped
 fix for running out of shells?
 draw fish more often than game tick?
 display fish as skeleton if hungry, if over 20 fish, display a percentage equal to hungry percentage out of 20 as hungry sprites
+shells randomly spawn in the sand? click them to get a shell and turn sand to normal sand?
 ================================BUGS:================================
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 figure out checkbox with tabbation/tab key/focus
