@@ -39,8 +39,8 @@ let achievements = {
 
 	'Balloon Time': ['Unlock pufferfishes!', -1],
 	'Special Star': ['Have 10 stars', -1],
-	'Perfection': ['Have 100 pufferfishes', -1]
-	// 'Gonna Need Swimming Lessons': ['Purchase 100 aquarium factories', -1]
+	'Pufferfish Perfection': ['Have 100 pufferfishes', -1],
+	'Water You Waiting For': ['Purchase 100 aquarium factories', -1]
 	// add have 100 pufferfish hatcheries achievement? have 100 star banks achievement?
 };
 
@@ -120,7 +120,9 @@ function checkUnlocks() {
 	if(num_star > 10)
 		checkAchievement('Special Star', false);
 	if(pufferfishes.length > 100)
-		checkAchievement('Perfection', false);
+		checkAchievement('Pufferfish Perfection', false);
+	if(num_aquarium_factory >= 100)
+		checkAchievement('Water You Waiting For', false);
 }
 
 

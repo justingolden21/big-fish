@@ -19,6 +19,8 @@ draw fish more often than game tick?
 display fish as skeleton if hungry, if over 20 fish, display a percentage equal to hungry percentage out of 20 as hungry sprites
 shells randomly spawn in the sand? click them to get a shell and turn sand to normal sand?
 ================================BUGS:================================
+medium fish aren't unlocked from file
+achievement tab isn't unlocked form file
 fix bug with banks selling items when you dont have enough so it goes down by 1 each time
 figure out checkbox with tabbation/tab key/focus
 ================================TODO:================================
