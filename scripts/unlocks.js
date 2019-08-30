@@ -81,6 +81,10 @@ function checkUnlocks() {
 	if(num_aquarium_space_used >= AQUARIUM_SPACE/2)
 		checkUnlock('aquarium', '.aquarium-unlock',  'purchase aquarium');
 
+	// just trust me here
+	if(unlocks['big-fish'])
+		checkUnlock('medium_fish', '.medium-fish-unlock', 'medium fish');
+
 	// achievements
 	if(small_fish.length>1)
 		checkAchievement('One Fish Two Fish', false);

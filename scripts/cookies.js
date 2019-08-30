@@ -46,7 +46,7 @@ function loadCookies() {
 	achievements = Cookies.getJSON('achievements') || achievements;
 	for(achievement_name in achievements) {
 		if(achievements[achievement_name][1] != -1) { // if unlocked
-			checkAchievement(achievement_name, true);			
+			checkAchievement(achievement_name, true);
 		}
 	}
 

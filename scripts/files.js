@@ -28,8 +28,17 @@ function processFile(e) {
 		big_fish = [];
 		addFish(BIG, num_big_fish);
 
-		stats = JSON.parse(results[12]);
-		achievements = JSON.parse(results[13]);
+		// in case any new stats/achievements have been added
+		// combine the objects, if overlap take from previous, store in current stats/achievements
+		let prev_stats = JSON.parse(results[12]);
+		Object.assign(stats, prev_stats);
+		let prev_achievements = JSON.parse(results[13]);
+		Object.assign(achievements, prev_achievements);
+		for(achievement_name in achievements) {
+			if(achievements[achievement_name][1] != -1) { // if unlocked
+				checkAchievement(achievement_name, true);
+			}
+		}
 
 		let num_pufferfish = parseInt(results[14]);
 		pufferfishes = [];
