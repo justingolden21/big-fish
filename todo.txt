@@ -26,6 +26,8 @@ figure out checkbox with tabbation/tab key/focus
 ================================TODO:================================
 - remember/store settings in cookies, txt file
 
+- remember/store unlocks (in case you unlocked it before but wouldn't have unlocked it now) (also so we don't display a million notifications about unlocks on loading save)
+
 - remember previous banks buy/sell inputs in cookies/txt
 
 - more efficient way of storing fish/pufferfishes that arent displayed (dont need x, y coords for all 1000000 fish, only the top 20, and you sell the bottom ones first. check how many fish before assigning coords? before moving?)

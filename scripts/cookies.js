@@ -42,8 +42,12 @@ function loadCookies() {
 	pufferfishes = [];
 	addFish(PUFF, num_pufferfish);
 
-	stats = Cookies.getJSON('stats') || stats;
-	achievements = Cookies.getJSON('achievements') || achievements;
+	// in case any new stats/achievements have been added
+	// combine the objects, if overlap take from previous, store in current stats/achievements
+	let prev_stats = Cookies.getJSON('stats') || stats;
+	Object.assign(stats, prev_stats);
+	let prev_achievements = Cookies.getJSON('achievements') || achievements;
+	Object.assign(achievements, prev_stats);
 	for(achievement_name in achievements) {
 		if(achievements[achievement_name][1] != -1) { // if unlocked
 			checkAchievement(achievement_name, true);
