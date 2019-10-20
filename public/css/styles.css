@@ -70,7 +70,7 @@ img, .btn, br, .nav.nav-tabs, canvas {
 	position: sticky;
 	top: 0;
 	z-index: 99;
-	/*background-color: #a1d6e7;*/
+	background-color: #fff;
 	padding-top: 10px;
 	/*padding-bottom: 10px;*/
 
