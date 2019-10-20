@@ -59,12 +59,18 @@ img, .btn, br, .nav.nav-tabs, canvas {
 	background: #099 !important;
 	color: #262673;
 }
+#wave-fix {
+	background-color: #fff;
+	height: 8px;
+}
 .sticky-header {
+	margin-top: -8px; /* wave fix */
+
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
 	top: 0;
 	z-index: 99;
-	background-color: #fff;
+	/*background-color: #a1d6e7;*/
 	padding-top: 10px;
 	/*padding-bottom: 10px;*/
 

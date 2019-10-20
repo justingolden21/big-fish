@@ -1,0 +1,24 @@
+#sign-in-btn {
+	cursor: pointer;
+}
+#sign-in-btn:hover {
+	filter: brightness(90%);
+}
+.hidden {
+	display: none;
+}
+#profile-img {
+	width: 32px;
+	border-radius: 50%;
+}
+#profile-name {
+	display: inline;
+}
+#account-div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	margin: 0 !important;
+	padding: 0 !important;
+}

@@ -1,6 +1,0 @@
-click sound effect not just hover
-hover sound quieter, fish sound louder
-
-add more music
-
-move pufferfishes purchased in stats to other stuff purchased
