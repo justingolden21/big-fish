@@ -1,23 +1,27 @@
-let stats = {
-	'total_ticks': 0,
-	'food_eaten': 0,
-	'fish_eaten': 0,
+let stats = getEmptyStats();
 
-	'food_purchased': 0,
-	'small_fish_purchased': 0,
-	'medium_fish_purchased': 0,
-	'big_fish_purchased': 0,
-	'aquarium_purchased': 0,
-	'pufferfish_purchased': 0,
-	'star_gained': 0,
+function getEmptyStats() {
+	return {
+		'total_ticks': 0,
+		'food_eaten': 0,
+		'fish_eaten': 0,
 
-	'money_from_small_fish': 0,
-	'money_from_medium_fish': 0,
-	'money_from_big_fish': 0,
+		'food_purchased': 0,
+		'small_fish_purchased': 0,
+		'medium_fish_purchased': 0,
+		'big_fish_purchased': 0,
+		'aquarium_purchased': 0,
+		'pufferfish_purchased': 0,
+		'star_gained': 0,
 
-	'fish_sold': 0,
-	'pufferfish_sold': 0 
-};
+		'money_from_small_fish': 0,
+		'money_from_medium_fish': 0,
+		'money_from_big_fish': 0,
+
+		'fish_sold': 0,
+		'pufferfish_sold': 0 
+	};
+}
 
 function updateStats() {
 	$('#total-ticks').html(secToStr(stats['total_ticks']) );

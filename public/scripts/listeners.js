@@ -621,6 +621,17 @@ $(function() {
 		$('details').prop('open','');
 	});
 
+	$('#delete-all-btn').click(function() {
+		$('#confirm-data').html('delete-all-data');
+		$('#confirm-modal').modal('show');
+	});
+
+	$('#confirm-btn').click(function() {
+		if($('#confirm-data').html()=='delete-all-data') {
+			deleteAllData();
+		}
+	});
+
 });
 
 window.onkeyup = function(e) {

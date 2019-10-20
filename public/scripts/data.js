@@ -7,9 +7,7 @@ let playerDataSet = false;
 function getScores() {
 	firebase.database().ref('users/'+user.uid).once('value').then( (snapshot)=> {
 		let val = snapshot.val();
-		console.log('getScores()');
 		if(val) {
-			console.log(val);
 			setPlayerData(val);
 		}
 		playerDataSet = true;
@@ -22,6 +20,13 @@ function setScores() {
 	firebase.database().ref('users/'+user.uid).set(getPlayerData() );
 }
 
+function deleteAllData() {
+	let emptyData = getEmptyPlayerData();
+	setPlayerData(emptyData);
+
+	// setScores();
+	firebase.database().ref('users/'+user.uid).set(emptyData);
+}
 
 function getPlayerData() {
 	let player_data = {};
@@ -88,4 +93,36 @@ function setPlayerData(player_data) {
 
 	stats = player_data.stats;
 	achievements = player_data.achievements;
+}
+
+function getEmptyPlayerData() {
+	let player_data = {};
+
+	player_data.num_shell = 1;
+	player_data.num_food = 0;
+	player_data.num_aquarium = 1;
+
+	player_data.num_farm = 0;
+	player_data.num_small_hatchery = 0;
+	player_data.num_medium_hatchery = 0;
+	player_data.num_big_hatchery = 0;
+	player_data.num_pufferfish_hatchery = 0;
+	player_data.num_aquarium_factory = 0;
+	player_data.num_bank = 0;
+	player_data.num_star_bank = 0;
+	player_data.num_star = 1;
+
+	player_data.num_small_fish = 1;
+	player_data.num_medium_fish = 0;
+	player_data.num_big_fish = 0;
+	player_data.num_pufferfish = 0;
+
+	player_data.stats = getEmptyStats();
+
+	player_data.achievements = achievements;
+	for(key in player_data.achievements) {
+		player_data.achievements[key][1] = -1;
+	}
+
+	return player_data;
 }
