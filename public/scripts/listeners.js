@@ -627,6 +627,7 @@ $(function() {
 	});
 
 	$('#confirm-btn').click(function() {
+		$('#confirm-modal').modal('hide');
 		if($('#confirm-data').html()=='delete-all-data') {
 			deleteAllData();
 		}
