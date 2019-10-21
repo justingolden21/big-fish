@@ -7,6 +7,21 @@ move pufferfishes purchased in stats to other stuff purchased
 
 idea: click to tick? limit?
 
+remember unlocks, achievements?
+sotre fish more efficiently
+remember bank buy and sell rates?
+
+firebase links:
+data:
+https://console.firebase.google.com/project/big-fish-game/database/big-fish-game/data
+project:
+https://console.firebase.google.com/project/big-fish-game/
+live site:
+https://big-fish-game.web.app
+
+clear browsing data (so chrome doesn't cache it):
+chrome://settings/clearBrowserData
+
 add for firebase functions:
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
