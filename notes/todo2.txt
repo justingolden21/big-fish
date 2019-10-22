@@ -10,6 +10,7 @@ idea: click to tick? limit?
 remember unlocks, achievements?
 sotre fish more efficiently
 remember bank buy and sell rates?
+hard cap at a million fish?
 
 firebase links:
 data:
