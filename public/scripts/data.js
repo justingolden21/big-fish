@@ -29,7 +29,7 @@ function setScores() {
 	// 	playerData[key] = userInfo[key];
 	// }
 
-	firebase.database().ref('users/'+user.uid).set(playerData);
+	firebase.database().ref('users/'+user.uid).update(playerData);
 }
 
 function deleteAllData() {
