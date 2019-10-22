@@ -1,0 +1,61 @@
+{
+  "users" : {
+    "UCi25dK8gXRW6WvfcdIJTGwxgSd2" : {
+      "achievements" : {
+        "Always More Fish in the Sea" : [ "Have 100 total fish", 250 ],
+        "Balloon Time" : [ "Unlock pufferfishes!", 797 ],
+        "Big Banking" : [ "Have 1,000 banks", 1021 ],
+        "Bigger Fish to Fry" : [ "Purchase a big fish", 356 ],
+        "Business Man" : [ "Make a total of over 100,000,000 shells", 752 ],
+        "Deep Sea Diving" : [ "Purchase another aquarium", 515 ],
+        "Disrupt the Food Chain" : [ "Run out of small fish", 166 ],
+        "Financially Responsible" : [ "Purchase a hatchery", 232 ],
+        "Fish Sticks" : [ "Purchase a medium fish", 147 ],
+        "Food Glorious Food" : [ "Purchase 10,000 food", 1191 ],
+        "Lemonade Stand" : [ "Have 100 shells", 91 ],
+        "Minimum Wage" : [ "Have 10,000 shells", 363 ],
+        "Monopoly Man" : [ "Have 1,000,000 shells", 495 ],
+        "One Fish Two Fish" : [ "Purchase your first fish", 30 ],
+        "Pufferfish Perfection" : [ "Have 100 pufferfishes", 5640 ],
+        "Sea World" : [ "Have 100 aquariums", 770 ],
+        "So Long and Thanks for all the Fish" : [ "Sell 1,000 fish", 650 ],
+        "Something Smells Fishy" : [ "Have 100 hatcheries", 600 ],
+        "Special Star" : [ "Have 10 stars", 1492 ],
+        "Water You Waiting For" : [ "Purchase 100 aquarium factories", 1227 ]
+      },
+      "num_aquarium" : 3518686,
+      "num_aquarium_factory" : 610,
+      "num_bank" : 7100,
+      "num_big_fish" : 20222968,
+      "num_big_hatchery" : 64891,
+      "num_farm" : 1,
+      "num_food" : 0,
+      "num_medium_fish" : 3432555,
+      "num_medium_hatchery" : 10900,
+      "num_pufferfish" : 254,
+      "num_pufferfish_hatchery" : 9,
+      "num_shell" : 20979639246317,
+      "num_small_fish" : 0,
+      "num_small_hatchery" : 428,
+      "num_star" : 8,
+      "num_star_bank" : 0,
+      "stats" : {
+        "aquarium_purchased" : 65,
+        "big_fish_purchased" : 2200,
+        "fish_eaten" : 97882497,
+        "fish_sold" : 228253489,
+        "food_eaten" : 48365,
+        "food_purchased" : 13880,
+        "medium_fish_purchased" : 5821,
+        "money_from_big_fish" : 20054689835400,
+        "money_from_medium_fish" : 26283303150,
+        "money_from_small_fish" : 10262434,
+        "pufferfish_purchased" : 37,
+        "pufferfish_sold" : 0,
+        "small_fish_purchased" : 2539,
+        "star_gained" : 5068,
+        "total_ticks" : 6988
+      }
+    }
+  }
+}

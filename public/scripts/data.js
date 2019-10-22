@@ -17,7 +17,19 @@ function getScores() {
 function setScores() {
 	if(!signedIn || !playerDataSet) return;
 
-	firebase.database().ref('users/'+user.uid).set(getPlayerData() );
+	let playerData = getPlayerData();
+	// console.log(playerData);
+	// playerData.user = user;
+
+	// // remove undefined
+	// let userInfo = JSON.parse( JSON.stringify({name: user.displayName, email: user.email, photoUrl: user.photoUrl}) );
+
+	// // merge objects
+	// for(let key in userInfo) {
+	// 	playerData[key] = userInfo[key];
+	// }
+
+	firebase.database().ref('users/'+user.uid).set(playerData);
 }
 
 function deleteAllData() {
@@ -53,11 +65,19 @@ function getPlayerData() {
 	player_data.stats = stats;
 	player_data.achievements = achievements;
 
+	player_data.user = {};
+	if(user.displayName)
+		player_data.user.userName = user.displayName;
+	if(user.email)
+		player_data.user.email = user.email;
+	if(user.photoUrl)
+	player_data.user.photoUrl = user.photoUrl;
+
 	return player_data;
 }
 
 function setPlayerData(player_data) {
-	console.log('player data:', player_data);
+	// console.log('player data:', player_data);
 	if(!player_data) return;
 
 	num_shell = player_data.num_shell;
