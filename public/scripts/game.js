@@ -174,15 +174,7 @@ function tick() {
 	}
 	removeFish(BIG, fish_eating*PUFFERFISH_FOOD, 'eat');
 
-	// fish update
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-	for(type in drawn_fish) {
-		for(let i=0; i<drawn_fish[type].length; i++) {
-			drawn_fish[type][i].move();
-			drawn_fish[type][i].draw();			
-		}
-	}
+	drawAllFish();
 
 	bank_differential = 0;
 	if(num_bank>0) { //check isn't necessary but saves cpu

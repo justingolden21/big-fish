@@ -131,3 +131,13 @@ class DrawnFish {
 		drawFish(this.type, this.subtype, this.x, this.y, this.facing_left);
 	}
 }
+
+function drawAllFish() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	for(type in drawn_fish) {
+		for(let i=0; i<drawn_fish[type].length; i++) {
+			drawn_fish[type][i].move();
+			drawn_fish[type][i].draw();
+		}
+	}
+}
