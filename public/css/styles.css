@@ -431,6 +431,18 @@ label input[type=checkbox] {
 	margin: auto; /* centers it */
 }
 
+::-webkit-scrollbar {
+	width: 10px;
+	background-color: #a1d6e7;
+}
+::-webkit-scrollbar-thumb {
+	background: #262673;
+	border-radius: 5px; 
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: #099;
+}
+
 /* smaller than 768px, when columns collapse */
 @media screen and (max-width: 767px) {
 	#right-col {
