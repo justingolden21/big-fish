@@ -148,6 +148,15 @@ function checkUnlock(unlockName, parts, message) {
 			$('#background-music-select').val('snow');
 			showSnackbar('Note: You can always change the music back in settings', 'info');
 		}
+		if( unlockName=='purchase_farm' 			||
+			unlockName=='purchase_small_hatchery' 	||
+			unlockName=='purchase_medium_hatchery' 	||
+			unlockName=='purchase_big_hatchery' 	||
+			unlockName=='purchase_aquarium_factory' ||
+			unlockName=='purchase_bank') {
+
+			unlock($('.building-unlock') );
+		}
 	}
 }
 
