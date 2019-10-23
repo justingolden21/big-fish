@@ -58,7 +58,7 @@ function checkUnlocks() {
 		checkUnlock('purchase_aquarium_factory', '.aquarium-factory-unlock .buildings-info', 'aquarium factories');
 	if(num_aquarium_factory >= 5 && num_farm+num_small_hatchery+num_medium_hatchery+num_big_hatchery >= 1000)
 		checkUnlock('purchase_bank' , '.bank-unlock', 'banks');
-	if(fish[BIG] >= 10000) {
+	if(fish[BIG] >= 1000) {
 		checkUnlock('pufferfishes', '.pufferfish-unlock', 'PUFFERFISHES');
 		checkAchievement('Balloon Time', false);
 	}
