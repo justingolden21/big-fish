@@ -1,5 +1,7 @@
 let firstUnpause = true;
 
+// let stuckShellsAllowed = true;
+
 // onload, button listeners
 $(function() {
 	// set up game
@@ -621,6 +623,18 @@ $(function() {
 		if($('#confirm-data').html()=='delete-all-data') {
 			deleteAllData();
 		}
+	});
+
+	$('#stuck-shells-btn').click(function() {
+		// if(stuckShellsAllowed) {
+			num_shell += 10;
+			// stuckShellsAllowed = false;
+			$('#stuck-shells-btn').prop('disabled', true);
+			setTimeout(function() {
+				// stuckShellsAllowed = true;
+				$('#stuck-shells-btn').prop('disabled', false);
+			}, 6000);
+		// }
 	});
 
 });

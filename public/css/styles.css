@@ -241,6 +241,9 @@ canvas:not(#canvas) {
 	background-color: #262673 !important;
 	color: #a1d6e7 !important; 
 }
+.btn:disabled {
+	opacity: 0.5;
+}
 
 /* inputs */
 input:hover, input:focus {
