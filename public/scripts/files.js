@@ -19,13 +19,18 @@ function processFile(e) {
 		num_bank = parseInt(results[8]);
 
 		let num_small_fish = parseInt(results[9]);
-		small_fish = [];
+		fish[SMALL] = 0;
+		drawn_fish[SMALL] = [];
 		addFish(SMALL, num_small_fish);
+
 		let num_medium_fish = parseInt(results[10]);
-		medium_fish = [];
+		fish[MEDIUM] = 0;
+		drawn_fish[MEDIUM] = [];
 		addFish(MEDIUM, num_medium_fish);
+
 		let num_big_fish = parseInt(results[11]);
-		big_fish = [];
+		fish[BIG] = 0;
+		drawn_fish[BIG] = [];
 		addFish(BIG, num_big_fish);
 
 		// in case any new stats/achievements have been added
@@ -41,7 +46,8 @@ function processFile(e) {
 		}
 
 		let num_pufferfish = parseInt(results[14]);
-		pufferfishes = [];
+		fish[PUFF] = 0;
+		drawn_fish[PUFF] = [];
 		addFish(PUFF, num_pufferfish);
 
 		num_star = parseInt(results[15]);
@@ -65,14 +71,14 @@ function downloadData() {
 	str += num_aquarium_factory + '\r\n';
 	str += num_bank + '\r\n';
 
-	str += small_fish.length + '\r\n';
-	str += medium_fish.length + '\r\n';
-	str += big_fish.length + '\r\n';
+	str += fish[SMALL] + '\r\n';
+	str += fish[MEDIUM] + '\r\n';
+	str += fish[BIG] + '\r\n';
 
 	str += JSON.stringify(stats) + '\r\n';
 	str += JSON.stringify(achievements) + '\r\n';
 
-	str += pufferfishes.length + '\r\n';
+	str += fish[PUFF] + '\r\n';
 	str += num_star + '\r\n';
 	str += num_pufferfish_hatchery + '\r\n';
 	str += num_star_bank + '\r\n';
@@ -83,6 +89,7 @@ function downloadData() {
 function downloadFile(str, fileName, linkName) {
 	let data = [str];
 	let properties = {type: 'plain/text'};
+	let file;
 	try {
 		file = new File(data, fileName + '.txt', properties);
 	}

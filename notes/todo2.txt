@@ -8,11 +8,14 @@ move pufferfishes purchased in stats to other stuff purchased
 idea: click to tick? limit?
 
 remember unlocks, achievements?
-	store fish more efficiently!
 	reformat how player data is stored
 remember bank buy and sell rates?
 remembering settings?
-hard cap at a million fish?
+
+
+make cookies and files use data.js for export and import player stats as json
+
+restructure stats.js?
 
 
 firebase links:
@@ -22,7 +25,6 @@ project:
 https://console.firebase.google.com/project/big-fish-game/
 live site:
 https://big-fish-game.web.app
-
 clear browsing data (so chrome doesn't cache it):
 chrome://settings/clearBrowserData
 

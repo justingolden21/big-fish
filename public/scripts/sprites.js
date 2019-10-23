@@ -88,3 +88,46 @@ function afterImagesLoaded() {
 	MIN_X = Math.ceil(SPRITE_SIZE/2);
 	MAX_X = canvas.width - (Math.floor(SPRITE_SIZE/2) );
 }
+
+// --------------------------------
+
+const NUM_DRAWN_FISH = 20;
+
+class DrawnFish {
+	constructor(type) {
+		this.type = type;
+		// position
+		if(sprites_loaded) {
+			this.x = random(Math.ceil(SPRITE_SIZE/2), Math.floor(canvas.width-(SPRITE_SIZE/2) ) );
+			this.y = random(Math.ceil(SPRITE_SIZE/2), Math.floor(canvas.height-(SPRITE_SIZE/2) ) );
+		} else {
+			this.x = 160;
+			this.y = 160;
+		}
+		this.facing_left = Math.random() >= 0.5;
+		this.subtype = Math.random() >= 0.5 ? 1 : 2;
+		if(this.type==PUFF)
+			this.subtype = 1;
+	}
+	move() { // move according to speed, random direction
+		this.facing_left = Math.random() >= 0.1 ? this.facing_left : !this.facing_left;
+		
+		if(!this.facing_left)
+			this.x += FISH_SPEEDS[this.type];
+		else
+			this.x -= FISH_SPEEDS[this.type];
+
+		if(this.x <= MIN_X) {
+			this.x = MIN_X;
+			this.facing_left = !this.facing_left;
+		}
+		if(this.x >= MAX_X) {
+			this.x = MAX_X;
+			this.facing_left = !this.facing_left;
+		}
+
+	}
+	draw() { // draws fish on canvas
+		drawFish(this.type, this.subtype, this.x, this.y, this.facing_left);
+	}
+}

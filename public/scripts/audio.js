@@ -64,20 +64,19 @@ let success_sound = new Howl({
 function updateFishSounds() {
 	if(volume_setting==MUTED || volume_setting==BACKGROUND) return;
 
-	let num_fish = small_fish.length+medium_fish.length+big_fish.length;
+	let num_fish = fish[SMALL]+fish[MEDIUM]+fish[BIG];
 
 	fish_sound_frequency = calcFishSoundFrequency(num_fish);
 	if(++fish_sound_idx % fish_sound_frequency != 0) return; // every fish_sound_frequency ticks play sound
 
 	// play weighted random sound depending on number of each fish
 	let fish_sound_selector = random(0, num_fish);
-	if(fish_sound_selector < small_fish.length) { // small
+	if(fish_sound_selector < fish[SMALL]) // small
 		fish_hi_sound.play();
-	} else if(fish_sound_selector < small_fish.length + medium_fish.length) { // medium
+	else if(fish_sound_selector < fish[SMALL]+fish[MEDIUM]) // medium
 		fish_md_sound.play();
-	} else { // big
+	else // big
 		fish_lo_sound.play();
-	}
 }
 
 // scale logarithmically for number of fish, between 5 and 2, returns int

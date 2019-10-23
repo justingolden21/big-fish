@@ -20,7 +20,6 @@ $(function() {
 		$(evt.target).find('.close').focus();
 	});
 
-
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
@@ -128,7 +127,7 @@ $(function() {
 		let amount = parseInt($(this).val() );
 		if(num_shell < SMALL_FISH_COST*amount) {
 			showSnackbar('Not enough shells', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[SMALL] * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < getAquariumSpaceUsed() + (FISH_SPACE[SMALL] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['small_fish_purchased'] += amount;
@@ -142,7 +141,7 @@ $(function() {
 		let amount = parseInt($(this).val() );
 		if(num_shell < MEDIUM_FISH_COST*amount) {
 			showSnackbar('Not enough shells', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[MEDIUM] * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < getAquariumSpaceUsed() + (FISH_SPACE[MEDIUM] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['medium_fish_purchased'] += amount;
@@ -156,7 +155,7 @@ $(function() {
 		let amount = parseInt($(this).val() );
 		if(num_shell < BIG_FISH_COST*amount) {
 			showSnackbar('Not enough shells', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[MEDIUM] * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < getAquariumSpaceUsed() + (FISH_SPACE[MEDIUM] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['big_fish_purchased'] += amount;
@@ -168,10 +167,10 @@ $(function() {
 	});
 	$('.btn.purchase-pufferfish').click(function() {
 		let amount = parseInt($(this).val() );
-		let amount_pufferfishes_cost = sumNumsBetween(pufferfishes.length+1, pufferfishes.length+amount+1) * BASE_PUFFERFISH_COST;
+		let amount_pufferfishes_cost = sumNumsBetween(fish[PUFF]+1, fish[PUFF]+amount+1) * BASE_PUFFERFISH_COST;
 		if(num_star < amount_pufferfishes_cost) {
 			showSnackbar('Not enough stars', 'error');
-		} else if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[PUFF] * amount) ) {
+		} else if(num_aquarium*AQUARIUM_SPACE < getAquariumSpaceUsed() + (FISH_SPACE[PUFF] * amount) ) {
 			showSnackbar('Not enough space in aquarium', 'error');
 		} else {
 			stats['pufferfish_purchased'] += amount;
@@ -291,14 +290,12 @@ $(function() {
 	// sell fish stuff
 	$('.btn.sell-small-fish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(small_fish.length < amount) {
+		if(fish[SMALL] < amount) {
 			showSnackbar('Not enough small fish', 'error');
 		} else {
-			stats['fish_sold'] += amount;
 			num_shell += Math.round(SMALL_FISH_COST*amount*SELL_RETURN_VALUE);
-			for(let i=0; i<amount; i++) {
-				small_fish.pop();
-			}
+			removeFish(SMALL, amount, 'sell');
+
 			showHighlight($('#num-small-fish') );
 			showHighlight($('#num-shell') );
 			updateUI();
@@ -306,14 +303,12 @@ $(function() {
 	});
 	$('.btn.sell-medium-fish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(medium_fish.length < amount) {
+		if(fish[MEDIUM].length < amount) {
 			showSnackbar('Not enough medium fish', 'error');
 		} else {
-			stats['fish_sold'] += amount;
 			num_shell += Math.round(MEDIUM_FISH_COST*amount*SELL_RETURN_VALUE);
-			for(let i=0; i<amount; i++) {
-				medium_fish.pop();
-			}
+			removeFish(MEDIUM, amount, 'sell');
+
 			showHighlight($('#num-medium-fish') );
 			showHighlight($('#num-shell') );
 			updateUI();
@@ -321,14 +316,12 @@ $(function() {
 	});
 	$('.btn.sell-big-fish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(big_fish.length < amount) {
+		if(fish[BIG] < amount) {
 			showSnackbar('Not enough big fish', 'error');
 		} else {
-			stats['fish_sold'] += amount;
 			num_shell += Math.round(BIG_FISH_COST*amount*SELL_RETURN_VALUE);
-			for(let i=0; i<amount; i++) {
-				big_fish.pop();
-			}
+			removeFish(BIG, amount, 'sell');
+
 			showHighlight($('#num-big-fish') );
 			showHighlight($('#num-shell') );
 			updateUI();
@@ -336,13 +329,12 @@ $(function() {
 	});
 	$('.btn.sell-pufferfish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(pufferfishes.length < amount) {
+		if(fish[PUFF] < amount) {
 			showSnackbar('Not enough pufferfishes', 'error');
 		} else {
 			num_star += amount; // 1 star per pufferfish returned
-			for(let i=0; i<amount; i++) {
-				pufferfishes.pop();
-			}
+			removeFish(PUFF, amount, 'sell');
+
 			showHighlight($('#num-pufferfish') );
 			showHighlight($('#num-star') );
 			updateUI();
@@ -488,7 +480,6 @@ $(function() {
 		updateUI();
 	});
 
-	// pause
 	$('#pause-btn').click(togglePause);
 
 	$('#copy-link').click(function() {
@@ -536,13 +527,9 @@ $(function() {
 	});
 
 	// text file export/import
-	$('#download-data-btn').click(function() {
-		downloadData();
-	});
+	$('#download-data-btn').click(downloadData);
 
-	$('#upload-data-btn').click(function() {
-		$('#upload-data-input').click();
-	});
+	$('#upload-data-btn').click($('#upload-data-input').click);
 
 	$("#upload-data-input").change(function() {
 		if(!window.FileReader) {

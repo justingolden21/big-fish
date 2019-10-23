@@ -8,171 +8,12 @@ const PUFF = 3;
 // const SHELL = 4;
 // const STAR = 5;
 
-const MEDIUM2 = 11;
-const BIG2 = 12;
-
-// consts
-const NUM_DRAWN_FISH = 20;
-
-class Fish { // fish should go to class so they stay in school :)
-	constructor(type) {
-		this.type = type;
-		this.hungry = false;
-		// this.ticks = 0;
-	
-		// position
-		// only assigned if necessary
-		if(this.type == SMALL && small_fish.length <= NUM_DRAWN_FISH ||
-			this.type == MEDIUM && medium_fish.length <= NUM_DRAWN_FISH ||
-			this.type == BIG && big_fish.length <= NUM_DRAWN_FISH) {
-
-			if(sprites_loaded) {
-				this.x = random(Math.ceil(SPRITE_SIZE/2), Math.floor(canvas.width-(SPRITE_SIZE/2) ) );
-				this.y = random(Math.ceil(SPRITE_SIZE/2), Math.floor(canvas.height-(SPRITE_SIZE/2) ) );
-			} else {
-				this.x = 160;
-				this.y = 160;
-			}
-			this.facing_left = Math.random() >= 0.5;
-			this.subtype = Math.random() >= 0.5 ? 1 : 2;
-		}
-	}
-	eat() { // attempts to eat
-		if(this.type == SMALL) {
-			if(num_food < 1) {
-				this.hungry = true;
-			} else {
-				num_food--;
-				stats['food_eaten']++;
-				this.hungry = false;
-			}
-		} else if(this.type == MEDIUM) {
-			if(small_fish.length < 1) {
-				this.hungry = true;
-			} else {
-				small_fish.pop();
-				stats['fish_eaten']++;
-				this.hungry = false;
-			}
-		} else if(this.type == BIG) {
-			if(medium_fish.length < 1) {
-				this.hungry = true;
-			} else {
-				medium_fish.pop();
-				stats['fish_eaten']++;
-				this.hungry = false;
-			}
-		}
-	}
-	produce() { // attempt to produce shell
-		if(!this.hungry) {
-			let added_shell = FISH_SHELL[this.type] * num_star;
-			 num_shell += added_shell;
-
-			if(this.type==SMALL)
-				stats['money_from_small_fish'] += added_shell;
-			else if(this.type==MEDIUM)
-				stats['money_from_medium_fish'] += added_shell;				
-			else if(this.type==BIG)
-				stats['money_from_big_fish'] += added_shell;
-		}
-	}
-	move() { // move according to speed, random direction
-		this.facing_left = Math.random() >= 0.1 ? this.facing_left : !this.facing_left;
-		
-		if(!this.facing_left)
-			this.x += FISH_SPEEDS[this.type];
-		else
-			this.x -= FISH_SPEEDS[this.type];
-
-		if(this.x <= MIN_X) {
-			this.x = MIN_X;
-			this.facing_left = !this.facing_left;
-		}
-		if(this.x >= MAX_X) {
-			this.x = MAX_X;
-			this.facing_left = !this.facing_left;
-		}
-
-	}
-	draw() { // draws fish on canvas
-		drawFish(this.type, this.subtype, this.x, this.y, this.facing_left);
-	}
-	update() {
-		// this.ticks++;
-		this.eat();
-		this.produce();
-	}
-}
-
-class Pufferfish {
-	constructor() {
-		// this.ticks = 0;
-		this.hungry = false;
-		this.stomach = 0;
-
-		// position
-		// only assigned if necessary
-		if(pufferfishes.length <= NUM_DRAWN_FISH) {
-			if(sprites_loaded) {
-				this.x = random(Math.ceil(SPRITE_SIZE/2), Math.floor(canvas.width-(SPRITE_SIZE/2) ) );
-				this.y = random(Math.ceil(SPRITE_SIZE/2), Math.floor(canvas.height-(SPRITE_SIZE/2) ) );
-			}
-			else {
-				this.x = 160;
-				this.y = 160;
-			}
-			this.facing_left = Math.random() >= 0.5;
-			this.subtype = 1;
-		}
-	}
-	eat() { // attempts to eat 100 big fish
-		if(big_fish.length >= PUFFERFISH_FOOD) {
-			for(let i=0; i<PUFFERFISH_FOOD; i++) {
-				big_fish.pop();
-			}
-			stats['fish_eaten'] += PUFFERFISH_FOOD;
-			this.stomach++;
-			this.hungry = false;
-		} else {
-			this.hungry = true;
-		}
-	}
-	produce() { // attempt to produce star
-		// 60s per min
-		// every min of being full (not in a row) produce a star
-		if(this.stomach >= 60) {
-			num_star += PUFFERFISH_STAR; // 1
-			stats['star_gained'] += PUFFERFISH_STAR;
-			this.stomach -= 60;
-		}
-	}
-	move() { // move according to speed, random direction
-		if(Math.random() >= 0.5) {
-			this.x += FISH_SPEEDS[PUFF];
-			this.x = Math.min(this.x, canvas.width - ( Math.floor(SPRITE_SIZE/2) ) );
-			this.facing_left = false;
-		} else {
-			this.x -= FISH_SPEEDS[PUFF];
-			this.x = Math.max(this.x, Math.ceil(SPRITE_SIZE/2) );
-			this.facing_left = true;
-		}
-	}
-	draw() {
-		drawFish(PUFF, this.subtype, this.x, this.y, this.facing_left);
-	}
-	update() {
-		// this.ticks++;
-		this.eat();
-		this.produce();
-	}
-}
-
 // shell output
 let FISH_SHELL = [];
 FISH_SHELL[SMALL] = 1;
 FISH_SHELL[MEDIUM] = 30;
 FISH_SHELL[BIG] = 900;
+FISH_SHELL[PUFF] = 0; // it's easier this way...
 const PUFFERFISH_STAR = 1;
 
 // space in aquarium
@@ -181,6 +22,20 @@ FISH_SPACE[SMALL] = 1;
 FISH_SPACE[MEDIUM] = 2;
 FISH_SPACE[BIG] = 3;
 FISH_SPACE[PUFF] = 10000;
+
+// amount eaten
+// let FISH_FOOD = [];
+// FISH_FOOD[SMALL] = 1;
+// FISH_FOOD[MEDIUM] = 1;
+// FISH_FOOD[BIG] = 1;
+// FISH_FOOD[PUFF] = 100;
+
+// ticks before producing
+// let FISH_STOMACH = [];
+// FISH_STOMACH[SMALL] = 1;
+// FISH_STOMACH[MEDIUM] = 1;
+// FISH_STOMACH[BIG] = 1;
+// FISH_STOMACH[PUFF] = 60;
 
 // cost to purchase
 const FOOD_COST = 1;
@@ -194,7 +49,7 @@ const SMALL_HATCHERY_COST = 1000;
 const MEDIUM_HATCHERY_COST = 10000;
 const BIG_HATCHERY_COST = 100000;
 const AQUARIUM_FACTORY_COST = 1000000;
-const BANK_COST = 1000000;
+const BANK_COST = 10000000;
 
 // producer rates
 const FARM_FOOD_RATE = 5;
@@ -233,10 +88,25 @@ let num_aquarium_factory = 0;
 let num_bank = 0;
 let num_star_bank = 0;
 
-let small_fish = [];
-let medium_fish = [];
-let big_fish = [];
-let pufferfishes = [];
+let drawn_fish = [];
+drawn_fish[SMALL] = [];
+drawn_fish[MEDIUM] = [];
+drawn_fish[BIG] = [];
+drawn_fish[PUFF] = [];
+
+let fish = [];
+fish[SMALL] = 0;
+fish[MEDIUM] = 0;
+fish[BIG] = 0;
+fish[PUFF] = 0;
+
+let hungry = [];
+hungry[SMALL] = 0;
+hungry[MEDIUM] = 0;
+hungry[BIG] = 0;
+hungry[PUFF] = 0;
+
+let pufferfish_stomachs = [];
 
 // game vals
 let paused = false;
@@ -247,12 +117,12 @@ let shell_graph_canvas, shell_graph_ctx, shell_rate_graph_canvas, shell_rate_gra
 // global vars from updateUI()
 // so instead of recalcuating them we can use old ones from last tick()
 // maybe we shouldn't do this?
-let num_aquarium_space_used;
+// let num_aquarium_space_used;
 let num_shell_rate;
-let num_hungry_fish;
-let num_hungry_small_fish;
-let num_hungry_medium_fish;
-let num_hungry_big_fish;
+// let num_hungry_fish;
+// let num_hungry_small_fish;
+// let num_hungry_medium_fish;
+// let num_hungry_big_fish;
 
 // tick once per second
 // this is when everything happens
@@ -270,28 +140,47 @@ function tick() {
 
 	// every min (60 ticks)
 	if(stats['total_ticks'] % 60 == 0)
-		addPufferfishes(num_pufferfish_hatchery);
+		addFish(PUFF, num_pufferfish_hatchery);
+
+
+	let fish_eating;
+	
+	fish_eating = Math.min(fish[SMALL], num_food);
+	hungry[SMALL] = fish[SMALL] - fish_eating;
+	addShell(FISH_SHELL[SMALL] * fish_eating * num_star, SMALL);
+	num_food -= fish_eating;
+	stats['food_eaten'] += fish_eating;
+
+	fish_eating = Math.min(fish[MEDIUM], fish[SMALL]);
+	hungry[MEDIUM] = fish[MEDIUM] - fish_eating;
+	addShell(FISH_SHELL[MEDIUM] * fish_eating * num_star, MEDIUM);
+	removeFish(SMALL, fish_eating, 'eat');
+
+	fish_eating = Math.min(fish[BIG], fish[MEDIUM]);
+	hungry[BIG] = fish[BIG] - fish_eating;
+	addShell(FISH_SHELL[BIG] * fish_eating * num_star, BIG);
+	removeFish(MEDIUM, fish_eating, 'eat');
+
+	// PUFFERFISH_FOOD is big fish eaten per sec
+	fish_eating = Math.min(fish[PUFF], fish[BIG]*PUFFERFISH_FOOD);
+	hungry[PUFF] = fish[PUFF] - fish_eating;
+	for(let i=0; i<fish_eating; i++) {
+		pufferfish_stomachs[i]++;
+		if(pufferfish_stomachs[i] >= 60) {
+			num_star += PUFFERFISH_STAR; // 1
+			stats['star_gained'] += PUFFERFISH_STAR;
+			pufferfish_stomachs[i] -= 60;
+		}
+	}
+	removeFish(BIG, fish_eating*PUFFERFISH_FOOD, 'eat');
 
 	// fish update
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	let all_fish = [small_fish,medium_fish, big_fish];
-	for(let i=0, len=all_fish.length; i<len; i++) {
-		for(let j=0, ilen=all_fish[i].length; j<ilen; j++) {
-			all_fish[i][j].update();
-			// only draw first NUM_DRAWN_FISH (20) of each size of fish
-			if(j<NUM_DRAWN_FISH && draw_aquarium) {
-				all_fish[i][j].move();
-				all_fish[i][j].draw();
-			}
-		}
-	}
-	// pufferfish update
-	for(let i=0; i<pufferfishes.length; i++) {
-		pufferfishes[i].update();
-		// only draw first NUM_DRAWN_FISH (20) pufferfishes
-		if( i < NUM_DRAWN_FISH && draw_aquarium) {
-			pufferfishes[i].move();
-			pufferfishes[i].draw();
+
+	for(type in drawn_fish) {
+		for(let i=0; i<drawn_fish[type].length; i++) {
+			drawn_fish[type][i].move();
+			drawn_fish[type][i].draw();			
 		}
 	}
 
@@ -317,7 +206,7 @@ function tick() {
 	updateShell();
 	updateShellRate();
 	updateShellGraph();
-}
+} // end tick()
 
 // note: updates html input value with correct value
 function doSell() {
@@ -329,15 +218,15 @@ function doSell() {
 	let num_big_fish_to_sell = check(parseInt($('#sell-big-fish-input').val() ) );
 
 	// make sure they have enough fish, and enough bank actions
-	num_small_fish_to_sell = Math.min(small_fish.length, num_small_fish_to_sell);
+	num_small_fish_to_sell = Math.min(fish[SMALL], num_small_fish_to_sell);
 	num_small_fish_to_sell = Math.min(num_small_fish_to_sell, num_sell_actions_remaining);
 	num_sell_actions_remaining -= num_small_fish_to_sell;
 
-	num_medium_fish_to_sell = Math.min(medium_fish.length, num_medium_fish_to_sell);
+	num_medium_fish_to_sell = Math.min(fish[MEDIUM], num_medium_fish_to_sell);
 	num_medium_fish_to_sell = Math.min(num_medium_fish_to_sell, num_sell_actions_remaining);
 	num_sell_actions_remaining -= num_medium_fish_to_sell;
 
-	num_big_fish_to_sell = Math.min(big_fish.length, num_big_fish_to_sell);
+	num_big_fish_to_sell = Math.min(fish[BIG], num_big_fish_to_sell);
 	num_big_fish_to_sell = Math.min(num_big_fish_to_sell, num_sell_actions_remaining);
 	num_sell_actions_remaining -= num_big_fish_to_sell;
 
@@ -346,20 +235,20 @@ function doSell() {
 	$('#sell-medium-fish-input').val(num_medium_fish_to_sell);
 	$('#sell-big-fish-input').val(num_big_fish_to_sell);
 
-	let fish_sold = num_small_fish_to_sell+num_medium_fish_to_sell+num_big_fish_to_sell;
-	$('#num-current-selling-rate').html(fish_sold);
-	stats['fish_sold'] += fish_sold;
+	$('#num-current-selling-rate').html(
+		num_small_fish_to_sell+num_medium_fish_to_sell+num_big_fish_to_sell
+	);
 
 	// perform sell actions
-	small_fish.splice(small_fish.length-1-num_small_fish_to_sell, num_small_fish_to_sell);
+	removeFish(SMALL, num_small_fish_to_sell, 'sell');
 	num_shell += SMALL_FISH_COST*SELL_RETURN_VALUE*num_small_fish_to_sell;
 	bank_differential += SMALL_FISH_COST*SELL_RETURN_VALUE*num_small_fish_to_sell;
 
-	medium_fish.splice(medium_fish.length-1-num_medium_fish_to_sell, num_medium_fish_to_sell);
+	removeFish(MEDIUM, num_medium_fish_to_sell, 'sell');
 	num_shell += MEDIUM_FISH_COST*SELL_RETURN_VALUE*num_medium_fish_to_sell;
 	bank_differential += MEDIUM_FISH_COST*SELL_RETURN_VALUE*num_medium_fish_to_sell;
 
-	big_fish.splice(big_fish.length-1-num_big_fish_to_sell, num_big_fish_to_sell);
+	removeFish(BIG, num_big_fish_to_sell, 'sell');
 	num_shell += BIG_FISH_COST*SELL_RETURN_VALUE*num_big_fish_to_sell;
 	bank_differential += BIG_FISH_COST*SELL_RETURN_VALUE*num_big_fish_to_sell;
 }
@@ -429,7 +318,7 @@ function doStarSell() {
 	let num_pufferfish_hatchery_to_sell = check(parseInt($('#sell-pufferfish-hatchery-input').val() ) );
 
 	// make sure they have enough items, and enough bank actions
-	num_pufferfish_to_sell = Math.min(pufferfishes.length, num_pufferfish_to_sell);
+	num_pufferfish_to_sell = Math.min(fish[PUFF], num_pufferfish_to_sell);
 	num_pufferfish_to_sell = Math.min(num_pufferfish_to_sell, num_sell_actions_remaining);
 	num_sell_actions_remaining -= num_pufferfish_to_sell;
 
@@ -442,10 +331,9 @@ function doStarSell() {
 	$('#sell-pufferfish-hatchery-input').val(num_pufferfish_hatchery_to_sell);
 
 	$('#num-current-selling-rate-star-bank').html(num_pufferfish_to_sell+num_pufferfish_hatchery_to_sell);
-	stats['pufferfish_sold'] += num_pufferfish_to_sell;
 
 	// perform sell actions
-	pufferfishes.splice(pufferfishes.length-1-num_pufferfish_to_sell, num_pufferfish_to_sell);
+	removeFish(PUFF, num_pufferfish_to_sell, 'sell');
 	num_star += BASE_PUFFERFISH_COST*num_pufferfish_to_sell;
 	star_bank_differential += BASE_PUFFERFISH_COST*num_pufferfish_to_sell;
 
@@ -459,7 +347,7 @@ function doStarBuy() {
 	// get inputs
 	let num_pufferfish_to_buy = check(parseInt($('#buy-pufferfish-input').val() ) );
 	// calculate val first time
-	let amount_pufferfishes_cost = sumNumsBetween(pufferfishes.length+1, pufferfishes.length+num_pufferfish_to_buy+1) * BASE_PUFFERFISH_COST;
+	let amount_pufferfishes_cost = sumNumsBetween(fish[PUFF]+1, fish[PUFF]+num_pufferfish_to_buy+1) * BASE_PUFFERFISH_COST;
 	// make sure they have enough money, and enough bank actions
 	if(amount_pufferfishes_cost > num_star) num_pufferfish_to_buy = 0; // TODO: consider calculating most pufferfishes possible to buy? meh.
 	num_pufferfish_to_buy = Math.min(num_pufferfish_to_buy, num_buy_actions_remaining);
@@ -467,11 +355,11 @@ function doStarBuy() {
 	// update input value displayed
 	$('#buy-pufferfish-input').val(num_pufferfish_to_buy);
 	// calculate val second time
-	amount_pufferfishes_cost = sumNumsBetween(pufferfishes.length+1, pufferfishes.length+num_pufferfish_to_buy+1) * BASE_PUFFERFISH_COST;
+	amount_pufferfishes_cost = sumNumsBetween(fish[PUFF]+1, fish[PUFF]+num_pufferfish_to_buy+1) * BASE_PUFFERFISH_COST;
 	// perform buy actions
 	num_star -= amount_pufferfishes_cost;
 	star_bank_differential -= amount_pufferfishes_cost;
-	addPufferfishes(num_pufferfish_to_buy);
+	addFish(PUFF, num_pufferfish_to_buy);
 
 	// get inputs
 	let num_pufferfish_hatchery_to_buy = check(parseInt($('#buy-pufferfish-hatchery-input').val() ) );
@@ -533,7 +421,7 @@ function togglePause(snackbar=true) {
 // utility functions
 // hatch amount of fish if room, else hatch as much as there is room for
 function hatchFish(type, amount) {
-	num_aquarium_space_used = num_aquarium_space_used ? num_aquarium_space_used : 0;
+	let num_aquarium_space_used = getAquariumSpaceUsed();
 	let space_per_fish = FISH_SPACE[type];
 	if(num_aquarium*AQUARIUM_SPACE >= num_aquarium_space_used + (space_per_fish * amount) ) {
 		addFish(type, amount);
@@ -545,26 +433,78 @@ function hatchFish(type, amount) {
 	}
 }
 function addFish(type, amount) {
-	// check type outside of loop for computational efficiency
-
-	if(type==SMALL) {
-		for(let i=0; i<amount; i++)
-			small_fish.push(new Fish(SMALL) );
-	} else if(type==MEDIUM) {
-		for(let i=0; i<amount; i++)
-			medium_fish.push(new Fish(MEDIUM) );
-	} else if(type==BIG) {
-		for(let i=0; i<amount; i++)
-			big_fish.push(new Fish(BIG) );
-	}
-}
-function addPufferfishes(amount) {
+	let num_aquarium_space_used = getAquariumSpaceUsed();
 	// if not enough room, only add as many as room for
-	if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[PUFF] * amount) )
-		amount = ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / FISH_SPACE[PUFF];
+	if(num_aquarium*AQUARIUM_SPACE < num_aquarium_space_used + (FISH_SPACE[type] * amount) )
+		amount = Math.floor( ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / FISH_SPACE[type]);
 
-	for(let i=0; i<amount; i++)
-		pufferfishes.push(new Pufferfish() );
+	fish[type] += amount;
+
+	if(drawn_fish[type].length < NUM_DRAWN_FISH) {
+		// how many we have left, how many we're adding
+		let num_to_add = Math.min(NUM_DRAWN_FISH - drawn_fish[type].length, amount);
+		for(let i=0; i<num_to_add; i++)
+			drawn_fish[type].push(new DrawnFish(type) );
+	}
+
+	if(type==PUFF)
+		pufferfish_stomachs.push(0);
+}
+
+function removeFish(type, amount, action) {
+	fish[type] -= amount;
+
+	// NUM_DRAWN_FISH
+	let amount_should_be_drawn = Math.min(fish[type], NUM_DRAWN_FISH);
+	for(let i=0; i<drawn_fish[type].length-amount_should_be_drawn; i++) // amount missing
+		drawn_fish[type].pop();
+
+	if(action=='eat')
+		stats['fish_eaten'] += amount;
+	else if(action=='sell')
+		stats['fish_sold'] += amount;
+
+	if(type==PUFF)
+		pufferfish_stomachs.pop();
+}
+
+function addShell(amount, action) {
+	num_shell += amount;
+
+	if(action==SMALL)
+		stats['money_from_small_fish'] += amount;
+	if(action==MEDIUM)
+		stats['money_from_medium_fish'] += amount;
+	if(action==BIG)
+		stats['money_from_big_fish'] += amount;
+}
+
+function getAquariumSpaceUsed() {
+	let tmp = 0;
+	for(type in fish)
+		tmp += fish[type] * FISH_SPACE[type];
+	return tmp;
+}
+function getNumFish() {
+	let tmp = 0;
+	for(type in fish)
+		tmp += fish[type];
+	return tmp;	
+}
+function getNumHungryFish() {
+	let tmp = 0;
+	for(type in hungry)
+		tmp += hungry[type];
+	return tmp;
+}
+function getShellRate() {
+	let tmp = 0;
+	for(type in fish)
+		tmp += (fish[type]-hungry[type]) * FISH_SHELL[type] * num_star;
+	return tmp;
+}
+function getStarRate() {
+	return (fish[PUFF] - hungry[PUFF]) * PUFFERFISH_STAR;
 }
 
 // min is inclusive, max is exclusive, returns an int, used for starting positions

@@ -17,19 +17,7 @@ function getScores() {
 function setScores() {
 	if(!signedIn || !playerDataSet) return;
 
-	let playerData = getPlayerData();
-	// console.log(playerData);
-	// playerData.user = user;
-
-	// // remove undefined
-	// let userInfo = JSON.parse( JSON.stringify({name: user.displayName, email: user.email, photoUrl: user.photoUrl}) );
-
-	// // merge objects
-	// for(let key in userInfo) {
-	// 	playerData[key] = userInfo[key];
-	// }
-
-	firebase.database().ref('users/'+user.uid).update(playerData);
+	firebase.database().ref('users/'+user.uid).update(getPlayerData() );
 }
 
 function deleteAllData() {
@@ -57,10 +45,10 @@ function getPlayerData() {
 	player_data.num_star_bank = num_star_bank;
 	player_data.num_star = num_star;
 
-	player_data.num_small_fish = small_fish.length;
-	player_data.num_medium_fish = medium_fish.length;
-	player_data.num_big_fish = big_fish.length;
-	player_data.num_pufferfish = pufferfishes.length;
+	player_data.num_small_fish = fish[SMALL];
+	player_data.num_medium_fish = fish[MEDIUM];
+	player_data.num_big_fish = fish[BIG];
+	player_data.num_pufferfish = fish[PUFF];
 
 	player_data.stats = stats;
 	player_data.achievements = achievements;
@@ -94,21 +82,20 @@ function setPlayerData(player_data) {
 	num_star_bank = player_data.num_star_bank;
 	num_star = player_data.num_star;
 
-	player_data.num_small_fish = small_fish.length;
-	player_data.num_medium_fish = medium_fish.length;
-	player_data.num_big_fish = big_fish.length;
-	player_data.num_pufferfish = pufferfishes.length;
-
-	small_fish = [];
+	fish[SMALL] = 0;
+	drawn_fish[SMALL] = [];
 	addFish(SMALL, player_data.num_small_fish);
 
-	medium_fish = [];
+	fish[MEDIUM] = 0;
+	drawn_fish[MEDIUM] = [];
 	addFish(MEDIUM, player_data.num_medium_fish);
 
-	big_fish = [];
+	fish[BIG] = 0;
+	drawn_fish[BIG] = [];
 	addFish(BIG, player_data.num_big_fish);
 
-	pufferfishes = [];
+	fish[PUFF] = 0;
+	drawn_fish[PUFF] = [];
 	addFish(PUFF, player_data.num_pufferfish);
 
 	stats = player_data.stats;

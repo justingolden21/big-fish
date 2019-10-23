@@ -18,8 +18,7 @@ function getEmptyStats() {
 		'money_from_medium_fish': 0,
 		'money_from_big_fish': 0,
 
-		'fish_sold': 0,
-		'pufferfish_sold': 0 
+		'fish_sold': 0
 	};
 }
 

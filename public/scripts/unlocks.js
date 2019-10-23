@@ -58,27 +58,27 @@ function checkUnlocks() {
 		checkUnlock('purchase_aquarium_factory', '.aquarium-factory-unlock .buildings-info', 'aquarium factories');
 	if(num_aquarium_factory >= 5 && num_farm+num_small_hatchery+num_medium_hatchery+num_big_hatchery >= 1000)
 		checkUnlock('purchase_bank' , '.bank-unlock', 'banks');
-	if(big_fish.length >= 10000) {
+	if(fish[BIG] >= 10000) {
 		checkUnlock('pufferfishes', '.pufferfish-unlock', 'PUFFERFISHES');
 		checkAchievement('Balloon Time', false);
 	}
 
-	if(small_fish.length >= 75)
+	if(fish[SMALL] >= 75)
 		checkUnlock('sell_small_fish', '.sell-small-fish-unlock #sell-info', 'ability to sell small fish');
-	if(medium_fish.length >= 75)
+	if(fish[MEDIUM] >= 75)
 		checkUnlock('sell_medium_fish', '.sell-medium-fish-unlock #sell-info', 'ability to sell medium fish');
-	if(big_fish.length >= 75)
+	if(fish[BIG] >= 75)
 		checkUnlock('sell_big_fish', '.sell-big-fish-unlock #sell-info', 'ability to sell big fish');
-	if(pufferfishes.length >= 10)
+	if(fish[PUFF] >= 10)
 		checkUnlock('pufferfish_hatchery', '.pufferfish-hatchery-unlock', 'pufferfish hatcheries');
 	if(num_pufferfish_hatchery >= 100)
 		checkUnlock('star_bank', '.star-bank-unlock', 'star banks');
 
-	if(small_fish.length >= 50)
+	if(fish[SMALL] >= 50)
 		checkUnlock('medium_fish', '.medium-fish-unlock', 'medium fish');
-	if(medium_fish.length >= 50)
+	if(fish[MEDIUM] >= 50)
 		checkUnlock('big_fish', '.big-fish-unlock', 'big fish');
-	if(num_aquarium_space_used >= AQUARIUM_SPACE/2)
+	if(getAquariumSpaceUsed() >= AQUARIUM_SPACE/2)
 		checkUnlock('aquarium', '.aquarium-unlock',  'purchase aquarium');
 
 	// just trust me here
@@ -86,13 +86,13 @@ function checkUnlocks() {
 		checkUnlock('medium_fish', '.medium-fish-unlock', 'medium fish');
 
 	// achievements
-	if(small_fish.length>1)
+	if(fish[SMALL]>1)
 		checkAchievement('One Fish Two Fish', false);
-	if(medium_fish.length>=1)
+	if(fish[MEDIUM]>=1)
 		checkAchievement('Fish Sticks', false);
-	if(big_fish.length>=1)
+	if(fish[BIG]>=1)
 		checkAchievement('Bigger Fish to Fry', false);
-	if(small_fish.length+medium_fish.length+big_fish.length>=100)
+	if(fish[SMALL]+fish[MEDIUM]+fish[BIG]>=100)
 		checkAchievement('Always More Fish in the Sea', false);
 	if(num_small_hatchery>0||num_medium_hatchery>0||num_big_hatchery>0)
 		checkAchievement('Financially Responsible', false);
@@ -102,7 +102,7 @@ function checkUnlocks() {
 		checkAchievement('Deep Sea Diving', false);
 	if(num_aquarium>100)
 		checkAchievement('Sea World', false);
-	if(small_fish.length==0)
+	if(fish[SMALL]==0)
 		checkAchievement('Disrupt the Food Chain', false);
 	if(num_shell>=100) {
 		checkAchievement('Lemonade Stand', false);
@@ -123,7 +123,7 @@ function checkUnlocks() {
 		checkAchievement('So Long and Thanks for all the Fish', false);
 	if(num_star > 10)
 		checkAchievement('Special Star', false);
-	if(pufferfishes.length > 100)
+	if(fish[PUFF] > 100)
 		checkAchievement('Pufferfish Perfection', false);
 	if(num_aquarium_factory >= 100)
 		checkAchievement('Water You Waiting For', false);

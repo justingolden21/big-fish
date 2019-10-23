@@ -53,6 +53,4 @@ function updateShellGraph() {
 	for(let i=1; i<shell_rate_vals.length; i++)
 		shell_rate_graph_ctx.lineTo(graph_width_unit*i, graph_h - (shell_rate_vals[i]/max_val * graph_h) );
 	shell_rate_graph_ctx.stroke();
-
 }
-

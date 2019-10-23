@@ -29,17 +29,24 @@ function loadCookies() {
 	num_star_bank = parseInt(Cookies.get('num_star_bank') || num_star_bank);
 	num_star = parseInt(Cookies.get('num_star') || num_star);
 
-	let num_small_fish = parseInt(Cookies.get('num_small_fish') || small_fish.length);
-	small_fish = [];
+	let num_small_fish = parseInt(Cookies.get('num_small_fish') || fish[SMALL]);
+	fish[SMALL] = 0;
+	drawn_fish[SMALL] = [];
 	addFish(SMALL, num_small_fish);
-	let num_medium_fish = parseInt(Cookies.get('num_medium_fish') || medium_fish.length);
-	medium_fish = [];
+
+	let num_medium_fish = parseInt(Cookies.get('num_medium_fish') || fish[MEDIUM]);
+	fish[MEDIUM] = 0;
+	drawn_fish[MEDIUM] = [];
 	addFish(MEDIUM, num_medium_fish);
-	let num_big_fish = parseInt(Cookies.get('num_big_fish') || big_fish.length);
-	big_fish = [];
+
+	let num_big_fish = parseInt(Cookies.get('num_big_fish') || fish[BIG]);
+	fish[BIG] = 0;
+	drawn_fish[BIG] = [];
 	addFish(BIG, num_big_fish);
-	let num_pufferfish = parseInt(Cookies.get('num_pufferfish') || pufferfishes.length);
-	pufferfishes = [];
+
+	let num_pufferfish = parseInt(Cookies.get('num_pufferfish') || fish[PUFF]);
+	fish[PUFF] = 0;
+	drawn_fish[PUFF] = [];
 	addFish(PUFF, num_pufferfish);
 
 	// in case any new stats/achievements have been added
@@ -78,10 +85,10 @@ function setCookies() {
 	Cookies.set('num_star_bank', num_star_bank);
 	Cookies.set('num_star', num_star);
 
-	Cookies.set('num_small_fish', small_fish.length);
-	Cookies.set('num_medium_fish', medium_fish.length);
-	Cookies.set('num_big_fish', big_fish.length);
-	Cookies.set('num_pufferfish', pufferfishes.length);
+	Cookies.set('num_small_fish', fish[SMALL]);
+	Cookies.set('num_medium_fish', fish[MEDIUM]);
+	Cookies.set('num_big_fish', fish[BIG]);
+	Cookies.set('num_pufferfish', fish[PUFF]);
 
 	Cookies.set('stats', stats);
 	Cookies.set('achievements', achievements);
