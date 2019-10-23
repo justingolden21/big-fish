@@ -62,7 +62,7 @@ const AQUARIUM_FACTORY_RATE = 1;
 // base costs will rise, but consts stay for reference
 const BASE_PUFFERFISH_COST = 1;
 const BASE_PUFFERFISH_HATCHERY_COST = 100;
-const BASE_STAR_BANK_COST = 10000;
+const BASE_STAR_BANK_COST = 1000;
 
 // misc
 const AQUARIUM_SPACE = 500;
