@@ -17,6 +17,10 @@ make cookies and files use data.js for export and import player stats as json
 
 restructure stats.js?
 
+firebase init
+firebase login
+firebase deploy
+
 
 firebase links:
 data:
