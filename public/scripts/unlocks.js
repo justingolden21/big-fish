@@ -71,7 +71,7 @@ function checkUnlocks() {
 		checkUnlock('sell_big_fish', '.sell-big-fish-unlock #sell-info', 'ability to sell big fish');
 	if(fish[PUFF] >= 10)
 		checkUnlock('pufferfish_hatchery', '.pufferfish-hatchery-unlock', 'pufferfish hatcheries');
-	if(num_pufferfish_hatchery >= 50)
+	if(num_pufferfish_hatchery >= 25)
 		checkUnlock('star_bank', '.star-bank-unlock', 'star banks');
 
 	if(fish[SMALL] >= 50)
