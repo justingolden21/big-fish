@@ -633,7 +633,7 @@ $(function() {
 			setTimeout(function() {
 				// stuckShellsAllowed = true;
 				$('#stuck-shells-btn').prop('disabled', false);
-			}, 6000);
+			}, 60000);
 		// }
 	});
 
