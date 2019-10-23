@@ -63,6 +63,11 @@ img, .btn, br, .nav.nav-tabs, canvas {
 	background-color: #fff;
 	height: 8px;
 }
+#wave-fix-2 {
+	background-color: #a1d6e7;
+	height: 8px;
+	margin-top: -8px;
+}
 .sticky-header {
 	margin-top: -8px; /* wave fix */
 
