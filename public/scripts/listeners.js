@@ -529,7 +529,9 @@ $(function() {
 	// text file export/import
 	$('#download-data-btn').click(downloadData);
 
-	$('#upload-data-btn').click($('#upload-data-input').click);
+	$('#upload-data-btn').click( ()=> {
+		$('#upload-data-input').click();
+	});
 
 	$("#upload-data-input").change(function() {
 		if(!window.FileReader) {
@@ -542,6 +544,7 @@ $(function() {
 			let textFile = input.files[0];
 			reader.readAsText(textFile);
 			$(reader).on('load', processFile);
+			$('#settings-modal').modal('hide');
 		}
 	});
 
