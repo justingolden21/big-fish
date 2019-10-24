@@ -293,7 +293,10 @@ $(function() {
 	// sell fish stuff
 	$('.btn.sell-small-fish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(fish[SMALL] < amount) {
+		// must have 1 small fish if no other fish
+		if(fish[SMALL]==amount && fish[MEDIUM]==0 && fish[BIG]==0 && fish[PUFF]==0) {
+			showSnackbar('Can\'t sell your last small fish', 'error');
+		} else if(fish[SMALL] < amount) {
 			showSnackbar('Not enough small fish', 'error');
 		} else {
 			num_shell += Math.round(SMALL_FISH_COST*amount*SELL_RETURN_VALUE);
@@ -306,7 +309,7 @@ $(function() {
 	});
 	$('.btn.sell-medium-fish').click(function() {
 		let amount = parseInt($(this).val() );
-		if(fish[MEDIUM].length < amount) {
+		if(fish[MEDIUM] < amount) {
 			showSnackbar('Not enough medium fish', 'error');
 		} else {
 			num_shell += Math.round(MEDIUM_FISH_COST*amount*SELL_RETURN_VALUE);
