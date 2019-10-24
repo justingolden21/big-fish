@@ -419,7 +419,7 @@ function hatchFish(type, amount) {
 		addFish(type, amount);
 	}
 	else {
-		addFish(type, ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / space_per_fish);
+		addFish(type, Math.floor( ( (num_aquarium*AQUARIUM_SPACE)-num_aquarium_space_used) / space_per_fish) );
 		showHighlight($('.num-aquarium-space-used') );
 		showHighlight($('.num-aquarium-space-total') );
 	}
