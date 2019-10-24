@@ -456,10 +456,20 @@ label input[type=checkbox] {
 	background-color: #099;
 }
 
+.nav-tabs {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 116px; /* trial and error */
+	z-index: 98; /* for the background color */
+	background-color: #a1d6e7;
+}
+
 /* smaller than 768px, when columns collapse */
 @media screen and (max-width: 767px) {
 	#right-col {
 		border-left: none;
 	}
-	
+	.nav-tabs {
+		top: 196px; /* trial and error */
+	}	
 }
