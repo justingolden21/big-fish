@@ -68,6 +68,12 @@ function setPlayerData(player_data) {
 	// console.log('player data:', player_data);
 	if(!player_data) return;
 
+	for(key in player_data) {
+		if(player_data[key]==undefined) { // undefined or null, not 0 or false
+			return;
+		}
+	}
+
 	num_shell = player_data.num_shell;
 	num_food = player_data.num_food;
 	num_aquarium = player_data.num_aquarium;
