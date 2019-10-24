@@ -158,6 +158,11 @@ kbd {
 	display: inline !important;
 }
 
+#aquarium-full-icon {
+	display: none;
+	color: #099;
+}
+
 #canvas {
 	opacity: 0.75;
 

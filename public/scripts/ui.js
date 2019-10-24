@@ -72,6 +72,8 @@ function updateUI() {
 	$('.num-aquarium-space-total').html(getNum(num_aquarium * AQUARIUM_SPACE) );
 	$('.num-aquarium-space-used').html(getNum(num_aquarium_space_used) );
 	$('.aquarium-space-display-bar').css('width',num_aquarium_space_used/(num_aquarium*AQUARIUM_SPACE)*100+'%');
+	if(update_aquarium_full_icon)
+		$('#aquarium-full-icon').css('display', num_aquarium_space_used==num_aquarium*AQUARIUM_SPACE ? 'inline' : 'none');
 
 	$('#num-farm').html(num_farm);
 	$('#num-farm-food-rate').html(num_farm*FARM_FOOD_RATE);
@@ -115,6 +117,8 @@ let icon_types = {
 	'achievement': 'fas fa-trophy fa-2x'
 };
 
+let update_aquarium_full_icon = true;
+
 function showSnackbar(message, type) {
 	if(message == 'Not enough shells')
 		showHighlight($('#num-shell') );
@@ -123,6 +127,12 @@ function showSnackbar(message, type) {
 	else if(message == 'Not enough space in aquarium') {
 		showHighlight($('.num-aquarium-space-used') );
 		showHighlight($('.num-aquarium-space-total') );
+
+		$('#aquarium-full-icon').css('display', 'inline');
+		update_aquarium_full_icon = false;
+		setTimeout(function() {
+			update_aquarium_full_icon = true;
+		}, 3000);
 	}
 
 	playNotificationSound(type); // even if redundant
