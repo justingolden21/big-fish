@@ -11,6 +11,7 @@ function getScores() {
 			setPlayerData(val);
 		}
 		playerDataSet = true;
+		firebase.database().ref('users/'+user.uid+'/logins').push(new Date().getTime() ); // milliseconds
 	});
 }
 
@@ -58,8 +59,8 @@ function getPlayerData() {
 		player_data.user.userName = user.displayName;
 	if(user.email)
 		player_data.user.email = user.email;
-	if(user.photoUrl)
-	player_data.user.photoUrl = user.photoUrl;
+	if(user.photoURL)
+		player_data.user.photoURL = user.photoURL;
 
 	return player_data;
 }
@@ -72,6 +73,11 @@ function setPlayerData(player_data) {
 		if(player_data[key]==undefined) { // undefined or null, not 0 or false
 			return;
 		}
+	}
+
+	if(player_data.num_shell==undefined) {
+		console.log('no shells found');
+		return;
 	}
 
 	num_shell = player_data.num_shell;
