@@ -2,6 +2,8 @@
 let bank_differential = 0;
 let star_bank_differential = 0;
 
+const MAX_HISTORY_SIZE = 200;
+
 function updateUI() {
 	let num_aquarium_space_used = getAquariumSpaceUsed();
 	let num_hungry_fish = getNumHungryFish();
@@ -153,6 +155,8 @@ function createSnackbar(message) {
 	$('#snackbar').html(message);
 	$('#snackbar').addClass('show');
 	$('#history-log').prepend('<p>'+message+'</p>');
+	if($('#history-log').children().length > MAX_HISTORY_SIZE)
+		$('#history-log').children()[MAX_HISTORY_SIZE].remove();
 
 	setTimeout(()=> { $('#snackbar').removeClass('show'); snackbar_queue--; }, snackbar_time);
 }
