@@ -18,6 +18,7 @@ function signin() {
 		signedIn = true;
 
 		getScores();
+		firebase.database().ref('users/'+user.uid+'/logins').push(new Date().getTime() ); // milliseconds
 	}).catch( (err)=> {
 		console.log('Sign-in error', err);
 
