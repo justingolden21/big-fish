@@ -157,6 +157,23 @@ function checkUnlock(unlockName, parts, message) {
 
 			unlock($('.building-unlock') );
 		}
+
+		if(unlockName=='medium_fish') {
+			showAlert('<img src="img/medium-fish.png" class="icon-sm"> Extra! Extra! Read All About It!', '' +
+				'<p><img src="img/shell.png" class="icon-sm"> Medium Fish cost ' + MEDIUM_FISH_COST + ' Shells</p>' +
+				'<p><img src="img/shell.png" class="icon-sm"> Medium Fish make ' + FISH_SHELL[MEDIUM] + ' Shell/s</p>' +
+				'<p><img src="img/small-fish.png" class="icon-sm"> Medium Fish eat ' + 1 + ' Small Fish/s</p>' +
+				(unlocks['aquarium'] ? '<p><i class="fas fa-water"></i> Medium Fish take up ' + FISH_SPACE[MEDIUM] + ' Space</p>' : '') +
+				'<p>Check them out under the Fish tab!</p>');
+		}
+		if(unlockName=='big_fish') {
+			showAlert('<img src="img/big-fish.png" class="icon-sm"> Extra! Extra! Read All About It!', '' +
+				'<p><img src="img/shell.png" class="icon-sm"> Big Fish cost ' + BIG_FISH_COST + ' Shells</p>' +
+				'<p><img src="img/shell.png" class="icon-sm"> Big Fish make ' + FISH_SHELL[BIG] + ' Shell/s</p>' +
+				'<p><img src="img/medium-fish.png" class="icon-sm"> Big Fish eat ' + 1 + ' Medium Fish/s</p>' +
+				(unlocks['aquarium'] ? '<p><i class="fas fa-water"></i> Big Fish take up ' + FISH_SPACE[BIG] + ' Space</p>' : '') +
+				'<p>Check them out under the Fish tab!</p>');
+		}
 	}
 }
 

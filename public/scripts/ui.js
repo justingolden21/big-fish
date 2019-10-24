@@ -163,3 +163,9 @@ function handleResize() {
 	else
 		$('.btn-group-vertical').addClass('btn-group').removeClass('btn-group-vertical');
 }
+
+function showAlert(title, body) {
+	$('#alert-title').html(title);
+	$('#alert-body').html(body);
+	$('#alert-modal').modal('show');
+}
