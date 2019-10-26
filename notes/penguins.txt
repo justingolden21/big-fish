@@ -22,3 +22,4 @@ penguin hatcheries cost 100, 200, 300 snowflakes
 later:
 penguin banks: use snowflakes as currency, dynamically buy penguins or penguin hatcheries
 banks let you trade 100,000,000 coins for 1 snowflake, up to 10 times per min per bank
+trade coins in at increasing rate, first trade in 1M, then 10M, then 100M per star, etc, one at a time

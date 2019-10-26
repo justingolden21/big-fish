@@ -7,6 +7,8 @@ move pufferfishes purchased in stats to other stuff purchased
 
 idea: click to tick? limit?
 
+if in modal, esc closes, else it toggles pause
+
 remember unlocks, achievements?
 	reformat how player data is stored
 remember bank buy and sell rates?

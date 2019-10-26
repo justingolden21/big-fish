@@ -5,7 +5,6 @@ need to test download and upload files remembering medium fish and puffer hatche
 also need to test aesthetic
 test loading from file and not unlocking ability to sell until buying fish
 ================================GRAPHIC UPDATES TODO:================================
-make sand stick to bottom
 NEED TO make so if your fish are eaten then you hatch new ones, they dont seem to teleport (cause theyre different fish) remember previous x and y coords? facing left and subtype?
 ================================BIG NEWS:================================
 change pufferfishes to a type of fish, make the canvas just one canvas, delete pufferfish sprites and related info and change for whatever type of fish
