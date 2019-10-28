@@ -3,40 +3,22 @@ $( ()=> {
 	setTimeout( ()=> $('#help-modal').modal('hide'), 500);
 	$('#personal-modal').modal('show');
 
-
-	for(size in FISH_SIZES) {
+	let size = 20, max = 300;
+	let x = 0, y = 0;
+	for(idx in FISH_SIZES) {
 		for(color in FISH_COLORS) {
 			for(color2 in FISH_COLORS) {
-				drawPersonalFish(FISH_SIZES[size], 'right', color, color2, color2, color);
+				drawFishToCanvas(FISH_SIZES[idx], 'right', color, color2, color2, color, x, y, size, size);
+				x += size;
+				if(x>max) {
+					x=0;
+					y += size;
+				}
 			}
 		}
-
 	}
 
-
-
-	importSVG(getPersonalFish('medium-1', 'right', 'blue', 'pink', 'blue', 'blue'), document.getElementById('personal-aquarium') );
-
-
 });
-
-// http://svgopen.org/2010/papers/62-From_SVG_to_Canvas_and_Back/
-function importSVG(sourceSVG, targetCanvas) {
-    // https://developer.mozilla.org/en/XMLSerializer
-    svg_xml = (new XMLSerializer()).serializeToString(sourceSVG);
-    var ctx = targetCanvas.getContext('2d');
-
-    // this is just a JavaScript (HTML) image
-    var img = new Image();
-    // http://en.wikipedia.org/wiki/SVG#Native_support
-    // https://developer.mozilla.org/en/DOM/window.btoa
-    img.src = "data:image/svg+xml;base64," + btoa(svg_xml);
-
-    img.onload = function() {
-        // after this, Canvas’ origin-clean is DIRTY
-        ctx.drawImage(img, 0, 0);
-    }
-}
 
 const FISH_SIZES = 'small medium-1 medium-2 big-1 big-2'.split(' ');
 
@@ -71,13 +53,13 @@ const FISH_COLORS = {
 		'back': '#e74c3c',
 		'eye': '#bf3d31',
 	}
-}
+};
 
 // size is str ('small', 'medium-1', 'medium-2', 'big-1' or 'big-2')
 // direction is str ('left' or 'right')
 // colors are color strings, for example 'red' or '#f00'
-function drawPersonalFish(size, direction, fin_color, front_color, back_color, eye_color) {
-	let tmp = $('#'+size+'-fish-right').clone().appendTo('#personal-fish-preview').removeClass('hidden');
+function drawPersonalFish(elm_id, size, direction, fin_color, front_color, back_color, eye_color) {
+	let tmp = $('#'+size+'-fish-right').clone().appendTo('#'+elm_id).removeClass('hidden');
 	tmp.find('.fin').css('fill', FISH_COLORS[fin_color].fin);
 	tmp.find('.front').css('fill', FISH_COLORS[front_color].front);
 	tmp.find('.back').css('fill', FISH_COLORS[back_color].back);
@@ -85,6 +67,11 @@ function drawPersonalFish(size, direction, fin_color, front_color, back_color, e
 	if(direction=='left')
 		tmp.css('transform', 'scale(-1,1)');
 	return tmp;
+}
+
+function drawFishToCanvas(size, direction, fin_color, front_color, back_color, eye_color, x, y, width, height) {
+	let fish = getPersonalFish(size,direction,fin_color,front_color,back_color,eye_color);
+	drawSVGToCanvas(fish,document.getElementById('personal-aquarium'),x,y,width,height);
 }
 
 function getPersonalFish(size, direction, fin_color, front_color, back_color, eye_color) {
@@ -100,13 +87,17 @@ function getPersonalFish(size, direction, fin_color, front_color, back_color, ey
 	if(direction=='left')
 		tmp.style.transform = 'scale(-1,1)';
 	return tmp;
+}
 
-	// let tmp = $('#'+size+'-fish-right').clone().removeClass('hidden');
-	// tmp.find('.fin').css('fill', FISH_COLORS[fin_color].fin);
-	// tmp.find('.front').css('fill', FISH_COLORS[front_color].front);
-	// tmp.find('.back').css('fill', FISH_COLORS[back_color].back);
-	// tmp.find('.eye').css('fill', FISH_COLORS[eye_color].eye);
-	// if(direction=='left')
-	// 	tmp.css('transform', 'scale(-1,1)');
-	// return tmp.get();
+// http://svgopen.org/2010/papers/62-From_SVG_to_Canvas_and_Back/
+function drawSVGToCanvas(sourceSVG, target_canvas, x, y, width, height) {
+	svg_xml = (new XMLSerializer() ).serializeToString(sourceSVG);
+	let ctx = target_canvas.getContext('2d');
+
+	let img = new Image();
+	img.src = "data:image/svg+xml;base64," + btoa(svg_xml);
+
+	img.onload = function() {
+		ctx.drawImage(img, x, y, width, height);
+	}
 }
