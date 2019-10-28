@@ -6,9 +6,9 @@ $( ()=> {
 	let size = 20, max = 300;
 	let x = 0, y = 0;
 	for(idx in FISH_SIZES) {
-		for(color in FISH_COLORS) {
+		for(color1 in FISH_COLORS) {
 			for(color2 in FISH_COLORS) {
-				drawFishToCanvas(FISH_SIZES[idx], 'right', color, color2, color2, color, x, y, size, size);
+				drawFishToCanvas(FISH_SIZES[idx], 'right', color1, color2, x, y, size, size);
 				x += size;
 				if(x>max) {
 					x=0;
@@ -20,7 +20,35 @@ $( ()=> {
 
 });
 
+function getSpeciesNum(size, color1, color2) {
+	return FISH_SIZES.findIndex( (a)=> a==size) * 25
+		+ FISH_COLOR_NAMES.findIndex( (a)=> a==color1) * 5
+		+ FISH_COLOR_NAMES.findIndex( (a)=> a==color2) * 1;
+}
+function getSpeciesInfo(species_num) {
+	return {
+		size: FISH_SIZES[Math.floor(species_num/25)],
+		color1: FISH_COLOR_NAMES[Math.floor(species_num/5%5)],
+		color2: FISH_COLOR_NAMES[Math.floor(species_num%5)]
+	};
+}
+
+function printTests() {
+	for(idx in FISH_SIZES) {
+		for(color1 in FISH_COLORS) {
+			for(color2 in FISH_COLORS) {
+				console.log(FISH_SIZES[idx], color1, color2);
+				let species_num = getSpeciesNum(FISH_SIZES[idx], color1, color2);
+				console.log(species_num);
+				console.log(getSpeciesInfo(species_num) );
+				console.log('-----');
+			}
+		}
+	}
+}
+
 const FISH_SIZES = 'small medium-1 medium-2 big-1 big-2'.split(' ');
+const FISH_COLOR_NAMES = 'pink blue orange green red'.split(' ');
 
 const FISH_COLORS = {
 	'pink': {
@@ -69,10 +97,14 @@ function drawPersonalFish(elm_id, size, direction, fin_color, front_color, back_
 	return tmp;
 }
 
-function drawFishToCanvas(size, direction, fin_color, front_color, back_color, eye_color, x, y, width, height) {
-	let fish = getPersonalFish(size,direction,fin_color,front_color,back_color,eye_color);
+function drawFishToCanvas(size, direction, color1, color2, x, y, width, height) {
+	let fish = getPersonalFish(size,direction,color1,color2,color2,color1);
 	drawSVGToCanvas(fish,document.getElementById('personal-aquarium'),x,y,width,height);
 }
+// function drawFishToCanvas(size, direction, fin_color, front_color, back_color, eye_color, x, y, width, height) {
+// 	let fish = getPersonalFish(size,direction,fin_color,front_color,back_color,eye_color);
+// 	drawSVGToCanvas(fish,document.getElementById('personal-aquarium'),x,y,width,height);
+// }
 
 function getPersonalFish(size, direction, fin_color, front_color, back_color, eye_color) {
 	let tmp = document.getElementById(size+'-fish-right').cloneNode(true);
