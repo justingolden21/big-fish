@@ -1,0 +1,28 @@
+#lvl-shell-info {
+	text-align: right;
+}
+.dot {
+	display: inline-block !important;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 2px solid #099;
+	cursor: pointer;
+}
+.dot:hover {
+	border-color: #262673;
+}
+.dot.active {
+	background-color: #099;
+}
+.arrow {
+	font-size: 200%;
+	color: #099;
+	cursor: pointer;
+}
+.arrow:hover {
+	color: #262673;
+}
+.svg-fish {
+	width: 64px;
+}
