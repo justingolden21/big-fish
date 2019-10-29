@@ -26,3 +26,18 @@
 .svg-fish {
 	width: 64px;
 }
+#personal-modal .modal-dialog {
+	margin: 0px !important;
+	max-width: 99999px;
+}
+#personal-aquarium { /* canvas */
+	width: 500px; /* update in js */
+	height: 300px; /* update in js */
+
+
+	/* https://developer.mozilla.org/en-US/docs/Games/Techniques/Crisp_pixel_art_look */
+/*	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-crisp-edges;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;*/
+}
