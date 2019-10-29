@@ -10,7 +10,7 @@ A simple cookie clicker, collect fish to earn money for you.
 
 Manage food, aquarium space, a foodchain, and upgrades.
 
-<img src="img/screenshot.png">
+<!-- <img src="img/screenshot.png"> -->
 
 ### Miniguide
 
@@ -38,7 +38,7 @@ You can also buy farms to automatically produce food for you, and hatcheries to 
 
 Keep playing, unlock all the achievements, and get as many shells and fish as you can!
 
-<img src="img/screenshot-mobile.png" width="50%">
+<!-- <img src="img/screenshot-mobile.png" width="50%"> -->
 
 ### Using
 
