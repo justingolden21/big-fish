@@ -1,6 +1,8 @@
 const PERSONAL_SPRITE_SIZE = 24;
 const PERSONAL_MIN_X = 0;
 const PERSONAL_MAX_X = 500/4 - 24;
+const PERSONAL_MIN_Y = 0;
+const PERSONAL_MAX_Y = 300/4 - 24;
 
 let personal_canvas, personal_ctx;
 
@@ -36,11 +38,8 @@ $( ()=> {
 	}
 
 	//favorite species numbers 12, 36, 61, 90
-
-	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 20, 20, 'bobby', true) );
-	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 40, 40, 'bobby', true) );
-	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 60, 60, 'bobby', true) );
-	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 80, 80, 'bobby', true) );
+	for(let i=0; i<5; i++)
+		addRandFish();
 	setInterval(updatePersonalFish, 250);
 
 });
@@ -53,22 +52,22 @@ function updatePersonalFish() {
 }
 
 class PersonalFish {
-	constructor(species_num, x, y, name, favorite) {
+	constructor(species_num, position, name) {
 		this.species_num = species_num;
 		let tmp = getSpeciesInfo(species_num);
 		this.size = tmp.size;
 		this.color1 = tmp.color1;
 		this.color2 = tmp.color2;
 
-		this.x = x;
-		this.y = y;
+		this.x = position.x;
+		this.y = position.y;
 		this.facing_left = Math.random() >= 0.5;
 
 		this.tank = 1;
 		this.level = 1;
 		this.stomach = 0;
 		this.name = name;
-		this.favorite = favorite;
+		this.favorite = false;
 	}
 	export() {
 		// export only the data worth saving
@@ -290,6 +289,19 @@ function getSVGData(sourceSVG) {
 	return 'data:image/svg+xml;base64,' + btoa(svg_xml);
 }
 
-function getRandSpeciesNum() {
+function addRandFish() {
+	personal_fishes.push(new PersonalFish(RandSpeciesNum(), RandPosition(), RandName() ) );
+}
+function RandSpeciesNum() {
 	return random(0, 124); // 124 = 5*5*5-1
+}
+function RandPosition() {
+	return {
+		x: random(PERSONAL_MIN_X, PERSONAL_MAX_X),
+		y: random(PERSONAL_MIN_Y, PERSONAL_MAX_Y),
+	};
+}
+function RandName() {
+	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles'.split(';');
+	return names[random(0, names.length)];
 }
