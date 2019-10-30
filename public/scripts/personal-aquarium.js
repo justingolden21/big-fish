@@ -1,6 +1,6 @@
 const PERSONAL_SPRITE_SIZE = 24;
 const PERSONAL_MIN_X = 0;
-const PERSONAL_MAX_X = 300;
+const PERSONAL_MAX_X = 500/4 - 24;
 
 let personal_canvas, personal_ctx;
 
@@ -9,11 +9,15 @@ $( ()=> {
 	setTimeout( ()=> $('#help-modal').modal('hide'), 500);
 	$('#personal-modal').modal('show');
 
+	$('#personal-fish-modal').on('shown.bs.modal', ()=> {
+		drawFishesToModal();
+	});
+
 	personal_canvas = document.getElementById('personal-aquarium');
 	personal_canvas.width=500; // update in css
 	personal_canvas.height=300; // update in css
 	personal_ctx = personal_canvas.getContext('2d');
-	personal_ctx.translate(0.5, 0.5);
+	// personal_ctx.translate(0.5, 0.5);
 	personal_ctx.scale(4,4);
 
 	let size = PERSONAL_SPRITE_SIZE, max = PERSONAL_MAX_X;
@@ -31,10 +35,12 @@ $( ()=> {
 		}
 	}
 
-	//favorite species numbers 12, 36
+	//favorite species numbers 12, 36, 61, 90
 
-	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 33, 33, 2, 1, 1, 'bobby', true) );
-	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 33, 33, 2, 1, 1, 'bobby', true) );
+	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 20, 20, 'bobby', true) );
+	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 40, 40, 'bobby', true) );
+	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 60, 60, 'bobby', true) );
+	personal_fishes.push(new PersonalFish(getRandSpeciesNum(), 80, 80, 'bobby', true) );
 	setInterval(updatePersonalFish, 250);
 
 });
@@ -47,7 +53,7 @@ function updatePersonalFish() {
 }
 
 class PersonalFish {
-	constructor(species_num, x, y, speed, tank, level, name, favorite) {
+	constructor(species_num, x, y, name, favorite) {
 		this.species_num = species_num;
 		let tmp = getSpeciesInfo(species_num);
 		this.size = tmp.size;
@@ -57,11 +63,32 @@ class PersonalFish {
 		this.x = x;
 		this.y = y;
 		this.facing_left = Math.random() >= 0.5;
-		this.speed = speed;
-		this.tank = tank;
-		this.level = level;
+
+		this.tank = 1;
+		this.level = 1;
+		this.stomach = 0;
 		this.name = name;
 		this.favorite = favorite;
+	}
+	export() {
+		// export only the data worth saving
+		return {
+			species_num: this.species_num,
+			tank: this.tank,
+			level: this.level,
+			name: this.name,
+			favorite: this.favorite
+		};
+	}
+	import() {
+		let tmp = getSpeciesInfo(species_num);
+		this.size = tmp.size;
+		this.color1 = tmp.color1;
+		this.color2 = tmp.color2;
+
+		this.x = 100;
+		this.y = 100;
+		this.facing_left = Math.random() >= 0.5;
 	}
 	move() { // move according to speed, random direction
 		this.facing_left = Math.random() >= 0.1 ? this.facing_left : !this.facing_left;
@@ -83,6 +110,15 @@ class PersonalFish {
 	draw() {
 		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y);
 	}
+	getImg() {
+		return getPersonalFish(this.size, false, this.color1, this.color2, this.color2, this.color1);
+	}
+	drawAt(location) {
+		$('#'+location).append(this.getImg() );
+	}
+	getSVG() {
+		return getSVGData(this.getImg() );
+	}
 	update() {
 		this.move();
 		this.draw();
@@ -90,6 +126,34 @@ class PersonalFish {
 }
 
 let personal_fishes = [];
+
+
+function drawFishesToModal() {
+	$('#personal-fish-div').html(''); //test
+	// let tmpHTML = '';
+	for(let i=0; i<personal_fishes.length; i++) {
+		$('#personal-fish-div').append('<div class="col-lg-4 col-md-6 fish-display-section">'
+			+ '<button class="btn btn-sm" title="Favorite"><i class="fas fa-star"></i></button>'
+			+ ' Name: <input type="text" value="' + personal_fishes[i].name + '">'
+			+ ' <button class="btn btn-sm" title="Sell"><i class="fas fa-times"></i></button>'
+			+ ' <button class="btn btn-sm" title="Change Tanks"><i class="fas fa-arrow-right"></i></button>'
+			+ '<br>Level ' + personal_fishes[i].level
+			+ ' &mdash; Stomach: ' + personal_fishes[i].stomach
+			+ '<br><img src="' + personal_fishes[i].getSVG() + '" class="fish-display">'
+			+ '<br>Species ' + personal_fishes[i].species_num
+			+ ' &mdash; ' + getRarity(personal_fishes[i].species_num)
+			+ '<br>'
+		);
+		// tmpHTML += '<div class="col-md-3 col-sm-6">'
+		// + ''
+		// + ''
+		// + '</div>';
+		// personal_fishes[i].drawAt('personal-fish-div'); //aaa
+
+		$('#personal-fish-div').append('</div>');
+	}
+	// $('#personal-fish-div').html(tmpHTML);
+}
 
 function getSpeciesNum(size, color1, color2) {
 	return FISH_SIZES.findIndex( (a)=> a==size) * 25
@@ -102,6 +166,11 @@ function getSpeciesInfo(species_num) {
 		color1: FISH_COLOR_NAMES[Math.floor(species_num/5%5)],
 		color2: FISH_COLOR_NAMES[Math.floor(species_num%5)]
 	};
+}
+function getRarity(species_num) {
+	if(Math.floor(species_num/5%5)==Math.floor(species_num%5) )
+		return 'uncommon';
+	return 'common';
 }
 
 function printTests() {
@@ -165,16 +234,17 @@ const PERSONAL_FISH_SPEEDS = {
 // size is str ('small', 'medium-1', 'medium-2', 'big-1' or 'big-2')
 // facing_left is bool
 // colors are color strings, for example 'red' or '#f00'
-function drawPersonalFish(elm_id, size, facing_left, fin_color, front_color, back_color, eye_color) {
-	let tmp = $('#'+size+'-fish-right').clone().appendTo('#'+elm_id).removeClass('hidden');
-	tmp.find('.fin').css('fill', FISH_COLORS[fin_color].fin);
-	tmp.find('.front').css('fill', FISH_COLORS[front_color].front);
-	tmp.find('.back').css('fill', FISH_COLORS[back_color].back);
-	tmp.find('.eye').css('fill', FISH_COLORS[eye_color].eye);
-	if(facing_left)
-		tmp.css('transform', 'scale(-1,1)');
-	return tmp;
-}
+
+// function drawPersonalFish(elm_id, size, facing_left, fin_color, front_color, back_color, eye_color) {
+// 	let tmp = $('#'+size+'-fish-right').clone().appendTo('#'+elm_id).removeClass('hidden');
+// 	tmp.find('.fin').css('fill', FISH_COLORS[fin_color].fin);
+// 	tmp.find('.front').css('fill', FISH_COLORS[front_color].front);
+// 	tmp.find('.back').css('fill', FISH_COLORS[back_color].back);
+// 	tmp.find('.eye').css('fill', FISH_COLORS[eye_color].eye);
+// 	if(facing_left)
+// 		tmp.css('transform', 'scale(-1,1)');
+// 	return tmp;
+// }
 
 function drawFishTypeToCanvas(species_num, facing_left, x, y) {
 	let species_info = getSpeciesInfo(species_num);
@@ -186,6 +256,8 @@ function drawFishToCanvas(size, facing_left, color1, color2, x, y) {
 	drawSVGToCanvas(fish,personal_ctx,x,y,PERSONAL_SPRITE_SIZE,PERSONAL_SPRITE_SIZE);
 }
 
+
+
 function getPersonalFish(size, facing_left, fin_color, front_color, back_color, eye_color) {
 	let tmp = document.getElementById(size+'-fish-right').cloneNode(true);
 	tmp.classList.remove('hidden');
@@ -196,6 +268,7 @@ function getPersonalFish(size, facing_left, fin_color, front_color, back_color, 
 	tmp.querySelectorAll('.front')[0].style.fill = FISH_COLORS[front_color].front;
 	tmp.querySelectorAll('.back')[0].style.fill = FISH_COLORS[back_color].back;
 	tmp.querySelectorAll('.eye')[0].style.fill = FISH_COLORS[eye_color].eye;
+	// console.log(facing_left);
 	if(facing_left)
 		tmp.style.transform = 'scale(-1,1)';
 	return tmp;
@@ -203,24 +276,20 @@ function getPersonalFish(size, facing_left, fin_color, front_color, back_color, 
 
 // http://svgopen.org/2010/papers/62-From_SVG_to_Canvas_and_Back/
 function drawSVGToCanvas(sourceSVG, target_ctx, x, y, width, height) {
-	svg_xml = (new XMLSerializer() ).serializeToString(sourceSVG);
+	let svg_xml = (new XMLSerializer() ).serializeToString(sourceSVG);
 
 	let img = new Image();
-
-	sourceSVG.onclick = ()=>{console.log('clicked'); };
-	img.onclick = ()=>{console.log('clicked'); };
-	svg_xml.onclick = ()=>{console.log('clicked'); };
-
-
-	img.onload = function() {
+	img.onload = ()=> {
 		target_ctx.drawImage(img, x, y, width, height);
-		}
-	img.src = "data:image/svg+xml;base64," + btoa(svg_xml);
+	}
+	img.src = 'data:image/svg+xml;base64,' + btoa(svg_xml);
+}
 
-
-
+function getSVGData(sourceSVG) {
+	let svg_xml = (new XMLSerializer() ).serializeToString(sourceSVG);
+	return 'data:image/svg+xml;base64,' + btoa(svg_xml);
 }
 
 function getRandSpeciesNum() {
-	return random(0, 5*5*5-1);
+	return random(0, 124); // 124 = 5*5*5-1
 }
