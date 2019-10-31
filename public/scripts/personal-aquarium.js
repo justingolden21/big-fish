@@ -127,7 +127,7 @@ function drawFishesToModal() {
 				+ '<button class="btn btn-sm favorite-btn'+(personal_fishes[i].favorite?' active':'')+'" title="Toggle Favorite" '
 				+ 'onclick="toggleFavorite('+i+'); $(this).toggleClass(\'active\');" ><i class="fas fa-star"></i></button>'
 				+ ' Name: <input type="text" value="' + personal_fishes[i].name + '" onchange="setName('+i+', this.value);">'
-				+ ' <button class="btn btn-sm" title="Sell"><i class="fas fa-times"></i></button>'
+				+ ' <button class="btn btn-sm" title="Sell" onclick="removePersonalFish('+i+'); $(this).parent().fadeOut();"><i class="fas fa-times"></i></button>'
 				// + ' <button class="btn btn-sm" title="Change Tanks"><i class="fas fa-arrow-right"></i></button>'
 				+ '<br>Level ' + personal_fishes[i].level
 				+ ' &mdash; Stomach: ' + personal_fishes[i].stomach
