@@ -38,8 +38,7 @@ $( ()=> {
 	}
 
 	//favorite species numbers 12, 36, 61, 90
-	for(let i=0; i<5; i++)
-		addRandFish();
+	addRandFish(5);
 	setInterval(updatePersonalFish, 250);
 
 });
@@ -47,7 +46,8 @@ $( ()=> {
 function updatePersonalFish() {
 	personal_ctx.clearRect(0, 0, personal_canvas.width, personal_canvas.height);
 	for(let i=0; i<personal_fishes.length; i++) {
-		personal_fishes[i].update();
+		if(personal_fishes[i])
+			personal_fishes[i].update();
 	}
 }
 
@@ -126,30 +126,39 @@ class PersonalFish {
 
 let personal_fishes = [];
 
+function toggleFavorite(idx) {
+	personal_fishes[idx].favorite = !personal_fishes[idx].favorite;
+}
+function setName(idx, name) {
+	personal_fishes[idx].name = name;
+}
 
 function drawFishesToModal() {
 	$('#personal-fish-div').html(''); //test
 	// let tmpHTML = '';
 	for(let i=0; i<personal_fishes.length; i++) {
-		$('#personal-fish-div').append('<div class="col-lg-4 col-md-6 fish-display-section">'
-			+ '<button class="btn btn-sm" title="Favorite"><i class="fas fa-star"></i></button>'
-			+ ' Name: <input type="text" value="' + personal_fishes[i].name + '">'
-			+ ' <button class="btn btn-sm" title="Sell"><i class="fas fa-times"></i></button>'
-			+ ' <button class="btn btn-sm" title="Change Tanks"><i class="fas fa-arrow-right"></i></button>'
-			+ '<br>Level ' + personal_fishes[i].level
-			+ ' &mdash; Stomach: ' + personal_fishes[i].stomach
-			+ '<br><img src="' + personal_fishes[i].getSVG() + '" class="fish-display">'
-			+ '<br>Species ' + personal_fishes[i].species_num
-			+ ' &mdash; ' + getRarity(personal_fishes[i].species_num)
-			+ '<br>'
-		);
-		// tmpHTML += '<div class="col-md-3 col-sm-6">'
-		// + ''
-		// + ''
-		// + '</div>';
-		// personal_fishes[i].drawAt('personal-fish-div'); //aaa
+		if(personal_fishes[i]) {
+			$('#personal-fish-div').append('<div class="col-lg-4 col-md-6 fish-display-section">'
+				+ '<button class="btn btn-sm favorite-btn'+(personal_fishes[i].favorite?' active':'')+'" title="Toggle Favorite" '
+				+ 'onclick="toggleFavorite('+i+'); $(this).toggleClass(\'active\');" ><i class="fas fa-star"></i></button>'
+				+ ' Name: <input type="text" value="' + personal_fishes[i].name + '" onchange="setName('+i+', this.value);">'
+				+ ' <button class="btn btn-sm" title="Sell"><i class="fas fa-times"></i></button>'
+				// + ' <button class="btn btn-sm" title="Change Tanks"><i class="fas fa-arrow-right"></i></button>'
+				+ '<br>Level ' + personal_fishes[i].level
+				+ ' &mdash; Stomach: ' + personal_fishes[i].stomach
+				+ '<br><img src="' + personal_fishes[i].getSVG() + '" class="fish-display">'
+				+ '<br>Species ' + personal_fishes[i].species_num
+				+ ' &mdash; ' + getRarity(personal_fishes[i].species_num)
+				+ '<br>'
+			);
+			// tmpHTML += '<div class="col-md-3 col-sm-6">'
+			// + ''
+			// + ''
+			// + '</div>';
+			// personal_fishes[i].drawAt('personal-fish-div'); //aaa
 
-		$('#personal-fish-div').append('</div>');
+			$('#personal-fish-div').append('</div>');
+		}
 	}
 	// $('#personal-fish-div').html(tmpHTML);
 }
@@ -289,8 +298,23 @@ function getSVGData(sourceSVG) {
 	return 'data:image/svg+xml;base64,' + btoa(svg_xml);
 }
 
-function addRandFish() {
-	personal_fishes.push(new PersonalFish(RandSpeciesNum(), RandPosition(), RandName() ) );
+function addRandFish(amount=1) {
+	for(let i=0; i<amount; i++)
+		addPersonalFish(RandSpeciesNum(), RandPosition(), RandName() );
+}
+function addPersonalFish(species_num, position, name) {
+	let new_fish = new PersonalFish(species_num, position, name);
+	for(let i=0; i<personal_fishes.length; i++) {
+		if(personal_fishes[i]==undefined) {
+			personal_fishes[i] = new_fish;
+			return true;
+		}
+	}
+	personal_fishes.push(new_fish);
+	return false;
+}
+function removePersonalFish(idx) {
+	personal_fishes[idx] = undefined;
 }
 function RandSpeciesNum() {
 	return random(0, 124); // 124 = 5*5*5-1

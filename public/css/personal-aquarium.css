@@ -48,3 +48,6 @@
 	border: 2px solid #099;
 	box-shadow: 2px 2px 0px #262673;
 }
+.favorite-btn.active:not(:hover) i.fas{
+	color: #099;
+}
