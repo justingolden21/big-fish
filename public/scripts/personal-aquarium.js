@@ -22,21 +22,6 @@ $( ()=> {
 	// personal_ctx.translate(0.5, 0.5);
 	personal_ctx.scale(4,4);
 
-	let size = PERSONAL_SPRITE_SIZE, max = PERSONAL_MAX_X;
-	let x = 0, y = 0;
-	for(idx in FISH_SIZES) {
-		for(color1 in FISH_COLORS) {
-			for(color2 in FISH_COLORS) {
-				drawFishToCanvas(FISH_SIZES[idx], false, color1, color2, x, y);
-				x += size;
-				if(x>max) {
-					x=0;
-					y += size;
-				}
-			}
-		}
-	}
-
 	//favorite species numbers 12, 36, 61, 90
 	addRandFish(5);
 	setInterval(updatePersonalFish, 250);
