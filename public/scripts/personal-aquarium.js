@@ -47,6 +47,7 @@ class PersonalFish {
 		this.x = position.x;
 		this.y = position.y;
 		this.facing_left = Math.random() >= 0.5;
+		this.rotation = 0;
 
 		this.tank = 1;
 		this.level = 1;
@@ -70,8 +71,11 @@ class PersonalFish {
 		this.color1 = tmp.color1;
 		this.color2 = tmp.color2;
 
-		this.x = 100;
-		this.y = 100;
+		let pos = randPosition();
+		this.x = pos.x;
+		this.y = pos.y;
+		this.rotation = 0;
+
 		this.facing_left = Math.random() >= 0.5;
 	}
 	move() { // move according to speed, random direction
@@ -90,12 +94,24 @@ class PersonalFish {
 			this.x = PERSONAL_MAX_X;
 			this.facing_left = !this.facing_left;
 		}
+
+		if(Math.random() > 0.8) {
+			if(Math.random() > 0.5)
+				this.rotation += 3;
+			else
+				this.rotation -= 3;
+			if(this.rotation < -30)
+				this.rotation = -30;
+			if(this.rotation > 30)
+				this.rotation = 30;			
+		}
+
 	}
 	draw() {
-		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y);
+		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y, this.rotation);
 	}
 	getImg() {
-		return getPersonalFish(this.size, false, this.color1, this.color2, this.color2, this.color1);
+		return getPersonalFish(this.size, false, this.color1, this.color2, this.color2, this.color1, this.rotation);
 	}
 	drawAt(location) {
 		$('#'+location).append(this.getImg() );
@@ -239,19 +255,12 @@ const PERSONAL_FISH_SPEEDS = {
 // 	return tmp;
 // }
 
-function drawFishTypeToCanvas(species_num, facing_left, x, y) {
-	let species_info = getSpeciesInfo(species_num);
-	drawFishToCanvas(species_info.size, facing_left, species_info.color1, species_info.color2, x, y);
-}
-
-function drawFishToCanvas(size, facing_left, color1, color2, x, y) {
-	let fish = getPersonalFish(size,facing_left,color1,color2,color2,color1);
+function drawFishToCanvas(size, facing_left, color1, color2, x, y, rotation) {
+	let fish = getPersonalFish(size,facing_left,color1,color2,color2,color1,rotation);
 	drawSVGToCanvas(fish,personal_ctx,x,y,PERSONAL_SPRITE_SIZE,PERSONAL_SPRITE_SIZE);
 }
 
-
-
-function getPersonalFish(size, facing_left, fin_color, front_color, back_color, eye_color) {
+function getPersonalFish(size, facing_left, fin_color, front_color, back_color, eye_color, rotation=0) {
 	let tmp = document.getElementById(size+'-fish-right').cloneNode(true);
 	tmp.classList.remove('hidden');
 	
@@ -264,6 +273,8 @@ function getPersonalFish(size, facing_left, fin_color, front_color, back_color, 
 	// console.log(facing_left);
 	if(facing_left)
 		tmp.style.transform = 'scale(-1,1)';
+	if(rotation!=0)
+		tmp.style.transform += 'rotate('+rotation+'deg)';
 	return tmp;
 }
 
@@ -285,7 +296,7 @@ function getSVGData(sourceSVG) {
 
 function addRandFish(amount=1) {
 	for(let i=0; i<amount; i++)
-		addPersonalFish(RandSpeciesNum(), RandPosition(), RandName() );
+		addPersonalFish(randSpeciesNum(), randPosition(), randName() );
 }
 function addPersonalFish(species_num, position, name) {
 	let new_fish = new PersonalFish(species_num, position, name);
@@ -301,16 +312,16 @@ function addPersonalFish(species_num, position, name) {
 function removePersonalFish(idx) {
 	personal_fishes[idx] = undefined;
 }
-function RandSpeciesNum() {
+function randSpeciesNum() {
 	return random(0, 124); // 124 = 5*5*5-1
 }
-function RandPosition() {
+function randPosition() {
 	return {
 		x: random(PERSONAL_MIN_X, PERSONAL_MAX_X),
 		y: random(PERSONAL_MIN_Y, PERSONAL_MAX_Y),
 	};
 }
-function RandName() {
+function randName() {
 	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles'.split(';');
 	return names[random(0, names.length)];
 }
