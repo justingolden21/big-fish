@@ -100,18 +100,17 @@ class PersonalFish {
 				this.rotation += 3;
 			else
 				this.rotation -= 3;
-			if(this.rotation < -30)
-				this.rotation = -30;
-			if(this.rotation > 30)
-				this.rotation = 30;			
+			if(this.rotation < -15)
+				this.rotation = -15;
+			if(this.rotation > 15)
+				this.rotation = 15;			
 		}
-
 	}
 	draw() {
 		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y, this.rotation);
 	}
 	getImg() {
-		return getPersonalFish(this.size, false, this.color1, this.color2, this.color2, this.color1, this.rotation);
+		return getPersonalFish(this.size, false, this.color1, this.color2, this.color2, this.color1, 0);
 	}
 	drawAt(location) {
 		$('#'+location).append(this.getImg() );
