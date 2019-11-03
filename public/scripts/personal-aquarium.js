@@ -34,6 +34,10 @@ function updatePersonalFish() {
 		if(personal_fishes[i])
 			personal_fishes[i].update();
 	}
+
+	// ----------------
+
+	$('#num-personal-fish').html(personal_fishes.length);
 }
 
 class PersonalFish {
@@ -148,6 +152,7 @@ function drawFishesToModal() {
 				+ ' &mdash; Stomach: ' + personal_fishes[i].stomach
 				+ '<br><img src="' + personal_fishes[i].getSVG() + '" class="fish-display">'
 				+ '<br>Species ' + personal_fishes[i].species_num
+				+ ' &mdash; ' + getSize(personal_fishes[i].species_num)
 				+ ' &mdash; ' + getRarity(personal_fishes[i].species_num)
 				+ '<br>'
 			);
@@ -179,6 +184,10 @@ function getRarity(species_num) {
 	if(Math.floor(species_num/5%5)==Math.floor(species_num%5) )
 		return 'uncommon';
 	return 'common';
+}
+function getSize(species_num) {
+	// return getSpeciesInfo(species_num).size.split('-')[0];
+	return FISH_SIZES[Math.floor(species_num/25)].split('-')[0];
 }
 
 function printTests() {
