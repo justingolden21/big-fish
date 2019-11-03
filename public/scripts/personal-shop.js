@@ -27,6 +27,7 @@ function updateShopDisplay() {
 			+ ' &mdash; ' + getSize(species_num)
 			+ ' &mdash; ' + getRarity(species_num)
 			+ '<br>Price: ' + shop_fish[idx].price
+			+ '<br>Level: ' + shop_fish[idx].level
 			+ '</div>'
 		);		
 	}
@@ -36,7 +37,8 @@ function updateShopDisplay() {
 function addRandShopFish(num=1) {
 	for(let i=0; i<num; i++) {
 		let species_num = randSpeciesNum();
-		shop_fish.push({species_num: species_num, price: getPrice(species_num)});
+		let level = random(1,3);
+		shop_fish.push({species_num: species_num, level: level, price: getPrice(species_num, level)});
 	}
 }
 
@@ -45,10 +47,10 @@ function getShopFish(idx) {
 	return getPersonalFish(info.size, false, info.color1, info.color2, info.color2, info.color1, 0);
 }
 
-function getPrice(species_num) {
+function getPrice(species_num, level) {
 	let size = getSize(species_num);
 	let rarity = getRarity(species_num);
 
-	let multiplier = {'small': 1, 'medium': 2, 'big': 4}[size] * {'common': 1, 'uncommon': 5}[rarity];
+	let multiplier = {'small': 1, 'medium': 2, 'big': 4}[size] * {'common': 1, 'uncommon': 5}[rarity] * level;
 	return Math.round(multiplier * SHOP_BASE_COST);
 }
