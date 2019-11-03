@@ -6,14 +6,14 @@ const PERSONAL_MAX_Y = 300/4 - 24;
 
 let personal_canvas, personal_ctx;
 
+let player_level = 1;
+
 $( ()=> {
 	// testing
 	setTimeout( ()=> $('#help-modal').modal('hide'), 500);
 	$('#personal-modal').modal('show');
 
-	$('#personal-fish-modal').on('shown.bs.modal', ()=> {
-		drawFishesToModal();
-	});
+	$('#personal-fish-modal').on('shown.bs.modal', drawFishesToModal);
 
 	personal_canvas = document.getElementById('personal-aquarium');
 	personal_canvas.width=500; // update in css
@@ -38,6 +38,9 @@ function updatePersonalFish() {
 	// ----------------
 
 	$('#num-personal-fish').html(personal_fishes.length);
+	$('.player-level').html(player_level);
+	$('.num-gold-shell').html(num_gold_shell);
+
 }
 
 class PersonalFish {
@@ -142,6 +145,7 @@ function drawFishesToModal() {
 	// let tmpHTML = '';
 	for(let i=0; i<personal_fishes.length; i++) {
 		if(personal_fishes[i]) {
+			let species_num = personal_fishes[i].species_num;
 			$('#personal-fish-div').append('<div class="col-lg-4 col-md-6 fish-display-section">'
 				+ '<button class="btn btn-sm favorite-btn'+(personal_fishes[i].favorite?' active':'')+'" title="Toggle Favorite" '
 				+ 'onclick="toggleFavorite('+i+'); $(this).toggleClass(\'active\');" ><i class="fas fa-star"></i></button>'
@@ -151,18 +155,12 @@ function drawFishesToModal() {
 				+ '<br>Level ' + personal_fishes[i].level
 				+ ' &mdash; Stomach: ' + personal_fishes[i].stomach
 				+ '<br><img src="' + personal_fishes[i].getSVG() + '" class="fish-display">'
-				+ '<br>Species ' + personal_fishes[i].species_num
-				+ ' &mdash; ' + getSize(personal_fishes[i].species_num)
-				+ ' &mdash; ' + getRarity(personal_fishes[i].species_num)
+				+ '<br>Species ' + species_num
+				+ ' &mdash; ' + getSize(species_num)
+				+ ' &mdash; ' + getRarity(species_num)
 				+ '<br>'
+				+ '</div>'
 			);
-			// tmpHTML += '<div class="col-md-3 col-sm-6">'
-			// + ''
-			// + ''
-			// + '</div>';
-			// personal_fishes[i].drawAt('personal-fish-div'); //aaa
-
-			$('#personal-fish-div').append('</div>');
 		}
 	}
 	// $('#personal-fish-div').html(tmpHTML);

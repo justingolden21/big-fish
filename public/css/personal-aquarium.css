@@ -26,7 +26,7 @@
 .svg-fish {
 	width: 64px;
 }
-#personal-modal .modal-dialog, #personal-fish-modal .modal-dialog {
+.full-modal .modal-dialog {
 	margin: 0px !important;
 	max-width: 99999px;
 }
