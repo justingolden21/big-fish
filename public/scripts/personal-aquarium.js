@@ -8,6 +8,8 @@ let personal_canvas, personal_ctx;
 
 let player_level = 1;
 
+let updatePersonalFishInterval;
+
 $( ()=> {
 	// testing
 	setTimeout( ()=> $('#help-modal').modal('hide'), 500);
@@ -24,7 +26,7 @@ $( ()=> {
 
 	//favorite species numbers 12, 36, 61, 90
 	addRandFish(1);
-	setInterval(updatePersonalFish, 250);
+	updatePersonalFishInterval = setInterval(updatePersonalFish, 250);
 	setInterval(doPersonalFishShellProduction, 1000 * 3); // * 60
 
 });
@@ -325,8 +327,10 @@ function getSVGData(sourceSVG) {
 }
 
 function addRandFish(amount=1) {
-	for(let i=0; i<amount; i++)
-		addPersonalFish(randSpeciesNum(), randPosition(), randName(), 1);
+	for(let i=0; i<amount; i++) {
+		let species_num = randSpeciesNum(); 
+		addPersonalFish(species_num, randPosition(), randName(species_num), 1);
+	}
 }
 function addPersonalFish(species_num, position, name, level) {
 	let new_fish = new PersonalFish(species_num, position, name, level);
@@ -352,8 +356,8 @@ function randPosition() {
 		y: random(PERSONAL_MIN_Y, PERSONAL_MAX_Y),
 	};
 }
-function randName() {
-	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles;Flippy Flippy;Flippers;SwimSwim'.split(';');
+function randName(species_num) {
+	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles;Flippy Flippy;Flippers;SwimSwim;Flops;Opal;Obsidian;Diamond;Emerald;Sapphire;Ruby;Gold;Silver;Platinum;Fin;Sushi;Jaws;Atlantis;Neptune;Chips;Nibbles;Nemo;Dory;Magikarp;Ariel;Floaty Floats;Seaweed;Dr.Splashes;Reef Reef;Aqua;Shipwreck;Azul;Captain;Tsunami;Pumpkin;Apple;Banana;Amber;Savannah;Ginger;Mint;Pearl;Hooks'.split(';');
 	return names[random(0, names.length)];
 }
 

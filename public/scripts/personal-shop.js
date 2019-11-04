@@ -50,6 +50,7 @@ function updateShopDisplay() {
 			+ ' &mdash; ' + getRarity(species_num)
 			+ '<br>Price: ' + shop_fish[idx].price + getImgStr('shell-gold.png', 'icon-sm')
 			+ '<br>Level: ' + shop_fish[idx].level
+			+ '<br>Name: ' + shop_fish[idx].name
 			+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, shop_fish[idx].level) + getImgStr('shell-gold.png', 'icon-sm')
 			+ '</div>'
 		);
@@ -61,7 +62,7 @@ function addRandShopFish(num=1) {
 	for(let i=0; i<num; i++) {
 		let species_num = randSpeciesNum();
 		let level = random(1,5);
-		shop_fish.push({species_num: species_num, level: level, price: getPrice(species_num, level)});
+		shop_fish.push({species_num: species_num, level: level, price: getPrice(species_num, level), name: randName(species_num)});
 	}
 }
 
@@ -89,7 +90,7 @@ function purcahsePersonalFish(elm, idx) {
 	num_gold_shell -= shop_fish[idx].price; // pay cost
 
 	// add to fish
-	addPersonalFish(shop_fish[idx].species_num, randPosition(), randName(), shop_fish[idx].level)
+	addPersonalFish(shop_fish[idx].species_num, randPosition(), shop_fish[idx].name, shop_fish[idx].level)
 
 	// remove from shop
 	shop_fish[idx] = undefined;
@@ -97,4 +98,12 @@ function purcahsePersonalFish(elm, idx) {
 	// replace shop fish
 	addRandShopFish(1);
 
+}
+
+function testDisplayAllColors() {
+	shop_fish=[];
+	for(let i=0; i<25; i++) {
+		shop_fish.push({species_num: i, level:0, price:0, name:'test'});		
+	}
+	updateShopDisplay();
 }
