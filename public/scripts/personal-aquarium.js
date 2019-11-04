@@ -357,14 +357,14 @@ function randPosition() {
 	};
 }
 
-const GENERIC_FISH_NAMES = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Prof.Swimmy;Spots;Smiles;Flippy Flippy;Flippers;SwimSwim;Flops;Fin;Sushi;Atlantis;Neptune;Chips;Nibbles;Floaty Floats;Dr.Splashes;Reef Reef;Shipwreck;Captain;Tsunami;Hooks;Opal;Prof.Speckle';
+const GENERIC_FISH_NAMES = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Prof.Swimmy;Spots;Smiles;Flippy Flippy;Flippers;SwimSwim;Flops;Fin;Sushi;Atlantis;Neptune;Chips;Nibbles;Floaty Floats;Dr.Splashes;Reef Reef;Shipwreck;Captain;Tsunami;Hooks;Opal;Prof.Speckle;Bop Bop';
 
 const FISH_NAMES = {
 	'pink':   'Grapefruit;Strawberry;Nutmeg;Shells;Amethyst;Pearl;Moonlight;Pinky;Rose',
 	'blue':   'Blueberry;Blue Corn;Sage;Waves;Topaz;Sapphire;Rain;Aqua;Azul',
 	'orange': 'Pumpkin;Yam;Ginger;Clowns;Tiger\'s Eye;Amber;Sunset;Savannah;Giraffe',
 	'green':  'Lime;Olive;Mint;Seaweed;Emerald;Jade;Forest;Clover;Frog',
-	'red':    'Cherry;Apple;Chili;Crab;Ruby;Jasper;Magma;Firetruck;Ladybug',
+	'red':    'Cherry;Apple;Chili;Crab;Ruby;Jasper;Magma;Valentine;Ladybug',
 
 	'small':  'Nemo;Dory;Magikarp',
 	'medium': 'Ariel',
