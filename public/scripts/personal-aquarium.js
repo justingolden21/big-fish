@@ -56,7 +56,7 @@ function updatePersonalFish() {
 }
 
 class PersonalFish {
-	constructor(species_num, position, name) {
+	constructor(species_num, position, name, level) {
 		this.species_num = species_num;
 		let tmp = getSpeciesInfo(species_num);
 		this.size = tmp.size;
@@ -69,7 +69,7 @@ class PersonalFish {
 		this.rotation = 0;
 
 		this.tank = 1;
-		this.level = 1;
+		this.level = level;
 		this.stomach = 0;
 		this.name = name;
 		this.favorite = false;
@@ -318,10 +318,10 @@ function getSVGData(sourceSVG) {
 
 function addRandFish(amount=1) {
 	for(let i=0; i<amount; i++)
-		addPersonalFish(randSpeciesNum(), randPosition(), randName() );
+		addPersonalFish(randSpeciesNum(), randPosition(), randName(), 1);
 }
-function addPersonalFish(species_num, position, name) {
-	let new_fish = new PersonalFish(species_num, position, name);
+function addPersonalFish(species_num, position, name, level) {
+	let new_fish = new PersonalFish(species_num, position, name, level);
 	for(let i=0; i<personal_fishes.length; i++) {
 		if(personal_fishes[i]==undefined) {
 			personal_fishes[i] = new_fish;

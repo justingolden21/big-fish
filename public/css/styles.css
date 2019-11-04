@@ -430,6 +430,10 @@ label input[type=checkbox] {
   cursor: pointer;
 }
 
+#alert-modal {
+	z-index: 9999; /* above all other modals */
+}
+
 /* for #pufferfish-progress */
 .progress-bar {
 	height: 5px;

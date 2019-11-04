@@ -18,10 +18,12 @@ $( ()=> {
 function updateShopDisplay() {
 	$('#personal-shop-div').html('');
 	for(idx in shop_fish) {
+		if(!shop_fish[idx]) continue;
+
 		let species_num = shop_fish[idx].species_num;
 		let info = getSpeciesInfo(species_num);
 		$('#personal-shop-div').append(
-			'<div class="col-lg-4 col-md-6 fish-display-section">'
+			'<div class="col-lg-4 col-md-6 fish-display-section" onclick="purcahsePersonalFish($(this),'+idx+')">'
 			+ '<img src="'+getSVGData(getShopFish(idx) )+'" class="fish-display">'
 			+ '<br>Species ' + species_num
 			+ ' &mdash; ' + getSize(species_num)
@@ -30,7 +32,7 @@ function updateShopDisplay() {
 			+ '<br>Level: ' + shop_fish[idx].level
 			+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, shop_fish[idx].level) + getImgStr('shell-gold.png', 'icon-sm')
 			+ '</div>'
-		);		
+		);
 	}
 
 }
@@ -54,4 +56,21 @@ function getPrice(species_num, level) {
 
 	let multiplier = {'small': 1, 'medium': 2, 'big': 4}[size] * {'common': 1, 'uncommon': 5}[rarity] * (0.8+0.2*level);
 	return Math.round(multiplier * SHOP_BASE_COST);
+}
+
+function purcahsePersonalFish(elm, idx) {
+	// check cost
+	if(num_gold_shell < shop_fish[idx].price) {
+		showAlert('Not enough gold shells', 'Not enough gold shells for that item.');
+		return;
+	}
+
+	elm.fadeOut(); // shop display
+	num_gold_shell -= shop_fish[idx].price; // pay cost
+
+	// add to fish
+	addPersonalFish(shop_fish[idx].species_num, randPosition(), randName(), shop_fish[idx].level)
+
+	// remove from shop
+	shop_fish[idx] = undefined;
 }
