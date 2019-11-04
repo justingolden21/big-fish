@@ -4,6 +4,8 @@ const SALE = 0.75;
 
 const SHOP_BASE_COST = 20;
 
+const REROLL_COST = 20;
+
 // stored just as species numbers
 let shop_fish = [];
 
@@ -12,8 +14,26 @@ let shop_fish = [];
 $( ()=> {
 	$('#personal-shop-modal').on('shown.bs.modal', updateShopDisplay);
 
-	addRandShopFish(15);
+	$('#reroll-shop-btn').click(rerollShop);
+
+	addRandShopFish(3);
 });
+
+function rerollShop() {
+
+	// check cost
+	if(num_gold_shell < REROLL_COST) {
+		showAlert('Not enough gold shells', 'Not enough gold shells to reroll shop.');
+		return;
+	}
+
+	num_gold_shell -= REROLL_COST; // pay cost
+
+	shop_fish = [];
+	addRandShopFish(3);
+
+	$('.shop-item').fadeOut('slow', updateShopDisplay);
+}
 
 function updateShopDisplay() {
 	$('#personal-shop-div').html('');
@@ -23,7 +43,7 @@ function updateShopDisplay() {
 		let species_num = shop_fish[idx].species_num;
 		let info = getSpeciesInfo(species_num);
 		$('#personal-shop-div').append(
-			'<div class="col-lg-4 col-md-6 fish-display-section" onclick="purcahsePersonalFish($(this),'+idx+')">'
+			'<div class="col-lg-4 col-md-6 fish-display-section shop-item" onclick="purcahsePersonalFish($(this),'+idx+')">'
 			+ '<img src="'+getSVGData(getShopFish(idx) )+'" class="fish-display">'
 			+ '<br>Species ' + species_num
 			+ ' &mdash; ' + getSize(species_num)
@@ -65,7 +85,7 @@ function purcahsePersonalFish(elm, idx) {
 		return;
 	}
 
-	elm.fadeOut(); // shop display
+	elm.fadeOut('slow', updateShopDisplay); // shop display purchase, then callback to update shop display for new fish
 	num_gold_shell -= shop_fish[idx].price; // pay cost
 
 	// add to fish
@@ -73,4 +93,8 @@ function purcahsePersonalFish(elm, idx) {
 
 	// remove from shop
 	shop_fish[idx] = undefined;
+
+	// replace shop fish
+	addRandShopFish(1);
+
 }

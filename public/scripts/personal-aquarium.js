@@ -23,9 +23,9 @@ $( ()=> {
 	personal_ctx.scale(4,4);
 
 	//favorite species numbers 12, 36, 61, 90
-	addRandFish(5);
+	addRandFish(1);
 	setInterval(updatePersonalFish, 250);
-	setInterval(doPersonalFishShellProduction, 1000 * 15);
+	setInterval(doPersonalFishShellProduction, 1000 * 3); // * 60
 
 });
 
@@ -353,7 +353,7 @@ function randPosition() {
 	};
 }
 function randName() {
-	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles;Flippy Flippy;Flippers;SwimSwim;'.split(';');
+	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles;Flippy Flippy;Flippers;SwimSwim'.split(';');
 	return names[random(0, names.length)];
 }
 
