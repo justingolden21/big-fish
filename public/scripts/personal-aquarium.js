@@ -357,19 +357,23 @@ function randPosition() {
 	};
 }
 
-const GENERIC_FISH_NAMES = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Prof.Swimmy;Spots;Smiles;Flippy Flippy;Flippers;SwimSwim;Flops;Fin;Sushi;Jaws;Atlantis;Neptune;Chips;Nibbles;Nemo;Dory;Magikarp;Ariel;Floaty Floats;Dr.Splashes;Reef Reef;Shipwreck;Captain;Tsunami;Hooks;Opal';
+const GENERIC_FISH_NAMES = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Prof.Swimmy;Spots;Smiles;Flippy Flippy;Flippers;SwimSwim;Flops;Fin;Sushi;Atlantis;Neptune;Chips;Nibbles;Floaty Floats;Dr.Splashes;Reef Reef;Shipwreck;Captain;Tsunami;Hooks;Opal;Prof.Speckle';
 
 const FISH_NAMES = {
 	'pink':   'Grapefruit;Strawberry;Nutmeg;Shells;Amethyst;Pearl;Moonlight;Pinky;Rose',
 	'blue':   'Blueberry;Blue Corn;Sage;Waves;Topaz;Sapphire;Rain;Aqua;Azul',
 	'orange': 'Pumpkin;Yam;Ginger;Clowns;Tiger\'s Eye;Amber;Sunset;Savannah;Giraffe',
 	'green':  'Lime;Olive;Mint;Seaweed;Emerald;Jade;Forest;Clover;Frog',
-	'red':    'Cherry;Apple;Chili;Crab;Ruby;Jasper;Magma;Firetruck;Ladybug'
+	'red':    'Cherry;Apple;Chili;Crab;Ruby;Jasper;Magma;Firetruck;Ladybug',
+
+	'small':  'Nemo;Dory;Magikarp',
+	'medium': 'Ariel',
+	'big':    'Jaws;Colossal'
 };
 
 function randName(species_num) {
 	let info = getSpeciesInfo(species_num);
-	let fish_names = (GENERIC_FISH_NAMES + ';' + FISH_NAMES[info.color1] + ';' + FISH_NAMES[info.color2]).split(';');
+	let fish_names = (GENERIC_FISH_NAMES + ';' + FISH_NAMES[info.color1] + ';' + FISH_NAMES[info.color2] + ';' + FISH_NAMES[getSize(species_num)]).split(';');
 
 	return fish_names[random(0, fish_names.length)];
 }
