@@ -356,9 +356,22 @@ function randPosition() {
 		y: random(PERSONAL_MIN_Y, PERSONAL_MAX_Y),
 	};
 }
+
+const GENERIC_FISH_NAMES = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Prof.Swimmy;Spots;Smiles;Flippy Flippy;Flippers;SwimSwim;Flops;Fin;Sushi;Jaws;Atlantis;Neptune;Chips;Nibbles;Nemo;Dory;Magikarp;Ariel;Floaty Floats;Dr.Splashes;Reef Reef;Shipwreck;Captain;Tsunami;Hooks;Opal';
+
+const FISH_NAMES = {
+	'pink':   'Grapefruit;Strawberry;Nutmeg;Shells;Amethyst;Pearl;Moonlight;Pinky;Rose',
+	'blue':   'Blueberry;Blue Corn;Sage;Waves;Topaz;Sapphire;Rain;Aqua;Azul',
+	'orange': 'Pumpkin;Yam;Ginger;Clowns;Tiger\'s Eye;Amber;Sunset;Savannah;Giraffe',
+	'green':  'Lime;Olive;Mint;Seaweed;Emerald;Jade;Forest;Clover;Frog',
+	'red':    'Cherry;Apple;Chili;Crab;Ruby;Jasper;Magma;Firetruck;Ladybug'
+};
+
 function randName(species_num) {
-	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles;Flippy Flippy;Flippers;SwimSwim;Flops;Opal;Obsidian;Diamond;Emerald;Sapphire;Ruby;Gold;Silver;Platinum;Fin;Sushi;Jaws;Atlantis;Neptune;Chips;Nibbles;Nemo;Dory;Magikarp;Ariel;Floaty Floats;Seaweed;Dr.Splashes;Reef Reef;Aqua;Shipwreck;Azul;Captain;Tsunami;Pumpkin;Apple;Banana;Amber;Savannah;Ginger;Mint;Pearl;Hooks'.split(';');
-	return names[random(0, names.length)];
+	let info = getSpeciesInfo(species_num);
+	let fish_names = (GENERIC_FISH_NAMES + ';' + FISH_NAMES[info.color1] + ';' + FISH_NAMES[info.color2]).split(';');
+
+	return fish_names[random(0, fish_names.length)];
 }
 
 function getImgStr(src, classes) {

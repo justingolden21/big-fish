@@ -97,13 +97,12 @@ function purcahsePersonalFish(elm, idx) {
 
 	// replace shop fish
 	addRandShopFish(1);
-
 }
 
 function testDisplayAllColors() {
 	shop_fish=[];
 	for(let i=0; i<25; i++) {
-		shop_fish.push({species_num: i, level:0, price:0, name:'test'});		
+		shop_fish.push({species_num: i, level:0, price:0, name:'test'});
 	}
 	updateShopDisplay();
 }
