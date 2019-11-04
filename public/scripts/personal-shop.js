@@ -26,9 +26,9 @@ function updateShopDisplay() {
 			+ '<br>Species ' + species_num
 			+ ' &mdash; ' + getSize(species_num)
 			+ ' &mdash; ' + getRarity(species_num)
-			+ '<br>Price: ' + shop_fish[idx].price
+			+ '<br>Price: ' + shop_fish[idx].price + getImgStr('shell-gold.png', 'icon-sm')
 			+ '<br>Level: ' + shop_fish[idx].level
-			+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, shop_fish[idx].level) + '<img src="img/shell-gold.png" class="icon-sm">'
+			+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, shop_fish[idx].level) + getImgStr('shell-gold.png', 'icon-sm')
 			+ '</div>'
 		);		
 	}

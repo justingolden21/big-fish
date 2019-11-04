@@ -174,7 +174,7 @@ function drawFishesToModal() {
 				+ ' &mdash; ' + getSize(species_num)
 				+ ' &mdash; ' + getRarity(species_num)
 				+ '<br>'
-				+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, personal_fishes[i].level) + '<img src="img/shell-gold.png" class="icon-sm">'
+				+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, personal_fishes[i].level) + getImgStr('shell-gold.png', 'icon-sm')
 				+ '</div>'
 			);
 		}
@@ -346,4 +346,8 @@ function randPosition() {
 function randName() {
 	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles'.split(';');
 	return names[random(0, names.length)];
+}
+
+function getImgStr(src, classes) {
+	return '<img src="img/'+src+'" class="'+classes+'">';
 }
