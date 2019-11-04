@@ -31,15 +31,27 @@ $( ()=> {
 function updatePersonalFish() {
 	personal_ctx.clearRect(0, 0, personal_canvas.width, personal_canvas.height);
 	for(let i=0; i<personal_fishes.length; i++) {
-		if(personal_fishes[i])
+		if(personal_fishes[i]) {
 			personal_fishes[i].update();
+			if(stats['total_ticks'] % (5*60 *1000/250) == 0) {
+				personal_fishes[i].makeShell();
+			}
+		}
 	}
 
 	// ----------------
 
+	let gold_shell_rate = 0;
+	for(let i=0; i<personal_fishes.length; i++) {
+		gold_shell_rate += getGoldShellRate(personal_fishes[i].species_num, personal_fishes[i].level);
+	}
+
 	$('#num-personal-fish').html(personal_fishes.length);
 	$('.player-level').html(player_level);
 	$('.num-gold-shell').html(num_gold_shell);
+	$('.num-gold-shell-rate').html(gold_shell_rate);
+
+
 
 }
 
@@ -129,6 +141,9 @@ class PersonalFish {
 		this.move();
 		this.draw();
 	}
+	makeShell() {
+		num_gold_shell += getGoldShellRate(this.species_num, this.level);
+	}
 }
 
 let personal_fishes = [];
@@ -159,6 +174,7 @@ function drawFishesToModal() {
 				+ ' &mdash; ' + getSize(species_num)
 				+ ' &mdash; ' + getRarity(species_num)
 				+ '<br>'
+				+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, personal_fishes[i].level) + '<img src="img/shell-gold.png" class="icon-sm">'
 				+ '</div>'
 			);
 		}

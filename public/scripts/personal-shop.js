@@ -2,7 +2,7 @@ let num_gold_shell = 0;
 
 const SALE = 0.75;
 
-let SHOP_BASE_COST = 20;
+const SHOP_BASE_COST = 20;
 
 // stored just as species numbers
 let shop_fish = [];
@@ -28,6 +28,7 @@ function updateShopDisplay() {
 			+ ' &mdash; ' + getRarity(species_num)
 			+ '<br>Price: ' + shop_fish[idx].price
 			+ '<br>Level: ' + shop_fish[idx].level
+			+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, shop_fish[idx].level) + '<img src="img/shell-gold.png" class="icon-sm">'
 			+ '</div>'
 		);		
 	}
@@ -37,7 +38,7 @@ function updateShopDisplay() {
 function addRandShopFish(num=1) {
 	for(let i=0; i<num; i++) {
 		let species_num = randSpeciesNum();
-		let level = random(1,3);
+		let level = random(1,5);
 		shop_fish.push({species_num: species_num, level: level, price: getPrice(species_num, level)});
 	}
 }
@@ -51,6 +52,6 @@ function getPrice(species_num, level) {
 	let size = getSize(species_num);
 	let rarity = getRarity(species_num);
 
-	let multiplier = {'small': 1, 'medium': 2, 'big': 4}[size] * {'common': 1, 'uncommon': 5}[rarity] * level;
+	let multiplier = {'small': 1, 'medium': 2, 'big': 4}[size] * {'common': 1, 'uncommon': 5}[rarity] * (0.8+0.2*level);
 	return Math.round(multiplier * SHOP_BASE_COST);
 }
