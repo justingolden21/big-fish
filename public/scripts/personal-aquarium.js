@@ -25,6 +25,7 @@ $( ()=> {
 	//favorite species numbers 12, 36, 61, 90
 	addRandFish(5);
 	setInterval(updatePersonalFish, 250);
+	setInterval(doPersonalFishShellProduction, 1000 * 15);
 
 });
 
@@ -33,9 +34,6 @@ function updatePersonalFish() {
 	for(let i=0; i<personal_fishes.length; i++) {
 		if(personal_fishes[i]) {
 			personal_fishes[i].update();
-			if(stats['total_ticks'] % (5*60 *1000/250) == 0) {
-				personal_fishes[i].makeShell();
-			}
 		}
 	}
 
@@ -54,6 +52,13 @@ function updatePersonalFish() {
 
 
 
+}
+
+function doPersonalFishShellProduction() {
+	for(let i=0; i<personal_fishes.length; i++) {
+		if(personal_fishes[i])
+			personal_fishes[i].makeShell();
+	}
 }
 
 class PersonalFish {
