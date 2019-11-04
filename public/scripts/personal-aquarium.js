@@ -344,7 +344,7 @@ function randPosition() {
 	};
 }
 function randName() {
-	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles'.split(';');
+	let names = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Clowns;Prof.Swimmy;Cherry;Lemon;Blueberry;Apple;Lime;Spots;Waves;Smiles;Flippy Flippy;Flippers;SwimSwim;'.split(';');
 	return names[random(0, names.length)];
 }
 
