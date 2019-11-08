@@ -15,14 +15,6 @@
 .dot.active {
 	background-color: #099;
 }
-.arrow {
-	font-size: 200%;
-	color: #099;
-	cursor: pointer;
-}
-.arrow:hover {
-	color: #262673;
-}
 .svg-fish {
 	width: 64px;
 }
