@@ -14,7 +14,9 @@ add help modal for personal tank stuff, info like fish cant level up past your l
 
 add unlock new tank button in shop, if level
 
-add unlock mor fish space if level in shop
+add unlock more fish space if level in shop
+
+upgrade tank size per tank? 5, 10, 15, 20, 25?
 
 ==== fishing idea ====
 

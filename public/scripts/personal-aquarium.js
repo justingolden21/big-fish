@@ -36,6 +36,8 @@ $( ()=> {
 function updatePersonalFish() {
 	personal_ctx.clearRect(0, 0, personal_canvas.width, personal_canvas.height);
 	for(let i=0; i<personal_fishes.length; i++) {
+		// console.log(personal_fishes[i].tank == current_tank);
+		// console.log(personal_fishes[i].tank, current_tank);
 		if(personal_fishes[i] && (personal_fishes[i].tank == current_tank) ) {
 			personal_fishes[i].update();
 		}
@@ -362,13 +364,16 @@ function addPersonalFish(species_num, position, name, level) { // bottleneck tha
 		for(let i=0; i<tank_counts.length; i++) {
 			if(tank_counts[i]<MAX_PER_TANK) {
 				tank = i;
+				break;
 			}
 		}
-		if(tank = -1) {
+		if(tank == -1) {
+			console.error('no space in tank');
 			// shouldn't get here because we already check if has space in shop
 			return false;
 		}
 	}
+	tank_counts[tank]++;
 
 	let new_fish = new PersonalFish(species_num, position, name, level, tank);
 	for(let i=0; i<personal_fishes.length; i++) {
