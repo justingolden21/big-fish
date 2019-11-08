@@ -441,6 +441,10 @@ label input[type=checkbox] {
 	background-color: #099;
 	margin-bottom: 5px;
 }
+.progress-container {
+	padding-top: 10px;
+	width: 50px;
+}
 
 #shell-graph-canvas, #shell-rate-graph-canvas {
 	width: 100px;

@@ -6,8 +6,6 @@ const PERSONAL_MAX_Y = 300/4 - 24;
 
 let personal_canvas, personal_ctx;
 
-let player_level = 1;
-
 let updatePersonalFishInterval;
 
 $( ()=> {
