@@ -10,6 +10,11 @@ name fish prompt on purchase?
 
 login bonus gold shells wheel
 
+add help modal for personal tank stuff, info like fish cant level up past your level, how you get xp, purchase fish, login bonus, etc
+
+add unlock new tank button in shop, if level
+
+add unlock mor fish space if level in shop
 
 ==== fishing idea ====
 

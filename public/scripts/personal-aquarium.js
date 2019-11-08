@@ -36,7 +36,7 @@ $( ()=> {
 function updatePersonalFish() {
 	personal_ctx.clearRect(0, 0, personal_canvas.width, personal_canvas.height);
 	for(let i=0; i<personal_fishes.length; i++) {
-		if(personal_fishes[i] && personal_fishes[i].tank == current_tank) {
+		if(personal_fishes[i] && (personal_fishes[i].tank == current_tank) ) {
 			personal_fishes[i].update();
 		}
 	}
@@ -56,9 +56,6 @@ function updatePersonalFish() {
 	$('.player-level').html(player_level);
 	$('.num-gold-shell').html(num_gold_shell);
 	$('.num-gold-shell-rate').html(gold_shell_rate);
-
-
-
 }
 
 function doPersonalFishShellProduction() {
@@ -192,6 +189,7 @@ function drawFishesToModal() {
 				+ '<br>Level ' + personal_fishes[i].level
 				+ ' &mdash; Stomach: ' + personal_fishes[i].stomach
 				+ '<br><img src="' + personal_fishes[i].getSVG() + '" class="fish-display">'
+				+ '<br>Tank ' + personal_fishes[i].tank+1
 				+ '<br>Species ' + species_num
 				+ ' &mdash; ' + getSize(species_num)
 				+ ' &mdash; ' + getRarity(species_num)
