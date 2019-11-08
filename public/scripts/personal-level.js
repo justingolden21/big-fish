@@ -3,12 +3,10 @@ let player_exp = 0;
 
 $( ()=> {
 	updateLvlDisplay();
-// 	setInterval(updateLvlDisplay, 5000);
 });
 
 function addExp(exp) {
 	player_exp += exp;
-	// updatePlayerLvl();
 	updateLvlDisplay();
 }
 

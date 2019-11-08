@@ -80,11 +80,24 @@ function getPrice(species_num, level) {
 }
 
 function purcahsePersonalFish(elm, idx) {
+	if(shop_fish[idx]==undefined) {
+		// happens when they click the same fish twice quickly
+		console.error('index',idx,'shop fish is undefined');
+		return;
+	}
+
 	// check cost
 	if(num_gold_shell < shop_fish[idx].price) {
 		showAlert('Not enough gold shells', 'Not enough gold shells for that item.');
 		return;
 	}
+
+	// check space
+	if(!hasSpacePersonal() ) {
+		showAlert('Not enough tank space', 'Not enough space in your tank to add fish.');
+		return;
+	}
+
 
 	elm.fadeOut('slow', updateShopDisplay); // shop display purchase, then callback to update shop display for new fish
 	num_gold_shell -= shop_fish[idx].price; // pay cost

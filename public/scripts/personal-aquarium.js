@@ -6,7 +6,9 @@ const PERSONAL_MAX_Y = 300/4 - 24;
 
 let personal_canvas, personal_ctx;
 
-let updatePersonalFishInterval;
+let current_tank = 0;
+let tank_counts = [0,0,0,0,0]; // num personal fish per tank
+const MAX_PER_TANK = 2; // 5 tanks with 25 per tank, 125 max fish
 
 $( ()=> {
 	// testing
@@ -16,23 +18,25 @@ $( ()=> {
 	$('#personal-fish-modal').on('shown.bs.modal', drawFishesToModal);
 
 	personal_canvas = document.getElementById('personal-aquarium');
-	personal_canvas.width=500; // update in css
-	personal_canvas.height=300; // update in css
+	personal_canvas.width = 500; // update in css
+	personal_canvas.height = 300; // update in css
 	personal_ctx = personal_canvas.getContext('2d');
 	// personal_ctx.translate(0.5, 0.5);
 	personal_ctx.scale(4,4);
 
 	//favorite species numbers 12, 36, 61, 90
 	addRandFish(1);
-	updatePersonalFishInterval = setInterval(updatePersonalFish, 250);
+	setInterval(updatePersonalFish, 250);
 	setInterval(doPersonalFishShellProduction, 1000 * 3); // * 60
+
+	$('.num-max-personal-per-tank').html(MAX_PER_TANK);
 
 });
 
 function updatePersonalFish() {
 	personal_ctx.clearRect(0, 0, personal_canvas.width, personal_canvas.height);
 	for(let i=0; i<personal_fishes.length; i++) {
-		if(personal_fishes[i]) {
+		if(personal_fishes[i] && personal_fishes[i].tank == current_tank) {
 			personal_fishes[i].update();
 		}
 	}
@@ -40,12 +44,15 @@ function updatePersonalFish() {
 	// ----------------
 
 	let gold_shell_rate = 0;
+	let fish_count = 0;
 	for(let i=0; i<personal_fishes.length; i++) {
-		if(personal_fishes[i])
+		if(personal_fishes[i]) {
 			gold_shell_rate += getGoldShellRate(personal_fishes[i].species_num, personal_fishes[i].level);
+			fish_count++;
+		}
 	}
 
-	$('#num-personal-fish').html(personal_fishes.length);
+	$('#num-personal-fish').html(fish_count);
 	$('.player-level').html(player_level);
 	$('.num-gold-shell').html(num_gold_shell);
 	$('.num-gold-shell-rate').html(gold_shell_rate);
@@ -62,7 +69,7 @@ function doPersonalFishShellProduction() {
 }
 
 class PersonalFish {
-	constructor(species_num, position, name, level) {
+	constructor(species_num, position, name, level, tank) {
 		this.species_num = species_num;
 		let tmp = getSpeciesInfo(species_num);
 		this.size = tmp.size;
@@ -74,7 +81,7 @@ class PersonalFish {
 		this.facing_left = Math.random() >= 0.5;
 		this.rotation = 0;
 
-		this.tank = 1;
+		this.tank = tank;
 		this.level = level;
 		this.stomach = 0;
 		this.name = name;
@@ -148,7 +155,14 @@ class PersonalFish {
 		this.draw();
 	}
 	makeShell() {
-		num_gold_shell += getGoldShellRate(this.species_num, this.level);
+		let new_shell = getGoldShellRate(this.species_num, this.level);
+		num_gold_shell += new_shell;
+		addExp(new_shell);
+	}
+	levelUp() {
+		if(this.level < player_level) {
+			this.level++;
+		}
 	}
 }
 
@@ -330,8 +344,35 @@ function addRandFish(amount=1) {
 		addPersonalFish(species_num, randPosition(), randName(species_num), 1);
 	}
 }
-function addPersonalFish(species_num, position, name, level) {
-	let new_fish = new PersonalFish(species_num, position, name, level);
+
+function hasSpacePersonal() {
+	let fish_count = 0;
+	for(let i=0; i<personal_fishes.length; i++) {
+		if(personal_fishes[i]!=undefined) {
+			fish_count++;
+		}
+	}
+	return fish_count < tank_counts.length*MAX_PER_TANK;
+}
+
+function addPersonalFish(species_num, position, name, level) { // bottleneck that all added fish go through
+	let tank = -1;
+	if(tank_counts[current_tank]<MAX_PER_TANK) {
+		tank = current_tank;
+	}
+	else {
+		for(let i=0; i<tank_counts.length; i++) {
+			if(tank_counts[i]<MAX_PER_TANK) {
+				tank = i;
+			}
+		}
+		if(tank = -1) {
+			// shouldn't get here because we already check if has space in shop
+			return false;
+		}
+	}
+
+	let new_fish = new PersonalFish(species_num, position, name, level, tank);
 	for(let i=0; i<personal_fishes.length; i++) {
 		if(personal_fishes[i]==undefined) {
 			personal_fishes[i] = new_fish;
@@ -339,10 +380,11 @@ function addPersonalFish(species_num, position, name, level) {
 		}
 	}
 	personal_fishes.push(new_fish);
-	return false;
+	return true;
 }
 function sellPersonalFish(idx) {
 	num_gold_shell += Math.floor(getPrice(personal_fishes[idx].species_num, personal_fishes[idx].level)/2);
+	tank_counts[personal_fishes[idx].tank]--;
 	personal_fishes[idx] = undefined;
 }
 function randSpeciesNum() {
