@@ -15,9 +15,6 @@
 .dot.active {
 	background-color: #099;
 }
-.svg-fish {
-	width: 64px;
-}
 .full-modal .modal-dialog {
 	margin: 0px !important;
 	max-width: 99999px;

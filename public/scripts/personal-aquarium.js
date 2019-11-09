@@ -10,6 +10,8 @@ let current_tank = 0;
 let tank_counts = [0,0,0,0,0]; // num personal fish per tank
 const MAX_PER_TANK = 2; // 5 tanks with 25 per tank, 125 max fish
 
+const MAX_STOMACH = 3;
+
 $( ()=> {
 	// testing
 	setTimeout( ()=> $('#help-modal').modal('hide'), 500);
@@ -23,6 +25,8 @@ $( ()=> {
 	personal_ctx = personal_canvas.getContext('2d');
 	// personal_ctx.translate(0.5, 0.5);
 	personal_ctx.scale(4,4);
+
+	personal_canvas.onclick = (evt)=> placeFood(evt);
 
 	//favorite species numbers 12, 36, 61, 90
 	addRandFish(1);
@@ -147,7 +151,7 @@ class PersonalFish {
 		}
 	}
 	draw() {
-		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y, this.rotation);
+		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y, this.rotation, this.stomach!=MAX_STOMACH);
 	}
 	getImg() {
 		return getPersonalFish(this.size, false, this.color1, this.color2, this.color2, this.color1, 0);
@@ -198,7 +202,7 @@ function drawFishesToModal() {
 				+ '</button>'
 				// + ' <button class="btn btn-sm" title="Change Tanks"><i class="fas fa-arrow-right"></i></button>'
 				+ '<br>Level ' + personal_fishes[i].level
-				+ ' &mdash; Stomach: ' + personal_fishes[i].stomach
+				+ ' &mdash; Stomach: ' + personal_fishes[i].stomach + ' / ' + MAX_STOMACH
 				+ '<br><img src="' + personal_fishes[i].getSVG() + '" class="fish-display">'
 				+ '<br>Tank ' + personal_fishes[i].tank+1
 				+ '<br>Species ' + species_num
@@ -308,12 +312,12 @@ const PERSONAL_FISH_SPEEDS = {
 // 	return tmp;
 // }
 
-function drawFishToCanvas(size, facing_left, color1, color2, x, y, rotation) {
-	let fish = getPersonalFish(size,facing_left,color1,color2,color2,color1,rotation);
+function drawFishToCanvas(size, facing_left, color1, color2, x, y, rotation, hungry) {
+	let fish = getPersonalFish(size,facing_left,color1,color2,color2,color1,rotation,hungry);
 	drawSVGToCanvas(fish,personal_ctx,x,y,PERSONAL_SPRITE_SIZE,PERSONAL_SPRITE_SIZE);
 }
 
-function getPersonalFish(size, facing_left, fin_color, front_color, back_color, eye_color, rotation=0) {
+function getPersonalFish(size, facing_left, fin_color, front_color, back_color, eye_color, rotation=0, hungry=false) {
 	let tmp = document.getElementById(size+'-fish-right').cloneNode(true);
 	tmp.classList.remove('hidden');
 	
@@ -328,6 +332,13 @@ function getPersonalFish(size, facing_left, fin_color, front_color, back_color, 
 		tmp.style.transform = 'scale(-1,1)';
 	if(rotation!=0)
 		tmp.style.transform += 'rotate('+rotation+'deg)';
+
+
+	if(hungry) {
+		let thought = document.getElementById('thought-hungry').cloneNode(true);
+		tmp.appendChild(thought);
+	}
+
 	return tmp;
 }
 
