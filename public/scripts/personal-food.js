@@ -1,7 +1,7 @@
 let personal_foods = [];
 const FOOD_SIZE = 2;
 const FOOD_FALL_RATE = 10;
-const MAX_FOODS = 10;
+const MAX_FOODS = 10; // switching tank can be buggy?
 
 function placeFood(evt) {
 	if(personal_foods.length < MAX_FOODS) {
