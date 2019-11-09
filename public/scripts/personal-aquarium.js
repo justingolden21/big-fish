@@ -153,8 +153,14 @@ class PersonalFish {
 				this.rotation = 15;			
 		}
 	}
+	isHungry() {
+		return this.stomach!=MAX_STOMACH;
+	}
+	feed() {
+		this.stomach++;
+	}
 	draw() {
-		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y, this.rotation, this.stomach!=MAX_STOMACH);
+		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y, this.rotation, this.isHungry() );
 	}
 	getImg() {
 		return getPersonalFish(this.size, false, this.color1, this.color2, this.color2, this.color1, 0);
