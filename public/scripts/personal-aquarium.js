@@ -101,6 +101,8 @@ class PersonalFish {
 		this.stomach = 0;
 		this.name = name;
 		this.favorite = false;
+
+		this.emotion = 'neutral';
 	}
 	export() {
 		// export only the data worth saving
@@ -159,8 +161,13 @@ class PersonalFish {
 	feed() {
 		this.stomach++;
 	}
+	getEmotion() {
+		if(this.isHungry() )
+			return 'hungry';
+		return this.emotion;
+	}
 	draw() {
-		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y, this.rotation, this.isHungry() );
+		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y, this.rotation, this.getEmotion() );
 	}
 	getImg() {
 		return getPersonalFish(this.size, false, this.color1, this.color2, this.color2, this.color1, 0);
@@ -321,12 +328,12 @@ const PERSONAL_FISH_SPEEDS = {
 // 	return tmp;
 // }
 
-function drawFishToCanvas(size, facing_left, color1, color2, x, y, rotation, hungry) {
-	let fish = getPersonalFish(size,facing_left,color1,color2,color2,color1,rotation,hungry);
+function drawFishToCanvas(size, facing_left, color1, color2, x, y, rotation, emotion) {
+	let fish = getPersonalFish(size,facing_left,color1,color2,color2,color1,rotation,emotion);
 	drawSVGToCanvas(fish,personal_ctx,x,y,PERSONAL_SPRITE_SIZE,PERSONAL_SPRITE_SIZE);
 }
 
-function getPersonalFish(size, facing_left, fin_color, front_color, back_color, eye_color, rotation=0, hungry=false) {
+function getPersonalFish(size, facing_left, fin_color, front_color, back_color, eye_color, rotation=0, emotion='neutral') {
 	let tmp = document.getElementById(size+'-fish-right').cloneNode(true);
 	tmp.classList.remove('hidden');
 	
@@ -343,8 +350,8 @@ function getPersonalFish(size, facing_left, fin_color, front_color, back_color, 
 		tmp.style.transform += 'rotate('+rotation+'deg)';
 
 
-	if(hungry) {
-		let thought = document.getElementById('thought-hungry').cloneNode(true);
+	if(emotion!='neutral') {
+		let thought = document.getElementById('thought-'+emotion).cloneNode(true);
 		tmp.appendChild(thought);
 	}
 
