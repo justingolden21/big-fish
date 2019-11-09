@@ -23,7 +23,8 @@ function updateFoods() {
 		let pos = personal_foods[i];
 		personal_ctx.beginPath();
 		personal_ctx.arc(pos.x/PERSONAL_SCALE_SIZE, pos.y/PERSONAL_SCALE_SIZE, FOOD_SIZE/2, 0, 2*Math.PI);
-		personal_ctx.fillStyle = '#ea6';
+		// personal_ctx.fillStyle = '#ea6';
+		personal_ctx.fillStyle = '#f90';
 		personal_ctx.fill();		
 
 		// move

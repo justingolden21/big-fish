@@ -9,7 +9,7 @@ let personal_canvas, personal_ctx;
 
 let current_tank = 0;
 let tank_counts = [0,0,0,0,0]; // num personal fish per tank
-const MAX_PER_TANK = 2; // 5 tanks with 25 per tank, 125 max fish
+const MAX_PER_TANK = 25; // 5 tanks with 25 per tank, 125 max fish
 
 const MAX_STOMACH = 3;
 
