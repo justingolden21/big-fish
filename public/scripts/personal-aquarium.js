@@ -160,6 +160,8 @@ class PersonalFish {
 	}
 	feed() {
 		this.stomach++;
+		this.emotion = 'heart';
+		setTimeout( ()=> this.emotion = 'neutral', 2000);
 	}
 	getEmotion() {
 		if(this.isHungry() )
@@ -351,7 +353,9 @@ function getPersonalFish(size, facing_left, fin_color, front_color, back_color, 
 
 
 	if(emotion!='neutral') {
-		let thought = document.getElementById('thought-'+emotion).cloneNode(true);
+		let thought = document.getElementById('thought').cloneNode(true);
+		// select paths except those with class of given emotion (thought bubble has all emotion classes) and remove them
+		thought.querySelectorAll('path:not(.'+emotion+')').forEach(e => e.parentNode.removeChild(e) );
 		tmp.appendChild(thought);
 	}
 

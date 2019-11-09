@@ -7,7 +7,6 @@ const FOOD_WAIT_TIME = 500;
 let last_click;
 
 function placeFood(evt) {
-	console.log(evt.timeStamp, FOOD_WAIT_TIME);
 	if(personal_foods.length < MAX_FOODS && 
 		(evt.timeStamp - last_click >= FOOD_WAIT_TIME) || last_click==undefined) {
 		
