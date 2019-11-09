@@ -36,13 +36,15 @@ $( ()=> {
 
 	$('.num-max-personal-per-tank').html(MAX_PER_TANK);
 
-	$('#tank-dots .dot').click( (evt)=> {
+	$('#tank-dots .dot').click( (evt)=> { // change tank
 		let new_tank = $(evt.target).attr('id').split('-')[1]; // IDs are like "data-2", we want the "2"
 		current_tank = new_tank;
 
 		// update dot display
 		$('#tank-dots .dot').removeClass('active');
 		$(evt.target).addClass('active');
+
+		removeAllFood();
 	});
 
 });
