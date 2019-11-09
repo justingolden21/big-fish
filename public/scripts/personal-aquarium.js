@@ -5,6 +5,8 @@ const PERSONAL_MAX_X = 500/PERSONAL_SCALE_SIZE - PERSONAL_SPRITE_SIZE;
 const PERSONAL_MIN_Y = 0;
 const PERSONAL_MAX_Y = 300/PERSONAL_SCALE_SIZE - PERSONAL_SPRITE_SIZE;
 
+let all_emotions;
+
 let personal_canvas, personal_ctx;
 
 let current_tank = 0;
@@ -46,6 +48,10 @@ $( ()=> {
 
 		removeAllFood();
 	});
+
+	all_emotions = $('#all-emotions').attr('class').split(/\s+/); // get classes and split by whitespace
+	let idx = all_emotions.indexOf('hungry');
+	if(idx!=-1) all_emotions.splice(idx, 1);
 
 });
 
@@ -162,8 +168,7 @@ class PersonalFish {
 	}
 	feed() {
 		this.stomach++;
-		this.emotion = 'heart';
-		setTimeout( ()=> this.emotion = 'neutral', 2000);
+		this.setEmotion('heart');
 	}
 	getEmotion() {
 		if(this.isHungry() )
@@ -185,6 +190,17 @@ class PersonalFish {
 	update() {
 		this.move();
 		this.draw();
+		this.updateEmotion();
+	}
+	updateEmotion() {
+		if(this.emotion=='neutral' && Math.random() > 0.975) {
+			let rand_emotion = all_emotions[random(0,all_emotions.length)];
+			this.setEmotion(rand_emotion);
+		}
+	}
+	setEmotion(new_emotion) {
+		this.emotion = new_emotion;
+		setTimeout( ()=> this.emotion = 'neutral', 5000);	
 	}
 	makeShell() {
 		let new_shell = getGoldShellRate(this.species_num, this.level);
@@ -358,6 +374,8 @@ function getPersonalFish(size, facing_left, fin_color, front_color, back_color, 
 		let thought = document.getElementById('thought').cloneNode(true);
 		// select paths except those with class of given emotion (thought bubble has all emotion classes) and remove them
 		thought.querySelectorAll('path:not(.'+emotion+')').forEach(e => e.parentNode.removeChild(e) );
+		if(facing_left)
+			thought.style.transform = 'scale(-1,1)'; // undo fish reflection
 		tmp.appendChild(thought);
 	}
 
