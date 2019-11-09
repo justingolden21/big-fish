@@ -1,8 +1,9 @@
+const PERSONAL_SCALE_SIZE = 4;
 const PERSONAL_SPRITE_SIZE = 24;
 const PERSONAL_MIN_X = 0;
-const PERSONAL_MAX_X = 500/4 - 24;
+const PERSONAL_MAX_X = 500/PERSONAL_SCALE_SIZE - PERSONAL_SPRITE_SIZE;
 const PERSONAL_MIN_Y = 0;
-const PERSONAL_MAX_Y = 300/4 - 24;
+const PERSONAL_MAX_Y = 300/PERSONAL_SCALE_SIZE - PERSONAL_SPRITE_SIZE;
 
 let personal_canvas, personal_ctx;
 
@@ -24,7 +25,7 @@ $( ()=> {
 	personal_canvas.height = 300; // update in css
 	personal_ctx = personal_canvas.getContext('2d');
 	// personal_ctx.translate(0.5, 0.5);
-	personal_ctx.scale(4,4);
+	personal_ctx.scale(PERSONAL_SCALE_SIZE,PERSONAL_SCALE_SIZE);
 
 	personal_canvas.onclick = (evt)=> placeFood(evt);
 
@@ -55,6 +56,8 @@ function updatePersonalFish() {
 			personal_fishes[i].update();
 		}
 	}
+
+	updateFoods();
 
 	// ----------------
 
