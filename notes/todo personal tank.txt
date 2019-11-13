@@ -1,7 +1,5 @@
 able to buy tank size updgrade, move fish between tanks, display different tanks
 
-  prevent sell last fish?
-
   name fish prompt on purchase?
 
 login bonus gold shells wheel
