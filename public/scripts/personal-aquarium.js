@@ -257,7 +257,7 @@ function drawFishesToModal() {
 				+ '<button class="btn btn-sm favorite-btn'+(personal_fishes[i].favorite?' active':'')+'" title="Toggle Favorite" '
 				+ 'onclick="toggleFavorite('+i+'); $(this).toggleClass(\'active\');" ><i class="fas fa-star"></i></button>'
 				+ ' Name: <input type="text" value="' + personal_fishes[i].name + '" onchange="setName('+i+', this.value);">'
-				+ ' <button class="btn btn-sm" title="Sell" onclick="sellPersonalFish('+i+'); $(this).parent().fadeOut();">'
+				+ ' <button class="btn btn-sm" title="Sell" onclick="sellPersonalFish('+i+', $(this).parent() );">'
 				+ 'Sell for '+  Math.floor(getPrice(species_num, personal_fishes[i].level)/2) + getImgStr('shell-gold.png', 'icon-sm')
 				+ '</button>'
 				// + ' <button class="btn btn-sm" title="Change Tanks"><i class="fas fa-arrow-right"></i></button>'
@@ -471,7 +471,21 @@ function addPersonalFish(species_num, position, name, level) { // bottleneck tha
 	updatePersonalFishCount();
 	return true;
 }
-function sellPersonalFish(idx) {
+function sellPersonalFish(idx, elm) {
+	
+	// can't sell your last fish
+	let fish_count = 0;
+	for(let i=0; i<tank_counts.length; i++) {
+		fish_count += tank_counts[i];
+	}
+	if(fish_count==1) {
+		showAlert('Can\'t sell your last fish', 'Can\'t sell your last personal fish. Buy another one first.');
+		return;
+	}
+
+	// ----------------
+
+	elm.fadeOut();
 	num_gold_shell += Math.floor(getPrice(personal_fishes[idx].species_num, personal_fishes[idx].level)/2);
 	tank_counts[personal_fishes[idx].tank]--;
 	personal_fishes[idx] = undefined;
