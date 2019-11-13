@@ -147,12 +147,13 @@ kbd {
 	background-color: #099;
 	color: #262673;
 }
-.hidden{
+.hidden {
 	display: none !important;
 	text-decoration: none !important;
 	width: 0px !important;
 	padding: 0px !important;
 	margin: 0px !important;
+	border: none !important;
 }
 .inline {
 	display: inline !important;

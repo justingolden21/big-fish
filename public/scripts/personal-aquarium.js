@@ -84,13 +84,7 @@ function updatePersonalFish() {
 }
 
 function updatePersonalFishCount() {
-	let fish_count = 0;
-	for(let i=0; i<personal_fishes.length; i++) {
-		if(personal_fishes[i] && personal_fishes[i].tank == current_tank) {
-			fish_count++;
-		}
-	}
-	$('#num-personal-fish').html(fish_count);
+	$('#num-personal-fish').html(tank_counts[current_tank]);
 }
 
 function doPersonalFishShellProduction() {
@@ -460,6 +454,7 @@ function sellPersonalFish(idx) {
 	num_gold_shell += Math.floor(getPrice(personal_fishes[idx].species_num, personal_fishes[idx].level)/2);
 	tank_counts[personal_fishes[idx].tank]--;
 	personal_fishes[idx] = undefined;
+	updatePersonalFishCount();
 }
 function randSpeciesNum() {
 	return random(0, 124); // 124 = 5*5*5-1
