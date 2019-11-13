@@ -34,9 +34,10 @@ $( ()=> {
 	//favorite species numbers 12, 36, 61, 90
 	addRandFish(1);
 	setInterval(updatePersonalFish, 250);
-	setInterval(doPersonalFishShellProduction, 1000 * 3); // * 60
+	setInterval(doPersonalFishShellProduction, 1000 * 3); // 1000 * 60 * 15
 
 	$('.num-max-personal-per-tank').html(MAX_PER_TANK);
+	updatePersonalFishCount();
 
 	$('#tank-dots .dot').click( (evt)=> { // change tank
 		let new_tank = $(evt.target).attr('id').split('-')[1]; // IDs are like "data-2", we want the "2"
@@ -47,6 +48,7 @@ $( ()=> {
 		$(evt.target).addClass('active');
 
 		removeAllFood();
+		updatePersonalFishCount();
 	});
 
 	all_emotions = $('#all-emotions').attr('class').split(/\s+/); // get classes and split by whitespace
@@ -70,18 +72,25 @@ function updatePersonalFish() {
 	// ----------------
 
 	let gold_shell_rate = 0;
-	let fish_count = 0;
 	for(let i=0; i<personal_fishes.length; i++) {
 		if(personal_fishes[i]) {
 			gold_shell_rate += getGoldShellRate(personal_fishes[i].species_num, personal_fishes[i].level);
-			fish_count++;
 		}
 	}
 
-	$('#num-personal-fish').html(fish_count);
 	$('.player-level').html(player_level);
 	$('.num-gold-shell').html(num_gold_shell);
 	$('.num-gold-shell-rate').html(gold_shell_rate);
+}
+
+function updatePersonalFishCount() {
+	let fish_count = 0;
+	for(let i=0; i<personal_fishes.length; i++) {
+		if(personal_fishes[i] && personal_fishes[i].tank == current_tank) {
+			fish_count++;
+		}
+	}
+	$('#num-personal-fish').html(fish_count);
 }
 
 function doPersonalFishShellProduction() {
@@ -203,6 +212,7 @@ class PersonalFish {
 		setTimeout( ()=> this.emotion = 'neutral', 5000);	
 	}
 	makeShell() {
+		if(this.isHungry() ) return false;
 		let new_shell = getGoldShellRate(this.species_num, this.level);
 		num_gold_shell += new_shell;
 		addExp(new_shell);
@@ -443,6 +453,7 @@ function addPersonalFish(species_num, position, name, level) { // bottleneck tha
 		}
 	}
 	personal_fishes.push(new_fish);
+	updatePersonalFishCount();
 	return true;
 }
 function sellPersonalFish(idx) {
