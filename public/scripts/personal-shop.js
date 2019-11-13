@@ -5,6 +5,7 @@ const SALE = 0.75;
 const SHOP_BASE_COST = 20;
 
 const REROLL_COST = 20;
+const NEW_TANK_COST = 200;
 
 // stored just as species numbers
 let shop_fish = [];
@@ -15,6 +16,10 @@ $( ()=> {
 	$('#personal-shop-modal').on('shown.bs.modal', updateShopDisplay);
 
 	$('#reroll-shop-btn').click(rerollShop);
+	$('#new-tank-btn').click(newTank);
+	if(tank_counts.length == MAX_NUM_TANKS) {
+		$('#new-tank-btn').addClass('hidden');
+	}
 
 	addRandShopFish(3);
 });
@@ -110,6 +115,27 @@ function purcahsePersonalFish(elm, idx) {
 
 	// replace shop fish
 	addRandShopFish(1);
+}
+
+function newTank() {
+
+	// check cost
+	if(num_gold_shell < NEW_TANK_COST) {
+		showAlert('Not enough gold shells', 'Not enough gold shells for a new tank.');
+		return;
+	}
+	
+	num_gold_shell -= NEW_TANK_COST; // pay cost
+
+	tank_counts.push(0); // add new tank
+	$('#dot-'+ (tank_counts.length-1) ).removeClass('hidden'); // unhide circle for tank
+
+
+	if(tank_counts.length == MAX_NUM_TANKS) {
+		$('#new-tank-btn').addClass('hidden');
+	}
+
+	$('#personal-shop-modal').modal('hide');
 }
 
 function testDisplayAllColors() {

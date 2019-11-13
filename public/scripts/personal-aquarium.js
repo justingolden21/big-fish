@@ -10,7 +10,10 @@ let all_emotions;
 let personal_canvas, personal_ctx;
 
 let current_tank = 0;
-let tank_counts = [0,0,0,0,0]; // num personal fish per tank
+// let tank_counts = [0,0,0,0,0]; // num personal fish per tank
+let tank_counts = [0]; // num personal fish per tank
+const MAX_NUM_TANKS = 5;
+
 const MAX_PER_TANK = 25; // 5 tanks with 25 per tank, 125 max fish
 
 const MAX_STOMACH = 3;
@@ -51,6 +54,14 @@ $( ()=> {
 		updatePersonalFishCount();
 	});
 
+	// hide unavailable dots
+	for(let i=0; i<MAX_NUM_TANKS; i++) {
+		if(i > tank_counts.length-1) {
+			$('#dot-'+i).addClass('hidden');
+		}
+	}
+
+
 	all_emotions = $('#all-emotions').attr('class').split(/\s+/); // get classes and split by whitespace
 	let idx = all_emotions.indexOf('hungry');
 	if(idx!=-1) all_emotions.splice(idx, 1);
@@ -60,8 +71,6 @@ $( ()=> {
 function updatePersonalFish() {
 	personal_ctx.clearRect(0, 0, personal_canvas.width, personal_canvas.height);
 	for(let i=0; i<personal_fishes.length; i++) {
-		// console.log(personal_fishes[i].tank == current_tank);
-		// console.log(personal_fishes[i].tank, current_tank);
 		if(personal_fishes[i] && (personal_fishes[i].tank == current_tank) ) {
 			personal_fishes[i].update();
 		}
@@ -443,6 +452,7 @@ function addPersonalFish(species_num, position, name, level) { // bottleneck tha
 	for(let i=0; i<personal_fishes.length; i++) {
 		if(personal_fishes[i]==undefined) {
 			personal_fishes[i] = new_fish;
+			updatePersonalFishCount();
 			return true;
 		}
 	}
