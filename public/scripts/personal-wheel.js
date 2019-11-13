@@ -26,10 +26,10 @@ let spin_interval;
 let wheel_results = {};
 
 $( ()=> {
-	// tmp, toggle comment for testing and prod
-	$('#personal-wheel-modal').modal('show');
-
-	spinTheWheel();
+	$('#personal-wheel-spin-btn').click( ()=> {
+		spinTheWheel();
+		$('#personal-wheel-spin-btn').prop('disabled', true);
+	}); // calling function with no params, otherwise default param is undefined
 
 	wheel_canvas = document.getElementById('personal-wheel');
 	wheel_ctx = wheel_canvas.getContext('2d');
