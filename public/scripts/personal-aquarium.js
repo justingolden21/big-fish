@@ -10,9 +10,20 @@ let all_emotions;
 let personal_canvas, personal_ctx;
 
 let current_tank = 0;
-// let tank_counts = [0,0,0,0,0]; // num personal fish per tank
-let tank_counts = [0]; // num personal fish per tank
+
+// num personal fish per tank, array will increase with more tanks, number increases with fish per tank
+let tank_counts = [0];
+
 const MAX_NUM_TANKS = 5;
+
+
+/* todo implement below
+const NEW_TANK_UNLOCK_LEVELS = [-1, 5, 10, 15, 20]; // level for each tank unlock
+check for level, else hide button
+during levelup, check to unhide button
+compare player_level to NEW_TANK_UNLOCK_LEVELS[tank_counts.length]
+*/
+
 
 const MAX_PER_TANK = 25; // 5 tanks with 25 per tank, 125 max fish
 
