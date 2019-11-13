@@ -15,7 +15,9 @@ let unlocks = {
 	'aquarium': false,
 	'pufferfishes': false,
 	'pufferfish_hatchery': false,
-	'star_bank': false
+	'star_bank': false,
+
+	'personal_aquarium': false
 };
 
 // name, description, ticks when completed, -1 if incomplete
@@ -81,7 +83,10 @@ function checkUnlocks() {
 	if(getAquariumSpaceUsed() >= AQUARIUM_SPACE/2)
 		checkUnlock('aquarium', '.aquarium-unlock',  'purchase aquarium');
 
-	// just trust me here
+	if(fish[BIG] >= 250)
+		checkUnlock('personal_aquarium', '.personal-aquarium-unlock', 'personal aquarium');
+
+	// just trust me here, for importing
 	if(unlocks['big-fish'])
 		checkUnlock('medium_fish', '.medium-fish-unlock', 'medium fish');
 
@@ -200,6 +205,5 @@ function checkAchievement(achievement_name, loaded_from_cookies) {
 }
 
 function unlock(elm) {
-	elm.css('display', 'block');
-	elm.css('animation', 'fadein 1s');
+	elm.css('display', 'block').css('animation', 'fadein 1s');
 }

@@ -80,11 +80,6 @@ $( ()=> {
 	all_emotions.splice(all_emotions.indexOf('hungry'), 1);
 });
 
-
-function unlockPersonalAquarium() {
-	$('#personal-aquarium-btn').removeClass('hidden');
-}
-
 // ----------------
 
 // called on an interval
