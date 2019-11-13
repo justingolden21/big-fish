@@ -4,14 +4,13 @@ for generating, spinning, and adding shells from daily login wheel in personal t
 
 let wheel_canvas, wheel_ctx;
 
-let wheel_slices = [10,5,10,25,10,5,10,50];
-
 let color1 = '#099',
 	color2 = '#262673',
 	color3 = '#a1d6e7';
 
-let wheel_colors = [color2, color1, color2, color3, color2, color1, color2, color3];
+let wheel_slices = [10,5,10,25,10,5,10,50];
 // wheel_slices = [0,1,2,3,4,5,6,7]; // for testing
+let wheel_colors = [color2, color1, color2, color3, color2, color1, color2, color3];
 
 const WHEEL_COLOR = 'white';
 const WHEEL_FONT_SIZE = 20;
@@ -22,8 +21,6 @@ const INNER_WHEEL_RADIUS = 240;
 const WHEEL_SLOWDOWN_RATE = degreesToRadians(1);
 let wheel_rotate_rate;
 let total_wheel_rotation;
-let done_spinning;
-
 let spin_interval;
 
 let wheel_results = {};
@@ -36,8 +33,8 @@ $( ()=> {
 
 	wheel_canvas = document.getElementById('personal-wheel');
 	wheel_ctx = wheel_canvas.getContext('2d');
-	wheel_canvas.width = 500;
-	wheel_canvas.height = 500;
+	wheel_canvas.width = WHEEL_RADIUS*2;
+	wheel_canvas.height = WHEEL_RADIUS*2;
 
 	wheel_ctx.textAlign = 'center';
 	wheel_ctx.font = '20pt Helvetica';
@@ -55,7 +52,6 @@ $( ()=> {
 function spinTheWheel(mills=100) {
 	wheel_rotate_rate = degreesToRadians(random(20,40) );
 	total_wheel_rotation = 0;
-	done_spinning = false;
 
 	spin_interval = setInterval(updateWheel, mills);
 }
@@ -105,13 +101,12 @@ function updateWheel() {
 	wheel_rotate_rate -= WHEEL_SLOWDOWN_RATE;
 	if(wheel_rotate_rate <= 0) {
 		wheel_rotate_rate = 0;
-		if(!done_spinning) {
-			done_spinning = true;
-			clearInterval(spin_interval);
 
-			let slice_num = getSliceNum(total_wheel_rotation, wheel_slices.length);
-			winWheel(wheel_slices[slice_num]);
-		}
+		// don't have to check if done spinning, clearing means it won't be called again
+		clearInterval(spin_interval);
+
+		let slice_num = getSliceNum(total_wheel_rotation, wheel_slices.length);
+		winWheel(wheel_slices[slice_num]);
 	}
 }
 
@@ -136,15 +131,13 @@ function getSliceNum(rad, num_slices) {
 // https://stackoverflow.com/questions/17410809/how-to-calculate-rotation-in-2d-in-javascript
 // angle in radians
 function rotate(cx, cy, x, y, angle) {
-	let cos = Math.cos(angle),
-		sin = Math.sin(angle),
-		nx = (cos * (x - cx) ) + (sin * (y - cy) ) + cx,
-		ny = (cos * (y - cy) ) - (sin * (x - cx) ) + cy;
-	return {x: nx, y: ny};
+	let cos = Math.cos(angle), sin = Math.sin(angle);
+	return {
+		x: (cos * (x - cx) ) + (sin * (y - cy) ) + cx,
+		y: (cos * (y - cy) ) - (sin * (x - cx) ) + cy
+	};
 }
-
 
 function degreesToRadians(deg) {
 	return deg * Math.PI / 180;
 }
-
