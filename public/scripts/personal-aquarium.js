@@ -115,15 +115,16 @@ function doPersonalFishShellProduction() {
 }
 
 class PersonalFish {
-	constructor(species_num, position, name, level, tank) {
+	constructor(species_num, name, level, tank) {
 		this.species_num = species_num;
 		let tmp = getSpeciesInfo(species_num);
 		this.size = tmp.size;
 		this.color1 = tmp.color1;
 		this.color2 = tmp.color2;
 
-		this.x = position.x;
-		this.y = position.y;
+		let pos = randPosition();
+		this.x = pos.x;
+		this.y = pos.y;
 		this.facing_left = Math.random() >= 0.5;
 		this.rotation = 0;
 
@@ -425,7 +426,7 @@ function getSVGData(sourceSVG) {
 function addRandFish(amount=1) {
 	for(let i=0; i<amount; i++) {
 		let species_num = randSpeciesNum(); 
-		addPersonalFish(species_num, randPosition(), randName(species_num), 1);
+		addPersonalFish(species_num, randName(species_num), 1);
 	}
 }
 
@@ -439,7 +440,7 @@ function hasSpacePersonal() {
 	return fish_count < tank_counts.length*MAX_PER_TANK;
 }
 
-function addPersonalFish(species_num, position, name, level) { // bottleneck that all added fish go through
+function addPersonalFish(species_num, name, level) { // bottleneck that all added fish go through
 	let tank = -1;
 	if(tank_counts[current_tank]<MAX_PER_TANK) {
 		tank = current_tank;
@@ -459,7 +460,7 @@ function addPersonalFish(species_num, position, name, level) { // bottleneck tha
 	}
 	tank_counts[tank]++;
 
-	let new_fish = new PersonalFish(species_num, position, name, level, tank);
+	let new_fish = new PersonalFish(species_num, name, level, tank);
 	for(let i=0; i<personal_fishes.length; i++) {
 		if(personal_fishes[i]==undefined) {
 			personal_fishes[i] = new_fish;

@@ -108,7 +108,7 @@ function purcahsePersonalFish(elm, idx) {
 	num_gold_shell -= shop_fish[idx].price; // pay cost
 
 	// add to fish
-	addPersonalFish(shop_fish[idx].species_num, randPosition(), shop_fish[idx].name, shop_fish[idx].level)
+	addPersonalFish(shop_fish[idx].species_num, shop_fish[idx].name, shop_fish[idx].level)
 
 	// remove from shop
 	shop_fish[idx] = undefined;
