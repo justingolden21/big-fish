@@ -1,3 +1,7 @@
+/* personal-level.js
+for all things related to player exp, level, and their display
+*/
+
 let player_level = 1;
 let player_exp = 0;
 

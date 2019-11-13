@@ -499,9 +499,13 @@ function getStarRate() {
 	return (fish[PUFF] - hungry[PUFF]) * PUFFERFISH_STAR;
 }
 
-// min is inclusive, max is exclusive, returns an int, used for starting positions
+// returns int, min is inclusive, max is exclusive
 function random(min, max) {
 	return Math.floor(Math.random() * (max - min) ) + min; 
+}
+
+function getImgStr(src, classes) {
+	return '<img src="img/' + src + '" class="' + classes + '">';
 }
 
 // for star costs

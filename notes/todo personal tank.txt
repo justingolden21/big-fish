@@ -10,6 +10,17 @@ check level for unlock new tank button
 
 upgrade tank size per tank? 5, 10, 15, 20, 25? check for level?
 
+100 personal food costs 1 gold shell?
+
+**move other ideas from google docs to here**
+
+organize code/files for personal tank
+
+personal fish modal only show fish in current tank?
+seperate modal for showing all (more brief overview)?
+
+add change tanks option
+
 ==== fishing idea ====
 
 fish with ripples like terraria/pokemon/minecraft

@@ -1,3 +1,9 @@
+/* personal-aquarium.js
+the main js file for personal aquarium
+handles most generic and misc code for personal aquarium
+includes fish class, species info, images, names, utility functions, emotions, and more
+*/
+
 const PERSONAL_SCALE_SIZE = 4;
 const PERSONAL_SPRITE_SIZE = 24;
 const PERSONAL_MIN_X = 0;
@@ -6,16 +12,16 @@ const PERSONAL_MIN_Y = 0;
 const PERSONAL_MAX_Y = 300/PERSONAL_SCALE_SIZE - PERSONAL_SPRITE_SIZE;
 
 let all_emotions;
-
 let personal_canvas, personal_ctx;
 
+let personal_fishes = [];
 let current_tank = 0;
 
 // num personal fish per tank, array will increase with more tanks, number increases with fish per tank
 let tank_counts = [0];
 
 const MAX_NUM_TANKS = 5;
-
+const MAX_PER_TANK = 25; // 5 tanks with 25 per tank, 125 max fish
 
 /* todo implement below
 const NEW_TANK_UNLOCK_LEVELS = [-1, 5, 10, 15, 20]; // level for each tank unlock
@@ -24,13 +30,10 @@ during levelup, check to unhide button
 compare player_level to NEW_TANK_UNLOCK_LEVELS[tank_counts.length]
 */
 
-
-const MAX_PER_TANK = 25; // 5 tanks with 25 per tank, 125 max fish
-
 const MAX_STOMACH = 3;
 
 $( ()=> {
-	// testing
+	// below 2 lines are only for testing personal aquarium
 	setTimeout( ()=> $('#help-modal').modal('hide'), 500);
 	$('#personal-modal').modal('show');
 
@@ -74,11 +77,18 @@ $( ()=> {
 
 
 	all_emotions = $('#all-emotions').attr('class').split(/\s+/); // get classes and split by whitespace
-	let idx = all_emotions.indexOf('hungry');
-	if(idx!=-1) all_emotions.splice(idx, 1);
-
+	all_emotions.splice(all_emotions.indexOf('hungry'), 1);
 });
 
+
+function unlockPersonalAquarium() {
+	$('#personal-aquarium-btn').removeClass('hidden');
+}
+
+// ----------------
+
+// called on an interval
+// redraw the canvas, update the number displays
 function updatePersonalFish() {
 	personal_ctx.clearRect(0, 0, personal_canvas.width, personal_canvas.height);
 	for(let i=0; i<personal_fishes.length; i++) {
@@ -86,19 +96,14 @@ function updatePersonalFish() {
 			personal_fishes[i].update();
 		}
 	}
-
 	updateFoods();
-
-	// ----------------
 
 	let gold_shell_rate = 0;
 	for(let i=0; i<personal_fishes.length; i++) {
-		if(personal_fishes[i]) {
+		if(personal_fishes[i] && (!personal_fishes[i].isHungry() ) ) {
 			gold_shell_rate += getGoldShellRate(personal_fishes[i].species_num, personal_fishes[i].level);
 		}
 	}
-
-	$('.player-level').html(player_level);
 	$('.num-gold-shell').html(num_gold_shell);
 	$('.num-gold-shell-rate').html(gold_shell_rate);
 }
@@ -107,12 +112,15 @@ function updatePersonalFishCount() {
 	$('#num-personal-fish').html(tank_counts[current_tank]);
 }
 
+// called on an interval, earn gold shells from personal fish
 function doPersonalFishShellProduction() {
 	for(let i=0; i<personal_fishes.length; i++) {
 		if(personal_fishes[i])
 			personal_fishes[i].makeShell();
 	}
 }
+
+// ----------------
 
 class PersonalFish {
 	constructor(species_num, name, level, tank) {
@@ -203,7 +211,7 @@ class PersonalFish {
 		drawFishToCanvas(this.size, this.facing_left, this.color1, this.color2, this.x, this.y, this.rotation, this.getEmotion() );
 	}
 	getImg() {
-		return getPersonalFish(this.size, false, this.color1, this.color2, this.color2, this.color1, 0);
+		return getPersonalFishImg(this.size, false, this.color1, this.color2, this.color2, this.color1, 0);
 	}
 	drawAt(location) {
 		$('#'+location).append(this.getImg() );
@@ -239,44 +247,45 @@ class PersonalFish {
 	}
 }
 
-let personal_fishes = [];
+// ----------------
+
+function drawFishesToModal() {
+	let tmpHTML = '';
+	for(let i=0; i<personal_fishes.length; i++) {
+		if(personal_fishes[i]== undefined) continue;
+		
+		let species_num = personal_fishes[i].species_num;
+		tmpHTML += '<div class="col-lg-4 col-md-6 fish-display-section">'
+			+ '<button class="btn btn-sm favorite-btn'+(personal_fishes[i].favorite?' active':'')+'" title="Toggle Favorite" '
+			+ 'onclick="toggleFavorite('+i+'); $(this).toggleClass(\'active\');" ><i class="fas fa-star"></i></button>'
+			+ ' Name: <input type="text" value="' + personal_fishes[i].name + '" onchange="setName('+i+', this.value);">'
+			+ ' <button class="btn btn-sm" title="Sell" onclick="sellPersonalFish('+i+', $(this).parent() );">'
+			+ 'Sell for '+  Math.floor(getPrice(species_num, personal_fishes[i].level)/2) + getImgStr('shell-gold.png', 'icon-sm')
+			+ '</button>'
+			// + ' <button class="btn btn-sm" title="Change Tanks"><i class="fas fa-arrow-right"></i></button>'
+			+ '<br>Level ' + personal_fishes[i].level
+			+ ' &mdash; Stomach: ' + personal_fishes[i].stomach + ' / ' + MAX_STOMACH
+			+ '<br><img src="' + personal_fishes[i].getSVG() + '" class="fish-display">'
+			+ '<br>Tank ' + personal_fishes[i].tank+1
+			+ '<br>Species ' + species_num
+			+ ' &mdash; ' + getSize(species_num)
+			+ ' &mdash; ' + getRarity(species_num)
+			+ '<br>'
+			+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, personal_fishes[i].level) + getImgStr('shell-gold.png', 'icon-sm')
+			+ '</div>';
+	}
+	$('#personal-fish-div').html(tmpHTML);
+}
 
 function toggleFavorite(idx) {
 	personal_fishes[idx].favorite = !personal_fishes[idx].favorite;
 }
+
 function setName(idx, name) {
 	personal_fishes[idx].name = name;
 }
 
-function drawFishesToModal() {
-	$('#personal-fish-div').html(''); //test
-	// let tmpHTML = '';
-	for(let i=0; i<personal_fishes.length; i++) {
-		if(personal_fishes[i]) {
-			let species_num = personal_fishes[i].species_num;
-			$('#personal-fish-div').append('<div class="col-lg-4 col-md-6 fish-display-section">'
-				+ '<button class="btn btn-sm favorite-btn'+(personal_fishes[i].favorite?' active':'')+'" title="Toggle Favorite" '
-				+ 'onclick="toggleFavorite('+i+'); $(this).toggleClass(\'active\');" ><i class="fas fa-star"></i></button>'
-				+ ' Name: <input type="text" value="' + personal_fishes[i].name + '" onchange="setName('+i+', this.value);">'
-				+ ' <button class="btn btn-sm" title="Sell" onclick="sellPersonalFish('+i+', $(this).parent() );">'
-				+ 'Sell for '+  Math.floor(getPrice(species_num, personal_fishes[i].level)/2) + getImgStr('shell-gold.png', 'icon-sm')
-				+ '</button>'
-				// + ' <button class="btn btn-sm" title="Change Tanks"><i class="fas fa-arrow-right"></i></button>'
-				+ '<br>Level ' + personal_fishes[i].level
-				+ ' &mdash; Stomach: ' + personal_fishes[i].stomach + ' / ' + MAX_STOMACH
-				+ '<br><img src="' + personal_fishes[i].getSVG() + '" class="fish-display">'
-				+ '<br>Tank ' + personal_fishes[i].tank+1
-				+ '<br>Species ' + species_num
-				+ ' &mdash; ' + getSize(species_num)
-				+ ' &mdash; ' + getRarity(species_num)
-				+ '<br>'
-				+ '<br>Gold Shell Rate: ' + getGoldShellRate(species_num, personal_fishes[i].level) + getImgStr('shell-gold.png', 'icon-sm')
-				+ '</div>'
-			);
-		}
-	}
-	// $('#personal-fish-div').html(tmpHTML);
-}
+// ----------------
 
 function getSpeciesNum(size, color1, color2) {
 	return FISH_SIZES.findIndex( (a)=> a==size) * 25
@@ -358,27 +367,18 @@ const PERSONAL_FISH_SPEEDS = {
 	'big-2': 5
 };
 
+// ----------------
+
 // size is str ('small', 'medium-1', 'medium-2', 'big-1' or 'big-2')
 // facing_left is bool
 // colors are color strings, for example 'red' or '#f00'
 
-// function drawPersonalFish(elm_id, size, facing_left, fin_color, front_color, back_color, eye_color) {
-// 	let tmp = $('#'+size+'-fish-right').clone().appendTo('#'+elm_id).removeClass('hidden');
-// 	tmp.find('.fin').css('fill', FISH_COLORS[fin_color].fin);
-// 	tmp.find('.front').css('fill', FISH_COLORS[front_color].front);
-// 	tmp.find('.back').css('fill', FISH_COLORS[back_color].back);
-// 	tmp.find('.eye').css('fill', FISH_COLORS[eye_color].eye);
-// 	if(facing_left)
-// 		tmp.css('transform', 'scale(-1,1)');
-// 	return tmp;
-// }
-
 function drawFishToCanvas(size, facing_left, color1, color2, x, y, rotation, emotion) {
-	let fish = getPersonalFish(size,facing_left,color1,color2,color2,color1,rotation,emotion);
+	let fish = getPersonalFishImg(size,facing_left,color1,color2,color2,color1,rotation,emotion);
 	drawSVGToCanvas(fish,personal_ctx,x,y,PERSONAL_SPRITE_SIZE,PERSONAL_SPRITE_SIZE);
 }
 
-function getPersonalFish(size, facing_left, fin_color, front_color, back_color, eye_color, rotation=0, emotion='neutral') {
+function getPersonalFishImg(size, facing_left, fin_color, front_color, back_color, eye_color, rotation=0, emotion='neutral') {
 	let tmp = document.getElementById(size+'-fish-right').cloneNode(true);
 	tmp.classList.remove('hidden');
 	
@@ -393,7 +393,6 @@ function getPersonalFish(size, facing_left, fin_color, front_color, back_color, 
 		tmp.style.transform = 'scale(-1,1)';
 	if(rotation!=0)
 		tmp.style.transform += 'rotate('+rotation+'deg)';
-
 
 	if(emotion!='neutral') {
 		let thought = document.getElementById('thought').cloneNode(true);
@@ -412,9 +411,7 @@ function drawSVGToCanvas(sourceSVG, target_ctx, x, y, width, height) {
 	let svg_xml = (new XMLSerializer() ).serializeToString(sourceSVG);
 
 	let img = new Image();
-	img.onload = ()=> {
-		target_ctx.drawImage(img, x, y, width, height);
-	}
+	img.onload = ()=> target_ctx.drawImage(img, x, y, width, height);
 	img.src = 'data:image/svg+xml;base64,' + btoa(svg_xml);
 }
 
@@ -423,23 +420,16 @@ function getSVGData(sourceSVG) {
 	return 'data:image/svg+xml;base64,' + btoa(svg_xml);
 }
 
+// ----------------
+
 function addRandFish(amount=1) {
-	for(let i=0; i<amount; i++) {
-		let species_num = randSpeciesNum(); 
+	for(let i=0, species_num=randSpeciesNum(); i<amount; i++) {		 
 		addPersonalFish(species_num, randName(species_num), 1);
 	}
 }
 
-function hasSpacePersonal() {
-	let fish_count = 0;
-	for(let i=0; i<personal_fishes.length; i++) {
-		if(personal_fishes[i]!=undefined) {
-			fish_count++;
-		}
-	}
-	return fish_count < tank_counts.length*MAX_PER_TANK;
-}
-
+// given fish info, adds that fish to the personal tank (personal_fishes variable)
+// finds the right tank for it and adds to the index of the first undefined fish if applicable, else new index
 function addPersonalFish(species_num, name, level) { // bottleneck that all added fish go through
 	let tank = -1;
 	if(tank_counts[current_tank]<MAX_PER_TANK) {
@@ -472,19 +462,12 @@ function addPersonalFish(species_num, name, level) { // bottleneck that all adde
 	updatePersonalFishCount();
 	return true;
 }
+
 function sellPersonalFish(idx, elm) {
-	
-	// can't sell your last fish
-	let fish_count = 0;
-	for(let i=0; i<tank_counts.length; i++) {
-		fish_count += tank_counts[i];
-	}
-	if(fish_count==1) {
+	if(getPersonalFishCount() == 1) { // can't sell your last fish
 		showAlert('Can\'t sell your last fish', 'Can\'t sell your last personal fish. Buy another one first.');
 		return;
 	}
-
-	// ----------------
 
 	elm.fadeOut();
 	num_gold_shell += Math.floor(getPrice(personal_fishes[idx].species_num, personal_fishes[idx].level)/2);
@@ -492,17 +475,18 @@ function sellPersonalFish(idx, elm) {
 	personal_fishes[idx] = undefined;
 	updatePersonalFishCount();
 }
-function randSpeciesNum() {
-	return random(0, 124); // 124 = 5*5*5-1
-}
-function randPosition() {
-	return {
-		x: random(PERSONAL_MIN_X, PERSONAL_MAX_X),
-		y: random(PERSONAL_MIN_Y, PERSONAL_MAX_Y),
-	};
+
+function hasSpacePersonal() {
+	return getPersonalFishCount() < tank_counts.length*MAX_PER_TANK;
 }
 
-const GENERIC_FISH_NAMES = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Prof.Swimmy;Spots;Smiles;Flippy Flippy;Flippers;SwimSwim;Flops;Fin;Sushi;Atlantis;Neptune;Chips;Nibbles;Floaty Floats;Dr.Splashes;Reef Reef;Shipwreck;Captain;Tsunami;Hooks;Opal;Prof.Speckle;Bop Bop;Glup Glup;Glupples;Glubbles';
+function getPersonalFishCount() {
+	return tank_counts.reduce( (a, b) => a + b, 0); // sum numbers in tank_counts
+}
+
+// ----------------
+
+const GENERIC_FISH_NAMES = 'Mr.Speckles;FishyMcFishFace;Dr.Fish;Prof.Swimmy;Spots;Smiles;Flippy Flippy;Flippers;SwimSwim;Flops;Fin;Sushi;Atlantis;Neptune;Chips;Nibbles;Floaty Floats;Dr.Splashes;Reef Reef;Shipwreck;Captain;Tsunami;Hooks;Opal;Prof.Speckle;Bop Bop;Glup Glup;Glupples;Glubbles;Toothy';
 
 const FISH_NAMES = {
 	'pink':   'Grapefruit;Strawberry;Nutmeg;Shells;Amethyst;Pearl;Moonlight;Pinky;Rose',
@@ -523,6 +507,13 @@ function randName(species_num) {
 	return fish_names[random(0, fish_names.length)];
 }
 
-function getImgStr(src, classes) {
-	return '<img src="img/'+src+'" class="'+classes+'">';
+function randSpeciesNum() {
+	return random(0, 124); // 124 = 5*5*5-1
+}
+
+function randPosition() {
+	return {
+		x: random(PERSONAL_MIN_X, PERSONAL_MAX_X),
+		y: random(PERSONAL_MIN_Y, PERSONAL_MAX_Y),
+	};
 }

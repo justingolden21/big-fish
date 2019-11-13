@@ -1,3 +1,7 @@
+/* personal-shell.js
+for all things related to gaining shells
+*/
+
 const BASE_SHELL_RATE = 2;
 
 function getGoldShellRate(species_num, level) {

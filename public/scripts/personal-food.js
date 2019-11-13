@@ -1,15 +1,15 @@
+/* personal-food.js
+for all things related to food, placing it with mouse, removing it, moving it, drawing it, colliding with it
+*/
+
 let personal_foods = [];
 const FOOD_SIZE = 4;
 const FOOD_FALL_RATE = 10;
-const MAX_FOODS = 10; // switching tank can be buggy?
 const FOOD_WAIT_TIME = 500;
-
 let last_click;
 
 function placeFood(evt) {
-	if(personal_foods.length < MAX_FOODS && 
-		(evt.timeStamp - last_click >= FOOD_WAIT_TIME) || last_click==undefined) {
-		
+	if( (evt.timeStamp - last_click >= FOOD_WAIT_TIME) || last_click==undefined) {		
 		let pos = getMousePosition(personal_canvas, evt);
 		personal_foods.push(pos);
 		last_click = evt.timeStamp;
