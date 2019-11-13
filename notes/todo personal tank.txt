@@ -1,6 +1,6 @@
 able to buy tank size updgrade, move fish between tanks, display different tanks
 
-  name fish prompt on purchase?
+name fish prompt on purchase? nah
 
 login bonus gold shells wheel
 

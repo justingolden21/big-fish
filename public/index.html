@@ -68,6 +68,7 @@
 <script src="scripts/personal-shell.js"></script>
 <script src="scripts/personal-level.js"></script>
 <script src="scripts/personal-food.js"></script>
+<script src="scripts/personal-wheel.js"></script>
 
 </head>
 
@@ -1009,6 +1010,23 @@
 				<!-- todo: add these numbers at runtime from consts -->
 				<button id="reroll-shop-btn"class="btn">Reroll Shop (<span>20</span> shells)</button>
 				<button id="new-tank-btn"class="btn">New Tank (<span>200</span> shells)</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade full-modal" id="personal-wheel-modal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Personal Aquarium - Daily Wheel</h4>
+				<p class="lvl-shell-info"> &nbsp; Level <span class="player-level">1</span>
+				&nbsp; <div class="progress-container"><div class="player-exp-progress progress-bar" width="50%"></div></div> &nbsp;
+				<span class="num-gold-shell">0</span><img src="img/shell-gold.png" class="icon-sm"></p>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<canvas id="personal-wheel"></canvas>
 			</div>
 		</div>
 	</div>
