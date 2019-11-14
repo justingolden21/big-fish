@@ -1,6 +1,11 @@
-able to buy tank size updgrade, move fish between tanks, display different tanks
+able to buy tank size updgrade, display different tanks
 
 name fish prompt on purchase? nah
+
+fish each have 3 common emotions, saved in export, hidden to user?
+
+  implement favorite fish filter?
+  move fish between tanks
 
 login bonus gold shells wheel
 

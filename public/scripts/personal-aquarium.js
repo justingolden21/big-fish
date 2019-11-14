@@ -1,3 +1,4 @@
+
 /* personal-aquarium.js
 the main js file for personal aquarium
 handles most generic and misc code for personal aquarium
@@ -196,6 +197,7 @@ class PersonalFish {
 	feed() {
 		this.stomach++;
 		this.setEmotion('heart');
+		this.levelUp();
 	}
 	getEmotion() {
 		if(this.isHungry() )
