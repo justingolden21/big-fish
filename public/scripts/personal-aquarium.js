@@ -60,6 +60,9 @@ $( ()=> {
 
 	personal_canvas.onclick = (evt)=> placeFood(evt);
 
+	all_emotions = $('#all-emotions').attr('class').split(/\s+/); // get classes and split by whitespace
+	all_emotions.splice(all_emotions.indexOf('hungry'), 1);
+
 	//favorite species numbers 12, 36, 61, 90
 	addRandFish(1);
 	setInterval(updatePersonalFish, 250);
@@ -87,9 +90,6 @@ $( ()=> {
 		}
 	}
 
-
-	all_emotions = $('#all-emotions').attr('class').split(/\s+/); // get classes and split by whitespace
-	all_emotions.splice(all_emotions.indexOf('hungry'), 1);
 });
 
 // ----------------
@@ -151,6 +151,7 @@ class PersonalFish {
 		this.favorite = false;
 
 		this.emotion = 'neutral';
+		this.emotions = [randEmotion(), randEmotion(), randEmotion()];
 	}
 	export() {
 		// export only the data worth saving
@@ -161,7 +162,8 @@ class PersonalFish {
 			name: this.name,
 			favorite: this.favorite,
 			last_fed_day: this.last_fed_day,
-			stomach: this.stomach
+			stomach: this.stomach,
+			emotions: this.emotions
 		};
 	}
 	import(import_info) {
@@ -170,6 +172,7 @@ class PersonalFish {
 		this.name = import_info.name;
 		this.favorite = import_info.favorite;
 		this.last_fed_day = import_info.last_fed_day;
+		this.emotions = import_info.emotions;
 
 		this.stomach = import_info.stomach;
 			if(this.last_fed_day != getDay() )
@@ -252,7 +255,7 @@ class PersonalFish {
 	}
 	updateEmotion() {
 		if(this.emotion=='neutral' && Math.random() > 0.975) {
-			let rand_emotion = all_emotions[random(0,all_emotions.length)];
+			let rand_emotion = this.emotions[random(0,this.emotions.length)];
 			this.setEmotion(rand_emotion);
 		}
 	}
@@ -271,6 +274,11 @@ class PersonalFish {
 			this.level++;
 		}
 	}
+}
+
+function randEmotion() {
+	console.log(all_emotions);
+	return all_emotions[random(0,all_emotions.length)];
 }
 
 // ----------------

@@ -1,10 +1,6 @@
   able to buy tank size updgrade, display different tanks
 
-  fish each have 3 common emotions, saved in export, hidden to user?
-
   move fish between tanks
-
-login bonus gold shells wheel
 
 check level for unlock new tank button, also check lvl for new row of fish (from 3 to 6, unlock at lvl 20)
 
