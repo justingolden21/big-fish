@@ -33,7 +33,8 @@ compare player_level to NEW_TANK_UNLOCK_LEVELS[tank_counts.length]
 
 const MAX_STOMACH = 3;
 
-let favorite_only_display = false;
+let display_favorite_only = false;
+let display_current_tank_only = false;
 
 $( ()=> {
 	// below 2 lines are only for testing personal aquarium
@@ -42,7 +43,11 @@ $( ()=> {
 
 	$('#personal-fish-modal').on('shown.bs.modal', drawFishesToModal);
 	$('#favorite-only-display-btn').click( ()=> {
-		favorite_only_display = !favorite_only_display;
+		display_favorite_only = !display_favorite_only;
+		drawFishesToModal();
+	});
+	$('#current-tank-only-display-btn').click( ()=> {
+		display_current_tank_only = !display_current_tank_only;
 		drawFishesToModal();
 	});
 
@@ -274,7 +279,8 @@ function drawFishesToModal() {
 	let tmpHTML = '';
 	for(let i=0; i<personal_fishes.length; i++) {
 		if(personal_fishes[i]== undefined) continue;
-		if(favorite_only_display && !personal_fishes[i].favorite) continue;
+		if(display_favorite_only && !personal_fishes[i].favorite) continue;
+		if(display_current_tank_only && personal_fishes[i].tank != current_tank) continue;
 		
 		let species_num = personal_fishes[i].species_num;
 		tmpHTML += '<div class="col-lg-4 col-md-6 fish-display-section">'
