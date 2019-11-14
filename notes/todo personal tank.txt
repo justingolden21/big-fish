@@ -2,18 +2,13 @@
 
   move fish between tanks
 
-check level for unlock new tank button, also check lvl for new row of fish (from 3 to 6, unlock at lvl 20)
+check level for unlock new tank button, also check lvl for new row of fish in shop (from 3 to 6, unlock at lvl 20)
 
 upgrade tank size per tank? 5, 10, 15, 20, 25? check for level?
 
   update emotion graphics
 
 **move other ideas from google docs to here**
-
-personal fish modal only show fish in current tank?
-seperate modal for showing all (more brief overview)?
-
-add change tanks option
 
 ==== reject ideas ====
 
