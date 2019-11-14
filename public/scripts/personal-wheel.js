@@ -20,6 +20,7 @@ const WHEEL_FONT_COLOR = 'white';
 
 const WHEEL_RADIUS = 250;
 const INNER_WHEEL_RADIUS = 240;
+const INSIDE_CIRCLE_RADIUS = 80;
 const WHEEL_SLOWDOWN_RATE = degreesToRadians(1);
 let wheel_rotate_rate;
 let total_wheel_rotation;
@@ -100,6 +101,13 @@ function updateWheel() {
 		let pos = rotate(wheel_canvas.width/2, wheel_canvas.height/2, wheel_canvas.width/2, WHEEL_FONT_SIZE+40, start_angle-half_rotation);
 		wheel_ctx.fillText(wheel_slices[i], pos.x, pos.y);	
 	}
+
+	// inside circle
+	wheel_ctx.beginPath();
+	wheel_ctx.arc(wheel_canvas.width/2, wheel_canvas.height/2, INSIDE_CIRCLE_RADIUS, 0, 2*Math.PI);
+	wheel_ctx.fillStyle = WHEEL_COLOR;
+	wheel_ctx.fill();
+
 
 	wheel_ctx.translate(wheel_canvas.width/2, wheel_canvas.width/2);
 	wheel_ctx.rotate(wheel_rotate_rate);
