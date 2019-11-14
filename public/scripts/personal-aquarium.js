@@ -277,7 +277,6 @@ class PersonalFish {
 }
 
 function randEmotion() {
-	console.log(all_emotions);
 	return all_emotions[random(0,all_emotions.length)];
 }
 

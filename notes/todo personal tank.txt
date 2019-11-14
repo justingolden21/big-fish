@@ -6,9 +6,13 @@ check level for unlock new tank button, also check lvl for new row of fish in sh
 
 upgrade tank size per tank? 5, 10, 15, 20, 25? check for level?
 
-  update emotion graphics
-
 **move other ideas from google docs to here**
+
+==== todo later ====
+
+update emotion graphics
+
+make all graphics myself? draw on paper and trace in illustrator and convert to svg
 
 ==== reject ideas ====
 
@@ -16,7 +20,11 @@ upgrade tank size per tank? 5, 10, 15, 20, 25? check for level?
 
 name fish prompt on purchase? nah
 
-==== fishing idea ====
+==== misc ideas ====
 
+fishing idea:
 fish with ripples like terraria/pokemon/minecraft
 then catch with minigame, similar to stardew valley but minigame is like smash bros spirit board gun shooter
+
+add hats:
+fish can have different hats :)
