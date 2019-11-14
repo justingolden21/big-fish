@@ -4,7 +4,6 @@ name fish prompt on purchase? nah
 
 fish each have 3 common emotions, saved in export, hidden to user?
 
-  implement favorite fish filter?
   move fish between tanks
 
 login bonus gold shells wheel
