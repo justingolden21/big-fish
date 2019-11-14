@@ -515,3 +515,10 @@ function sumNumsBetween(start, end) {
 		sum += i;
 	return sum;
 }
+
+// return days since 1970 (epoch), for uniquely storing days easily
+// https://stackoverflow.com/questions/12739171/javascript-epoch-time-in-days
+function getDay() {
+	// today's date divide by (1000*60*60*24) (days to mills)
+	return Math.floor(new Date()/8.64e7);
+}

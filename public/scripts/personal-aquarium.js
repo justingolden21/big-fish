@@ -141,6 +141,7 @@ class PersonalFish {
 		this.tank = tank;
 		this.level = level;
 		this.stomach = 0;
+		this.last_fed_day = -1;
 		this.name = name;
 		this.favorite = false;
 
@@ -153,10 +154,23 @@ class PersonalFish {
 			tank: this.tank,
 			level: this.level,
 			name: this.name,
-			favorite: this.favorite
+			favorite: this.favorite,
+			last_fed_day: this.last_fed_day,
+			stomach: this.stomach
 		};
 	}
-	import() {
+	import(import_info) {
+		this.tank = import_info.tank;
+		this.level = import_info.level;
+		this.name = import_info.name;
+		this.favorite = import_info.favorite;
+		this.last_fed_day = import_info.last_fed_day;
+
+		this.stomach = import_info.stomach;
+			if(this.last_fed_day != getDay() )
+		this.stomach = 0;
+
+		this.species_num = import_info.species_num;
 		let tmp = getSpeciesInfo(species_num);
 		this.size = tmp.size;
 		this.color1 = tmp.color1;
@@ -166,8 +180,9 @@ class PersonalFish {
 		this.x = pos.x;
 		this.y = pos.y;
 		this.rotation = 0;
-
 		this.facing_left = Math.random() >= 0.5;
+
+		this.emotion = 'neutral';
 	}
 	move() { // move according to speed, random direction
 		this.facing_left = Math.random() >= 0.1 ? this.facing_left : !this.facing_left;
@@ -198,12 +213,15 @@ class PersonalFish {
 		}
 	}
 	isHungry() {
+		if(this.last_fed_day != getDay() )
+			this.stomach = 0;
 		return this.stomach!=MAX_STOMACH;
 	}
 	feed() {
 		this.stomach++;
 		this.setEmotion('heart');
 		this.levelUp();
+		this.last_fed_day = getDay();
 	}
 	getEmotion() {
 		if(this.isHungry() )

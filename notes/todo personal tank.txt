@@ -1,29 +1,29 @@
-able to buy tank size updgrade, display different tanks
+  able to buy tank size updgrade, display different tanks
 
-name fish prompt on purchase? nah
-
-fish each have 3 common emotions, saved in export, hidden to user?
+  fish each have 3 common emotions, saved in export, hidden to user?
 
   move fish between tanks
 
 login bonus gold shells wheel
 
-add help modal for personal tank stuff, info like fish cant level up past your level, how you get xp, purchase fish, login bonus, etc
-
-check level for unlock new tank button
+check level for unlock new tank button, also check lvl for new row of fish (from 3 to 6, unlock at lvl 20)
 
 upgrade tank size per tank? 5, 10, 15, 20, 25? check for level?
 
-100 personal food costs 1 gold shell?
+  update emotion graphics
 
 **move other ideas from google docs to here**
-
-organize code/files for personal tank
 
 personal fish modal only show fish in current tank?
 seperate modal for showing all (more brief overview)?
 
 add change tanks option
+
+==== reject ideas ====
+
+100 personal food costs 1 gold shell? nah
+
+name fish prompt on purchase? nah
 
 ==== fishing idea ====
 
