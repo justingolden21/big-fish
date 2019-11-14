@@ -44,3 +44,8 @@
 .favorite-btn.active:not(:hover) i.fas{
 	color: #099;
 }
+
+#personal-wheel {
+	border: none !important;
+	box-shadow: none !important;	
+}
