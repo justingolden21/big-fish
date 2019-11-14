@@ -2,6 +2,8 @@
 for generating, spinning, and adding shells from daily login wheel in personal tank
 */
 
+let last_wheel_spin_day = -1;
+
 let wheel_canvas, wheel_ctx;
 
 let color1 = '#099',
@@ -31,6 +33,10 @@ $( ()=> {
 		$('#personal-wheel-spin-btn').prop('disabled', true);
 	}); // calling function with no params, otherwise default param is undefined
 
+	if(getDay()==last_wheel_spin_day) {
+		$('#personal-wheel-spin-btn').prop('disabled', true);
+	}
+
 	wheel_canvas = document.getElementById('personal-wheel');
 	wheel_ctx = wheel_canvas.getContext('2d');
 	wheel_canvas.width = WHEEL_RADIUS*2;
@@ -54,6 +60,8 @@ function spinTheWheel(mills=100) {
 	total_wheel_rotation = 0;
 
 	spin_interval = setInterval(updateWheel, mills);
+
+	last_wheel_spin_day = getDay();
 }
 
 function runWheelTests(num_tests=10) {
